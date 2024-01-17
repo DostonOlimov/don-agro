@@ -1,6 +1,6 @@
-@extends('layouts.front')
+{{-- @extends('layouts.front')
 @section('content')
-
+@include('front.layouts.header')
 @include('front.layouts.hero')
 
 <!-- Categories Section Begin -->
@@ -139,4 +139,4 @@
 
 @endsection
 
-
+ --}}

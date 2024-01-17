@@ -13,12 +13,12 @@ class AddOldidColumn extends Migration
      */
     public function up()
     {
-        Schema::table('customer_invoices', function (Blueprint $table) {
-            $table->integer('agroteh_id')->nullable();
-        });
-        Schema::table('vehicle_inspections', function (Blueprint $table) {
-            $table->integer('agroteh_id')->nullable();
-        });
+        // Schema::table('customer_invoices', function (Blueprint $table) {
+        //     $table->integer('agroteh_id')->nullable();
+        // });
+        // Schema::table('vehicle_inspections', function (Blueprint $table) {
+        //     $table->integer('agroteh_id')->nullable();
+        // });
     }
 
     /**

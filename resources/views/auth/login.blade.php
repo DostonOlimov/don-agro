@@ -15,12 +15,12 @@
             <div class="row w-100">
                 <div class="col-lg-6 mx-auto">
                     <div class="row">
-                        <div class="col-lg-6 pr-0">
+                        <div class="col-lg-12 pr-0">
                             <a href="{!! url('login') !!}"><button type="button" class="btn btn-light rounded-top p-3 w-100" ><b>Kirish</b></button></a>
                         </div>
-                        <div class="col-lg-6 pl-0">
+                        {{-- <div class="col-lg-6 pl-0">
                             <a href="{!! url('register') !!}"><button type="button" class="btn btn-primary rounded-top p-3 w-100"><b>Ro'yxatdan o'tish</b></button></a>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="auto-form-wrapper">
                         <form action="{{ route('login') }}" method="POST">

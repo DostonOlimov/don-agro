@@ -13,9 +13,9 @@ class AddFullnameToTables extends Migration
      */
     public function up()
     {
-        Schema::table('vehicle_inspections', function (Blueprint $table) {
-            $table->string('owner_fullname')->nullable();
-        });
+        // Schema::table('vehicle_inspections', function (Blueprint $table) {
+        //     $table->string('owner_fullname')->nullable();
+        // });
     }
 
     /**
@@ -25,8 +25,8 @@ class AddFullnameToTables extends Migration
      */
     public function down()
     {
-        Schema::table('tables', function (Blueprint $table) {
-            //
-        });
+        // Schema::table('tables', function (Blueprint $table) {
+        //     //
+        // });
     }
 }

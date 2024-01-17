@@ -60,7 +60,7 @@
 </head>
 <body class="app">
 <!-- partial:partials/_sidebar.php -->
-@include('front.layouts.header')
+{{-- @include('front.layouts.header') --}}
 <!-- partial -->
 <div class="wrapper d-flex flex-column min-vh-100 bg-light" style="padding-right: 0!important;">
     <!-- partial:partials/_navbar.php -->
