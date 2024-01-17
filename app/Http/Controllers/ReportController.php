@@ -98,10 +98,10 @@ class ReportController extends Controller{
         if($city){
             $cities = DB::table('tbl_cities')->where('state_id',$city)->get()->toArray();
         }
-        if($crop){
-            $types = DB::table('crops_type')->where('crop_id',$crop)->get()->toArray();
-            $generations = DB::table('crops_generation')->where('crop_id',$crop)->get()->toArray();
-        }
+        // if($crop){
+        //     $types = DB::table('crops_type')->where('crop_id',$crop)->get()->toArray();
+        //     $generations = DB::table('crops_generation')->where('crop_id',$crop)->get()->toArray();
+        // }
 
         $names = DB::table('crops_name')->get();
         $countries = DB::table('tbl_countries')->get();
@@ -122,7 +122,7 @@ class ReportController extends Controller{
             'country',
             'crop_names',
             'types',
-            'generations',
+            // 'generations',
             'cities',
             'names',
             'years',

@@ -45,7 +45,7 @@
             <div class="page-header">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <i class="fe fe-life-buoy mr-1"></i>&nbsp {{trans('message."Qishloq xo\'jaligi mahsulotlari sifatini baholash markazi" DM 2023 yil hosilidan jamg\'arilgan urug\'lik :name mahsulotlarini sertifikatlanishi bo\'yicha ma\'lumot', ['name' => $name])}}
+                        <i class="fe fe-life-buoy mr-1"></i>&nbsp {{trans('message."Qishloq xo\'jaligi mahsulotlari sifatini baholash markazi" DM 2023 yil hosilidan jamg\'arilgan :name mahsulotlarini sertifikatlanishi bo\'yicha ma\'lumot', ['name' => $name])}}
                     </li>
                 </ol>
             </div>
@@ -98,14 +98,14 @@
                                     <tr>
                                         <th rowspan="2">№</th>
                                         <th rowspan="2">{{trans('app.Hudud nomi')}}</th>
-                                        <th rowspan="2">{{ trans('app.Ekishga talab etiladigan urug\'lik miqdori', ['measure_type' => $measure_type])}}</th>
-                                        <th colspan="2">{{ trans('app.Laboratoriya tahlillari uchun kelgan urug\'lik miqdori', ['measure_type' => $measure_type])}}</th>
-                                        <th rowspan="2">{{ trans('app.Sertifikatlashtirilgan urug\'lik miqdori', ['measure_type' => $measure_type])}}</th>
-                                        <th rowspan="2">{{ trans('app.Sertifikatlangan urug\'lik miqdori', ['measure_type' => $measure_type])}}</th>
+                                        <th rowspan="2">{{ trans('app.Ekishga talab etiladigan mahsulot miqdori', ['measure_type' => $measure_type])}}</th>
+                                        <th colspan="2">{{ trans('app.Laboratoriya tahlillari uchun kelgan mahsulot miqdori', ['measure_type' => $measure_type])}}</th>
+                                        <th rowspan="2">{{ trans('app.Sertifikatlashtirilgan mahsulot miqdori', ['measure_type' => $measure_type])}}</th>
+                                        <th rowspan="2">{{ trans('app.Sertifikatlangan mahsulot miqdori', ['measure_type' => $measure_type])}}</th>
                                         <th rowspan="2">%</th>
-                                        <th rowspan="2">{{ trans('app.Sifat bo\'yicha nomuvofiq deb topilgan urug\'lik miqdori', ['measure_type' => $measure_type])}}</th>
+                                        <th rowspan="2">{{ trans('app.Sifat bo\'yicha nomuvofiq deb topilgan mahsulot miqdori', ['measure_type' => $measure_type])}}</th>
                                         <th rowspan="2">%</th>
-                                        <th rowspan="2">{{ trans('app.Tahlilda turgan urug\'lik miqdori', ['measure_type' => $measure_type]) }}</th>
+                                        <th rowspan="2">{{ trans('app.Tahlilda turgan mahsulot miqdori', ['measure_type' => $measure_type]) }}</th>
                                         <th rowspan="2">%</th>
                                     </tr>
                                     <tr>
@@ -175,7 +175,7 @@
         </div>
         <div style="display: none">
             <div id="invoice-cheque" class="py-4 col-12" >
-                <h2>{{trans('message."Qishloq xo\'jaligi mahsulotlari sifatini baholash markazi" DM 2023 yil hosilidan jamg\'arilgan urug\'lik :name mahsulotlarini sertifikatlanishi bo\'yicha ma\'lumot', ['name' => $name])}}</h2>
+                <h2>{{trans('message."Qishloq xo\'jaligi mahsulotlari sifatini baholash markazi" DM 2023 yil hosilidan jamg\'arilgan :name mahsulotlarini sertifikatlanishi bo\'yicha ma\'lumot', ['name' => $name])}}</h2>
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
@@ -185,14 +185,14 @@
                                 <tr>
                                     <th rowspan="2">№</th>
                                     <th rowspan="2">{{trans('app.Hudud nomi')}}</th>
-                                    <th rowspan="2">{{ trans('app.Ekishga talab etiladigan urug\'lik miqdori', ['measure_type' => $measure_type])}}</th>
-                                    <th colspan="2">{{ trans('app.Laboratoriya tahlillari uchun kelgan urug\'lik miqdori', ['measure_type' => $measure_type])}}</th>
-                                    <th rowspan="2">{{ trans('app.Sertifikatlashtirilgan urug\'lik miqdori', ['measure_type' => $measure_type])}}</th>
-                                    <th rowspan="2">{{ trans('app.Sertifikatlangan urug\'lik miqdori', ['measure_type' => $measure_type])}}</th>
+                                    <th rowspan="2">{{ trans('app.Ekishga talab etiladigan mahsulot miqdori', ['measure_type' => $measure_type])}}</th>
+                                    <th colspan="2">{{ trans('app.Laboratoriya tahlillari uchun kelgan mahsulot miqdori', ['measure_type' => $measure_type])}}</th>
+                                    <th rowspan="2">{{ trans('app.Sertifikatlashtirilgan mahsulot miqdori', ['measure_type' => $measure_type])}}</th>
+                                    <th rowspan="2">{{ trans('app.Sertifikatlangan mahsulot miqdori', ['measure_type' => $measure_type])}}</th>
                                     <th rowspan="2">%</th>
-                                    <th rowspan="2">{{ trans('app.Sifat bo\'yicha nomuvofiq deb topilgan urug\'lik miqdori', ['measure_type' => $measure_type])}}</th>
+                                    <th rowspan="2">{{ trans('app.Sifat bo\'yicha nomuvofiq deb topilgan mahsulot miqdori', ['measure_type' => $measure_type])}}</th>
                                     <th rowspan="2">%</th>
-                                    <th rowspan="2">{{ trans('app.Tahlilda turgan urug\'lik miqdori', ['measure_type' => $measure_type]) }}</th>
+                                    <th rowspan="2">{{ trans('app.Tahlilda turgan mahsulot miqdori', ['measure_type' => $measure_type]) }}</th>
                                     <th rowspan="2">%</th>
                                 </tr>
                                 <tr>

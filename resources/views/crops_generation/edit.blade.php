@@ -1,4 +1,4 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 @section('content')
     <style>
         .checkbox-success {
@@ -6,7 +6,7 @@
             color: red;
         }
     </style>
-    <?php $userid = Auth::user()->id; ?>
+    <?php //$userid = Auth::user()->id; ?>
     @can('create', \App\Models\Application::class)
 
             <div class="section">
@@ -119,4 +119,4 @@
             });
         })
     </script>
-@endsection
+@endsection --}}

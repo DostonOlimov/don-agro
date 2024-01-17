@@ -2,7 +2,7 @@
 @section('styles')
     <style>
         tr th {
-            text-align: center;           
+            text-align: center;
         }
     </style>
 @endsection
@@ -15,7 +15,7 @@
             <div class="page-header">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <i class="fe fe-life-buoy mr-1"></i>&nbsp {{trans('message."Qishloq xo\'jaligi mahsulotlari sifatini baholash markazi" DM 2023 yil hosilidan jamg\'arilgan urug\'lik :name mahsulotlarini sertifikatlanishi bo\'yicha ma\'lumot', ['name'=>$name])}}
+                        <i class="fe fe-life-buoy mr-1"></i>&nbsp {{trans('message."Qishloq xo\'jaligi mahsulotlari sifatini baholash markazi" DM 2023 yil hosilidan jamg\'arilgan :name mahsulotlarini sertifikatlanishi bo\'yicha ma\'lumot', ['name'=>$name])}}
                     </li>
                 </ol>
             </div>
@@ -69,10 +69,10 @@
                                     <tr>
                                         <th>№</th>
                                         <th>{{trans('app.Name')}}</th>
-                                        <th>{{trans('app.Laboratoriya tahlillari uchun kelgan urug\'lik miqdori', ['measure_type' => $measure_type])}}</th>
-                                        <th>{{trans('app.Sertifikatlashtirilgan urug\'lik miqdori', ['measure_type' => $measure_type])}}</th>
-                                        <th>{{trans('app.Sifat bo\'yicha nomuvofiq deb topilgan urug\'lik miqdori', ['measure_type' => $measure_type])}}</th>
-                                        <th>{{trans('app.Tahlilda turgan urug\'lik miqdori', ['measure_type' => $measure_type]) }}</th>
+                                        <th>{{trans('app.Laboratoriya tahlillari uchun kelgan mahsulot miqdori', ['measure_type' => $measure_type])}}</th>
+                                        <th>{{trans('app.Sertifikatlashtirilgan mahsulot miqdori', ['measure_type' => $measure_type])}}</th>
+                                        <th>{{trans('app.Sifat bo\'yicha nomuvofiq deb topilgan mahsulot miqdori', ['measure_type' => $measure_type])}}</th>
+                                        <th>{{trans('app.Tahlilda turgan mahsulot miqdori', ['measure_type' => $measure_type]) }}</th>
                                         @if($year)
                                         <th>{{trans('app.Hosil yili')}}</th>
                                         @endif

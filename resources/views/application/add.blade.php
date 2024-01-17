@@ -96,7 +96,7 @@
                                 <div class="col-md-6 row">
                                     <div class="form-group" >
                                             <label class="form-label" for="prepared">
-                                                {{trans('app.Urug\'lik tayorlangan shaxobcha yoki sexning nomi')}} <span class="text-danger">*</span>
+                                                {{trans('app.Mahsulot tayorlangan shaxobcha yoki sexning nomi')}} <span class="text-danger">*</span>
                                             </label>
                                             <select id="prepared" required
                                                     class="form-control owner_search2" name="prepared">
@@ -113,12 +113,12 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group overflow-hidden">
-                                        <label class="form-label">{{trans('app.Ekin turi')}}<label
+                                        <label class="form-label">{{trans('app.Mahsulot turi')}}<label
                                                 class="text-danger">*</label></label>
                                         <select class="w-100 form-control name_of_corn custom-select" name="name" id="crops_name"
                                                 url="{!! url('/gettypefromname') !!}">
                                             @if(count($names))
-                                                <option value="">{{trans('app.Ekin turini tanlang')}}</option>
+                                                <option value="">{{trans('app.Mahsulot turini tanlang')}}</option>
                                             @endif
                                             @if(!empty($names))
                                                 @foreach($names as $name)
@@ -131,7 +131,7 @@
                                 </div>
 
                                 <div class="col-md-4 form-group overflow-hidden">
-                                    <label class="form-label">{{trans('app.Urug\' navi')}}
+                                    <label class="form-label">{{trans('app.Mahsulot navi')}}
                                         <label class="text-danger">*</label></label>
                                     <div class="row">
                                         <div class="col-12">
@@ -142,7 +142,7 @@
                                     </div>
 
                                 </div>
-                                <div class="col-md-4 form-group overflow-hidden">
+                                {{-- <div class="col-md-4 form-group overflow-hidden">
                                     <label class="form-label">{{trans('app.Urug\' avlodi')}}
                                         <label class="text-danger">*</label></label>
                                     <div class="row">
@@ -151,7 +151,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div id="tin-container" class="col-md-4 legal-fields">
                                     <div class="form-group">
                                         <label class="form-label">{{trans('app.Kod TN VED')}}<label class="text-danger">*</label></label>
@@ -200,7 +200,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4 form-group has-feedback {{ $errors->has('amount') ? ' has-error' : '' }}">
-                                    <label for="middle-name" class="form-label">{{trans('app.Ekin miqdori')}} <label class="text-danger">*</label></label>
+                                    <label for="middle-name" class="form-label">{{trans('app.Mahsulot miqdori')}} <label class="text-danger">*</label></label>
                                     <input type="number" step="0.01" class="form-control" maxlength="25" value="{{ old('amount')}}"  name="amount" required>
                                     @if ($errors->has('amount'))
                                         <span class="help-block">
@@ -328,7 +328,7 @@
                         results: data
                     }
                 }
-            }, 
+            },
             language: {
                 inputTooShort: function () {
                     return '{{trans("app.Korxona (nomi), STIR ini kiritib izlang")}}';

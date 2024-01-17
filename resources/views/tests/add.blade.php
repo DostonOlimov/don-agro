@@ -51,10 +51,10 @@
                                     <label class="form-label" for="app_number">Mahsulot navi <label class="text-danger">*</label></label>
                                     <input type="text" readonly name="product_type" value="{{ optional($app->crops)->type->name}}" class="form-control">
                                 </div>
-                                <div class="col-md-4 form-group has-feedback">
+                                {{-- <div class="col-md-4 form-group has-feedback">
                                     <label class="form-label" for="app_number">Mahsulot avlodi <label class="text-danger">*</label></label>
                                     <input type="text" readonly name="product_generation" value="{{ optional($app->crops)->generation->name}}" class="form-control">
-                                </div>
+                                </div> --}}
                                 <div class="col-md-4 form-group has-feedback">
                                     <label class="form-label" for="app_number">Sinov dasturi sanasi <label class="text-danger">*</label></label>
                                     <input type="text" readonly name="app_number" value="{{ $app->date}}" class="form-control">

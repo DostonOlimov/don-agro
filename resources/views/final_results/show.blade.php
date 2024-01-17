@@ -78,7 +78,7 @@
                                         </div>
                                         <div class="table_row row">
                                             <div class="col-md-5 col-sm-12 table_td">
-                                                <b>Ekin nomi</b>
+                                                <b>Mahsulot nomi</b>
                                             </div>
                                             <div class="col-md-7 col-sm-12 table_td">
                                             <span class="txt_color">

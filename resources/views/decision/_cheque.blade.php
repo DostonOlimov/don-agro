@@ -1,12 +1,12 @@
 <div id="invoice-cheque" class="py-4 col-12 {{$classes ?? ''}}">
     <h4 class="text-center">Oʼzbekiston Respublikasi Qishloq xo'jaligi vazirligi huzuridagi Аgrosanoat majmui ustidan
         nazorat qilish Inspektsiya qoshidagi <br> “Qishloq xo'jaligi mahsulotlarini sifatini baholash markazi” davlat muassasining<br>
-        Qishloq xoʼjalik ekinlari urugʼlarini sertifikatlashtirish organi<br>
-        Toshkent viloyati, Qibray tumani, Bobur koʼchasi 1-uy.</h4>
+        Don va uni qayta ishlashda olingan mahsulotlarni sertifikatlashtirish organi<br>
+        Toshkent shahar, Shayxontohur tumani Markaz-14, 27-uy.</h4>
     <h4 class="text-right">
        <b> «TАSDIQLАYMАN» </b><br>
-        Qishloq xoʼjalik ekinlari<br>
-        urugʼlarini sertifikatlashtirish<br>
+       Don va uni qayta ishlashda<br>
+       olingan mahsulotlarni sertifikatlashtirish<br>
         boʼlimi boshligʼi<br>
         <span id="director-name"></span><br>
         <span id="application-date"></span> yil
@@ -22,9 +22,9 @@
             <td colspan="4" class="align-left">
                 <h4 class=" text-left">
                     Buyurtmachi  <span id="application-organization"></span> <br>
-                    <span id="crop-type"></span> navli,&nbsp <span id="crop-generation"></span> avlodli,&nbsp<span id="crop-party"></span> partiyali,
+                    <span id="crop-type"></span> navli,&nbsp <span id="crop-party"></span> partiyali,
                     &nbsp<span id="crop-amount"></span>&nbsp<span id="measure-type"></span><br><span id="crop-pre-name"></span>
-                    urugʼlik &nbsp <span id="crop-name"></span> &nbsp mahsulotini sertifikatlashtirish uchun berilgan arizasini koʼrib chiqib quyidagilarni ma'lum qilamiz:
+                    mahsulot &nbsp <span id="crop-name"></span> &nbsp mahsulotini sertifikatlashtirish uchun berilgan arizasini koʼrib chiqib quyidagilarni ma'lum qilamiz:
                 </h4>
             </td>
         </tr>
@@ -53,7 +53,7 @@
         <tr>
             <td colspan="4" class="align-left">
                 <h4 class=" text-left">
-                    4. Urug‘likni identifikatsiyalash va namuna tanlab olish buyurtmachining omborida amalga oshiriladi;
+                    4. Mahsulotni identifikatsiyalash va namuna tanlab olish buyurtmachining omborida amalga oshiriladi;
                 </h4>
             </td>
         </tr>

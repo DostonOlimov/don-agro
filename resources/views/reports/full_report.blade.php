@@ -91,13 +91,13 @@
                                         <th rowspan="2">&nbsp{{trans('app.Na\'muna olingan viloyat')}}&nbsp</th>
                                         <th rowspan="2">{{trans('app.Na\'muna olingan shahar yoki tuman')}}</th>
                                         <th rowspan="2">{{trans('app.Buyurtmachi korxona yoki tashkilot nomi')}}</th>
-                                        <th rowspan="2">{{trans('app.Urug\'lik tayorlangan shaxobcha yoki sexning nomi')}}</th>
+                                        <th rowspan="2">{{trans('app.Mahsulot tayorlangan shaxobcha yoki sexning nomi')}}</th>
                                         <th rowspan="2">{{trans('app.Ishlab chiqargan davlat')}}</th>
-                                        <th rowspan="2">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp {{trans('app.Ekin turi')}} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</th>
-                                        <th rowspan="2">{{trans('app.Ekin navi')}}</th>
-                                        <th rowspan="2">{{trans('app.Ekin avlodi')}}</th>
+                                        <th rowspan="2">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp {{trans('app.Mahsulot turi')}} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</th>
+                                        <th rowspan="2">{{trans('app.Mahsulot navi')}}</th>
+                                        {{-- <th rowspan="2">{{trans('app.Ekin avlodi')}}</th> --}}
                                         <th rowspan="2">{{trans('app.Toʼda (partiya) raqami')}}</th>
-                                        <th rowspan="2">{{trans('app.Ekin miqdori')}}</th>
+                                        <th rowspan="2">{{trans('app.Mahsulot miqdori')}}</th>
                                         <th rowspan="2">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp {{trans('app.Hosil yili')}} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</th>
                                         <th rowspan="2">{{trans('app.Sinov bayonnoma raqami')}}</th>
                                         <th colspan="2">{{trans('app.Sertifikat')}}</th>
@@ -191,7 +191,7 @@
                                             <select class="w-100 form-control name_of_corn custom-select" name="name" id="crops_name"
                                                     url="{!! url('/gettypefromname') !!}">
                                                 @if(count($names))
-                                                    <option value="">{{trans('app.Ekin turini tanlang')}}</option>
+                                                    <option value="">{{trans('app.Mahsulot turini tanlang')}}</option>
                                                 @endif
                                                 @if(!empty($names))
                                                     @foreach($names as $name)
@@ -205,7 +205,7 @@
                                         <td>
                                             <select class="form-control w-100 type_of_corn custom-select" name="type" id="type">
                                                 @if($types)
-                                                    <option value="">{{trans('app.Ekin navini tanlang')}}</option>
+                                                    <option value="">{{trans('app.Mahsulot navini tanlang')}}</option>
                                                 @endif
                                                 @if(!empty($types))
                                                     @foreach($types as $type_name)
@@ -216,7 +216,7 @@
                                                 @endif
                                             </select>
                                         </td>
-                                        <td>
+                                        {{-- <td>
                                             <select class="form-control w-100 generation_of_corn custom-select" name="generation" id="generation" >
                                                 @if($types)
                                                     <option value="">Ekin avlodini tanlang</option>
@@ -229,7 +229,7 @@
 
                                                 @endif
                                             </select>
-                                        </td>
+                                        </td> --}}
                                         <td>
                                             <form class="d-flex">
                                                 <input type="text" name="s" class="search-input form-control"
@@ -486,27 +486,27 @@
                 });
             });
             //crop generation change
-            $('#generation').change(function () {
-                var selectedRegion = $(this).val();
+            // $('#generation').change(function () {
+            //     var selectedRegion = $(this).val();
 
-                var currentUrl = window.location.href;
-                var url = new URL(currentUrl);
+            //     var currentUrl = window.location.href;
+            //     var url = new URL(currentUrl);
 
-                // Set the new query parameter
-                url.searchParams.set('generation', selectedRegion);
+            //     // Set the new query parameter
+            //     url.searchParams.set('generation', selectedRegion);
 
-                // Modify the URL and trigger an AJAX request
-                var newUrl = url.toString();
-                window.history.pushState({ path: newUrl }, '', newUrl);
+            //     // Modify the URL and trigger an AJAX request
+            //     var newUrl = url.toString();
+            //     window.history.pushState({ path: newUrl }, '', newUrl);
 
-                $.ajax({
-                    url:  newUrl,
-                    method: "GET",
-                    success: function (response) {
-                        window.location.reload(true);
-                    }
-                });
-            });
+            //     $.ajax({
+            //         url:  newUrl,
+            //         method: "GET",
+            //         success: function (response) {
+            //             window.location.reload(true);
+            //         }
+            //     });
+            // });
         });
     </script>
 {{--    appllication add--}}

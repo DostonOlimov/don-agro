@@ -62,7 +62,7 @@
 										<th>№</th>
 										<th>{{trans('app.Sifat ko\'rsatkich nomi')}}</th>
 										<th>{{trans('app.Sifat ko\'rsatkich bo\'yicha me\'yoriy hujjat')}}</th>
-                                        <th>{{trans('app.Ekin turi')}}</th>
+                                        <th>{{trans('app.Mahsulot turi')}}</th>
 										<th>{{ trans('app.Action')}}</th>
 									</tr>
 								</thead>

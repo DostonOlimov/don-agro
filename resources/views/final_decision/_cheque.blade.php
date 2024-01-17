@@ -1,8 +1,8 @@
 <div id="invoice-cheque" class="py-4 col-12 {{$classes ?? ''}}">
     <h4 class="text-center">Oʼzbekiston Respublikasi Qishloq xo'jaligi vazirligi huzuridagi Аgrosanoat majmui ustidan <br>
         nazorat qilish Inspektsiya qoshidagi “Qishloq xo'jaligi mahsulotlarini baholash markazi” davlat muassasining
-        Qishloq xoʼjalik ekinlari urugʼlarini sertifikatlashtirish organi<br>
-        Toshkent viloyati, Qibray tumani, Bobur koʼchasi 1-uy.</h4>
+        Don va uni qayta ishlashda olingan mahsulotlarni sertifikatlashtirish organi<br>
+        Toshkent shahar, Shayxontohur tumani Markaz-14, 27-uy.</h4>
     <h4 class="text-center">
        <b> Mahsulotni sertifikatlash natijasi bo'yicha <br>
            {{  date("Y", strtotime($decision->test_program->application->date))}}- yil &nbsp;
@@ -18,13 +18,13 @@
             {{$decision->test_program->application->date}} &nbsp;&nbsp; {{$decision->test_program->application->app_number}} - sonli
             ariza bo'yicha amalga oshirilgan sertifikatlash jarayonlarida jamlangan barcha ma'lumotlar va natijalarnni tahlili bo'yicha
             o'rnatilgan talablarga @if($decision->type == 2) {{'muvofiq'}} @else {{'nomuvofiq' }} @endif
-            deb topildi, buning asosida Qishloq xo'jaligi ekinlari urug'larini sertifikatlash organining
+            deb topildi, buning asosida Don va uni qayta ishlashda olingan mahsulotlarni sertifikatlashtirish organing
             mustaqil baholash mutaxasisi sertifikatlash natijalari bo'yicha qaror qabul qildi: <br>
-            Ekin turi &nbsp;{{$decision->test_program->application->crops->pre_name}}&nbsp;{{$decision->test_program->application->crops->name->name}} , urug'lik navi &nbsp; {{$decision->test_program->application->crops->type->name}},
-            &nbsp;avlodi&nbsp;{{$decision->test_program->application->crops->generation->name}},
+            Mahsulot turi &nbsp;{{$decision->test_program->application->crops->pre_name}}&nbsp;{{$decision->test_program->application->crops->name->name}} , mahsulot navi &nbsp; {{$decision->test_program->application->crops->type->name}},
+            &nbsp;
             &nbsp;partiyasi&nbsp;{{$decision->test_program->application->crops->party_number}},
             &nbsp;miqdori&nbsp;{{$decision->test_program->application->crops->amount}}&nbsp;{{\App\Models\CropData::getMeasureType($decision->test_program->application->crops->measure_type)}},
-            &nbsp;hosil yili &nbsp;{{$decision->test_program->application->crops->year}}  bo'lgan urug'lik mahsulotiga
+            &nbsp;hosil yili &nbsp;{{$decision->test_program->application->crops->year}}  bo'lgan mahsulotiga
             @if($decision->type == 2) {{'Muvofiqlik sertifikati rasmiylashtirilsin.'}} @else {{'tahlil natijasida sertifikat rasmiylashtirishga rad etiladi' }} @endif
 
         </h4>

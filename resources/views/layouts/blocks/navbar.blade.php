@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="title title-dashboard" style="width: 100%; text-align: center;">
-                <h1 style="text-transform: uppercase; font-size: 1.3rem; margin: 7px 15px">{{trans('message.Qishloq xo‘jalik ekinlari urug‘larini sertifikatlashtirish avtomatlashtirilgan axborot tizimi')}}</h1>
+                <h1 style="text-transform: uppercase; font-size: 1.3rem; margin: 7px 15px">{{trans('message.Don va uni qayta ishlashda olingan mahsulotlarni sertifikatlashtirish organi')}}</h1>
             </div>
             <div>
                 <div class="dropdown">

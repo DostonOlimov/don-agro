@@ -23,13 +23,13 @@ Route::group(
         // Route::domain('paxta.cert')->get('/', function () {
         //     return view('/paxta/front/index');
         // });
+        //Route::get('/', ['middleware' => 'auth','\App\Http\Controllers\DashboardController@index'])->name('home');
         Route::post('/register-store', '\App\Http\Controllers\AuthController@store')->name('register.store');
         Route::post('/change-language', [\App\Http\Controllers\LanguageController::class, 'changeLanguage']);
         Route::post('/change-year', [\App\Http\Controllers\LanguageController::class, 'changeYear']);
 
         //Dashboard
         Route::get('/home', ['middleware' => 'auth', 'uses' => '\App\Http\Controllers\HomeController@dashboard']);
-        //Route::get('/', ['middleware' => 'auth','\App\Http\Controllers\DashboardController@index'])->name('home');
         Route::get('/', [\App\Http\Controllers\DashboardController::class, 'home']);
         Route::get('/about/{id}', [\App\Http\Controllers\DashboardController::class, 'about']);
         Route::get('/all', [\App\Http\Controllers\DashboardController::class, 'all']);
@@ -177,14 +177,14 @@ Route::group(
             Route::post('/list/edit/update/{id}', '\App\Http\Controllers\CropsTypeController@update');
         });
         //Crops generation
-        Route::group(['prefix' => 'crops_generation', 'middleware' => 'auth'], function () {
-            Route::get('/add', '\App\Http\Controllers\CropsGenerationController@index');
-            Route::get('/list', '\App\Http\Controllers\CropsGenerationController@list');
-            Route::post('/store', '\App\Http\Controllers\CropsGenerationController@store');
-            Route::get('/list/delete/{id}', '\App\Http\Controllers\CropsGenerationController@destory');
-            Route::get('/list/edit/{id}', '\App\Http\Controllers\CropsGenerationController@edit');
-            Route::post('/list/edit/update/{id}', '\App\Http\Controllers\CropsGenerationController@update');
-        });
+        // Route::group(['prefix' => 'crops_generation', 'middleware' => 'auth'], function () {
+        //     Route::get('/add', '\App\Http\Controllers\CropsGenerationController@index');
+        //     Route::get('/list', '\App\Http\Controllers\CropsGenerationController@list');
+        //     Route::post('/store', '\App\Http\Controllers\CropsGenerationController@store');
+        //     Route::get('/list/delete/{id}', '\App\Http\Controllers\CropsGenerationController@destory');
+        //     Route::get('/list/edit/{id}', '\App\Http\Controllers\CropsGenerationController@edit');
+        //     Route::post('/list/edit/update/{id}', '\App\Http\Controllers\CropsGenerationController@update');
+        // });
         //Nds
         Route::group(['prefix' => 'nds', 'middleware' => 'auth'], function () {
             Route::get('/add', '\App\Http\Controllers\NdsController@index');
@@ -302,6 +302,19 @@ Route::group(
             Route::get('/laboratory-view/{id}', '\App\Http\Controllers\TestProgramsController@lab_view');
             Route::post('/store', '\App\Http\Controllers\TestProgramsController@store')->name('tests.store');
         });
+
+        // Akt otbora start
+        Route::group(['prefix' => 'akt', 'middleware' => 'auth'], function () {
+            Route::get('/list', '\App\Http\Controllers\AKTController@list')->name('akt.list');
+            Route::get('/accept/{id}', ['as' => '/akt/accept', 'uses' => '\App\Http\Controllers\AKTController@accept']);
+            Route::get('/reject/{id}', ['as' => '/akt/reject', 'uses' => '\App\Http\Controllers\AKTController@reject']);
+            Route::post('/accept/store', ['as' => 'akt.acceptstore', 'uses' => '\App\Http\Controllers\AKTController@accept_store']);
+            Route::post('/reject/store', ['as' => 'akt.rejectstore', 'uses' => '\App\Http\Controllers\AKTController@reject_store']);
+        });
+
+
+        // Akt otbora start
+
         //Test programs
         Route::group(['prefix' => 'tests-laboratory', 'middleware' => 'auth'], function () {
             Route::get('/list', '\App\Http\Controllers\TestProgramsLaboratoryController@list')->name('test_laboratory.list');
@@ -310,6 +323,8 @@ Route::group(
             Route::post('/accept/store', ['as' => 'tests.acceptstore', 'uses' => '\App\Http\Controllers\TestProgramsLaboratoryController@accept_store']);
             Route::post('/reject/store', ['as' => 'tests.rejectstore', 'uses' => '\App\Http\Controllers\TestProgramsLaboratoryController@reject_store']);
         });
+
+
         //Laboratory results
         Route::group(['prefix' => 'laboratory-results', 'middleware' => 'auth'], function () {
             Route::get('/list', '\App\Http\Controllers\LaboratoryResultsController@list');

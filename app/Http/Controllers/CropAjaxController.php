@@ -24,7 +24,7 @@ class CropAjaxController extends Controller
         $types = DB::table('crops_type')->where('crop_id','=',$id)->get()->toArray();
         if(!empty($types))
         {
-            echo "<option value=\"\">Ekin navini tanlang</option>";
+            echo "<option value=\"\">Mahsulot  navini tanlang</option>";
             foreach($types as $type)
             { ?>
                 <option value="<?php echo  $type->id; ?>"  class="states_of_countrys"><?php echo $type->name; ?></option>
@@ -32,20 +32,22 @@ class CropAjaxController extends Controller
         }
     }
     //get state
-    public function getgeneration(Request $request)
-    {
-        $id = $request->input('name_id');
+    // public function getgeneration(Request $request)
+    // {
+    //     $id = $request->input('name_id');
 
-        $types = DB::table('crops_generation')->where('crop_id','=',$id)->get()->toArray();
-        if(!empty($types))
-        {
-            echo "<option value=\"\">Ekin avlodini tanlang</option>";
-            foreach($types as $type)
-            { ?>
-                <option value="<?php echo  $type->id; ?>"  class="states_of_countrys"><?php echo $type->name; ?></option>
-            <?php }
-        }
-    }
+    //     $types = DB::table('crops_generation')->where('crop_id','=',$id)->get()->toArray();
+    //     if(!empty($types))
+    //     {
+    //         echo "<option value=\"\">Ekin avlodini tanlang</option>";
+    //         foreach($types as $type)
+    //         {
+            // ? >
+                // <option value="<?php echo  $type->id; ? >"  class="states_of_countrys"><?php echo $type->name; ? ></option>
+        //    < ? p h p
+    //         }
+    //     }
+    // }
     //get state
     public function getkodtnved($id)
     {

@@ -106,7 +106,7 @@
                     </div>
                 </div>
                 <div class="circle_persentages__statistics__texts">
-                    <h3 class="lineUp">{{ trans('message.Mahaliy urug\'lar uchun arizalar') }}</h3>
+                    <h3 class="lineUp">{{ trans('message.Mahaliy mahsulotlar uchun arizalar') }}</h3>
                     <p class="lineUp">{{$local_app}} {{trans('message.ta')}}</p>
                 </div>
             </div>
@@ -148,7 +148,7 @@
                     </div>
                 </div>
                 <div class="circle_persentages__statistics__texts">
-                    <h3 class="lineUp">{{trans('message.Import qilingan urug\'lar uchun')}}</h3>
+                    <h3 class="lineUp">{{trans('message.Import qilingan mahsulotlar uchun')}}</h3>
                     <p class="lineUp">{{$global_app}} {{trans('message.ta')}}</p>
                 </div>
             </div>
@@ -207,7 +207,7 @@
     <div class="scores workblocks">
         <div class="my-title row">
             <div class="col-sm-8">
-                <h2 style="margin-top: 8px">{{trans('message.Urug\'lar kesimida ma\'lumot')}}</h2>
+                <h2 style="margin-top: 8px">{{trans('message.Mahsulotlar kesimida ma\'lumot')}}</h2>
             </div>
             <div class="col-sm-4">
                 <select style="cursor: pointer;" class="w-100 form-control state_of_country custom-select " name="city" id="city">
@@ -285,7 +285,7 @@
             <div class="col-sm-4">
                 <select style="cursor: pointer" class="w-100 form-control state_of_country custom-select" name="crop" id="crop">
                     @if(count($crop_names))
-                        <option value="">{{trans('message.Barcha urug\'lar')}}</option>
+                        <option value="">{{trans('message.Barcha mahsulotlar')}}</option>
                     @endif
 
                     @if(!empty($crop_names))

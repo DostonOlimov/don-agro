@@ -18,14 +18,14 @@ class CropsNameController extends Controller
 {
     public function index()
     {
-        $title = 'Urug\'lik nomini qo\'shish';
+        $title = 'Mahsulot nomini qo\'shish';
         return view('crops_name.add', compact('title'));
     }
 
     // vehiclebrand list
     public function list()
     {
-        $title = 'Urug\'lik ekin nomlari';
+        $title = 'Mahsulot nomlari';
         $crops = CropsName::orderBy('id')->get();
         return view('crops_name.list', compact('crops','title'));
     }

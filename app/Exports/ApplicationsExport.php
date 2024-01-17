@@ -22,20 +22,20 @@
 //     */
 //    public function headings():array{
 //        return[
-//            ['QISHLOQ XO‘JALIK EKINLARI URUG‘LARINI SERTIFIKATLASHTIRISH AVTOMATLASHTIRILGAN AXBOROT TIZIMI UMUMIY HISOBOTI'],
+//            ['Don va uni qayta ishlashda olingan mahsulotlarni sertifikatlashtirish organi UMUMIY HISOBOTI'],
 //            [
 //                'Ariza raqami',
 //                'Ariza sanasi',
 //                'Na\'muna olingan viloyat',
 //                'Na\'muna olingan shahar yoki tuman',
 //                'Buyurtmachi korxona yoki tashkilot nomi',
-//                'Urugʼlik tayorlangan shaxobcha yoki sex nomi',
+//                'Mahsulot tayorlangan shaxobcha yoki sex nomi',
 //                'Ishlab chiqargan davlat',
-//                'Urug\'lik turi',
-//                'Urug\'lik navi',
+//                'Mahsulot turi',
+//                'Mahsulot navi',
 //                'Urug\'lik avlodi',
 //                'Toʼda (partiya) raqami',
-//                'Urug\'lik miqdori',
+//                'Mahsulot miqdori',
 //                'Hosil yili',
 //                'Sinov bayonnoma raqami',
 //                'Sertifikat',

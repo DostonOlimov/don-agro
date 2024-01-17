@@ -91,7 +91,7 @@
                                         </div>
                                         <div class="table_row row">
                                             <div class="col-md-5 col-sm-12 table_td">
-                                                <b>Urugʼlik tayorlangan shaxobcha yoki sexning nomi</b>
+                                                <b>Mahsulot tayorlangan shaxobcha yoki sexning nomi</b>
                                             </div>
                                             <div class="col-md-7 col-sm-12 table_td">
                                             <span class="txt_color">
@@ -101,7 +101,7 @@
                                         </div>
                                         <div class="table_row row">
                                             <div class="col-md-5 col-sm-12 table_td">
-                                                <b>Ekin turi</b>
+                                                <b>Mahsulot turi</b>
                                             </div>
                                             <div class="col-md-7 col-sm-12 table_td">
                                             <span class="txt_color">
@@ -111,7 +111,7 @@
                                         </div>
                                         <div class="table_row row">
                                             <div class="col-md-5 col-sm-12 table_td">
-                                                <b>Ekin navi</b>
+                                                <b>Mahsulot navi</b>
                                             </div>
                                             <div class="col-md-7 col-sm-12 table_td">
                                             <span class="txt_color">
@@ -119,7 +119,7 @@
                                             </span>
                                             </div>
                                         </div>
-                                        <div class="table_row row">
+                                        {{-- <div class="table_row row">
                                             <div class="col-md-5 col-sm-12 table_td">
                                                 <b>Ekin avlodi</b>
                                             </div>
@@ -128,7 +128,7 @@
                                                 {{ optional($user->crops->generation)->name  }}
                                             </span>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <div class="table_row row">
                                             <div class="col-md-5 col-sm-12 table_td">
                                                 <b>Kod TN VED</b>

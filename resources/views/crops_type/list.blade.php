@@ -10,7 +10,7 @@
 		<div class="page-header">
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item">
-					<i class="fe fe-life-buoy mr-1"></i>&nbsp {{trans('app.Ekin navi')}}
+					<i class="fe fe-life-buoy mr-1"></i>&nbsp {{trans('app.Mahsulot navi')}}
 				</li>
 			</ol>
 		</div>
@@ -60,8 +60,8 @@
 								<thead>
 									<tr>
 										<th>№</th>
-										<th>{{trans('app.Ekin navi')}}</th>
-										<th>{{trans('app.Ekin turi')}}</th>
+										<th>{{trans('app.Mahsulot navi')}}</th>
+										<th>{{trans('app.Mahsulot turi')}}</th>
 										<th>{{ trans('app.Action')}}</th>
 									</tr>
 								</thead>

@@ -96,7 +96,7 @@
                                                 <div class="col-12 col-md-6">
                                                     <div class="form-group">
                                                         <label class="form-label"
-                                                               for="crop">{{trans('app.Ekin turi')}} <label
+                                                               for="crop">{{trans('app.Mahsulot turi')}} <label
                                                                 class="text-danger">*</label>
                                                         </label>
                                                         <select name="crop" class="region" required>

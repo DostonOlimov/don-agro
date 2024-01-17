@@ -1,4 +1,4 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 @section('content')
     <style>
         .checkbox-success {
@@ -113,4 +113,4 @@
             });
         })
     </script>
-@endsection
+@endsection --}}

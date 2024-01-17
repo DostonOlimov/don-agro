@@ -1,4 +1,4 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 @section('content')
     <!-- page content -->
     <?php $userid = Auth::user()->id; ?>
@@ -65,7 +65,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <?php $i=1;?>
+                                        <?php //$i=1;?>
                                         @foreach($types as $type)
                                             <tr>
                                                 <td>{{ $i }}</td>
@@ -77,7 +77,7 @@
                                                     <a url="{!! url('/crops_generation/list/delete/'.$type->id)!!}" class="sa-warning"> <button type="button" class="btn btn-round btn-danger dgr">{{ trans('app.Delete')}}</button></a>
                                                 </td>
                                             </tr>
-                                            <?php $i++; ?>
+                                            <?php //$i++; ?>
                                         @endforeach
                                         </tbody>
                                     </table>
@@ -128,4 +128,4 @@
 
     </script>
 
-@endsection
+@endsection --}}

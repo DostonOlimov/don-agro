@@ -25,20 +25,20 @@ class ReportExport implements FromCollection,WithHeadings,WithStyles
     */
     public function headings():array{
         return[
-            ['QISHLOQ XO‘JALIK EKINLARI URUG‘LARINI SERTIFIKATLASHTIRISH AVTOMATLASHTIRILGAN AXBOROT TIZIMI'],
+            ['Don va uni qayta ishlashda olingan mahsulotlarni sertifikatlashtirish organi'],
             [
             'Ariza raqami',
             'Ariza sanasi',
             'Na\'muna olingan viloyat',
             'Na\'muna olingan shahar yoki tuman',
             'Buyurtmachi korxona yoki tashkilot nomi',
-            'Urugʼlik tayorlangan shaxobcha yoki sexning nomi',
+            'Mahsulot tayorlangan shaxobcha yoki sexning nomi',
             'Ishlab chiqargan davlat',
-            'Ekin turi',
-            'Ekin navi',
-            'Ekin avlodi',
+            'Mahsulot turi',
+            'Mahsulot navi',
+            // 'Ekin avlodi',
             'Toʼda raqami',
-            'Ekin miqdori',
+            'Mahsulot  miqdori',
             'Hosil yili',
             'Sinov bayonnoma raqami',
                 'Sertifikat' ,

@@ -1,24 +1,24 @@
 <div id="invoice-cheque" class="py-4 col-12 {{$classes ?? ''}}">
     <h5 class="text-center">Oʼzbekiston Respublikasi Vazirlar Mahkamasi huzuridagi Аgrosanoat majmui ustidan nazorat qilish <br>Inspektsiya qoshidagi “Аgrosanoat majmuida xizmatlar koʼrsatish markazi” davlat unitar korxonasining
-        Qishloq xoʼjalik ekinlari urugʼlarini sertifikatlashtirish boʼlimi<br>
-        Toshkent viloyati, Qibray tumani, Bobur koʼchasi 1-uy.</h5>
+    Don va uni qayta ishlashda olingan mahsulotlarni sertifikatlashtirish organi<br>
+    Toshkent shahar, Shayxontohur tumani Markaz-14, 27-uy.</h5>
     <h4 class="text-right">
        <b> «TАSDIQLАYMАN» </b><br>
-        Qishloq xoʼjalik ekinlari<br>
-        urugʼlarini sertifikatlashtirish<br>
+       Don va uni qayta ishlashda<br>
+       olingan mahsulotlarni sertifikatlashtirish<br>
         boʼlimi boshligʼi<br>
         _________<span id="director-name"></span><br>
         <span id="application-date"></span> yil
 
     </h4>
     <b>
-        <h4 class="text-center">Qishloq xoʼjalik ekinlari urugʼlarini sertifikatlashtirish boʼyicha<br></h4>
+        <h4 class="text-center">Don va uni qayta ishlashda olingan mahsulotlarni sertifikatlashtirish boʼyicha<br></h4>
     <h2 class="text-center">SINOV DASTURI</h2></b>
     <div>
         <h4>
             1.  {{ $decision->application->crops->year}}- yil xosilidan ,
-            <span id="crop-type"></span> navli,&nbsp; <span id="crop-generation"></span>avlodli &nbsp;
-            urugʼlik &nbsp; <span id="crop-name"></span> &nbsp; mahsuloti &nbsp;<br/>
+           <span id="crop-type"></span> navli,&nbsp;  <!-- <span id="crop-generation"></span>avlodli &nbsp; -->
+            mahsulot &nbsp; <span id="crop-name"></span> &nbsp; mahsuloti &nbsp;<br/>
             <span id="nds-type"></span>&nbsp;  <span id="nds-number"></span>&nbsp;<span id="nds-name"></span>
             talablariga muvofiq,<br/> sifat koʼrsatkichlarini sinovdan oʼtkazish quyidagi standartlardagi usullarni qoʼllagan xolda amalga oshirilsin.
         </h4>

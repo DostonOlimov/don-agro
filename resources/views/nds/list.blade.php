@@ -64,7 +64,7 @@
 										<th>№</th>
 										<th>{{trans('app.Hujjat')}}</th>
 										<th>{{trans('app.Hujjat nomi')}}</th>
-                                        <th>{{trans('app.Urug\' navi')}}</th>
+                                        <th>{{trans('app.Mahsulot navi')}}</th>
 										<th>{{ trans('app.Action')}}</th>
 									</tr>
 								</thead>

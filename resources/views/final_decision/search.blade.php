@@ -44,8 +44,8 @@
 										<th class="border-bottom-0 border-top-0">{{trans('app.Ariza raqami')}}</th>
                                         <th class="border-bottom-0 border-top-0">{{trans('app.Ariza sanasi')}}</th>
 										<th class="border-bottom-0 border-top-0">{{trans('app.Buyurtmachi korxona yoki tashkilot nomi')}}</th>
-										<th class="border-bottom-0 border-top-0">{{trans('app.Ekin turi')}}</th>
-										<th class="border-bottom-0 border-top-0">{{trans('app.Ekin miqdori')}}</th>
+										<th class="border-bottom-0 border-top-0">{{trans('app.Mahsulot turi')}}</th>
+										<th class="border-bottom-0 border-top-0">{{trans('app.Mahsulot miqdori')}}</th>
 										<th class="border-bottom-0 border-top-0">{{trans('app.Hosil yili')}}</th>
                                         <th class="border-bottom-0 border-top-0">{{trans('app.Action')}}</th>
                                         <th class="border-bottom-0 border-top-0">{{trans('app.Action')}}</th>

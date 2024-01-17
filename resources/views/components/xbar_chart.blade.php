@@ -36,7 +36,7 @@ categoryAxis.title.text = "";
 
 
 var  valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-valueAxis.title.text = "Urug'liklar kesimida";
+valueAxis.title.text = "Mahsulotlar kesimida";
 
 // Create series
 var series = chart.series.push(new am4charts.ColumnSeries3D());

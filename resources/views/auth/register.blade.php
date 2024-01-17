@@ -1,4 +1,4 @@
-
+{{--
 @extends('layouts.front')
 @section('content')
 
@@ -121,4 +121,4 @@
     });
     </script>
 @endsection
-{{--@include('front.layouts.footer')--}}
+@include('front.layouts.footer') --}}

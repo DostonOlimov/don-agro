@@ -13,7 +13,7 @@
                 <div class="page-header">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="/"><i class="fe fe-life-buoy mr-1"></i>&nbsp Ekinlar
+                            <a href="/"><i class="fe fe-life-buoy mr-1"></i>&nbsp {{trans('app.Mahsulolar')}}
                             </a>
                         </li>
                     </ol>

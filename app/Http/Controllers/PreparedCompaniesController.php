@@ -33,7 +33,7 @@ class PreparedCompaniesController extends Controller
     public function list()
     {
         $user = Auth::User();
-        $title = trans('app.Urug\'lik tayorlangan shaxobcha yoki sex nomi');
+        $title = trans('app.Mahsulot tayorlangan shaxobcha yoki sex nomi');
         $companies = PreparedCompanies::with('region');
         if($user->role == \App\Models\User::STATE_EMPLOYEE){
             $user_city = $user->state_id;

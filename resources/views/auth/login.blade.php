@@ -1,28 +1,59 @@
 
-@extends('layouts.front')
-@section('content')
-<style>
-.btn-login{
-    width: 100%;
-    font-weight: bold;
-    border-radius: 4px;
-    padding: 10px;
-}
-</style>
-<div class="container " >
-    <div class="container-fluid page-body-wrapper full-page-wrapper" >
-        <div class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one"  >
-            <div class="row w-100">
-                <div class="col-lg-6 mx-auto">
-                    <div class="row">
-                        <div class="col-lg-12 pr-0">
-                            <a href="{!! url('login') !!}"><button type="button" class="btn btn-light rounded-top p-3 w-100" ><b>Kirish</b></button></a>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{{ URL::asset('resources/assets/images/paxta_logo.png') }}" type="image/x-icon"/>
+    <title>Paxta tolasini sertifikatlash tizimi</title>
+
+    <link href="{{ URL::asset('vendors/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('resources/assets/css/style.css') }}">
+    <link rel="stylesheet" type="text/css"
+          href="{{ URL::asset('resources/assets/css/color-style.css') }}">
+    <link rel="stylesheet" type="text/css"
+          href="{{ URL::asset('resources/assets/plugins/p-scroll/p-scroll.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('resources/assets/css/icons.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('resources/assets/css/myStyle.css') }}">
+    <link href="{{ URL::asset('resources/assets/plugins/single-page/css/single-page.css') }}"
+          rel="stylesheet" type="text/css">
+    <script src="{{ URL::asset('resources/assets/js/vendors/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ URL::asset('resources/assets/js/vendors/bootstrap.bundle.min.js') }}"></script>
+
+    <script src="{{ URL::asset('build/js/control.js') }}"></script>
+    <script src="{{ URL::asset('vendors/jquery/dist/jquery.min.js') }}"></script>
+    <style>
+        .help-block {
+            text-align: left;
+        }
+        .page{
+            background-image: url("{{ URL::asset('img/dashboard/background2.jpg')}}");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body class="app" >
+<div class="login-img">
+    <div id="global-loader">
+        <img src="{{ URL::asset('img/dashboard/background2.jpg')}}" class="loader-img"
+             alt="Loader">
+    </div>
+
+    <div class="page">
+        <div class="">
+            <div class="container-login100">
+                <div class="wrap-login100 " style="padding:40px 80px;" >
+                    <div class="col col-login mx-auto mb-4">
+                        <div class="text-center">
+                            <img style="width: 200px; height: auto;" src="{{ url('img/logoNEW.png')}}"
+                                 class="header-brand-img" alt="logo">
                         </div>
-                        {{-- <div class="col-lg-6 pl-0">
-                            <a href="{!! url('register') !!}"><button type="button" class="btn btn-primary rounded-top p-3 w-100"><b>Ro'yxatdan o'tish</b></button></a>
-                        </div> --}}
                     </div>
-                    <div class="auto-form-wrapper">
                         <form action="{{ route('login') }}" method="POST">
                             {{ csrf_field() }}
                             <div class="form-group">
@@ -61,16 +92,14 @@
                                 <button class="btn btn-primary submit-btn btn-block">Kirish</button>
                             </div>
                         </form>
-                    </div>
-                    <hr>
-                   <b><p style="color:red;" class="footer-text text-center">Copyright © {{ date('Y') }} O'ZAGROINSPEKSIYA. Barcha huquqlar himoyalangan.</p></b>
                 </div>
             </div>
         </div>
-        <!-- content-wrapper ends -->
     </div>
-    <!-- page-body-wrapper ends -->
 </div>
+</body>
+<script>
+    $(document).ready(() => $("#global-loader").fadeOut())
+</script>
+</html>
 
-
-@endsection

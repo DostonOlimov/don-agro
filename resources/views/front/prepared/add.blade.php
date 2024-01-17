@@ -58,7 +58,7 @@
                                                 <div class="col-12 col-md-4">
                                                     <div class="form-group">
                                                         <label class="form-label"
-                                                               for="first-name">{{trans('app.Urug\'lik tayorlangan shaxobcha yoki sex nomi')}}<label
+                                                               for="first-name">{{trans('app.Mahsulot tayorlangan shaxobcha yoki sex nomi')}}<label
                                                                 class="text-danger">*</label>
                                                         </label>
                                                         <input type="text" required="required" name="name"

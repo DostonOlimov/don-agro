@@ -73,8 +73,8 @@ class TestProgramsController extends Controller
                         $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
                     })->orWhereHas('crops.type', function ($query) use ($searchQuery) {
                         $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
-                    })->orWhereHas('crops.generation', function ($query) use ($searchQuery) {
-                        $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
+                    // })->orWhereHas('crops.generation', function ($query) use ($searchQuery) {
+                    //     $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
                     });
 
                 }
@@ -252,7 +252,7 @@ class TestProgramsController extends Controller
             ->with('application.crops.name')
             ->with('application.crops.name.nds')
             ->with('application.crops.type')
-            ->with('application.crops.generation')
+            // ->with('application.crops.generation')
             ->with('application')
             ->find($id);
         $indicators = TestProgramIndicators::where('test_program_id','=',$id)
@@ -316,7 +316,7 @@ class TestProgramsController extends Controller
             ->with('application.crops.name')
             ->with('application.crops.name.nds')
             ->with('application.crops.type')
-            ->with('application.crops.generation')
+            // ->with('application.crops.generation')
             ->with('application')
             ->find($id);
         $indicators = TestProgramIndicators::where('test_program_id','=',$id)

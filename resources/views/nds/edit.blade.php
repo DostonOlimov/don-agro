@@ -13,7 +13,7 @@
                 <div class="page-header">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="/"><i class="fe fe-life-buoy mr-1"></i>&nbsp {{trans('app.Ekin navi')}}
+                            <a href="/"><i class="fe fe-life-buoy mr-1"></i>&nbsp {{trans('app.Mahsulot navi')}}
                             </a>
                         </li>
                     </ol>
@@ -98,7 +98,7 @@
                                                 <div class="col-12 col-md-6">
                                                     <div class="form-group">
                                                         <label class="form-label"
-                                                               for="crop">{{trans('app.Ekin turi')}} <label
+                                                               for="crop">{{trans('app.Mahsulot turi')}} <label
                                                                 class="text-danger">*</label>
                                                         </label>
                                                         <select name="crop" class="form-select" required>

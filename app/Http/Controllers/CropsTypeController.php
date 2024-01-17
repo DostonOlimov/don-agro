@@ -16,7 +16,7 @@ class CropsTypeController extends Controller
 {
     public function index()
     {
-        $title = 'Urug\' navini qo\'shish';
+        $title = 'Mahsulot navini qo\'shish';
         $crops = DB::table('crops_name')->get()->toArray();
         return view('crops_type.add', compact('title','crops'));
     }
@@ -24,7 +24,7 @@ class CropsTypeController extends Controller
     // vehiclebrand list
     public function list()
     {
-        $title = 'Uru\'glik navlari';
+        $title = 'Mahsulot navlari';
         $types = CropsType::with('crops')->orderBy('id','desc')->get();
         return view('crops_type.list', compact('types','title'));
     }

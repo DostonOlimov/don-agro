@@ -31,14 +31,14 @@ class CityReportExport implements FromCollection,WithHeadings,WithStyles
         $name = $this->crop_name;
         $type = $this->measure_type;
         return[
-            [" \"Qishloq xo'jaligi mahsulotlari sifatini baholash markazi\" DM 2023 yil hosilidan jamg'arilgan urug'lik $name mahsulotlarini sertifikatlanishi bo'yicha ma'lumot"],
+            [" \"Qishloq xo'jaligi mahsulotlari sifatini baholash markazi\" DM 2023 yil hosilidan jamg'arilgan $name mahsulotlarini sertifikatlanishi bo'yicha ma'lumot"],
             [
                 'HUDUD NOMI',
-                "EKISHGA TALAB ETILADIGAN URUG'LIK MIQDORI,$type",
+                "EKISHGA TALAB ETILADIGAN MAHSULOT MIQDORI,$type",
                 "",
                 "",
-                "SERTIFIKATLASHTIRILGAN URUG'LIK MIQDORI,$type",
-                "SERTIFIKATLANGAN URUG'LIK MIQDORI,$type",
+                "SERTIFIKATLASHTIRILGAN MAHSULOT MIQDORI,$type",
+                "SERTIFIKATLANGAN MAHSULOT MIQDORI,$type",
                 "%",
                 "SIFAT BO'YICHA NOMUVOFIQ DEB TOPILGAN URU'LIK MIQDORI,$type",
                 "%",
@@ -91,7 +91,7 @@ class CityReportExport implements FromCollection,WithHeadings,WithStyles
         $sheet->mergeCells('A1:K1');
 
         $sheet->mergeCells('C2:D2');
-        $sheet->setCellValue('C2', "LABORATORIYA TAHLILLARI UCHUN KELGAN URUG'LIK MIQDORI,$type");
+        $sheet->setCellValue('C2', "LABORATORIYA TAHLILLARI UCHUN KELGAN MAHSULOT MIQDORI,$type");
         $sheet->getStyle('C2')->getAlignment()->setHorizontal('center');
 
         $sheet->getCell('C3')->setValue("MIQDOR,$type");

@@ -69,8 +69,8 @@ class DecisionController extends Controller
                         $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
                     })->orWhereHas('crops.type', function ($query) use ($searchQuery) {
                         $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
-                    })->orWhereHas('crops.generation', function ($query) use ($searchQuery) {
-                        $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
+                    // })->orWhereHas('crops.generation', function ($query) use ($searchQuery) {
+                    //     $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
                     });
 
                 }
@@ -142,7 +142,7 @@ class DecisionController extends Controller
                             'application.crops.name',
                             'application.crops.name.nds',
                             'application.crops.type',
-                            'application.crops.generation',
+                            // 'application.crops.generation',
                             'director'
                         ]),
                     'measure_type'=>$measure_type,
@@ -167,7 +167,7 @@ class DecisionController extends Controller
             ->with('application.crops.name')
             ->with('application.crops.name.nds')
             ->with('application.crops.type')
-            ->with('application.crops.generation')
+            // ->with('application.crops.generation')
             ->with('application')
             ->with('laboratory')
             ->find($id);

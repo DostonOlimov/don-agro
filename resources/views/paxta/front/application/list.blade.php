@@ -62,9 +62,9 @@
                                         <th class="border-bottom-0 border-top-0">Ariza raqami</th>
                                         <th class="border-bottom-0 border-top-0">Ariza sanasi</th>
 										<th class="border-bottom-0 border-top-0">Buyurtmachi korxona yoki tashkilot nomi</th>
-										<th class="border-bottom-0 border-top-0">Ekin turi</th>
-										<th class="border-bottom-0 border-top-0">Ekin navi</th>
-										<th class="border-bottom-0 border-top-0">Ekin miqdori</th>
+										<th class="border-bottom-0 border-top-0">Mahsulot turi</th>
+										<th class="border-bottom-0 border-top-0">Mahsulot navi</th>
+										<th class="border-bottom-0 border-top-0">Mahsulot miqdori</th>
 										<th class="border-bottom-0 border-top-0">Hosil yili</th>
                                         <th class="border-bottom-0 border-top-0">Action</th>
 

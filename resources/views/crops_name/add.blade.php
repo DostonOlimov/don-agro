@@ -60,7 +60,7 @@
                                                 <div class="col-12 col-md-4">
                                                     <div class="form-group">
                                                         <label class="form-label"
-                                                               for="first-name">{{trans('app.Urug\' nomi')}} <label
+                                                               for="first-name">{{trans('app.Mahsulot nomi')}} <label
                                                                 class="text-danger">*</label>
                                                         </label>
                                                         <input type="text" required="required" name="name"

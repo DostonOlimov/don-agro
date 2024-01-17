@@ -23,7 +23,7 @@
     <div class="col-sm-4">
         <select class="w-100 form-control state_of_country custom-select" name="crop" id="crop">
             @if(count($crop_names))
-                <option value="">{{trans('message.Barcha urug\'lar bo\'yicha')}}</option>
+                <option value="">{{trans('message.Barcha mahsulotlar bo\'yicha')}}</option>
             @endif
 
             @if(!empty($crop_names))

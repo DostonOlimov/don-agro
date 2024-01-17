@@ -10,7 +10,7 @@
 		<div class="page-header">
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item">
-					<i class="fe fe-life-buoy mr-1"></i>&nbsp {{trans('app.Ekinlar nomlari')}}
+					<i class="fe fe-life-buoy mr-1"></i>&nbsp {{trans('app.Mahsulotlar nomlari')}}
 				</li>
 			</ol>
 		</div>

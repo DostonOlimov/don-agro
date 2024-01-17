@@ -78,8 +78,8 @@ class ApplicationController extends Controller
                             $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
                     })->orWhereHas('crops.type', function ($query) use ($searchQuery) {
                         $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
-                    })->orWhereHas('crops.generation', function ($query) use ($searchQuery) {
-                        $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
+                    // })->orWhereHas('crops.generation', function ($query) use ($searchQuery) {
+                    //     $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
                     });
 
                 }
@@ -129,7 +129,7 @@ class ApplicationController extends Controller
         $crop = new CropData();
         $crop->name_id = $request->input('name');
         $crop->type_id = $request->input('type');
-        $crop->generation_id = $request->input('generation');
+        // $crop->generation_id = $request->input('generation');
         $crop->country_id = $request->input('country');
         $crop->kodtnved = $request->input('tnved');
         $crop->party_number = $request->input('party_number');
@@ -236,7 +236,7 @@ class ApplicationController extends Controller
         $crop->name_id = $request->input('name');
         $crop->type_id = $request->input('type');
         $crop->pre_name = $request->input('name') == 21 ? $request->input('pre_name') : null;
-        $crop->generation_id = $request->input('generation');
+        // $crop->generation_id = $request->input('generation');
         $crop->country_id = $request->input('country');
         $crop->kodtnved = $request->input('tnved');
         $crop->party_number = $request->input('party_number');
@@ -307,8 +307,8 @@ class ApplicationController extends Controller
                         $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
                     })->orWhereHas('crops.type', function ($query) use ($searchQuery) {
                         $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
-                    })->orWhereHas('crops.generation', function ($query) use ($searchQuery) {
-                        $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
+                    // })->orWhereHas('crops.generation', function ($query) use ($searchQuery) {
+                    //     $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
                     });
 
                 }
@@ -345,7 +345,7 @@ class ApplicationController extends Controller
         $crop = new CropData();
         $crop->name_id = $request->input('name');
         $crop->type_id = $request->input('type');
-        $crop->generation_id = $request->input('generation');
+        // $crop->generation_id = $request->input('generation');
         $crop->country_id = $type == 1 ? 234 : $request->input('country');
         $crop->kodtnved = $request->input('tnved');
         $crop->party_number = $request->input('party_number');
@@ -437,7 +437,7 @@ class ApplicationController extends Controller
         $crop->name_id = $request->input('name');
         $crop->type_id = $request->input('type');
         $crop->pre_name = $request->input('name') == 21 ? $request->input('pre_name') : null;
-        $crop->generation_id = $request->input('generation');
+        // $crop->generation_id = $request->input('generation');
         $crop->kodtnved = $request->input('tnved');
         $crop->party_number = $request->input('party_number');
         $crop->measure_type = $request->input('measure_type');

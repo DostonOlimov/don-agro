@@ -86,16 +86,16 @@
                                     <input type="hidden" name="prepared" value="{{$app->prepared_id}}">
                                     <input type="hidden" name="name" value="{{$app->crops->name_id}}">
                                     <input type="hidden" name="type" value="{{ $app->crops->type_id }}">
-                                    <input type="hidden" name="generation" value="{{$app->crops->generation_id}}">
+                                    {{-- <input type="hidden" name="generation" value="{{$app->crops->generation_id}}"> --}}
 
                                     <div class="col-md-4">
                                         <div class="form-group overflow-hidden">
-                                            <label class="form-label">Ekin turi<label
+                                            <label class="form-label">Mahsulot turi<label
                                                     class="text-danger">*</label></label>
                                             <select class="w-100 form-control state_of_country custom-select"  id="crops_name" name="name1"
                                                     url="{!! url('/gettypefromname') !!}" disabled>
                                                 @if(count($names))
-                                                    <option value="">Ekin turini tanlang</option>
+                                                    <option value="">Mahsulot turini tanlang</option>
                                                 @endif
                                                 @if(!empty($names))
                                                     @foreach($names as $name)
@@ -109,7 +109,7 @@
                                     </div>
 
                                     <div class="col-md-4 form-group overflow-hidden">
-                                        <label class="form-label">Urug' navi
+                                        <label class="form-label">Mahsulot navi
                                             <label class="text-danger">*</label></label>
                                         <div class="row">
                                             <div class="col-12">
@@ -121,7 +121,7 @@
                                         </div>
 
                                     </div>
-                                    <div class="col-md-4 form-group overflow-hidden">
+                                    {{-- <div class="col-md-4 form-group overflow-hidden">
                                         <label class="form-label">Urug' avlodi
                                             <label class="text-danger">*</label></label>
                                         <div class="row">
@@ -131,7 +131,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div id="tin-container" class="col-md-4 legal-fields">
                                         <div class="form-group">
                                             <label class="form-label">Kod TN VED<label class="text-danger">*</label></label>
@@ -185,11 +185,11 @@
                                     </div>
                                     <input type="hidden" name="measure_type" value="{{ $app->crops->measure_type}}">
                                     <div class="col-md-4 form-group has-feedback {{ $errors->has('amount') ? ' has-error' : '' }}">
-                                        <label for="middle-name" class="form-label">Ekin miqdori <label class="text-danger">*</label></label>
+                                        <label for="middle-name" class="form-label">Mahsulot miqdori <label class="text-danger">*</label></label>
                                         <input type="number" step="0.01" readonly class="form-control" maxlength="25" value="{{ $app->crops->amount}}"  name="amount" required>
                                         @if ($errors->has('amount'))
                                             <span class="help-block">
-											 <strong>Ekin miqdori noto'g'ri shaklda kiritilgan</strong>
+											 <strong>Mahsulot miqdori noto'g'ri shaklda kiritilgan</strong>
 										   </span>
                                         @endif
                                     </div>

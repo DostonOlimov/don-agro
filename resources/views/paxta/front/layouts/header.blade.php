@@ -57,7 +57,7 @@
                 <div class="col-lg-9 col-md-9">
                     <div class="header__top__left row">
                         <div class="col-md-2 div1"><i class="fa fa-envelope">info@agroin.uz</i></div>
-                        <div class="col-md-9 div2"><b>Qishloq xo‘jalik ekinlari urug‘larini sertifikatlashtirish tizimi</b></div>
+                        <div class="col-md-9 div2"><b>Don va uni qayta ishlashda olingan mahsulotlarni sertifikatlashtirish organi</b></div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3">

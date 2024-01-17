@@ -60,7 +60,7 @@
                                                 <div class="col-12 col-md-4">
                                                     <div class="form-group">
                                                         <label class="form-label"
-                                                               for="first-name">{{trans('app.Ekin navi')}} <label
+                                                               for="first-name">{{trans('app.Mahsulot navi')}} <label
                                                                 class="text-danger">*</label>
                                                         </label>
                                                         <input type="text" required="required" name="name"
@@ -70,7 +70,7 @@
                                                 <div class="col-12 col-md-4">
                                                     <div class="form-group">
                                                         <label class="form-label"
-                                                               for="first-name">{{trans('app.Ekin turi')}} <label
+                                                               for="first-name">{{trans('app.Mahsulot turi')}} <label
                                                                 class="text-danger">*</label>
                                                         </label>
                                                         <select name="crop" class="region" required>

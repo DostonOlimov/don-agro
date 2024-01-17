@@ -43,10 +43,10 @@
                                             <th class="border-bottom-0 border-top-0">№</th>
                                             <th class="border-bottom-0 border-top-0">{{trans('app.Ariza raqami')}}</th>
                                             <th class="border-bottom-0 border-top-0">{{trans('app.Yuborilgan sana')}}</th>
-                                            <th class="border-bottom-0 border-top-0">{{trans('app.Ekin turi')}}</th>
-                                            <th class="border-bottom-0 border-top-0">{{trans('app.Ekin navi')}}</th>
-                                            <th class="border-bottom-0 border-top-0">{{trans('app.Ekin avlodi')}}</th>
-                                            <th class="border-bottom-0 border-top-0">{{trans('app.Ekin miqdori')}}</th>
+                                            <th class="border-bottom-0 border-top-0">{{trans('app.Mahsulot turi')}}</th>
+                                            <th class="border-bottom-0 border-top-0">{{trans('app.Mahsulot navi')}}</th>
+                                            {{-- <th class="border-bottom-0 border-top-0">{{trans('app.Ekin avlodi')}}</th> --}}
+                                            <th class="border-bottom-0 border-top-0">{{trans('app.Mahsulot miqdori')}}</th>
                                             <th class="border-bottom-0 border-top-0">{{trans('app.Hosil yili')}}</th>
                                             <th class="border-bottom-0 border-top-0">{{trans('app.Action')}}</th>
                                         </tr>
@@ -62,7 +62,7 @@
                                                 <td>{{ $test->updated_at }}</td>
                                                 <td>{{ $test->application->crops->pre_name }} {{ $test->application->crops->name->name }}</td>
                                                 <td>{{ optional($test->application)->crops->type->name }}</td>
-                                                <td>{{ optional($test->application)->crops->generation->name }}</td>
+                                                {{-- <td>{{ optional($test->application)->crops->generation->name }}</td> --}}
                                                 <td>{{ optional($test->application)->crops->amount_name }}</td>
                                                 <td>{{ optional($test->application)->crops->year }}</td>
                                                 <td><a href="{!! url('/tests/laboratory-view/'.$test->id) !!}"><button type="button" class="btn btn-round btn-{{$test->status_color}}">{{ $test->status_name}}</button></a></td>

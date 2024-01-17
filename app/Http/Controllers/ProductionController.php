@@ -19,7 +19,7 @@ class ProductionController extends Controller
     // vehiclebrand list
     public function list()
     {
-        $title = 'Urug\'lik ekin nomlari';
+        $title = 'Mahsulot nomlari';
         $crops = DB::table('production_type')->orderBy('id')->get();
         return view('production.list', compact('crops','title'));
     }

@@ -6,7 +6,7 @@
                 <div class="hero__categories">
                     <div class="hero__categories__all">
                         <i class="fa fa-bars"></i>
-                        <span>Barcha urug'lar</span>
+                        <span>Barcha mahsulotlar</span>
                     </div>
                     <div class="scroll_categories">
 
@@ -37,10 +37,10 @@
                     <div class="hero__text">
                         @if($crop_name and $crop_name !== 'all')
                             <h2 style="color:green">{{$crop_name->name}}</h2>
-                            <p>urug'lik mahsuloti</p>
+                            <p>mahsuloti</p>
                         @else
                             <span>Agroinspeksiya</span>
-                            <h2>Urug'lar <br /></h2>
+                            <h2>Mahsulotlar <br /></h2>
                             <p>va ularning sertifikatlari</p>
                         @endif
 
