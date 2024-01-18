@@ -65,7 +65,7 @@
 										<th class="border-bottom-0 border-top-0">Mahsulot turi</th>
 										<th class="border-bottom-0 border-top-0">Mahsulot navi</th>
 										<th class="border-bottom-0 border-top-0">Mahsulot miqdori</th>
-										<th class="border-bottom-0 border-top-0">Hosil yili</th>
+										<th class="border-bottom-0 border-top-0">Ishlab chiqarilgan sana</th>
                                         <th class="border-bottom-0 border-top-0">Action</th>
 
 									</tr>

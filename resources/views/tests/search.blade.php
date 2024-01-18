@@ -48,7 +48,7 @@
 										<th class="border-bottom-0 border-top-0">{{trans('app.Mahsulot turi')}}</th>
 										<th class="border-bottom-0 border-top-0">{{trans('app.Mahsulot navi')}}</th>
 										<th class="border-bottom-0 border-top-0">{{trans('app.Mahsulot miqdori')}}</th>
-										<th class="border-bottom-0 border-top-0">{{trans('app.Hosil yili')}}</th>
+										<th class="border-bottom-0 border-top-0">{{trans('app.Ishlab chiqarilgan sana')}}</th>
                                         <th class="border-bottom-0 border-top-0">{{trans('app.Action')}}</th>
 									</tr>
                                     </thead>

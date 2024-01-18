@@ -41,7 +41,7 @@ class CropData extends Model
         $arr = [
             self::MEASURE_TYPE_TONNA => 'tonna',
             self::MEASURE_TYPE_KG => 'kg',
-            self::MEASURE_TYPE_DONA => 'dona',
+            // self::MEASURE_TYPE_DONA => 'dona',
         ];
 
         if ($type === null) {

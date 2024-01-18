@@ -59,7 +59,7 @@ class ReportController extends Controller{
         $region = $request->input('region');
         $crop = $request->input('crop');
         $type = $request->input('type');
-        $generation = $request->input('generation');
+        // $generation = $request->input('generation');
         $from = $request->input('from');
         $till = $request->input('till');
         $organization = $request->input('organization');
@@ -87,14 +87,14 @@ class ReportController extends Controller{
             ->appends(['country' => $country])
             ->appends(['crop' => $crop])
             ->appends(['type' => $type])
-            ->appends(['generation' => $generation])
+            // ->appends(['generation' => $generation])
             ->appends(['year' => $year]);
 
         $states = DB::table('tbl_states')->where('country_id',  234)->get()->toArray();
         $crop_names = DB::table('crops_name')->get()->toArray();
         $cities = '';
         $types = '';
-        $generations = '';
+        // $generations = '';
         if($city){
             $cities = DB::table('tbl_cities')->where('state_id',$city)->get()->toArray();
         }
@@ -115,7 +115,7 @@ class ReportController extends Controller{
             'region',
             'crop',
             'type',
-            'generation',
+            // 'generation',
             'states',
             'organization',
             'prepared',
@@ -229,7 +229,7 @@ class ReportController extends Controller{
         $region = $request->input('region');
         $crop = $request->input('crop');
         $type = $request->input('type');
-        $generation = $request->input('generation');
+        // $generation = $request->input('generation');
         $from = $request->input('from');
         $till = $request->input('till');
         $organization= $request->input('organization');
@@ -249,7 +249,7 @@ class ReportController extends Controller{
             ->with('crops.country')
             ->with('crops.name')
             ->with('crops.type')
-            ->with('crops.generation')
+            // ->with('crops.generation')
             ->with('decision')
             ->with('tests')
             ->with('tests.result')
@@ -311,14 +311,14 @@ class ReportController extends Controller{
                 });
             }
         }
-        if ($generation) {
+       /*  if ($generation) {
             $crop_generation = CropsGeneration::find($generation);
             if($crop and $crop_generation->crop_id == $crop){
                 $apps = $apps->whereHas('crops', function ($query) use ($generation) {
                     $query->where('generation_id', '=', $generation);
                 });
             }
-        }
+        } */
         if (!is_null($app_type_selector)) {
 
             if($app_type_selector == 3){

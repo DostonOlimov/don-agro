@@ -203,15 +203,7 @@ Route::group(
             Route::get('/list/edit/{id}', '\App\Http\Controllers\IndicatorController@edit');
             Route::post('/list/edit/update/{id}', '\App\Http\Controllers\IndicatorController@update');
         });
-        //Production type
-        Route::group(['prefix' => 'production', 'middleware' => 'auth'], function () {
-            Route::get('/add', '\App\Http\Controllers\ProductionController@index');
-            Route::get('/list', '\App\Http\Controllers\ProductionController@list');
-            Route::post('/store', '\App\Http\Controllers\ProductionController@store');
-            Route::get('/list/delete/{id}', '\App\Http\Controllers\ProductionController@destory');
-            Route::get('/list/edit/{id}', '\App\Http\Controllers\ProductionController@edit');
-            Route::post('/list/edit/update/{id}', '\App\Http\Controllers\ProductionController@update');
-        });
+      
 
         //Requirements
         Route::group(['prefix' => 'requirement', 'middleware' => 'auth'], function () {

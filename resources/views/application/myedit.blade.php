@@ -1,15 +1,15 @@
 @extends('layouts.app')
 @section('content')
     <!-- page content -->
-    @if($app->status != \App\Models\Application::STATUS_REJECTED)
-    <div class="section">
-        <div class="page-header">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <i class="fe fe-life-buoy mr-1"></i>&nbsp Arizalar
-                </li>
-            </ol>
-        </div>
+    @if ($app->status != \App\Models\Application::STATUS_REJECTED)
+        <div class="section">
+            <div class="page-header">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <i class="fe fe-life-buoy mr-1"></i>&nbsp Arizalar
+                    </li>
+                </ol>
+            </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
@@ -18,31 +18,36 @@
                                 <div class="tab_wrapper page-tab">
                                     <ul class="tab_list">
                                         <li>
-                                            <a href="{!! url('/application/list')!!}">
+                                            <a href="{!! url('/application/list') !!}">
                                                 <span class="visible-xs"></span>
-                                                <i class="fa fa-list fa-lg">&nbsp;</i> {{ trans('app.Ro\'yxat')}}
+                                                <i class="fa fa-list fa-lg">&nbsp;</i> {{ trans('app.Ro\'yxat') }}
                                             </a>
                                         </li>
                                         <li class="active">
                                             <span class="visible-xs"></span>
                                             <i class="fa fa-edit fa-lg">&nbsp;</i>
-                                            <b>{{ trans('app.Tahrirlash')}}</b>
+                                            <b>{{ trans('app.Tahrirlash') }}</b>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
-                            <form method="post" action="update/{{ $app->id }}" enctype="multipart/form-data" class="form-horizontal upperform">
-                                <div class="row" >
+                            <form method="post" action="update/{{ $app->id }}" enctype="multipart/form-data"
+                                class="form-horizontal upperform">
+                                <div class="row">
                                     {!! method_field('patch') !!}
-                                    <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                    <div class="col-md-4 form-group has-feedback {{ $errors->has('app_number') ? ' has-error' : '' }}">
-                                        <label class="form-label" for="app_number">Ariza raqami <label class="text-danger">*</label></label>
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <div
+                                        class="col-md-4 form-group has-feedback {{ $errors->has('app_number') ? ' has-error' : '' }}">
+                                        <label class="form-label" for="app_number">Ariza raqami <label
+                                                class="text-danger">*</label></label>
                                         <div class="">
-                                            <input type="number" id="app_number" name="app_number" value="{{ $app->app_number}}" class="form-control" maxlength="20" required>
+                                            <input type="number" id="app_number" name="app_number"
+                                                value="{{ $app->app_number }}" class="form-control" maxlength="20" required>
                                             @if ($errors->has('app_number'))
                                                 <span class="help-block">
-											<strong>Ariza raqami noto'g'ti shaklda kiritilgan yoki oldindan mavjud</strong>
-										</span>
+                                                    <strong>Ariza raqami noto'g'ti shaklda kiritilgan yoki oldindan
+                                                        mavjud</strong>
+                                                </span>
                                             @endif
                                         </div>
                                     </div>
@@ -54,37 +59,38 @@
                                                     <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
                                                 </div>
                                             </div>
-                                            <input type="text"  readonly id="date_of_birth" class="form-control dob" placeholder="<?php echo getDatepicker();?>"
-                                                   name="dob" value="{{ date(getDateFormat(),strtotime($app->date)) }}" onkeypress="return false;" required
-                                                   @if(!empty($app))
-                                                   value="{{$app->date}}"
-                                                @endif
-                                            />
+                                            <input type="text" readonly id="date_of_birth" class="form-control dob"
+                                                placeholder="<?php echo getDatepicker(); ?>" name="dob"
+                                                value="{{ date(getDateFormat(), strtotime($app->date)) }}"
+                                                onkeypress="return false;" required
+                                                @if (!empty($app)) value="{{ $app->date }}" @endif />
                                         </div>
                                         @if ($errors->has('dob'))
                                             <span class="help-block">
-											<strong style="margin-left:27%;">Ariza sanasi noto'g'ti shaklda kiritilgan</strong>
-										</span>
+                                                <strong style="margin-left:27%;">Ariza sanasi noto'g'ti shaklda
+                                                    kiritilgan</strong>
+                                            </span>
                                         @endif
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group overflow-hidden">
                                             <label class="form-label">Ariza turi<label class="text-danger">*</label></label>
                                             <select class="w-100 form-control" disabled name="app_type1" required>
-                                                @if(count($type))
+                                                @if (count($type))
                                                     <option value="">Ariza turini tanlang</option>
                                                 @endif
-                                                @foreach($type as $key=>$name)
-                                                    <option value="{{ $key }}" @if($key == $app->type)  selected @endif
-                                                    > {{$name}} </option>
+                                                @foreach ($type as $key => $name)
+                                                    <option value="{{ $key }}"
+                                                        @if ($key == $app->type) selected @endif>
+                                                        {{ $name }} </option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
-                                    <input type="hidden" name="app_type" value="{{$app->type}}">
+                                    <input type="hidden" name="app_type" value="{{ $app->type }}">
                                     <input type="hidden" name="organization" value="{{ $app->organization_id }}">
-                                    <input type="hidden" name="prepared" value="{{$app->prepared_id}}">
-                                    <input type="hidden" name="name" value="{{$app->crops->name_id}}">
+                                    <input type="hidden" name="prepared" value="{{ $app->prepared_id }}">
+                                    <input type="hidden" name="name" value="{{ $app->crops->name_id }}">
                                     <input type="hidden" name="type" value="{{ $app->crops->type_id }}">
                                     {{-- <input type="hidden" name="generation" value="{{$app->crops->generation_id}}"> --}}
 
@@ -92,17 +98,17 @@
                                         <div class="form-group overflow-hidden">
                                             <label class="form-label">Mahsulot turi<label
                                                     class="text-danger">*</label></label>
-                                            <select class="w-100 form-control state_of_country custom-select"  id="crops_name" name="name1"
-                                                    url="{!! url('/gettypefromname') !!}" disabled>
-                                                @if(count($names))
+                                            <select class="w-100 form-control state_of_country custom-select"
+                                                id="crops_name" name="name1" url="{!! url('/gettypefromname') !!}" disabled>
+                                                @if (count($names))
                                                     <option value="">Mahsulot turini tanlang</option>
                                                 @endif
-                                                @if(!empty($names))
-                                                    @foreach($names as $name)
-                                                        <option value="{{ $name->id }}" @if($name->id == $app->crops->name_id) selected @endif
-                                                        > {{$name->name}} </option>
+                                                @if (!empty($names))
+                                                    @foreach ($names as $name)
+                                                        <option value="{{ $name->id }}"
+                                                            @if ($name->id == $app->crops->name_id) selected @endif>
+                                                            {{ $name->name }} </option>
                                                     @endforeach
-
                                                 @endif
                                             </select>
                                         </div>
@@ -113,9 +119,12 @@
                                             <label class="text-danger">*</label></label>
                                         <div class="row">
                                             <div class="col-12">
-                                                <select class="form-control w-100 city_of_state custom-select" name="type1"
-                                                        required="" disabled>
-                                                    @if(isset($app->crops->type)) <option value="{{$app->crops->type_id}}">{{$app->crops->type->name}}</option> @endif
+                                                <select class="form-control w-100 city_of_state custom-select"
+                                                    name="type1" required="" disabled>
+                                                    @if (isset($app->crops->type))
+                                                        <option value="{{ $app->crops->type_id }}">
+                                                            {{ $app->crops->type->name }}</option>
+                                                    @endif
                                                 </select>
                                             </div>
                                         </div>
@@ -127,19 +136,20 @@
                                         <div class="row">
                                             <div class="col-12">
                                                 <select disabled class="form-control w-100 city_of_state2 custom-select2" name="generation1" required="">
-                                                    @if(isset($app->crops->generation)) <option value="{{$app->crops->generation_id}}">{{$app->crops->generation->name}}</option> @endif
+                                                    @if (isset($app->crops->generation)) <option value="{{$app->crops->generation_id}}">{{$app->crops->generation->name}}</option> @endif
                                                 </select>
                                             </div>
                                         </div>
                                     </div> --}}
                                     <div id="tin-container" class="col-md-4 legal-fields">
                                         <div class="form-group">
-                                            <label class="form-label">Kod TN VED<label class="text-danger">*</label></label>
-                                            <input class="form-control" id="kodtnved" type="text" name="tnved" data-field-name="tin" data-field-length="10"
-                                                   minlength="10"
-                                                   data-mask="0000000000" maxlength="10" required="required"
-                                                   title="10ta raqam kiriting!" data-pattern-mismatch="Noto'g'ri shakl" value="{{ $app->crops->kodtnved}}"
-                                            />
+                                            <label class="form-label">Kod TN VED<label
+                                                    class="text-danger">*</label></label>
+                                            <input class="form-control" id="kodtnved" type="text" name="tnved"
+                                                data-field-name="tin" data-field-length="10" minlength="10"
+                                                data-mask="0000000000" maxlength="10" required="required"
+                                                title="10ta raqam kiriting!" data-pattern-mismatch="Noto'g'ri shakl"
+                                                value="{{ $app->crops->kodtnved }}" />
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -147,98 +157,84 @@
                                             <label class="form-label">Ishlab chiqarilgan mamlakat<label
                                                     class="text-danger">*</label></label>
                                             <select class="w-100 form-control" name="country" required>
-                                                @if(count($countries))
+                                                @if (count($countries))
                                                     <option value="">Mamlakat nomini tanlang</option>
                                                 @endif
-                                                @if(!empty($countries))
-                                                    @foreach($countries as $name)
-                                                        <option value="{{ $name->id }}"  @if($name->id == $app->crops->country_id) selected @endif
-                                                        > {{$name->name}} </option>
+                                                @if (!empty($countries))
+                                                    @foreach ($countries as $name)
+                                                        <option value="{{ $name->id }}"
+                                                            @if ($name->id == $app->crops->country_id) selected @endif>
+                                                            {{ $name->name }} </option>
                                                     @endforeach
-
                                                 @endif
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 form-group has-feedback {{ $errors->has('party_number') ? ' has-error' : '' }}">
-                                        <label for="middle-name" class="form-label">Partiya raqami <label class="text-danger">*</label></label>
-                                        <input type="text" class="form-control" maxlength="25"  name="party_number" value="{{ $app->crops->party_number}}" required>
+                                    <div
+                                        class="col-md-4 form-group has-feedback {{ $errors->has('party_number') ? ' has-error' : '' }}">
+                                        <label for="middle-name" class="form-label">Partiya raqami <label
+                                                class="text-danger">*</label></label>
+                                        <input type="text" class="form-control" maxlength="25" name="party_number"
+                                            value="{{ $app->crops->party_number }}" required>
                                         @if ($errors->has('party_number'))
                                             <span class="help-block">
-											 <strong>Partiya raqami noto'g'ri shaklda kiritilgan</strong>
-										   </span>
+                                                <strong>Partiya raqami noto'g'ri shaklda kiritilgan</strong>
+                                            </span>
                                         @endif
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group overflow-hidden">
-                                            <label class="form-label">O'lchov turi <label class="text-danger">*</label></label>
+                                            <label class="form-label">O'lchov turi <label
+                                                    class="text-danger">*</label></label>
                                             <select class="w-100 form-control" name="measure_type1" required disabled>
-                                                @if(count($measure_types))
+                                                @if (count($measure_types))
                                                     <option value="">O'lchov turini tanlang</option>
                                                 @endif
-                                                @foreach($measure_types as $key=>$name)
-                                                    <option value="{{ $key }}"   @if($key == $app->crops->measure_type) selected @endif
-                                                    > {{$name}} </option>
+                                                @foreach ($measure_types as $key => $name)
+                                                    <option value="{{ $key }}"
+                                                        @if ($key == $app->crops->measure_type) selected @endif>
+                                                        {{ $name }} </option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
-                                    <input type="hidden" name="measure_type" value="{{ $app->crops->measure_type}}">
-                                    <div class="col-md-4 form-group has-feedback {{ $errors->has('amount') ? ' has-error' : '' }}">
-                                        <label for="middle-name" class="form-label">Mahsulot miqdori <label class="text-danger">*</label></label>
-                                        <input type="number" step="0.01" readonly class="form-control" maxlength="25" value="{{ $app->crops->amount}}"  name="amount" required>
+                                    <input type="hidden" name="measure_type" value="{{ $app->crops->measure_type }}">
+                                    <div
+                                        class="col-md-4 form-group has-feedback {{ $errors->has('amount') ? ' has-error' : '' }}">
+                                        <label for="middle-name" class="form-label">Mahsulot miqdori <label
+                                                class="text-danger">*</label></label>
+                                        <input type="number" step="0.01" readonly class="form-control"
+                                            maxlength="25" value="{{ $app->crops->amount }}" name="amount" required>
                                         @if ($errors->has('amount'))
                                             <span class="help-block">
-											 <strong>Mahsulot miqdori noto'g'ri shaklda kiritilgan</strong>
-										   </span>
+                                                <strong>Mahsulot miqdori noto'g'ri shaklda kiritilgan</strong>
+                                            </span>
                                         @endif
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group overflow-hidden">
-                                            <label class="form-label">Hosil yili<label class="text-danger">*</label></label>
+                                            <label class="form-label">Ishlab chiqarilgan sana<label
+                                                    class="text-danger">*</label></label>
                                             <select class="w-100 form-control" name="year1" disabled required>
-                                                @if(count($year))
-                                                    <option value="">Hosil yilini tanlang</option>
+                                                @if (count($year))
+                                                    <option value="">Ishlab chiqarilgan sanani tanlang</option>
                                                 @endif
-                                                @foreach($year as $key=>$name)
+                                                @foreach ($year as $key => $name)
                                                     <option value="{{ $key }}"
-                                                            @if($key == $app->crops->year) selected @endif
-                                                    >{{$name}}
+                                                        @if ($key == $app->crops->year) selected @endif>
+                                                        {{ $name }}
                                                     </option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
-                                    <input type="hidden" name="year" value="{{ $app->crops->year}}">
-                                    <div class="col-md-6 form-group has-feedback">
-                                        <label class="form-label"> Ishlab chiqarish turi</label>
-                                        <div class="">
-                                            <select required class="form-control crop_production" name="state[]" multiple="multiple" >
-                                                @if(!empty($production_type))
-                                                    @foreach($production_type as $state)
-                                                        <option value="{{$state->id}}">{{$state->name}}</option>
-                                                    @endforeach
-                                                @endif
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 form-group has-feedback" style="display: none" id="pre_name">
-                                        <label class="form-label">Chigit turi <label class="text-danger">*</label></label>
-                                        <div class=" gender">
-                                            <label class="custom-control custom-radio">
-                                                <input type="radio" class="custom-control-input"  name="pre_name" value="tukli" checked required checked>
-                                                <span class="custom-control-label">Tukli</span>
-                                            </label>
-                                            <label class="custom-control custom-radio">
-                                                <input type="radio"  class="custom-control-input" name="pre_name" value="tuksiz" required>
-                                                <span class="custom-control-label">Tuksiz </span>
-                                            </label>
-                                        </div>
-                                    </div>
+                                    <input type="hidden" name="year" value="{{ $app->crops->made_date }}">
                                     <div class="form-group col-md-12 col-sm-12">
                                         <div class="col-md-12 col-sm-12 text-center">
-                                            <a class="btn btn-primary" href="{{ URL::previous() }}">{{ trans('app.Cancel')}}</a>
-                                            <button type="submit" onclick="disableButton()" id="submitter" class="btn btn-success">{{ trans('app.Update')}}</button>
+                                            <a class="btn btn-primary"
+                                                href="{{ URL::previous() }}">{{ trans('app.Cancel') }}</a>
+                                            <button type="submit" onclick="disableButton()" id="submitter"
+                                                class="btn btn-success">{{ trans('app.Update') }}</button>
                                         </div>
                                     </div>
                                 </div>
@@ -247,12 +243,13 @@
                     </div>
                 </div>
             </div>
-    </div>
+        </div>
     @else
         <div class="section" role="main">
             <div class="card">
                 <div class="card-body text-center">
-                    <span class="titleup text-danger"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>&nbsp Ushbu arizani o'zgartirish huquqi sizda mavjud emas</span>
+                    <span class="titleup text-danger"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>&nbsp
+                        Ushbu arizani o'zgartirish huquqi sizda mavjud emas</span>
                 </div>
             </div>
         </div>
@@ -266,9 +263,10 @@
             format: "dd-mm-yyyy",
             autoclose: 1,
             minView: 2,
-            startView:'decade',
+            startView: 'decade',
             endDate: new Date(),
         });
+
         function disableButton() {
             var button = document.getElementById('submitter');
             button.disabled = true;
@@ -281,7 +279,7 @@
     </script>
 
     <script>
-        $(document).ready(function(){
+        $(document).ready(function() {
 
             $('.datepicker1').datetimepicker({
                 format: "<?php echo getDatepicker(); ?>",
@@ -290,37 +288,35 @@
                 endDate: new Date(),
             });
 
-            $(".datepicker,.input-group-addon").click(function(){
+            $(".datepicker,.input-group-addon").click(function() {
                 var dateend = $('#left_date').val('');
 
             });
 
             $(".datepicker").datetimepicker({
-                format: "<?php echo getDatepicker(); ?>",
-                minView: 2,
-                autoclose: 1,
-            }).on('changeDate', function (selected) {
-                var startDate = new Date(selected.date.valueOf());
-
-                $('.datepicker2').datetimepicker({
                     format: "<?php echo getDatepicker(); ?>",
                     minView: 2,
                     autoclose: 1,
+                }).on('changeDate', function(selected) {
+                    var startDate = new Date(selected.date.valueOf());
 
-                }).datetimepicker('setStartDate', startDate);
-            })
-                .on('clearDate', function (selected) {
+                    $('.datepicker2').datetimepicker({
+                        format: "<?php echo getDatepicker(); ?>",
+                        minView: 2,
+                        autoclose: 1,
+
+                    }).datetimepicker('setStartDate', startDate);
+                })
+                .on('clearDate', function(selected) {
                     $('.datepicker2').datetimepicker('setStartDate', null);
                 })
 
-            $('.datepicker2').click(function(){
+            $('.datepicker2').click(function() {
 
                 var date = $('#join_date').val();
-                if(date == '')
-                {
+                if (date == '') {
                     swal('First Select Join Date');
-                }
-                else{
+                } else {
                     $('.datepicker2').datetimepicker({
                         format: "<?php echo getDatepicker(); ?>",
                         minView: 2,
@@ -330,25 +326,25 @@
                 }
             });
         });
-
     </script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('select.owner_search').select2({
                 ajax: {
                     url: '/organization/search_by_name',
                     delay: 300,
                     dataType: 'json',
-                    data: function (params) {
+                    data: function(params) {
                         return {
                             search: params.term
                         }
                     },
-                    processResults: function (data) {
+                    processResults: function(data) {
                         data = data.map((name, index) => {
                             return {
                                 id: name.id,
-                                text: capitalize(name.name + (name.name ? ' - STiR:' + name.inn : ''))
+                                text: capitalize(name.name + (name.name ? ' - STiR:' + name
+                                    .inn : ''))
                             }
                         });
                         return {
@@ -357,16 +353,16 @@
                     }
                 },
                 language: {
-                    inputTooShort: function () {
+                    inputTooShort: function() {
                         return 'Korxona (nomi), STIR ini kiritib izlang';
                     },
-                    searching: function () {
+                    searching: function() {
                         return 'Izlanmoqda...';
                     },
-                    noResults: function () {
+                    noResults: function() {
                         return "Natija topilmadi"
                     },
-                    errorLoading: function () {
+                    errorLoading: function() {
                         return "Natija topilmadi"
                     }
                 },
@@ -378,16 +374,16 @@
                     url: '/prepared/search_by_name',
                     delay: 300,
                     dataType: 'json',
-                    data: function (params) {
+                    data: function(params) {
                         return {
                             search: params.term
                         }
                     },
-                    processResults: function (data) {
+                    processResults: function(data) {
                         data = data.map((name, index) => {
                             return {
                                 id: name.id,
-                                text: capitalize(name.name )
+                                text: capitalize(name.name)
                             }
                         });
                         return {
@@ -396,22 +392,23 @@
                     }
                 },
                 language: {
-                    inputTooShort: function () {
+                    inputTooShort: function() {
                         return 'Korxona nomini kiritib izlang';
                     },
-                    searching: function () {
+                    searching: function() {
                         return 'Izlanmoqda...';
                     },
-                    noResults: function () {
+                    noResults: function() {
                         return "Natija topilmadi"
                     },
-                    errorLoading: function () {
+                    errorLoading: function() {
                         return "Natija topilmadi"
                     }
                 },
                 placeholder: 'Korxona nomini kiriting',
                 minimumInputLength: 2
             })
+
             function capitalize(text) {
                 var words = text.split(' ');
                 for (var i = 0; i < words.length; i++) {
@@ -426,12 +423,13 @@
             }
         });
     </script>
-    <script >
-        $(document).ready(function () {
+    <script>
+        $(document).ready(function() {
             $('.states').select2({
                 minimumResultsForSearch: Infinity
             });
         })
+
         function getCitiesOfState(th) {
 
             stateid = th.val();
@@ -444,7 +442,7 @@
                 data: {
                     name_id: stateid,
                 },
-                success: function (response) {
+                success: function(response) {
                     var citiesMenu = $('select.city_of_state')
                     var customerCity = citiesMenu.attr('val');
                     citiesMenu.html(response);
@@ -462,7 +460,7 @@
                 data: {
                     name_id: stateid,
                 },
-                success: function (response) {
+                success: function(response) {
                     var citiesMenu = $('select.city_of_state2')
                     var customerCity = citiesMenu.attr('val');
                     citiesMenu.html(response);
@@ -487,23 +485,11 @@
                 .then(data => kodtnved.value = data.code);
         });
 
-        //chigit uchun radio button qo'shish
-        function getPreName(th) {
-
-            corn_id = th.val();
-            if (corn_id == 21) {
-                document.getElementById("pre_name").style.display = "block";
-            }
-            else{
-                document.getElementById("pre_name").style.display = "none";
-            }
-
-        }
-
-        $('select.state_of_country').on('change', function () {
+       
+        $('select.state_of_country').on('change', function() {
             getPreName($(this));
         });
-        $('select.state_of_country').on('change', function () {
+        $('select.state_of_country').on('change', function() {
             getCitiesOfState($(this));
         });
         if ($('select.city_of_state').attr('val')) {
@@ -512,40 +498,39 @@
         if ($('select.city_of_state2').attr('val')) {
             getCitiesOfState($('select.state_of_country'));
         }
-
     </script>
     <script>
-        $(document).ready(function(){
+        $(document).ready(function() {
             $('select.crop_production').select2({
                 placeholder: 'Ishlab chiqarish turini tanlang',
                 minimumResultsForSearch: Infinity,
-                language:{
-                    inputTooShort:function(){
+                language: {
+                    inputTooShort: function() {
                         return 'Ma\'lumot kiritib izlang';
                     },
-                    searching:function(){
+                    searching: function() {
                         return 'Izlanmoqda...';
                     },
-                    noResults:function(){
+                    noResults: function() {
                         return "Natija topilmadi"
                     }
                 }
             });
-            $('body').on('change','.crop_production',function(){
+            $('body').on('change', '.crop_production', function() {
                 stateid = $(this).val();
                 var url = $(this).attr('stateurl');
             });
             $('select.requirements').select2({
                 placeholder: 'Ilovani tanlang',
                 minimumResultsForSearch: Infinity,
-                language:{
-                    inputTooShort:function(){
+                language: {
+                    inputTooShort: function() {
                         return 'Ma\'lumot kiritib izlang';
                     },
-                    searching:function(){
+                    searching: function() {
                         return 'Izlanmoqda...';
                     },
-                    noResults:function(){
+                    noResults: function() {
                         return "Natija topilmadi"
                     }
                 }

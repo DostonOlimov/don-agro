@@ -65,6 +65,27 @@
                                                     <input type="text" required="required" name="name"
                                                            value="{{ $company->name }}" class="form-control">
                                                 </div>
+                                                <div class="col-12 col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label"
+                                                               for="first-name">{{ trans('app.Mamlakat nomi')}} <label
+                                                                class="text-danger">*</label>
+                                                        </label>
+                                                        <select name="country" class="region" required>
+                                                            @if(!empty($countries))
+                                                                @foreach($countries as $country)
+                                                                <option
+                                                                        @if($company->country_id==$country->id)
+                                                                            selected
+                                                                        @endif
+                                                                        value="{{ $country->id }}">{{ $country->name }}</option>
+                                                                    <option
+                                                                        value="{{ $country->id }}">{{ $country->name }}</option>
+                                                                @endforeach
+                                                            @endif
+                                                        </select>
+                                                    </div>
+                                                </div>
                                                 <div class="col-12 col-md-4">
                                                     <div class="form-group">
                                                         <label class="form-label"

@@ -5,7 +5,7 @@
 			<div class="page-header">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item">
-						<i class="fe fe-life-buoy mr-1"></i>&nbsp Arizalar
+						<i class="fe fe-life-buoy mr-1"></i>&nbsp {{trans('message.Arizalar')}}
 					</li>
 				</ol>
 			</div>
@@ -36,18 +36,18 @@
                                     {!! method_field('patch') !!}
                                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                                     <div class="col-md-4 form-group has-feedback {{ $errors->has('app_number') ? ' has-error' : '' }}">
-                                        <label class="form-label" for="app_number">Ariza raqami <label class="text-danger">*</label></label>
+                                        <label class="form-label" for="app_number">{{trans('app.Ariza raqami')}}<label class="text-danger">*</label></label>
                                         <div class="">
                                             <input type="number" id="app_number" name="app_number" value="{{ $app->app_number}}" class="form-control" maxlength="20" required>
                                             @if ($errors->has('app_number'))
                                                 <span class="help-block">
-											<strong>Ariza raqami noto'g'ti shaklda kiritilgan yoki oldindan mavjud</strong>
+											<strong>{{trans('app.Ariza raqami noto\'g\'ti shaklda kiritilgan yoki oldindan mavjud')}}</strong>
 										</span>
                                             @endif
                                         </div>
                                     </div>
                                     <div class="col-md-4 form-group {{ $errors->has('dob') ? ' has-error' : '' }}">
-                                        <label class="form-label">Ariza sanasi <label class="text-danger">*</label></label>
+                                        <label class="form-label">{{trans('app.Ariza sanasi')}} <label class="text-danger">*</label></label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
@@ -63,7 +63,7 @@
                                         </div>
                                         @if ($errors->has('dob'))
                                             <span class="help-block">
-											<strong style="margin-left:27%;">Ariza sanasi noto'g'ti shaklda kiritilgan</strong>
+											<strong style="margin-left:27%;">{{trans('app.Ariza sanasi noto\'g\'ti shaklda kiritilgan')}}</strong>
 										</span>
                                         @endif
                                     </div>
@@ -72,7 +72,7 @@
                                             <label class="form-label">Ariza turi<label class="text-danger">*</label></label>
                                             <select class="w-100 form-control" name="app_type" required>
                                                 @if(count($type))
-                                                    <option value="">Ariza turini tanlang</option>
+                                                    <option value="">{{trans('app.Ariza turini tanlang')}}</option>
                                                 @endif
                                                 @foreach($type as $key=>$name)
                                                     <option value="{{ $key }}" @if($key == $app->type)  selected @endif
@@ -84,7 +84,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group" >
                                             <label class="form-label" for="organization">
-                                                Buyurtmachi korxona yoki tashkilot nomi <span class="text-danger">*</span>
+                                                {{trans('app.Buyurtmachi korxona yoki tashkilot nomi')}} <span class="text-danger">*</span>
                                             </label>
                                             <select id="organization"
                                                     class="form-control owner_search" name="organization" required>
@@ -102,7 +102,7 @@
                                     <div class="col-md-6 row">
                                         <div class="form-group" >
                                             <label class="form-label" for="prepared">
-                                                Mahsulot tayorlangan shaxobcha yoki sexning nomi <span class="text-danger">*</span>
+                                                {{trans('app.Mahsulot tayorlangan shaxobcha yoki sexning nomi')}} <span class="text-danger">*</span>
                                             </label>
                                             <select id="prepared" required
                                                     class="form-control owner_search2" name="prepared">
@@ -119,12 +119,12 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group overflow-hidden">
-                                            <label class="form-label">Mahsulot turi<label
+                                            <label class="form-label">{{trans('app.Mahsulot turi')}}<label
                                                     class="text-danger">*</label></label>
                                             <select class="w-100 form-control state_of_country custom-select"  id="crops_name" name="name"
                                                     url="{!! url('/gettypefromname') !!}">
                                                 @if(count($names))
-                                                    <option value="">Mahsulot turini tanlang</option>
+                                                    <option value="">{{trans('app.Mahsulot turini tanlang')}}</option>
                                                 @endif
                                                 @if(!empty($names))
                                                     @foreach($names as $name)
@@ -138,7 +138,7 @@
                                     </div>
 
                                     <div class="col-md-4 form-group overflow-hidden">
-                                        <label class="form-label">Mahsulot navi
+                                        <label class="form-label">{{trans('app.Mahsulot navi')}}
                                             <label class="text-danger">*</label></label>
                                         <div class="row">
                                             <div class="col-12">
@@ -163,7 +163,7 @@
                                     </div> --}}
                                     <div id="tin-container" class="col-md-4 legal-fields">
                                         <div class="form-group">
-                                            <label class="form-label">Kod TN VED<label class="text-danger">*</label></label>
+                                            <label class="form-label">{{trans('app.Kod TN VED')}}<label class="text-danger">*</label></label>
                                             <input class="form-control" id="kodtnved" type="text" name="tnved" data-field-name="tin" data-field-length="10"
                                                    minlength="10"
                                                    data-mask="0000000000" maxlength="10" required="required"
@@ -173,11 +173,11 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group overflow-hidden">
-                                            <label class="form-label">Ishlab chiqarilgan mamlakat<label
+                                            <label class="form-label">{{trans('app.Ishlab chiqargan davlat')}}<label
                                                     class="text-danger">*</label></label>
                                             <select class="w-100 form-control" name="country" required>
                                                 @if(count($countries))
-                                                    <option value="">Mamlakat nomini tanlang</option>
+                                                    <option value="">{{trans('app.Mamlakat nomini tanlang')}}</option>
                                                 @endif
                                                 @if(!empty($countries))
                                                     @foreach($countries as $name)
@@ -190,11 +190,11 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4 form-group has-feedback {{ $errors->has('party_number') ? ' has-error' : '' }}">
-                                        <label for="middle-name" class="form-label">Partiya raqami <label class="text-danger">*</label></label>
+                                        <label for="middle-name" class="form-label">{{trans('Toʼda (partiya) raqami')}}<label class="text-danger">*</label></label>
                                         <input type="text" class="form-control" maxlength="25"  name="party_number" value="{{ $app->crops->party_number}}" required>
                                         @if ($errors->has('party_number'))
                                             <span class="help-block">
-											 <strong>Partiya raqami noto'g'ri shaklda kiritilgan</strong>
+											 <strong>{{trans('app.Partiya raqami noto\'g\'ri shaklda kiritilgan')}}</strong>
 										   </span>
                                         @endif
                                     </div>
@@ -203,7 +203,7 @@
                                             <label class="form-label">O'lchov turi <label class="text-danger">*</label></label>
                                             <select class="w-100 form-control" name="measure_type" required>
                                                 @if(count($measure_types))
-                                                    <option value="">O'lchov turini tanlang</option>
+                                                    <option value="">{{trans('app.O\'lchov turini tanlang')}}</option>
                                                 @endif
                                                 @foreach($measure_types as $key=>$name)
                                                     <option value="{{ $key }}"   @if($key == $app->crops->measure_type) selected @endif
@@ -213,44 +213,37 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4 form-group has-feedback {{ $errors->has('amount') ? ' has-error' : '' }}">
-                                        <label for="middle-name" class="form-label">Mahsulot miqdori <label class="text-danger">*</label></label>
+                                        <label for="middle-name" class="form-label">{{trans('app.Mahsulot miqdori')}} <label class="text-danger">*</label></label>
                                         <input type="number" step="0.01" class="form-control" maxlength="25" value="{{ $app->crops->amount}}"  name="amount" required>
                                         @if ($errors->has('amount'))
                                             <span class="help-block">
-											 <strong>Mahsulot miqdori noto'g'ri shaklda kiritilgan</strong>
+											 <strong>{{trans('app.Mahsulot miqdori noto\'g\'ri shaklda kiritilgan')}}</strong>
 										   </span>
                                         @endif
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group overflow-hidden">
-                                            <label class="form-label">Hosil yili<label class="text-danger">*</label></label>
-                                            <select class="w-100 form-control" name="year" required>
-                                                @if(count($year))
-                                                    <option value="">Hosil yilini tanlang</option>
-                                                @endif
-                                                @foreach($year as $key=>$name)
-                                                    <option value="{{ $key }}"
-                                                            @if($key == $app->crops->year) selected @endif
-                                                    >{{$name}}
-                                                    </option>
-                                                @endforeach
-                                            </select>
+                                            <label class="form-label">{{ trans('app.Ishlab chiqarilgan sana') }}<label
+                                                    class="text-danger">*</label></label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">
+                                                        <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
+                                                    </div>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="dd.mm.yyyy"
+                                                    name="made_date" data-mask="00.00.0000" value="{{$madeDate}}"
+                                                    required />
+                                            </div>
+                                            @if ($errors->has('made_date'))
+                                                <span class="help-block">
+                                                    <strong class="text-danger">{{trans('app.Ariza sanasi noto\'g\'ri shaklda kiritilgan')}}</strong>
+                                                </span>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-md-6 form-group has-feedback">
-                                        <label class="form-label"> Ishlab chiqarish turi</label>
-                                        <div class="">
-                                            <select required class="form-control crop_production" name="state[]" multiple="multiple" >
-                                                @if(!empty($production_type))
-                                                    @foreach($production_type as $state)
-                                                        <option value="{{$state->id}}">{{$state->name}}</option>
-                                                    @endforeach
-                                                @endif
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 form-group has-feedback">
-                                        <label class="form-label">Arizaga ilova qilinadi</label>
+                                        <label class="form-label">{{trans('app.Arizaga ilova qilinadi')}}</label>
                                         <div class="">
                                             <select required class="form-control requirements" name="requirements[]" multiple="multiple" >
                                                 @if(!empty($requirements))
@@ -261,21 +254,18 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 form-group has-feedback" style="display: none" id="pre_name">
-                                        <label class="form-label">Chigit turi <label class="text-danger">*</label></label>
-                                        <div class=" gender">
-                                            <label class="custom-control custom-radio">
-                                                <input type="radio" class="custom-control-input"  name="pre_name" value="tukli" checked required checked>
-                                                <span class="custom-control-label">Tukli</span>
-                                            </label>
-                                            <label class="custom-control custom-radio">
-                                                <input type="radio"  class="custom-control-input" name="pre_name" value="tuksiz" required>
-                                                <span class="custom-control-label">Tuksiz </span>
-                                            </label>
-                                        </div>
+                                    <div class="col-md-6 form-group has-feedback">
+                                        <label class="form-label">{{ trans('app.Sertifikatlashtirish sxemalari') }}<label
+                                                class="text-danger">*</label></label>
+                                        <select class="w-100 form-control" name="sxeme_number" required>
+                                            <option value="">{{ trans('app.sxemani tanlang') }}</option>
+                                            <option value="3" @if($app->crops->sxeme_number==3) selected @endif>3</option>
+                                            <option value="7" @if($app->crops->sxeme_number==7) selected @endif>7</option>
+                                        </select>
                                     </div>
+
                                     <div class="col-md-8 form-group has-feedback">
-                                        <label class="form-label" for="data">Qo'shimcha ma'lumotlar<label class="text-danger">*</label></label>
+                                        <label class="form-label" for="data">{{trans("app.Qo'shimcha ma'lumotlar")}}<label class="text-danger">*</label></label>
                                         <div class="">
                                             <textarea id="data" name="data" class="form-control" maxlength="100" >{{ $app->data}}</textarea>
                                         </div>
@@ -297,7 +287,7 @@
     <div class="section" role="main">
         <div class="card">
             <div class="card-body text-center">
-                <span class="titleup text-danger"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>&nbsp Ushbu arizani o'zgartirish huquqi sizda mavjud emas</span>
+                <span class="titleup text-danger"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>&nbsp {{trans("app.Ushbu arizani o'zgartirish huquqi sizda mavjud emas")}}</span>
             </div>
         </div>
     </div>
@@ -532,18 +522,6 @@
             .then(data => kodtnved.value = data.code);
     });
 
-    //chigit uchun radio button qo'shish
-    function getPreName(th) {
-
-        corn_id = th.val();
-        if (corn_id == 21) {
-            document.getElementById("pre_name").style.display = "block";
-        }
-        else{
-            document.getElementById("pre_name").style.display = "none";
-        }
-
-    }
 
     $('select.state_of_country').on('change', function () {
         getPreName($(this));

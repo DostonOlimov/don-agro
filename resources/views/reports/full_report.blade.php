@@ -38,7 +38,7 @@
     'organization'=>optional($organization)->id,
     'prepared'=>optional($prepared)->id,
     'type'=>$type,
-    'generation'=>$generation,
+    // 'generation'=>$generation,
     'region'=>$region,
     'country'=>$country
     ]) }}">
@@ -98,7 +98,7 @@
                                         {{-- <th rowspan="2">{{trans('app.Ekin avlodi')}}</th> --}}
                                         <th rowspan="2">{{trans('app.Toʼda (partiya) raqami')}}</th>
                                         <th rowspan="2">{{trans('app.Mahsulot miqdori')}}</th>
-                                        <th rowspan="2">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp {{trans('app.Hosil yili')}} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</th>
+                                        <th rowspan="2">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp {{trans('app.Ishlab chiqarilgan sana')}} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</th>
                                         <th rowspan="2">{{trans('app.Sinov bayonnoma raqami')}}</th>
                                         <th colspan="2">{{trans('app.Sertifikat')}}</th>
                                         <th colspan="3">{{trans('app.Tahlil natija')}}</th>
@@ -241,7 +241,7 @@
                                         <td>
                                             <select class="w-100 form-control" name="year" id="year" >
                                                 @if(count($years))
-                                                    <option value="">Hosil yilini tanlang</option>
+                                                    <option value="">Ishlab chiqarilgan sanani tanlang</option>
                                                 @endif
                                                 @foreach($years as $key=>$name)
                                                     <option value="{{ $key }}"
@@ -278,7 +278,7 @@
                                             <td>{{ optional($app->crops->country)->name }}</td>
                                             <td>{{ optional($app->crops->name)->name }}</td>
                                             <td>{{ optional($app->crops->type)->name }}</td>
-                                            <td>{{ optional($app->crops->generation)->name }}</td>
+                                            {{-- <td>{{ optional($app->crops->generation)->name }}</td> --}}
                                             <td>{{ optional($app->crops)->party_number }}</td>
                                             <td>{{ optional($app->crops)->amount_name }}</td>
                                             <td>{{ optional($app->crops)->year }}</td>

@@ -10,7 +10,7 @@
         boʼlimi boshligʼi<br>
         <span id="director-name"></span><br>
         <span id="application-date"></span> yil
-        <div class="text-center"> {!! $qrCode !!}</div>
+
 
     </h4>
     <b>
@@ -91,9 +91,7 @@
         $('#application-id').text(currentInvoice.app_id)
         $('#application-organization').text(currentInvoice.application.organization.name)
         $('#crop-name').text(currentInvoice.application.crops.name.name)
-        $('#crop-pre-name').text(currentInvoice.application.crops.pre_name)
         $('#crop-type').text(currentInvoice.application.crops.type.name)
-        $('#crop-generation').text(currentInvoice.application.crops.generation.name)
         $('#crop-party').text(currentInvoice.application.crops.party_number)
         $('#measure-type').text(measure_type)
         $('#crop-amount').text(currentInvoice.application.crops.amount)

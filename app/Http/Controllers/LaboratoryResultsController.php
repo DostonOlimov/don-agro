@@ -19,9 +19,7 @@ class LaboratoryResultsController extends Controller
     public function indicator($id)
     {
         $crop = CropsName::find($id);
-        $indicators = Indicator::where('crop_id',$id)
-            ->where('pre_name',1)
-            ->get();
+        $indicators = Indicator::where('crop_id',$id)->get();
         return view('laboratory_results.indicator', compact('indicators','id'));
     }
     public function indicator_view($indicator_id,$crop)

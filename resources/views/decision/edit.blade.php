@@ -224,10 +224,10 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group overflow-hidden">
-                                            <label class="form-label">Hosil yili<label class="text-danger">*</label></label>
+                                            <label class="form-label">Ishlab chiqarilgan sana<label class="text-danger">*</label></label>
                                             <select class="w-100 form-control" name="year" required>
                                                 @if(count($year))
-                                                    <option value="">Hosil yilini tanlang</option>
+                                                    <option value="">Ishlab chiqarilgan sanani tanlang</option>
                                                 @endif
                                                 @foreach($year as $key=>$name)
                                                     <option value="{{ $key }}"
@@ -238,18 +238,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 form-group has-feedback">
-                                        <label class="form-label"> Ishlab chiqarish turi</label>
-                                        <div class="">
-                                            <select required class="form-control crop_production" name="state[]" multiple="multiple" >
-                                                @if(!empty($production_type))
-                                                    @foreach($production_type as $state)
-                                                        <option value="{{$state->id}}">{{$state->name}}</option>
-                                                    @endforeach
-                                                @endif
-                                            </select>
-                                        </div>
-                                    </div>
+                                   
                                     <div class="col-md-6 form-group has-feedback">
                                         <label class="form-label" for="data">Qo'shimcha ma'lumotlar<label class="text-danger">*</label></label>
                                         <div class="">

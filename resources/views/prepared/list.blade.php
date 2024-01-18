@@ -60,6 +60,7 @@
 									<tr>
 										<th>№</th>
 										<th>{{trans('app.Korxona nomi')}}</th>
+										<th>{{ trans('app.Country')}}</th>
 										<th>{{ trans('app.Region')}}</th>
 										<th>{{ trans('app.Action')}}</th>
 									</tr>
@@ -70,6 +71,7 @@
 									<tr>
 										<td>{{ $i }}</td>
 										<td>{{ $company->name }}</td>
+										<td>{{ optional($company->country)->name }}</td>
 										<td>{{ optional($company->region)->name }}</td>
 										<td>
 											<a href="{!! url ('/prepared/list/edit/'.$company->id) !!}"> <button type="button" class="btn btn-round btn-success">{{ trans('app.Edit')}}</button></a>

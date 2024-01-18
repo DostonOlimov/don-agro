@@ -72,6 +72,22 @@
                                                 <div class="col-12 col-md-6">
                                                     <div class="form-group">
                                                         <label class="form-label"
+                                                               for="first-name">{{ trans('app.Mamlakat nomi')}} <label
+                                                                class="text-danger">*</label>
+                                                        </label>
+                                                        <select name="country" class="region" required>
+                                                            @if(!empty($countries))
+                                                                @foreach($countries as $country)
+                                                                    <option
+                                                                        value="{{ $country->id }}">{{ $country->name }}</option>
+                                                                @endforeach
+                                                            @endif
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label"
                                                                for="first-name">{{ trans('app.Viloyat nomi')}} <label
                                                                 class="text-danger">*</label>
                                                         </label>

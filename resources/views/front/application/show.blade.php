@@ -161,7 +161,7 @@
                                         </div>
                                         <div class="table_row row">
                                             <div class="col-md-5 col-sm-12 table_td">
-                                                <b>Hosil yili</b>
+                                                <b>Ishlab chiqarilgan sana</b>
                                             </div>
                                             <div class="col-md-7 col-sm-12 table_td">
                                             <span class="txt_color">
@@ -176,18 +176,6 @@
                                             <div class="col-md-7 col-sm-12 table_td">
                                             <span class="txt_color">
                                                 {{ $user->data  }}
-                                            </span>
-                                            </div>
-                                        </div>
-                                        <div class="table_row row">
-                                            <div class="col-md-5 col-sm-12 table_td">
-                                                <b>Ishlab chiqarish turi</b>
-                                            </div>
-                                            <div class="col-md-7 col-sm-12 table_td">
-                                            <span class="txt_color">
-                                                @foreach($production_type as $type)
-                                                {{ optional($type->type)->name  }},
-                                                @endforeach
                                             </span>
                                             </div>
                                         </div>

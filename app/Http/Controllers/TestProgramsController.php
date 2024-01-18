@@ -37,8 +37,8 @@ class TestProgramsController extends Controller
             ->with('organization')
             ->with('decision')
             ->with('tests')
-            ->whereIn('status',[Application::STATUS_ACCEPTED,Application::STATUS_FINISHED]);
-        if($user->role == \App\Models\User::STATE_EMPLOYEE){
+            ->whereIn('status', [Application::STATUS_ACCEPTED, Application::STATUS_FINISHED]);
+        if ($user->role == \App\Models\User::STATE_EMPLOYEE) {
             $user_city = $user->state_id;
             $apps = $apps->whereHas('organization', function ($query) use ($user_city) {
                 $query->whereHas('city', function ($query) use ($user_city) {
@@ -73,10 +73,9 @@ class TestProgramsController extends Controller
                         $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
                     })->orWhereHas('crops.type', function ($query) use ($searchQuery) {
                         $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
-                    // })->orWhereHas('crops.generation', function ($query) use ($searchQuery) {
-                    //     $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
+                        // })->orWhereHas('crops.generation', function ($query) use ($searchQuery) {
+                        //     $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
                     });
-
                 }
             });
         });
@@ -88,34 +87,21 @@ class TestProgramsController extends Controller
             ->appends(['from' => $request->input('from')])
             ->appends(['city' => $request->input('city')])
             ->appends(['crop' => $request->input('crop')]);
-        return view('tests.search', compact('apps','from','till','city','crop'));
+        return view('tests.search', compact('apps', 'from', 'till', 'city', 'crop'));
     }
     //index
     public function add($id)
     {
         $app = Application::find($id);
 
-        if($nd = Nds::where('crop_id','=',$app->crops->name->id)->first()){
+        if ($nd = Nds::where('crop_id', '=', $app->crops->name->id)->first()) {
             $measure_types = CropData::getMeasureType();
             unset($measure_types[1]);
-            $directors = User::where('role','=',55)->get();
-            if($app->crops->name->id == 21){
-                if($app->crops->pre_name == 'tuksiz'){
-                    $indicators = Indicator::where('crop_id',$app->crops->name->id)
-                        ->where('pre_name',2)
-                        ->get();
-
-                }else{
-                    $indicators = Indicator::where('crop_id','=',$app->crops->name->id)
-                        ->where('pre_name','=',1)
-                        ->get();
-                }
-            }else{
-                $indicators = Indicator::where('crop_id','=',$app->crops->name->id)
-                    ->get();
-            }
-            return view('tests.add', compact('app','nd','directors','measure_types','indicators'));
-        }else{
+            $directors = User::where('role', '=', 55)->get();
+            $indicators = Indicator::where('crop_id', '=', $app->crops->name->id)
+                ->get();
+            return view('tests.add', compact('app', 'nd', 'directors', 'measure_types', 'indicators'));
+        } else {
             return redirect('nds/list')->with('message', 'nds not found');
         }
     }
@@ -142,7 +128,7 @@ class TestProgramsController extends Controller
         $tests->director_id = $director_id;
         $tests->save();
 
-        if(!empty($checkbox)) {
+        if (!empty($checkbox)) {
             foreach ($checkbox as $check) {
                 $ch = new TestProgramIndicators();
                 $ch->indicator_id = $check;
@@ -160,8 +146,6 @@ class TestProgramsController extends Controller
         $active->save();
 
         return redirect('/tests/search')->with('message', 'Successfully Submitted');
-
-
     }
 
     public function edit($id)
@@ -172,24 +156,11 @@ class TestProgramsController extends Controller
         $app = Application::find($test->app_id);
 
         $measure_types = CropData::getMeasureType();
-        $directors = User::where('role','=',55)->get();
-        if($app->crops->name->id == 21){
-            if($app->crops->pre_name == 'tuksiz'){
-                $indicators = Indicator::where('crop_id',$app->crops->name->id)
-                    ->where('pre_name',2)
-                    ->get();
+        $directors = User::where('role', '=', 55)->get();
+        $indicators = Indicator::where('crop_id', '=', $app->crops->name->id)
+            ->get();
 
-            }else{
-                $indicators = Indicator::where('crop_id','=',$app->crops->name->id)
-                    ->where('pre_name','=',1)
-                    ->get();
-            }
-        }else{
-            $indicators = Indicator::where('crop_id','=',$app->crops->name->id)
-                ->get();
-        }
-
-        return view('tests.edit', compact('app', 'test','directors', 'indicators', 'measure_types'));
+        return view('tests.edit', compact('app', 'test', 'directors', 'indicators', 'measure_types'));
     }
 
 
@@ -215,9 +186,9 @@ class TestProgramsController extends Controller
         $tests->extra_data = $data;
         $tests->director_id = $director_id;
         $tests->save();
-        TestProgramIndicators::where('test_program_id','=',$id)
+        TestProgramIndicators::where('test_program_id', '=', $id)
             ->delete();
-        if(!empty($checkbox)) {
+        if (!empty($checkbox)) {
             foreach ($checkbox as $check) {
                 $ch = new TestProgramIndicators();
                 $ch->indicator_id = $check;
@@ -235,7 +206,6 @@ class TestProgramsController extends Controller
         $active->time = date('Y-m-d H:i:s');
         $active->save();
         return redirect('/tests/search')->with('message', 'Successfully Updated');
-
     }
 
 
@@ -255,24 +225,24 @@ class TestProgramsController extends Controller
             // ->with('application.crops.generation')
             ->with('application')
             ->find($id);
-        $indicators = TestProgramIndicators::where('test_program_id','=',$id)
+        $indicators = TestProgramIndicators::where('test_program_id', '=', $id)
             ->with('indicator')
             ->with('tests')
             ->get();
         $url = route('tests.view', $id);
         $qrCode = null;
-        if($tests->code){
+        if ($tests->code) {
             $qrCode = QrCode::size(100)->generate($url);
         }
 
-        $measure_type =(Application::find($tests->app_id)->crops->name->measure_type == 2) ? "dona" : "kg" ;
+        $measure_type = (Application::find($tests->app_id)->crops->name->measure_type == 2) ? "dona" : "kg";
         $nds_type = Nds::getType(Application::find($tests->app_id)->crops->name->nds->type_id);
         return view('tests.show', [
             'decision' => $tests,
-            'measure_type'=>$measure_type,
-            'nds_type'=>$nds_type,
-            'indicators'=>$indicators,
-            'qrCode'=>$qrCode
+            'measure_type' => $measure_type,
+            'nds_type' => $nds_type,
+            'indicators' => $indicators,
+            'qrCode' => $qrCode
         ]);
     }
 
@@ -284,10 +254,10 @@ class TestProgramsController extends Controller
         $this->authorize('send', $test);
 
         $app = Application::find($test->app_id);
-        $decision = Decision::where('app_id',$app->id)->first();
+        $decision = Decision::where('app_id', $app->id)->first();
         //code for test programs and decisions decesion start with 2 and test_program start with 3
-        $code1 = 30000000 + ($app->getYear() - 2000)*100000 + $test->id;
-        $code2 = 20000000 + ($app->getYear() - 2000)*100000 + $decision->id;
+        $code1 = 30000000 + ($app->getYear() - 2000) * 100000 + $test->id;
+        $code2 = 20000000 + ($app->getYear() - 2000) * 100000 + $decision->id;
 
         //desicion save
         $decision->code = $code2;
@@ -319,27 +289,26 @@ class TestProgramsController extends Controller
             // ->with('application.crops.generation')
             ->with('application')
             ->find($id);
-        $indicators = TestProgramIndicators::where('test_program_id','=',$id)
+        $indicators = TestProgramIndicators::where('test_program_id', '=', $id)
             ->with('indicator')
             ->with('tests')
             ->get();
         $url = route('tests.view', $id);
         $qrCode = null;
-        if($tests->code){
+        if ($tests->code) {
             $qrCode = QrCode::size(100)->generate($url);
         }
         $max_number = LaboratoryNumbers::max('number');
 
-        $measure_type =(Application::find($tests->app_id)->crops->name->measure_type == 2) ? "dona" : "kg" ;
+        $measure_type = (Application::find($tests->app_id)->crops->name->measure_type == 2) ? "dona" : "kg";
         $nds_type = Nds::getType(Application::find($tests->app_id)->crops->name->nds->type_id);
         return view('tests.lab_view', [
             'decision' => $tests,
-            'measure_type'=>$measure_type,
-            'nds_type'=>$nds_type,
-            'indicators'=>$indicators,
-            'qrCode'=>$qrCode,
-            'max_number'=>$max_number
+            'measure_type' => $measure_type,
+            'nds_type' => $nds_type,
+            'indicators' => $indicators,
+            'qrCode' => $qrCode,
+            'max_number' => $max_number
         ]);
     }
-
 }

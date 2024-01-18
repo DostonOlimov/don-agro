@@ -41,11 +41,7 @@
                     <select class="w-100 form-control state_of_country custom-select" style="background-color: #c5ccd0" name="year" id="year">
 
                         @if(!empty($years))
-<<<<<<< HEAD
                             <option value="">{{trans('app.Hammasi')}}</option>
-=======
-                            <option value="">Hosil yili</option>
->>>>>>> b28d2ab44ad2ee963038512705029d32b80f83f8
                             @foreach($years as $key=>$name)
 
                                 <option value="{{ $key }}" @if( ($year && $year == $key ))  selected="selected" @endif> {{$name}} </option>
@@ -74,7 +70,7 @@
                                         <th>{{trans('app.Sifat bo\'yicha nomuvofiq deb topilgan mahsulot miqdori', ['measure_type' => $measure_type])}}</th>
                                         <th>{{trans('app.Tahlilda turgan mahsulot miqdori', ['measure_type' => $measure_type]) }}</th>
                                         @if($year)
-                                        <th>{{trans('app.Hosil yili')}}</th>
+                                        <th>{{trans('app.Ishlab chiqarilgan sana')}}</th>
                                         @endif
                                     </tr>
 

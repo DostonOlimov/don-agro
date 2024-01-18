@@ -20,13 +20,15 @@ class PreparedCompaniesController extends Controller
         $regions = DB::table('tbl_states')->where('country_id', '=', 234)
             ->get()
             ->toArray();
-        if($user->role == \App\Models\User::STATE_EMPLOYEE){
-            $regions = DB::table('tbl_states')->where('id','=',$user->state_id)
+        if ($user->role == \App\Models\User::STATE_EMPLOYEE) {
+            $regions = DB::table('tbl_states')->where('id', '=', $user->state_id)
                 ->where('country_id', '=', 234)
                 ->get()
                 ->toArray();
         }
-        return view('prepared.add', compact('title','regions','redirect_id'));
+        $countries = DB::table('tbl_countries')->get()->toArray();
+
+        return view('prepared.add', compact('title', 'regions', 'redirect_id','countries'));
     }
 
     // vehiclebrand list
@@ -34,15 +36,15 @@ class PreparedCompaniesController extends Controller
     {
         $user = Auth::User();
         $title = trans('app.Mahsulot tayorlangan shaxobcha yoki sex nomi');
-        $companies = PreparedCompanies::with('region');
-        if($user->role == \App\Models\User::STATE_EMPLOYEE){
+        $companies = PreparedCompanies::with('region','country');                        /// shu joy
+        if ($user->role == \App\Models\User::STATE_EMPLOYEE) {
             $user_city = $user->state_id;
             $companies = $companies->whereHas('region', function ($query) use ($user_city) {
                 $query->where('state_id', '=', $user_city);
             });
         }
-        $companies = $companies->orderBy('id','desc')->get();
-        return view('prepared.list', compact('companies','title'));
+        $companies = $companies->orderBy('id', 'desc')->get();
+        return view('prepared.list', compact('companies', 'title'));
     }
 
     // vehiclebrand store
@@ -51,16 +53,18 @@ class PreparedCompaniesController extends Controller
         $this->authorize('create', User::class);
         $name = $request->input('name');
         $region = $request->input('region');
+        $country = $request->input('country');
         $count = DB::table('prepared_companies')
             ->where('name', '=', $name)
-            ->where('state_id','=',$region)
+            ->where('state_id', '=', $region)
             ->count();
         if ($count == 0) {
             $cityname = new PreparedCompanies();
             $cityname->name = $name;
             $cityname->state_id = $region;
+            $cityname->country_id = $country;
             $cityname->save();
-            if($request->input('redirect_id') == 2){
+            if ($request->input('redirect_id') == 2) {
                 return redirect('application/add')->with('message', 'Successfully Submitted');
             }
             return redirect('prepared/list')->with('message', 'Successfully Submitted');
@@ -72,8 +76,8 @@ class PreparedCompaniesController extends Controller
     public function destory($id)
     {
         $this->authorize('delete', OrganizationCompanies::class);
-        $app = DB::table('applications')->where('prepared_id',(int)$id)->first();
-        if($app){
+        $app = DB::table('applications')->where('prepared_id', (int)$id)->first();
+        if ($app) {
             return redirect('prepared/list')->with('message', 'Cannot Deleted');
         }
         PreparedCompanies::destroy($id);
@@ -83,9 +87,11 @@ class PreparedCompaniesController extends Controller
     public function edit($id)
     {
         $user = Auth::User();
-        $regions = DB::table('tbl_states')->where('country_id', '=', 234)->get()->toArray();
-        if($user->role == \App\Models\User::STATE_EMPLOYEE){
-            $regions = DB::table('tbl_states')->where('id','=',$user->state_id)
+        // $regions = DB::table('tbl_states')->where('country_id', '=', 234)->get()->toArray();
+        $regions = DB::table('tbl_states')->get()->toArray();
+        $countries = DB::table('tbl_countries')->get()->toArray();
+        if ($user->role == \App\Models\User::STATE_EMPLOYEE) {
+            $regions = DB::table('tbl_states')->where('id', '=', $user->state_id)
                 ->where('country_id', '=', 234)
                 ->get()
                 ->toArray();
@@ -93,6 +99,7 @@ class PreparedCompaniesController extends Controller
         return view('prepared.edit', [
             'company' => PreparedCompanies::findOrFail($id),
             'editid' => $id,
+            'countries' => $countries,
             'regions' => $regions,
         ]);
     }
@@ -114,19 +121,18 @@ class PreparedCompaniesController extends Controller
 
         if ($ownername != '') {
             $owners = DB::table('prepared_companies')
-                ->select('id','name');
+                ->select('id', 'name');
 
-            $owners = $owners->where(function($query) use($ownername){
-                $query->where('name', 'like', '%'.$ownername.'%');
+            $owners = $owners->where(function ($query) use ($ownername) {
+                $query->where('name', 'like', '%' . $ownername . '%');
             });
             $owners = $owners->take(15)->get()->toArray();
 
-            if(!empty($owners)) {
+            if (!empty($owners)) {
                 echo json_encode($owners);
-            }else{
+            } else {
                 echo 'Nothing to show';
             }
-
         }
     }
 
@@ -135,7 +141,7 @@ class PreparedCompaniesController extends Controller
         $title = 'Korxona qo\'shish';
         $type = Application::getType();
         $regions = DB::table('tbl_states')->where('country_id', '=', 234)->get()->toArray();
-        return view('front.prepared.add', compact('title','regions','organization_id','type'));
+        return view('front.prepared.add', compact('title', 'regions', 'organization_id', 'type'));
     }
 
     public function mypreparedstore(Request $request)
@@ -144,21 +150,22 @@ class PreparedCompaniesController extends Controller
         $type = $request->input('app_type');
         $name = $request->input('name');
         $region = $request->input('region');
+        $country = $request->input('country');
         $count = DB::table('prepared_companies')
             ->where('name', '=', $name)
-            ->where('state_id','=',$region)
+            ->where('state_id', '=', $region)
             ->first();
         if (!$count) {
             $cityname = new PreparedCompanies();
             $cityname->name = $name;
             $cityname->state_id = $region;
+            $cityname->country_id = $country;
             $cityname->save();
             $prepared = $cityname->id;
-        }else{
+        } else {
             $prepared = $count->id;
         }
 
         return redirect("application/my-application-add?organization=$organization&type=$type&prepared=$prepared")->with('message', 'Duplicate Data');
-
     }
 }

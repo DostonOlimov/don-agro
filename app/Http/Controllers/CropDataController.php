@@ -36,9 +36,8 @@ class CropDataController extends Controller
         $countries = DB::table('tbl_countries')->get()->toArray();
         $measure_types = CropData::getMeasureType();
         $year = CropData::getYear();
-        $production_type = ProductionType::get();
 
-        return view('crops.add', compact('names', 'countries','measure_types','year','production_type'));
+        return view('crops.add', compact('names', 'countries','measure_types','year'));
 
     }
 

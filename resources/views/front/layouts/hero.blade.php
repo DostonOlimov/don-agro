@@ -1,4 +1,4 @@
-<!-- Hero Section Begin -->
+{{-- <!-- Hero Section Begin -->
 <section class="hero">
     <div class="container">
         <div class="row">
@@ -33,9 +33,6 @@
                 @php
                     if($crop_name === 'all')
                         { $img = 'urug12.jpg';}
-                else  {
-                    $img = ( $crop_name ? $crop_name->pre_name.'.jpg' : 'urug.jpg');
-                    }
                 @endphp
                 <div class="hero__item set-bg" data-setbg="{{ url('/img/crops/'.$img) }}">
                     <div class="hero__text">
@@ -55,4 +52,4 @@
         </div>
     </div>
 </section>
-<!-- Hero Section End -->
+<!-- Hero Section End --> --}}

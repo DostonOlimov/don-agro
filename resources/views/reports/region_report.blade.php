@@ -71,7 +71,7 @@
                     <select class="w-100 form-control state_of_country custom-select" style="background-color: #c5ccd0" name="year" id="year">
 
                         @if(!empty($years))
-                            <option value="">Hosil yili</option>
+                            <option value="">Ishlab chiqarilgan sana</option>
                             @foreach($years as $key=>$name)
 
                                 <option value="{{ $key }}" @if( ($year && $year == $key ))  selected="selected" @endif> {{$name}} </option>

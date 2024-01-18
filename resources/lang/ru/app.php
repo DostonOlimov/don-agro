@@ -22,7 +22,7 @@ return[
     'Ishlab chiqargan davlat'=>'Мануфактурная страна',
     'Toʼda (partiya) raqami'=>'Серийный номер',
     'amount'=>'Количество',
-    'Hosil yili'=>'Год урожая',
+    'Ishlab chiqarilgan sana'=>'Дата производства',
     'Sinov bayonnoma raqami'=>'Номер протокола испытаний',
     'Sertifikat'=>'Сертификат',
     'Sertifikat raqami'=>'Номер сертификата',
@@ -83,7 +83,10 @@ return[
     'Laboratoriyaga yuborishni xoxlaysizmi?'=>'Хотите отправить в лабораторию?',
     'Yuborilgandan so\'ng ma\'lumotlarni o\'zgartirib bo\'lmaydi!'=>'Данные не могут быть изменены после отправки!',
     'Ha, yuborish!'=>'Да, отправить!',
-
+    'Sertifikatlashtirish sxemalari'=>'Схемы сертификации',
+    'Sertifikatlashtirish sxemasi'=>'Схема сертификации',
+    'sxemani tanlang'=>'выберите схему',
+    "Ariza raqami noto'g'ti shaklda kiritilgan yoki oldindan mavjud"=>'Номер заявки введен в неправильной форме или уже существует',
 
     //og'irlik dalolatnomalari
     ' Og\'irlik bo\'yicha na\'muna olish dalolatnomalari'=>
@@ -136,7 +139,8 @@ return[
     'Viloyat tanlang'=>'Выберите регион',
     'Tumanni tanlang'=>'Выберите район',
     'Mamlakat nomini tanlang'=>'Выберите название страны',
-    'Hosil yilini tanlang'=>'Выберите год сбора урожая',
+    'Mamlakat nomi'=>'Имя страны',
+    'Ishlab chiqarilgan sanani tanlang'=>'Выберите дату производства',
     'O\'lchov turini tanlang'=>'Выберите тип измерения',
     'Sertifikatlanuvchi mahsulot turini tanlang'=>'Выбирайте сертифицированный продукт',
     'Enter Address'=>'Введите адрес',

@@ -47,7 +47,7 @@
 										<th class="border-bottom-0 border-top-0">{{trans('app.Mahsulot turi')}}</th>
 										<th class="border-bottom-0 border-top-0">{{trans('app.Mahsulot navi')}}</th>
 										<th class="border-bottom-0 border-top-0">{{trans('app.Mahsulot miqdori')}}</th>
-										<th class="border-bottom-0 border-top-0">{{trans('app.Hosil yili')}}</th>
+										<th class="border-bottom-0 border-top-0">{{trans('app.Ishlab chiqarilgan sana')}}</th>
                                         <th class="border-bottom-0 border-top-0">{{trans('app.Action')}}</th>
 									</tr>
                                     </thead>
@@ -61,7 +61,7 @@
                                             <td><a href="{!! url('/application/view/'.$test->application->id) !!}">{{ $test->application->app_number }}</a></td>
                                             <td>{{ $test->application->date }}</td>
                                             <td><a href="{!! url('/organization/view/'.$test->application->organization->id) !!}">{{ $test->application->organization->name }}</a></td>
-                                            <td>{{ $test->application->crops->pre_name }} {{ $test->application->crops->name->name }}</td>
+                                            <td>{{ $test->application->crops->name->name }}</td>
                                             <td>{{ optional($test->application)->crops->type->name }}</td>
                                             <td>{{ optional($test->application)->crops->amount_name }}</td>
                                             <td>{{ optional($test->application)->crops->year }}</td>

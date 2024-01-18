@@ -123,10 +123,10 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group overflow-hidden">
-                                            <label class="form-label">Hosil yili<label class="text-danger">*</label></label>
+                                            <label class="form-label">Ishlab chiqarilgan sana<label class="text-danger">*</label></label>
                                             <select class="w-100 form-control" name="year" required>
                                                 @if(count($year))
-                                                    <option value="">Hosil yilini tanlang</option>
+                                                    <option value="">Ishlab chiqarilgan sanani tanlang</option>
                                                 @endif
                                                 @foreach($year as $key=>$name)
                                                     <option value="{{ $key }}"
@@ -137,31 +137,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 form-group has-feedback">
-                                        <label class="form-label"> Ishlab chiqarish turi</label>
-                                        <div class="">
-                                            <select required class="form-control crop_production" name="state[]" multiple="multiple" >
-                                                @if(!empty($production_type))
-                                                    @foreach($production_type as $state)
-                                                        <option value="{{$state->id}}">{{$state->name}}</option>
-                                                    @endforeach
-                                                @endif
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 form-group has-feedback" style="display: none" id="pre_name">
-                                        <label class="form-label">Chigit turi <label class="text-danger">*</label></label>
-                                        <div class=" gender">
-                                            <label class="custom-control custom-radio">
-                                                <input type="radio" class="custom-control-input"  name="pre_name" value="tukli" checked required checked>
-                                                <span class="custom-control-label">Tukli</span>
-                                            </label>
-                                            <label class="custom-control custom-radio">
-                                                <input type="radio"  class="custom-control-input" name="pre_name" value="tuksiz" required>
-                                                <span class="custom-control-label">Tuksiz </span>
-                                            </label>
-                                        </div>
-                                    </div>
+
                                     <div class="form-group col-md-12 col-sm-12">
                                         <div class="col-md-12 col-sm-12 text-center">
                                             <a class="btn btn-primary" href="{{ URL::previous() }}">{{ trans('app.Cancel')}}</a>
@@ -353,19 +329,6 @@
             .then(response => response.json())
             .then(data => kodtnved.value = data.code);
     });
-
-    //chigit uchun radio button qo'shish
-    function getPreName(th) {
-
-        corn_id = th.val();
-        if (corn_id == 21) {
-            document.getElementById("pre_name").style.display = "block";
-        }
-        else{
-            document.getElementById("pre_name").style.display = "none";
-        }
-
-    }
 
     $('select.state_of_country').on('change', function () {
         getPreName($(this));

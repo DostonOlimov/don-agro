@@ -135,11 +135,6 @@
                             <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
                         </svg>{{ trans('message.Sozlamalar') }}</a>
                     <ul class="nav-group-items">
-                        <li class="nav-item"><a class="nav-link" href="{{ url('/production/list') }}"><span
-                                    class="nav-icon"></span>
-                                <svg class="nav-icon">
-                                </svg>{{ trans('message.Ishlab chiqarish turi') }}</a>
-                        </li>
                         <li class="nav-item"><a class="nav-link" href="{{ url('/requirement/list') }}"><span
                                     class="nav-icon"></span>
                                 <svg class="nav-icon">

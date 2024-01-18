@@ -36,7 +36,7 @@
 //                'Urug\'lik avlodi',
 //                'Toʼda (partiya) raqami',
 //                'Mahsulot miqdori',
-//                'Hosil yili',
+//                'Ishlab chiqarilgan sana',
 //                'Sinov bayonnoma raqami',
 //                'Sertifikat',
 //                '',

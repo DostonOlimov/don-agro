@@ -39,7 +39,7 @@ class ReportExport implements FromCollection,WithHeadings,WithStyles
             // 'Ekin avlodi',
             'Toʼda raqami',
             'Mahsulot  miqdori',
-            'Hosil yili',
+            'Ishlab chiqarilgan sana',
             'Sinov bayonnoma raqami',
                 'Sertifikat' ,
             'Tahlil natija',
