@@ -11,6 +11,7 @@ use App\Models\Nds;
 use App\Models\TestPrograms;
 use App\tbl_activities;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -32,9 +33,9 @@ class DecisionController extends Controller
             ->with('crops.type')
             ->with('organization')
             ->with('decision')
-            ->whereIn('status',[Application::STATUS_ACCEPTED,Application::STATUS_FINISHED]);
+            ->whereIn('status', [Application::STATUS_ACCEPTED, Application::STATUS_FINISHED]);
 
-        if($user->role == \App\Models\User::STATE_EMPLOYEE){
+        if ($user->role == \App\Models\User::STATE_EMPLOYEE) {
             $user_city = $user->state_id;
             $apps = $apps->whereHas('organization', function ($query) use ($user_city) {
                 $query->whereHas('city', function ($query) use ($user_city) {
@@ -69,10 +70,9 @@ class DecisionController extends Controller
                         $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
                     })->orWhereHas('crops.type', function ($query) use ($searchQuery) {
                         $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
-                    // })->orWhereHas('crops.generation', function ($query) use ($searchQuery) {
-                    //     $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
+                        // })->orWhereHas('crops.generation', function ($query) use ($searchQuery) {
+                        //     $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
                     });
-
                 }
             });
         });
@@ -84,18 +84,18 @@ class DecisionController extends Controller
             ->appends(['from' => $request->input('from')])
             ->appends(['city' => $request->input('city')])
             ->appends(['crop' => $request->input('crop')]);
-        return view('decision.search', compact('apps','from','till','city','crop'));
+        return view('decision.search', compact('apps', 'from', 'till', 'city', 'crop'));
     }
     //index
     public function add($id)
     {
         $app = Application::find($id);
         $qrCode = null;
-        if($nd = Nds::where('crop_id','=',$app->crops->name->id)->first()){
+        if ($nd = Nds::where('crop_id', '=', $app->crops->name->id)->first()) {
             $laboratories = Laboratories::get();
-            $directors = User::where('role','=',55)->get();
-            return view('decision.add', compact('app','nd','directors','laboratories','qrCode'));
-        }else{
+            $directors = User::where('role', '=', 55)->get();
+            return view('decision.add', compact('app', 'nd', 'directors', 'laboratories', 'qrCode'));
+        } else {
             return redirect('nds/list')->with('message', 'nds not found');
         }
     }
@@ -108,54 +108,56 @@ class DecisionController extends Controller
         $app_id = $request->input('app_id');
         $director_id = $request->input('director_id');
         $laboratory_id = $request->input('laboratory_id');
+        $date = $request->input('date');
         $data = '';
-        $requirements = AppRequirement::where('app_id',$app_id)->get();
-        foreach ($requirements as $value){
-            $data .= $value->requirement->name.', ';
+        $requirements = AppRequirement::where('app_id', $app_id)->get();
+        foreach ($requirements as $value) {
+            $data .= $value->requirement->name . ', ';
         }
 
-            $decision = new Decision();
-            $decision->app_id = $app_id;
-            $decision->director_id = $director_id;
-            $decision->laboratory_id = $laboratory_id;
-            $decision->requirement = $data;
-            $decision->created_by = $userA->id;
-            $decision->status = Decision::STATUS_NEW;
-            $decision->save();
+        $decision = new Decision();
+        $decision->app_id = $app_id;
+        $decision->director_id = $director_id;
+        $decision->laboratory_id = $laboratory_id;
+        $decision->requirement = $data;
+        $decision->date = $date;
+        $decision->created_by = $userA->id;
+        $decision->status = Decision::STATUS_NEW;
+        $decision->save();
 
-            $active = new tbl_activities;
-            $active->ip_adress = $_SERVER['REMOTE_ADDR'];
-            $active->user_id = $userA->id;
-            $active->action_id = $decision->id;
-            $active->action_type = 'new_decision';
-            $active->action = "Yangi buyruq qo'shildi";
-            $active->time = date('Y-m-d H:i:s');
-            $active->save();
-            $measure_type = CropData::getMeasureType(Application::find($app_id)->crops->measure_type);
-            $nds_type = Nds::getType(Application::find($app_id)->crops->name->nds->type_id);
-            return
-                [
-                    'decision'=>$decision->fresh(
-                        [
-                            'application.organization',
-                            'laboratory','application.crops',
-                            'application.crops.name',
-                            'application.crops.name.nds',
-                            'application.crops.type',
-                            // 'application.crops.generation',
-                            'director'
-                        ]),
-                    'measure_type'=>$measure_type,
-                    'nds_type'=>$nds_type
-                ];
-
+        $active = new tbl_activities;
+        $active->ip_adress = $_SERVER['REMOTE_ADDR'];
+        $active->user_id = $userA->id;
+        $active->action_id = $decision->id;
+        $active->action_type = 'new_decision';
+        $active->action = "Yangi buyruq qo'shildi";
+        $active->time = date('Y-m-d H:i:s');
+        $active->save();
+        $measure_type = CropData::getMeasureType(Application::find($app_id)->crops->measure_type);
+        $nds_type = Nds::getType(Application::find($app_id)->crops->name->nds->type_id);
+        return
+            [
+                'decision' => $decision->fresh(
+                    [
+                        'application.organization',
+                        'laboratory', 'application.crops',
+                        'application.crops.name',
+                        'application.crops.name.nds',
+                        'application.crops.type',
+                        // 'application.crops.generation',
+                        'director'
+                    ]
+                ),
+                'measure_type' => $measure_type,
+                'nds_type' => $nds_type
+            ];
     }
 
     public function destory($id)
     {
         $this->authorize('mydelete', Application::class);
         $decision = Decision::find($id);
-        TestPrograms::where('app_id',$decision->app_id)->delete();
+        TestPrograms::where('app_id', $decision->app_id)->delete();
         Decision::destroy($id);
         return redirect('decision/search')->with('message', 'Successfully Deleted');
     }
@@ -174,44 +176,57 @@ class DecisionController extends Controller
         //create qr code
         $url = route('decision.view', $id);
         $qrCode = null;
-        if($decision->code){
+        if ($decision->code) {
             $qrCode = QrCode::size(100)->generate($url);
         }
         $measure_type = CropData::getMeasureType(Application::find($decision->app_id)->crops->measure_type);
         $nds_type = Nds::getType(Application::find($decision->app_id)->crops->name->nds->type_id);
         return view('decision.show', [
             'decision' => $decision,
-            'measure_type'=>$measure_type,
-            'nds_type'=>$nds_type,
-            'qrCode'=>$qrCode
+            'measure_type' => $measure_type,
+            'nds_type' => $nds_type,
+            'qrCode' => $qrCode
         ]);
     }
-//    public function qaror($code)
-//    {
-//        $decision = Decision::with('director')
-//            ->with('application.organization')
-//            ->with('application.crops')
-//            ->with('application.crops.name')
-//            ->with('application.crops.name.nds')
-//            ->with('application.crops.type')
-//            ->with('application.crops.generation')
-//            ->with('application')
-//            ->with('laboratory')
-//            ->find($id);
-//        //create qr code
-//        $url = route('decision.view', $id);
-//        $qrCode = null;
-//        if($decision->code){
-//            $qrCode = QrCode::size(100)->generate($url);
-//        }
-//        $measure_type = CropData::getMeasureType(Application::find($decision->app_id)->crops->measure_type);
-//        $nds_type = Nds::getType(Application::find($decision->app_id)->crops->name->nds->type_id);
-//        return view('decision.show', [
-//            'decision' => $decision,
-//            'measure_type'=>$measure_type,
-//            'nds_type'=>$nds_type,
-//            'qrCode'=>$qrCode
-//        ]);
-//    }
+
+    // qaror sanasi bo'ycha validation
+    public function between_date($decision_date)
+    {
+        $date = Carbon::parse($decision_date);
+        $now = Carbon::now();
+
+        if ($date->diffInDays($now) > 2) {
+            return redirect('decision/search')->with('message', "The {$decision_date} must be within a two-day range");
+        }
+    }
+
+
+    //    public function qaror($code)
+    //    {
+    //        $decision = Decision::with('director')
+    //            ->with('application.organization')
+    //            ->with('application.crops')
+    //            ->with('application.crops.name')
+    //            ->with('application.crops.name.nds')
+    //            ->with('application.crops.type')
+    //            ->with('application.crops.generation')
+    //            ->with('application')
+    //            ->with('laboratory')
+    //            ->find($id);
+    //        //create qr code
+    //        $url = route('decision.view', $id);
+    //        $qrCode = null;
+    //        if($decision->code){
+    //            $qrCode = QrCode::size(100)->generate($url);
+    //        }
+    //        $measure_type = CropData::getMeasureType(Application::find($decision->app_id)->crops->measure_type);
+    //        $nds_type = Nds::getType(Application::find($decision->app_id)->crops->name->nds->type_id);
+    //        return view('decision.show', [
+    //            'decision' => $decision,
+    //            'measure_type'=>$measure_type,
+    //            'nds_type'=>$nds_type,
+    //            'qrCode'=>$qrCode
+    //        ]);
+    //    }
 
 }

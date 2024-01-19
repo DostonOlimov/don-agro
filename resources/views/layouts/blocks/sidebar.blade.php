@@ -42,16 +42,16 @@
         <li class="nav-item"><a class="nav-link" href="{!! url('/decision/search') !!}"> <svg class="nav-icon">
                     <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-folder-open"></use>
                 </svg>{{ trans('message.Qarorlar') }}</a></li>
-        <li class="nav-item"><a class="nav-link" href="{!! url('/akt/list') !!}"> <svg class="nav-icon">
-                    <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-file"></use>
-                </svg>{{ trans('app.Namuna  olish dalolatnomasi') }}</a></li>
+
         {{-- <li class="nav-item"><a class="nav-link" href="{!! url('/tests-laboratory/list') !!}"> <svg class="nav-icon">
                     <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-file"></use>
                 </svg>{{ trans('app.Labaratoriya') }}</a></li> --}}
         <li class="nav-item"><a class="nav-link" href="{!! url('/tests/search') !!}"> <svg class="nav-icon">
                     <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-recycle"></use>
                 </svg>{{ trans('app.Sinov dasturlari') }}</a></li>
-
+        <li class="nav-item"><a class="nav-link" href="{!! url('/akt/list') !!}"> <svg class="nav-icon">
+                    <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-file"></use>
+                </svg>{{ trans('app.Namuna  olish dalolatnomasi') }}</a></li>
         <li class="nav-item"><a class="nav-link" href="{!! url('/final_results/search') !!}"> <svg class="nav-icon">
                     <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-bar-chart"></use>
                 </svg>{{ trans('message.Yakuniy natijalar') }}</a></li>
@@ -155,6 +155,11 @@
                             <svg class="nav-icon">
                                 <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-group"></use>
                             </svg>{{ trans('app.Ro\'yxat') }}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{!! url('/decision_maker/list') !!}"><span
+                                class="nav-icon"></span>
+                            <svg class="nav-icon">
+                                <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-group"></use>
+                            </svg>{{ trans('app.Mustaqil baholovchi') }}</a></li>
                     <li class="nav-item"><a class="nav-link" href="{!! url('/employee/add') !!}"><span
                                 class="nav-icon"></span>
                             <svg class="nav-icon">
@@ -179,6 +184,12 @@
                             <svg class="nav-icon">
                                 <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-city"></use>
                             </svg>{{ trans('message.Shaxar va tumanlar') }}</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url('/laboratories/list') }}"><span
+                                class="nav-icon"></span>
+                            <svg class="nav-icon">
+                                <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-city"></use>
+                            </svg>{{ trans('message.Laboratoriyalar') }}</a>
                     </li>
                 </ul>
             </li>

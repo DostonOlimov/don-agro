@@ -142,8 +142,7 @@
                                             <label class="text-danger">*</label></label>
                                         <div class="row">
                                             <div class="col-12">
-                                                <select class="form-control w-100 city_of_state custom-select" name="type"
-                                                        required="">
+                                                <select class="form-control w-100 city_of_state custom-select" name="type">
                                                     @if(isset($app->crops->type)) <option value="{{$app->crops->type_id}}">{{$app->crops->type->name}}</option> @endif
                                                 </select>
                                             </div>

@@ -22,7 +22,7 @@
             <td colspan="4" class="align-left">
                 <h4 class=" text-left">
                     Buyurtmachi  <span id="application-organization"></span> <br>
-                    <span id="crop-type"></span> navli,&nbsp <span id="crop-party"></span> partiyali,
+                    <span id="crop-type"></span> navli,
                     &nbsp<span id="crop-amount"></span>&nbsp<span id="measure-type"></span><br><span id="crop-pre-name"></span>
                     mahsulot &nbsp <span id="crop-name"></span> &nbsp mahsulotini sertifikatlashtirish uchun berilgan arizasini koʼrib chiqib quyidagilarni ma'lum qilamiz:
                 </h4>

@@ -74,6 +74,9 @@ return[
     'sxemani tanlang'=>'схемани танланг',
     "Ariza raqami noto'g'ti shaklda kiritilgan yoki oldindan mavjud"=>'Aриза рақами нотўғти шаклда киритилган ёки олдиндан мавжуд',
 
+    //decision
+    'Qaror sanasi'=>'Қарор санаси',
+
     //sinov dasturlari
     'Sertifikatlashtirishni oʼtkazish uchun berilgan ariza boʼyicha qaror va sinov dasturlari ro\'yxati'=>'Сертификатлаштиришни ўтказиш учун берилган ариза бўйича қарор ва синов дастурлари рўйхати',
     'Sertifikatlashtirish bo\'yicha sinov dasturlari ro\'yxati'=>'Сертификатлаштириш бўйича синов дастурлари рўйхати',

@@ -70,6 +70,10 @@ return[
     'Chigit turi'=>'Тип семян',
     'Tukli'=>'Волосатый',
     'Tuksiz'=>'Бесшерстный',
+
+    //decision
+    'Qaror sanasi'=>'Дата принятия решения',
+
     //sinov dasturlari
     'Sertifikatlashtirishni oʼtkazish uchun berilgan ariza boʼyicha qaror va sinov dasturlari ro\'yxati'=>'Решение по заявке на сертификацию и перечень тестовых программ',
     'Sertifikatlashtirish bo\'yicha sinov dasturlari ro\'yxati'=>'Список программ сертификационных испытаний',

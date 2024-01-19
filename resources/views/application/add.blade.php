@@ -144,8 +144,7 @@
                                             <label class="text-danger">*</label></label>
                                         <div class="row">
                                             <div class="col-12">
-                                                <select class="form-control w-100 type_of_corn custom-select" name="type"
-                                                    required="">
+                                                <select class="form-control w-100 type_of_corn custom-select" name="type">
                                                 </select>
                                             </div>
                                         </div>
@@ -242,7 +241,7 @@
                                             </div>
                                             @if ($errors->has('made_date'))
                                                 <span class="help-block">
-                                                    <strong class="text-danger">{{trans('app.Ariza sanasi noto\'g\'ri shaklda kiritilgan')}}</strong>
+                                                    <strong class="text-danger">{{trans('app.Ishlab chiqarilgan sanasi noto\'g\'ri shaklda kiritilgan')}}</strong>
                                                 </span>
                                             @endif
                                         </div>

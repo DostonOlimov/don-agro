@@ -39,10 +39,12 @@ class ApplicationController extends Controller
         $crop = $request->input('crop');
         $from = $request->input('from');
         $till = $request->input('till');
+        $ariza_turi=$request->input('ariza_turi');
 
         $apps = Application::with('organization')
             ->with('crops')
             ->with('crops.name')
+            ->with('crops.country')
             ->with('crops.type');
         if($user->role == \App\Models\User::STATE_EMPLOYEE){
             $user_city = $user->state_id;
@@ -70,6 +72,9 @@ class ApplicationController extends Controller
                     $query->where('name_id', '=', $crop);
             });
         }
+        if($ariza_turi){
+            $apps = $apps->where('type', '=', $ariza_turi);
+        }
         $apps->when($request->input('s'), function ($query, $searchQuery) {
             $query->where(function ($query) use ($searchQuery) {
                 if (is_numeric($searchQuery)) {
@@ -94,7 +99,8 @@ class ApplicationController extends Controller
             ->appends(['from' => $request->input('from')])
             ->appends(['city' => $request->input('city')])
             ->appends(['crop' => $request->input('crop')]);
-        return view('application.list', compact('apps','from','till','city','crop'));
+
+        return view('application.list', compact('apps','from','till','city','crop','ariza_turi'));
     }
 
 
@@ -127,7 +133,7 @@ class ApplicationController extends Controller
         $userA = Auth::user();
         $crop = new CropData();
         $crop->name_id = $request->input('name');
-        $crop->type_id = $request->input('type');
+        $crop->type_id = $request->input('type')??'';
         // $crop->generation_id = $request->input('generation');
         $crop->country_id = $request->input('country');
         $crop->kodtnved = $request->input('tnved');

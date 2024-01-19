@@ -80,6 +80,9 @@ return[
     'sxemani tanlang'=>'sxemani tanlang',
     "Ariza raqami noto'g'ti shaklda kiritilgan yoki oldindan mavjud"=>"Ariza raqami noto'g'ti shaklda kiritilgan yoki oldindan mavjud",
 
+    //decision
+    'Qaror sanasi'=>'Qaror sanasi',
+
     //sinov dasturlari
     'Sertifikatlashtirishni oʼtkazish uchun berilgan ariza boʼyicha qaror va sinov dasturlari ro\'yxati'=>'Sertifikatlashtirishni oʼtkazish uchun berilgan ariza boʼyicha qaror va sinov dasturlari ro\'yxati',
     'Sertifikatlashtirish bo\'yicha sinov dasturlari ro\'yxati'=>'Sertifikatlashtirish bo\'yicha sinov dasturlari ro\'yxati',

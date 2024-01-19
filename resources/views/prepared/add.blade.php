@@ -76,6 +76,7 @@
                                                                 class="text-danger">*</label>
                                                         </label>
                                                         <select name="country" class="region" required>
+                                                            <option value="">{{ trans('app.Mamlakat nomni tanlang')}}</option>
                                                             @if(!empty($countries))
                                                                 @foreach($countries as $country)
                                                                     <option
@@ -92,6 +93,7 @@
                                                                 class="text-danger">*</label>
                                                         </label>
                                                         <select name="region" class="region" required>
+                                                            <option value="">{{ trans('app.Viloyat nomni tanlang')}}</option>
                                                             @if(!empty($regions))
                                                                 @foreach($regions as $region)
                                                                     <option

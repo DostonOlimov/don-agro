@@ -22,7 +22,7 @@
             mustaqil baholash mutaxasisi sertifikatlash natijalari bo'yicha qaror qabul qildi: <br>
             Mahsulot turi &nbsp;{{$decision->test_program->application->crops->name->name}} , mahsulot navi &nbsp; {{$decision->test_program->application->crops->type->name}},
             &nbsp;
-            &nbsp;partiyasi&nbsp;{{$decision->test_program->application->crops->party_number}},
+            &nbsp;partiyasi,
             &nbsp;miqdori&nbsp;{{$decision->test_program->application->crops->amount}}&nbsp;{{\App\Models\CropData::getMeasureType($decision->test_program->application->crops->measure_type)}},
             &nbsp;ishlab chiqarilgan sana &nbsp;{{$decision->test_program->application->crops->year}}  bo'lgan mahsulotiga
             @if($decision->type == 2) {{'Muvofiqlik sertifikati rasmiylashtirilsin.'}} @else {{'tahlil natijasida sertifikat rasmiylashtirishga rad etiladi' }} @endif

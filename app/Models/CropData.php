@@ -39,8 +39,8 @@ class CropData extends Model
     public static function getMeasureType($type = null)
     {
         $arr = [
-            self::MEASURE_TYPE_TONNA => 'tonna',
             self::MEASURE_TYPE_KG => 'kg',
+            self::MEASURE_TYPE_TONNA => 'tonna',
             // self::MEASURE_TYPE_DONA => 'dona',
         ];
 

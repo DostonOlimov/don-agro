@@ -464,7 +464,7 @@ INSERT INTO `crops_type` (`id`, `name`, `crop_id`, `created_at`, `updated_at`) V
 CREATE TABLE `crop_data` (
   `id` int(11) NOT NULL,
   `name_id` int(11) NOT NULL,
-  `type_id` int(11) NOT NULL,
+  `type_id` int(11) NULL,
 --   `generation_id` int(11) NOT NULL,
   `kodtnved` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
   `party_number` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1864,6 +1864,7 @@ CREATE TABLE `decisions` (
   `director_id` int(11) NOT NULL,
   `app_id` int(11) NOT NULL,
   `laboratory_id` int(11) NOT NULL,
+  `date` date NULL,
   `status` int(11) NOT NULL,
   `code` int(11) DEFAULT NULL,
   `requirement` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,

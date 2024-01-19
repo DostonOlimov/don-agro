@@ -117,6 +117,24 @@ Route::group(
             Route::get('/list/edit/{id}', '\App\Http\Controllers\CitiesController@edit');
             Route::post('/list/edit/update/{id}', '\App\Http\Controllers\CitiesController@update');
         });
+        // Laboratories
+        Route::group(['prefix' => 'laboratories', 'middleware' => 'auth'], function () {
+            Route::get('/add', '\App\Http\Controllers\LaboratoryController@create');
+            Route::get('/list', '\App\Http\Controllers\LaboratoryController@index');
+            Route::post('/store', '\App\Http\Controllers\LaboratoryController@store');
+            Route::get('/delete/{id}', '\App\Http\Controllers\LaboratoryController@destory');
+            Route::get('/edit/{id}', '\App\Http\Controllers\LaboratoryController@edit');
+            Route::post('/update/{id}', '\App\Http\Controllers\LaboratoryController@update');
+        });
+        // Decision Makers
+        Route::group(['prefix' => 'decision_maker', 'middleware' => 'auth'], function () {
+            Route::get('/add', '\App\Http\Controllers\DecisionMakerController@create');
+            Route::get('/list', '\App\Http\Controllers\DecisionMakerController@index');
+            Route::post('/store', '\App\Http\Controllers\DecisionMakerController@store');
+            Route::get('/delete/{id}', '\App\Http\Controllers\DecisionMakerController@destory');
+            Route::get('/edit/{id}', '\App\Http\Controllers\DecisionMakerController@edit');
+            Route::post('/update/{id}', '\App\Http\Controllers\DecisionMakerController@update');
+        });
 
         //States
         Route::group(['prefix' => 'states', 'middleware' => 'auth'], function () {
@@ -185,6 +203,7 @@ Route::group(
         //     Route::get('/list/edit/{id}', '\App\Http\Controllers\CropsGenerationController@edit');
         //     Route::post('/list/edit/update/{id}', '\App\Http\Controllers\CropsGenerationController@update');
         // });
+
         //Nds
         Route::group(['prefix' => 'nds', 'middleware' => 'auth'], function () {
             Route::get('/add', '\App\Http\Controllers\NdsController@index');
@@ -203,7 +222,7 @@ Route::group(
             Route::get('/list/edit/{id}', '\App\Http\Controllers\IndicatorController@edit');
             Route::post('/list/edit/update/{id}', '\App\Http\Controllers\IndicatorController@update');
         });
-      
+
 
         //Requirements
         Route::group(['prefix' => 'requirement', 'middleware' => 'auth'], function () {
@@ -298,14 +317,15 @@ Route::group(
         // Akt otbora start
         Route::group(['prefix' => 'akt', 'middleware' => 'auth'], function () {
             Route::get('/list', '\App\Http\Controllers\AKTController@list')->name('akt.list');
-            Route::get('/accept/{id}', ['as' => '/akt/accept', 'uses' => '\App\Http\Controllers\AKTController@accept']);
-            Route::get('/reject/{id}', ['as' => '/akt/reject', 'uses' => '\App\Http\Controllers\AKTController@reject']);
-            Route::post('/accept/store', ['as' => 'akt.acceptstore', 'uses' => '\App\Http\Controllers\AKTController@accept_store']);
-            Route::post('/reject/store', ['as' => 'akt.rejectstore', 'uses' => '\App\Http\Controllers\AKTController@reject_store']);
+            Route::get('/add', ['as' => '/add', 'uses' => '\App\Http\Controllers\AKTController@add']);
+            Route::get('/store', ['as' => '/store', 'uses' => '\App\Http\Controllers\AKTController@store']);
+            Route::get('/edit/{id}', ['as' => '/edit', 'uses' => '\App\Http\Controllers\AKTController@edit']);
+            Route::post('/update/{id}', ['as' => 'update', 'uses' => '\App\Http\Controllers\AKTController@update']);
+            Route::post('/delete/{id}', ['as' => 'delete', 'uses' => '\App\Http\Controllers\AKTController@delete']);
         });
 
 
-        // Akt otbora start
+        // Akt otbora end
 
         //Test programs
         Route::group(['prefix' => 'tests-laboratory', 'middleware' => 'auth'], function () {
