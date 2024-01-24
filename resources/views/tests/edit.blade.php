@@ -59,6 +59,10 @@
                                         <label class="form-label" for="app_number">Sinov dasturi sanasi <label class="text-danger">*</label></label>
                                         <input type="text" readonly name="app_number" value="{{ $app->date}}" class="form-control">
                                     </div>
+                                    <div class="col-md-4 form-group has-feedback">
+                                        <label class="form-label" for="app_number">{{ trans('app.Asosiy xususiyatlar') }}<label class="text-danger">*</label></label>
+                                        <input type="text" readonly name="app_number" value="{{ \App\Models\Nds::getType()[$app->crops->name->nds->type_id] . '.' . $app->crops->name->nds->number . ' ' . $app->crops->name->nds->name }}" class="form-control">
+                                    </div>
                                     <div class="col-md-4">
                                         <div class="form-group overflow-hidden">
                                             <label class="form-label">Rahbar<label class="text-danger">*</label></label>
@@ -73,7 +77,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 form-group has-feedback {{ $errors->has('count') ? ' has-error' : '' }}">
+                                    {{-- <div class="col-md-4 form-group has-feedback {{ $errors->has('count') ? ' has-error' : '' }}">
                                         <label for="middle-name" class="form-label">Sinov na'munalarning soni <label class="text-danger">*</label></label>
                                         <input type="number" class="form-control" maxlength="25"  name="count" value="{{ $test->count}}" required>
                                         @if ($errors->has('count'))
@@ -104,7 +108,7 @@
 											 <strong>Xar bir sinov na'munasining miqdori noto'g'ri shaklda kiritilgan</strong>
 										   </span>
                                         @endif
-                                    </div>
+                                    </div> --}}
                                     @php $i = 1; @endphp
                                     <h4 style="font-weight: bold">Sifat ko'rsatkichi bo'yicha meyoriy hujjatlar:</h4>
                                     <div class="col-md-12">

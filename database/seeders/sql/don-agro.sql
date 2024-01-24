@@ -23,6 +23,50 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
+
+
+--
+-- Структура таблицы `AKT`
+--
+
+CREATE TABLE `AKT` (
+  `id` int(11) NOT NULL,
+  `test_program_id` int(11) NOT NULL,
+  `akt_date` date DEFAULT NULL,
+  `out_check` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `marker` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
+  `use_goal` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
+  `customer` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
+  `employee` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
+  `make_date` date DEFAULT NULL,
+  `expiry_date` date DEFAULT NULL,
+  `simple_size` int(11) DEFAULT NULL,
+  `lab_size` int(11) DEFAULT NULL,
+  `measure_type` int(11) DEFAULT NULL,
+  `party_number` int(11) DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_by` int(11) NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+--
+-- Структура таблицы `lab_bayonnoma`
+--
+
+CREATE TABLE `lab_bayonnoma` (
+  `id` int(11) NOT NULL,
+  `lab_start_date` date DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `number` int(11) NULL,
+  `test_result` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
+  `test_employee` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
+  `akt_id` int(11) NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_by` int(11) NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 --
 -- Структура таблицы `activity_log`
 --
@@ -467,11 +511,10 @@ CREATE TABLE `crop_data` (
   `type_id` int(11) NULL,
 --   `generation_id` int(11) NOT NULL,
   `kodtnved` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `party_number` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `measure_type` int(11) NOT NULL,
   `amount` double DEFAULT NULL,
-  `made_date` date DEFAULT NULL,
   `sxeme_number` int(11) NOT NULL,
+  `year` int(11) NOT NULL,
   `country_id` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -1911,8 +1954,8 @@ CREATE TABLE `director` (
 CREATE TABLE `final_results` (
   `id` int(11) NOT NULL,
   `test_program_id` int(11) NOT NULL,
-  `number` int(11) NOT NULL,
-  `date` date DEFAULT NULL,
+--   `number` int(11) NOT NULL,
+--   `date` date DEFAULT NULL,
   `type` int(11) NOT NULL,
   `folder_number` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `comment` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -2908,9 +2951,9 @@ CREATE TABLE `test_programs` (
   `id` int(11) NOT NULL,
   `app_id` int(11) NOT NULL,
   `director_id` int(11) NOT NULL,
-  `count` int(11) DEFAULT NULL,
-  `measure_type` int(11) DEFAULT NULL,
-  `weight` double DEFAULT NULL,
+--   `count` int(11) DEFAULT NULL,
+--   `measure_type` int(11) DEFAULT NULL,
+--   `weight` double DEFAULT NULL,
   `extra_data` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `code` int(11) DEFAULT NULL,
   `status` int(2) NOT NULL DEFAULT 1,
@@ -3023,6 +3066,17 @@ ALTER TABLE `applications`
 -- Индексы таблицы `app_file_foreign`
 --
 ALTER TABLE `app_file_foreign`
+  ADD PRIMARY KEY (`id`);
+--
+-- Индексы таблицы `AKT`
+--
+ALTER TABLE `AKT`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `lab_bayonnoma`
+--
+ALTER TABLE `lab_bayonnoma`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -3281,6 +3335,17 @@ ALTER TABLE `applications`
 -- AUTO_INCREMENT для таблицы `app_file_foreign`
 --
 ALTER TABLE `app_file_foreign`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT для таблицы `AKT`
+--
+ALTER TABLE `AKT`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `lab_bayonnoma`
+--
+ALTER TABLE `lab_bayonnoma`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --

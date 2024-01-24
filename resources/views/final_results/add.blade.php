@@ -40,23 +40,32 @@
 								<input type="hidden" name="_token" value="{{csrf_token()}}">
                                 <input type="hidden"  name="test_id" value="{{ $test->id}}" >
                                 <div class="col-md-4 form-group has-feedback">
-                                    <label class="form-label" for="app_number">Ariza raqami <label class="text-danger">*</label></label>
+                                    <label class="form-label" >Qaror raqami <label class="text-danger">*</label></label>
                                     <input type="number" readonly name="app_number" value="{{ $test->application->app_number}}" class="form-control">
                                 </div>
                                 <div class="col-md-4 form-group has-feedback">
-                                    <label class="form-label" for="app_number">Mahsulot nomi <label class="text-danger">*</label></label>
+                                    <label class="form-label">{{ trans('app.Sertifikatlashtirish sxemasi') }}<label class="text-danger">*</label></label>
+                                    <input type="number" readonly value="{{ $test->application->crops->sxeme_number}}" class="form-control">
+                                </div>
+                                <div class="col-md-4 form-group has-feedback">
+                                    <label class="form-label">{{ trans('app.Davlat standarti') }}<label class="text-danger">*</label></label>
+                                    <input type="text" readonly value="{{ \App\Models\Nds::getType()[$test->application->crops->name->nds->type_id] . '.' . $test->application->crops->name->nds->number . ' ' . $test->application->crops->name->nds->name}}" class="form-control">
+                                </div>
+                               {{-- \App\Models\Nds::getType()[$test->application->crops->name->nds->type_id] . '.' . $test->application->crops->name->nds->number . ' ' . $test->application->crops->name->nds->name  --}}
+                                <div class="col-md-4 form-group has-feedback">
+                                    <label class="form-label" >Mahsulot nomi <label class="text-danger">*</label></label>
                                     <input type="text" readonly name="product_name" value="{{ optional($test->application->crops)->name->name}}" class="form-control">
                                 </div>
                                 <div class="col-md-4 form-group has-feedback">
-                                    <label class="form-label" for="app_number">Mahsulot navi <label class="text-danger">*</label></label>
+                                    <label class="form-label" >Mahsulot navi <label class="text-danger">*</label></label>
                                     <input type="text" readonly name="product_type" value="{{ optional($test->application->crops)->type->name}}" class="form-control">
                                 </div>
                                 {{-- <div class="col-md-4 form-group has-feedback">
-                                    <label class="form-label" for="app_number">Mahsulot avlodi <label class="text-danger">*</label></label>
+                                    <label class="form-label" >Mahsulot avlodi <label class="text-danger">*</label></label>
                                     <input type="text" readonly name="product_generation" value="{{ optional($test->application->crops)->generation->name}}" class="form-control">
                                 </div> --}}
                                 <div class="col-md-4 form-group has-feedback">
-                                    <label class="form-label" for="app_number">Sinov dasturi sanasi <label class="text-danger">*</label></label>
+                                    <label class="form-label" >Sinov dasturi sanasi <label class="text-danger">*</label></label>
                                     <input type="text" readonly name="app_number" value="{{ $test->application->date}}" class="form-control">
                                 </div>
 
@@ -74,7 +83,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-4 form-group has-feedback {{ $errors->has('number') ? ' has-error' : '' }}">
+                                {{-- <div class="col-md-4 form-group has-feedback {{ $errors->has('number') ? ' has-error' : '' }}">
                                     <label for="number" class="form-label certificate">Sinov bayonnoma raqami <label class="text-danger">*</label></label>
                                     <label for="number" style="display: none" class="form-label nocertificate">Taxlil natija raqami <label class="text-danger">*</label></label>
                                     <input type="number" class="form-control" maxlength="10" value="{{ old('number')}}"  name="number" required>
@@ -100,7 +109,7 @@
                                                     <strong class="text-danger">Ariza sanasi noto'g'ri shaklda kiritilgan</strong>
                                             </span>
                                     @endif
-                                </div>
+                                </div> --}}
                                 <div class="col-md-4">
                                     <label class="form-label certificate">Bayonnoma faylini yuklang</label>
                                     <label style="display: none" class="form-label nocertificate">Tahlil faylini yuklang</label>
@@ -111,7 +120,7 @@
                                 </div>
                                 <div class="certificate row">
                                     <div class="col-md-6 form-group has-feedback {{ $errors->has('reestr_number') ? ' has-error' : '' }}">
-                                        <label for="number" class="form-label ">Sertifikat reestr raqami <label class="text-danger">*</label></label>
+                                        <label for="reestr_number" class="form-label ">Sertifikat reestr raqami <label class="text-danger">*</label></label>
                                         <input type="number" class="form-control" id="reestr_number" maxlength="10" value="{{ old('reestr_number')}}"  name="reestr_number" >
                                         @if ($errors->has('reestr_number'))
                                             <span class="help-block">
@@ -152,7 +161,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4 form-group has-feedback {{ $errors->has('folder_number') ? ' has-error' : '' }}">
-                                        <label for="number" class="form-label ">Tikilgan papka raqami <label class="text-danger">*</label></label>
+                                        <label class="form-label ">Tikilgan papka raqami <label class="text-danger">*</label></label>
                                         <input type="text" class="form-control"  maxlength="25" value="{{ old('folder_number')}}"  name="folder_number" >
                                         @if ($errors->has('folder_number'))
                                             <span class="help-block">
@@ -161,7 +170,7 @@
                                         @endif
                                     </div>
                                     <div class="col-md-4 form-group has-feedback">
-                                        <label class="form-label" for="data">Izoh:<label class="text-danger">*</label></label>
+                                        <label class="form-label" >Izoh:<label class="text-danger">*</label></label>
                                         <div class="">
                                             <textarea id="comment" name="comment" class="form-control" maxlength="200" >{{ old('comment')}}</textarea>
                                         </div>

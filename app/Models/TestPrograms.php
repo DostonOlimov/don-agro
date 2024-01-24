@@ -40,7 +40,7 @@ class TestPrograms  extends Model
 
     public function application()
     {
-         return $this->belongsTo(Application::class,'app_id','id');
+        return $this->belongsTo(Application::class, 'app_id', 'id');
     }
 
     public function laboratory(): BelongsTo
@@ -57,7 +57,11 @@ class TestPrograms  extends Model
     }
     public function indicators()
     {
-        return $this->hasMany(TestProgramIndicators::class,'id','test_program_id');
+        return $this->hasMany(TestProgramIndicators::class, 'id', 'test_program_id');
+    }
+    public function akt()
+    {
+        return $this->hasMany(AKT::class, 'test_program_id', 'id');
     }
     public function final_result(): BelongsTo
     {
@@ -84,28 +88,30 @@ class TestPrograms  extends Model
 
         return $arr[$type];
     }
-    public function getStatusNameAttribute(){
+    public function getStatusNameAttribute()
+    {
         return self::getStatus($this->status);
     }
-    public function getStatusColorAttribute(){
-        if($this->status == self::STATUS_NEW){
+    public function getStatusColorAttribute()
+    {
+        if ($this->status == self::STATUS_NEW) {
             return 'warning';
-        }elseif($this->status == self::STATUS_REJECTED){
+        } elseif ($this->status == self::STATUS_REJECTED) {
             return 'danger';
-        }elseif($this->status == self::STATUS_ACCEPTED){
+        } elseif ($this->status == self::STATUS_ACCEPTED) {
             return 'success';
-        }elseif($this->status == self::STATUS_DELETED){
+        } elseif ($this->status == self::STATUS_DELETED) {
             return 'danger';
-        }elseif($this->status == self::STATUS_FINISHED){
+        } elseif ($this->status == self::STATUS_FINISHED) {
             return 'secondary';
-        }elseif($this->status == self::STATUS_SEEN){
+        } elseif ($this->status == self::STATUS_SEEN) {
             return 'secondary';
         }
     }
     protected static function boot()
     {
         $year =  session('year') ?  session('year') : date('Y');
-        static::addGlobalScope(function ($query) use($year) {
+        static::addGlobalScope(function ($query) use ($year) {
             $query->whereHas('application', function ($query) use ($year) {
                 $query->whereYear('date', $year);
             });
@@ -113,5 +119,4 @@ class TestPrograms  extends Model
 
         parent::boot();
     }
-
 }

@@ -112,7 +112,7 @@ class FinalDecisionController extends Controller
             ->with('test_program.application.crops.name')
             ->with('test_program.application.crops.name.nds')
             ->with('test_program.application.crops.type')
-            ->with('test_program.application.crops.generation')
+            // ->with('test_program.application.crops.generation')
             ->with('test_program.application')
             ->with('decision_maker')
             ->find($id);

@@ -102,10 +102,10 @@ class FinalResultsController extends Controller
     //index
     public function add($id)
     {
-        $test = TestPrograms::find($id);
+        $test = TestPrograms::with('application.crops.name.nds')->find($id);
         $makers = DB::table('decision_makers')->get();
         $types = FinalResult::getType();
-        return view('final_results.add', compact('makers','test','types'));
+                return view('final_results.add', compact('makers','test','types'));
     }
 
     //list
@@ -119,15 +119,15 @@ class FinalResultsController extends Controller
     //  store
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'date' => 'required|date_format:d.m.Y',
-        ]);
+        // $validated = $request->validate([
+        //     'date' => 'required|date_format:d.m.Y',
+        // ]);
 
         $userA = Auth::user();
         $this->authorize('create', Application::class);
         $test_id = $request->input('test_id');
         $given_certificate = $request->input('given_certificate');
-        $number = $request->input('number');
+        // $number = $request->input('number');
         $maker = $request->input('maker');
 
         $reestr_number = $request->input('reestr_number');
@@ -137,8 +137,8 @@ class FinalResultsController extends Controller
 
         $test = new FinalResult();
         $test->test_program_id = $test_id;
-        $test->number = $number;
-        $test->date = join('-', array_reverse(explode('.', $request->input('date'))));
+        // $test->number = $number;
+        // $test->date = join('-', array_reverse(explode('.', $request->input('date'))));
         $test->type = $type;
         $test->folder_number = $folder_number;
         $test->comment = $comment;
@@ -190,14 +190,14 @@ class FinalResultsController extends Controller
         $test = TestPrograms::find($result->test_program_id);
         $certificate =  Sertificate::where('final_result_id','=',$result->id)->first() ;
 
-        $number = $request->input('number');
+        // $number = $request->input('number');
         $reestr_number = $request->input('reestr_number');
         $type = $certificate ? 2 : $request->input('type');
         $folder_number = !$certificate ? $request->input('folder_number') : null;
         $comment = !$certificate ? $request->input('comment') : null;
 
-        $result->number = $number;
-        $result->date = join('-', array_reverse(explode('-', $request->input('date'))));
+        // $result->number = $number;
+        // $result->date = join('-', array_reverse(explode('-', $request->input('date'))));
         $result->type = $type;
         $result->folder_number = $folder_number;
         $result->comment = $comment;
@@ -231,7 +231,8 @@ class FinalResultsController extends Controller
     }
     public function view($id)
     {
-        $tests = FinalResult::find($id);
+        $tests = FinalResult::with('test_program.akt.lab_bayonnoma','test_program.application')->find($id);
+
         return view('final_results.show', [
             'result' => $tests,
         ]);

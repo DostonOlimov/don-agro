@@ -10,7 +10,7 @@
                 <div class="page-header">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <i class="fe fe-life-buoy mr-1"></i>&nbsp {{ trans('app.Namuna  olish dalolatnomasi') }}
+                            <i class="fe fe-life-buoy mr-1"></i>&nbsp {{ trans('app.Laboratory bayonnomasi') }}
                         </li>
                     </ol>
                 </div>
@@ -37,14 +37,14 @@
 								<div class="tab_wrapper page-tab">
 									<ul class="tab_list">
 											<li class="active">
-												<a href="{!! url('/akt/list')!!}">
+												<a href="{!! url('/lab_bayonnoma/list')!!}">
 													<span class="visible-xs"></span>
 													<i class="fa fa-list fa-lg">&nbsp;</i>
 													 {{ trans('app.Ro\'yxat')}}
 												</a>
 											</li>
 											<li>
-												<a href="{!! url('/akt/add')!!}">
+												<a href="{!! url('/lab_bayonnoma/add')!!}">
 													<span class="visible-xs"></span>
 													<i class="fa fa-plus-circle fa-lg">&nbsp;</i> <b>
 													{{ trans('app.Qo\'shish')}}</b>
@@ -59,13 +59,13 @@
                                         <thead>
                                             <tr>
                                                 <th>№</th>
-                                                <th>{{ trans('app.Ishlab chiqargan davlat') }}</th>
-                                                <th>{{ trans('app.Asosiy xususiyatlar') }}</th>
-                                                <th>{{ trans('app.Mahsulot nomi') }}</th>
-                                                <th>{{ trans('app.Ishlab chiqarilgan sana') }}
-                                                <th>{{ trans('app.Yaroqliylik sanasi') }}</th>
-                                                <th>{{ trans('app.Namuna  olish miqdori') }}</th>
-                                                <th>{{ trans('app.Mahsulot birligi') }}</th>
+                                                <th>{{ trans('app.Laboratoriya') }}</th>
+                                                <th>{{ trans('app.Davlat standarti') }}</th>
+                                                <th>{{ trans('app.Mahsulotni laboratoriyaga berish sanasi') }}</th>
+                                                <th>{{ trans('app.Sinov Bayonnoma to\'ldirish sanasi') }}
+                                                <th>{{ trans('app.Sinov Bayonnoma raqami') }}</th>
+                                                <th>{{ trans('app.Sinov natijasi') }}</th>
+                                                <th>{{ trans('app.Sinov o\'tkazgan mutaxassis') }}</th>
                                                 <th>{{ trans('app.Qo\'shimcha ma\'lumotlar') }}</th>
                                                 <th>{{ trans('app.Action') }}</th>
                                             </tr>
@@ -77,19 +77,20 @@
                                             @foreach ($data as $key => $item)
                                                 <tr>
                                                     <td>{{ ++$key }}</td>
-                                                    <td>{{ optional($item->application->crops->country)->name }}</td>
-                                                    <td>{{ \App\Models\Nds::getType()[$item->application->crops->name->nds->type_id] . '.' . $item->application->crops->name->nds->number . ' ' . $item->application->crops->name->nds->name }}
+                                                    <td>{{ $item->test->application->decision->laboratory->certificate }}</td>
+                                                    <td>{{ \App\Models\Nds::getType()[$item->test->application->crops->name->nds->type_id] . '.' . $item->test->application->crops->name->nds->number . ' ' . $item->test->application->crops->name->nds->name }}
                                                     </td>
-                                                    <td>{{ optional($item->application->crops->name)->name }}</td>
-                                                    @if (!empty($item->akt[0]))
-                                                        <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $item->akt[0]->make_date)->format('d.m.Y') }}
+                                                    @if (!empty($item->lab_bayonnoma[0]))
+                                                        <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $item->lab_bayonnoma[0]->lab_start_date)->format('d.m.Y') }}
                                                         </td>
-                                                        <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $item->akt[0]->expiry_date)->format('d.m.Y') }}
+                                                        <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $item->lab_bayonnoma[0]->date)->format('d.m.Y') }}
                                                         </td>
-                                                        <td>{{ $item->akt[0]->simple_size }}</td>
-                                                        <td>{{ $amount[$item->akt[0]->measure_type] }}</td>
-                                                        <td>{{ $item->akt[0]->description }}</td>
+                                                        <td>{{ $item->lab_bayonnoma[0]->number }}</td>
+                                                        <td>{{ $item->lab_bayonnoma[0]->test_result }}</td>
+                                                        <td>{{ $item->lab_bayonnoma[0]->test_employee }}</td>
+                                                        <td>{{ $item->lab_bayonnoma[0]->description }}</td>
                                                     @else
+                                                        <td></td>
                                                         <td></td>
                                                         <td></td>
                                                         <td></td>
@@ -97,16 +98,16 @@
                                                         <td></td>
                                                     @endif
                                                     <td>
-                                                        @if (!empty($item->akt[0]))
-                                                            <a href="{!! url('/akt/edit/' . $item->akt[0]->id) !!}"><button type="button"
+                                                        @if (!empty($item->lab_bayonnoma[0]))
+                                                            <a href="{!! url('/lab_bayonnoma/edit/' . $item->lab_bayonnoma[0]->id) !!}"><button type="button"
                                                                     class="btn btn-round btn-info">{{ trans('app.Edit') }}</button></a>
-                                                            <a url="{!! url('/akt/delete/' . $item->akt[0]->id) !!}" class="sa-warning"> <button
+                                                            <a url="{!! url('/lab_bayonnoma/delete/' . $item->lab_bayonnoma[0]->id) !!}" class="sa-warning"> <button
                                                                     type="button"
                                                                     class="btn btn-round btn-danger dgr">{{ trans('app.Delete') }}</button></a>
                                                         @else
-                                                            <a href="{!! url('/akt/add/' . $item->id) !!}"><button type="button"
+                                                            <a href="{!! url('/lab_bayonnoma/add/' . $item->id) !!}"><button type="button"
                                                                     class="btn btn-round btn-success">&nbsp;
-                                                                    {{ trans('app.Namuna olish dalolatnomasi yaratish') }}
+                                                                    {{ trans('app.Laboratory bayonnomasi yaratish') }}
                                                                     &nbsp;</button></a>
                                                         @endif
                                                     </td>

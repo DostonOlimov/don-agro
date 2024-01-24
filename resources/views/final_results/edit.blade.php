@@ -63,7 +63,7 @@
                                         <input type="text" readonly name="app_number" value="@if($certificate) Berilgan @else Berilmagan @endif" class="form-control">
                                     </div>
 
-                                    <div class="col-md-4 form-group has-feedback {{ $errors->has('number') ? ' has-error' : '' }}">
+                                    {{-- <div class="col-md-4 form-group has-feedback {{ $errors->has('number') ? ' has-error' : '' }}">
                                         @if($certificate)
                                         <label for="number" class="form-label certificate">Sinov bayonnoma raqami <label class="text-danger">*</label></label>
                                         @else
@@ -95,7 +95,7 @@
 											<strong style="margin-left:27%;">Sana noto'g'ti shaklda kiritilgan</strong>
 										</span>
                                         @endif
-                                    </div>
+                                    </div> --}}
                                     <div class="col-md-4">
                                         @if($certificate)
                                         <label class="form-label certificate">Bayonnoma faylini yuklang</label>

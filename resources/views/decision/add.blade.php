@@ -51,6 +51,10 @@
                                     <label class="form-label" for="app_number">{{trans('app.Mahsulot nomi')}} <label class="text-danger">*</label></label>
                                     <input type="text" readonly name="app_number" value="{{ optional($app->crops)->name->name}}" class="form-control">
                                 </div>
+                                <div class="col-md-4 form-group has-feedback">
+                                    <label class="form-label" for="app_number">{{ trans('app.Sertifikatlashtirish sxemasi') }}<label class="text-danger">*</label></label>
+                                    <input type="text" readonly name="app_number" value="{{ optional($app->crops)->sxeme_number}}" class="form-control">
+                                </div>
                                 {{-- <div class="col-md-4 form-group has-feedback">
                                     <label class="form-label" for="app_number">{{trans('app.Buyruq sanasi')}} <label class="text-danger">*</label></label>
                                     <input type="text" readonly name="app_number" value="{{ $app->date}}" class="form-control">

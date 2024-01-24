@@ -52,6 +52,9 @@
         <li class="nav-item"><a class="nav-link" href="{!! url('/akt/list') !!}"> <svg class="nav-icon">
                     <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-file"></use>
                 </svg>{{ trans('app.Namuna  olish dalolatnomasi') }}</a></li>
+        <li class="nav-item"><a class="nav-link" href="{!! url('/lab_bayonnoma/list') !!}"> <svg class="nav-icon">
+                    <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-eyedropper"></use>
+                </svg>{{ trans('app.Laboratory bayonnomasi') }}</a></li>
         <li class="nav-item"><a class="nav-link" href="{!! url('/final_results/search') !!}"> <svg class="nav-icon">
                     <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-bar-chart"></use>
                 </svg>{{ trans('message.Yakuniy natijalar') }}</a></li>

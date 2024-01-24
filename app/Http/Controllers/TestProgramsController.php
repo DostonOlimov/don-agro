@@ -92,7 +92,7 @@ class TestProgramsController extends Controller
     //index
     public function add($id)
     {
-        $app = Application::find($id);
+        $app = Application::with('crops.name.nds')->find($id);
 
         if ($nd = Nds::where('crop_id', '=', $app->crops->name->id)->first()) {
             $measure_types = CropData::getMeasureType();
@@ -113,17 +113,17 @@ class TestProgramsController extends Controller
         $userA = Auth::user();
         $app_id = $request->input('app_id');
         $director_id = $request->input('director_id');
-        $count = $request->input('count');
-        $measure_type = $request->input('measure_type');
-        $amount = $request->input('amount');
+        // $count = $request->input('count');
+        // $measure_type = $request->input('measure_type');
+        // $amount = $request->input('amount');
         $checkbox = $request->input('checkbox');
         $data = $request->input('data');
 
         $tests = new TestPrograms();
         $tests->app_id = $app_id;
-        $tests->count = $count;
-        $tests->measure_type = $measure_type;
-        $tests->weight = $amount;
+        // $tests->count = $count;
+        // $tests->measure_type = $measure_type;
+        // $tests->weight = $amount;
         $tests->extra_data = $data;
         $tests->director_id = $director_id;
         $tests->save();
@@ -153,7 +153,7 @@ class TestProgramsController extends Controller
         $editid = $id;
         $userA = Auth::user();
         $test = TestPrograms::find($editid);
-        $app = Application::find($test->app_id);
+        $app = Application::with('crops.name.nds')->find($test->app_id);
 
         $measure_types = CropData::getMeasureType();
         $directors = User::where('role', '=', 55)->get();
@@ -172,17 +172,17 @@ class TestProgramsController extends Controller
         $userA = Auth::user();
         $app_id = $request->input('app_id');
         $director_id = $request->input('director_id');
-        $count = $request->input('count');
-        $measure_type = $request->input('measure_type');
-        $amount = $request->input('amount');
+        // $count = $request->input('count');
+        // $measure_type = $request->input('measure_type');
+        // $amount = $request->input('amount');
         $checkbox = $request->input('checkbox');
         $data = $request->input('data');
 
         $tests = TestPrograms::find($id);
         $tests->app_id = $app_id;
-        $tests->count = $count;
-        $tests->measure_type = $measure_type;
-        $tests->weight = $amount;
+        // $tests->count = $count;
+        // $tests->measure_type = $measure_type;
+        // $tests->weight = $amount;
         $tests->extra_data = $data;
         $tests->director_id = $director_id;
         $tests->save();

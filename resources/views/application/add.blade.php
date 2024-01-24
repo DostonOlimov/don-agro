@@ -189,13 +189,18 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div
-                                        class="col-md-4 form-group has-feedback {{ $errors->has('party_number') ? ' has-error' : '' }}">
-                                        <label for="middle-name" class="form-label">{{ trans('app.Toʼda (partiya) raqami') }}
-                                            <label class="text-danger">*</label></label>
-                                        <input type="number" class="form-control" maxlength="25" name="party_number"
-                                            value="{{ old('party_number') }}" required id="middle-name">
 
+                                    <div
+                                        class="col-md-4 form-group has-feedback {{ $errors->has('amount') ? ' has-error' : '' }}">
+                                        <label for="middle-name" class="form-label">{{ trans('app.Mahsulot miqdori') }}
+                                            <label class="text-danger">*</label></label>
+                                        <input type="number" step="0.01" class="form-control" maxlength="25"
+                                            value="{{ old('amount') }}" name="amount" required>
+                                        @if ($errors->has('amount'))
+                                            <span class="help-block">
+                                                <strong></strong>
+                                            </span>
+                                        @endif
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group overflow-hidden">
@@ -213,37 +218,20 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div
-                                        class="col-md-4 form-group has-feedback {{ $errors->has('amount') ? ' has-error' : '' }}">
-                                        <label for="middle-name" class="form-label">{{ trans('app.Mahsulot miqdori') }}
-                                            <label class="text-danger">*</label></label>
-                                        <input type="number" step="0.01" class="form-control" maxlength="25"
-                                            value="{{ old('amount') }}" name="amount" required>
-                                        @if ($errors->has('amount'))
-                                            <span class="help-block">
-                                                <strong></strong>
-                                            </span>
-                                        @endif
-                                    </div>
                                     <div class="col-md-4">
                                         <div class="form-group overflow-hidden">
-                                            <label class="form-label">{{ trans('app.Ishlab chiqarilgan sana') }}<label
+                                            <label class="form-label">{{ trans('app.Hosil yili') }}<label
                                                     class="text-danger">*</label></label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text">
-                                                        <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
-                                                    </div>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="dd.mm.yyyy"
-                                                    name="made_date" data-mask="00.00.0000" value="{{ old('made_date') }}"
-                                                    required />
-                                            </div>
-                                            @if ($errors->has('made_date'))
-                                                <span class="help-block">
-                                                    <strong class="text-danger">{{trans('app.Ishlab chiqarilgan sanasi noto\'g\'ri shaklda kiritilgan')}}</strong>
-                                                </span>
-                                            @endif
+                                            <select class="w-100 form-control" name="year" required>
+                                                @if (count($year))
+                                                    <option value="">{{ trans('app.Hosil yilini tanlang') }}</option>
+                                                @endif
+                                                @foreach ($year as $key => $name)
+                                                    <option value="{{ $key }}"
+                                                        @if ($key == old('year')) selected @endif>{{ $name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
 
@@ -468,7 +456,6 @@
         if ($('select.type_of_corn').attr('val')) {
             getTypeOfCorn($('select.name_of_corn'));
         }
-
     </script>
     <script>
         $(document).ready(function() {

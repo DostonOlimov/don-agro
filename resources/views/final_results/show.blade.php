@@ -73,7 +73,7 @@
                                             </div>
                                             <div class="col-md-7 col-sm-12 table_td">
                                                 <span class="txt_color">
-                                                    {{ $result->date }}
+                                                    {{ \Carbon\Carbon::createFromFormat('Y-m-d',  $result->test_program->application->date)->format('d.m.Y') }}
                                                 </span>
                                             </div>
                                         </div>
@@ -109,7 +109,7 @@
                                             </div>
                                             <div class="col-md-7 col-sm-12 table_td">
                                                 <span class="txt_color">
-                                                    {{ $result->number }}
+                                                    {{ $result->test_program->akt[0]->lab_bayonnoma[0]->number }}
                                                 </span>
                                             </div>
                                         </div>
@@ -125,7 +125,7 @@
                                             </div>
                                             <div class="col-md-7 col-sm-12 table_td">
                                                 <span class="txt_color">
-                                                    {{ $result->date }}
+                                                    {{ \Carbon\Carbon::createFromFormat('Y-m-d',  $result->test_program->akt[0]->lab_bayonnoma[0]->date)->format('d.m.Y')  }}
                                                 </span>
                                             </div>
                                         </div>

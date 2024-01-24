@@ -317,15 +317,24 @@ Route::group(
         // Akt otbora start
         Route::group(['prefix' => 'akt', 'middleware' => 'auth'], function () {
             Route::get('/list', '\App\Http\Controllers\AKTController@list')->name('akt.list');
-            Route::get('/add', ['as' => '/add', 'uses' => '\App\Http\Controllers\AKTController@add']);
-            Route::get('/store', ['as' => '/store', 'uses' => '\App\Http\Controllers\AKTController@store']);
+            Route::get('/add/{id}', ['as' => '/add', 'uses' => '\App\Http\Controllers\AKTController@add']);
+            Route::post('/store', ['as' => '/store', 'uses' => '\App\Http\Controllers\AKTController@store']);
             Route::get('/edit/{id}', ['as' => '/edit', 'uses' => '\App\Http\Controllers\AKTController@edit']);
             Route::post('/update/{id}', ['as' => 'update', 'uses' => '\App\Http\Controllers\AKTController@update']);
-            Route::post('/delete/{id}', ['as' => 'delete', 'uses' => '\App\Http\Controllers\AKTController@delete']);
+            Route::get('/delete/{id}', ['as' => 'delete', 'uses' => '\App\Http\Controllers\AKTController@delete']);
         });
-
-
         // Akt otbora end
+
+        // LabBayonnoma otbora start
+        Route::group(['prefix' => 'lab_bayonnoma', 'middleware' => 'auth'], function () {
+            Route::get('/list', '\App\Http\Controllers\LabBayonnomaController@list')->name('lab_bayonnoma.list');
+            Route::get('/add/{id}', ['as' => '/lab_bayonnoma/create', 'uses' => '\App\Http\Controllers\LabBayonnomaController@add']);
+            Route::post('/store', ['as' => '/lab_bayonnoma/store', 'uses' => '\App\Http\Controllers\LabBayonnomaController@store']);
+            Route::get('/edit/{id}', ['as' => '/lab_bayonnoma/edit', 'uses' => '\App\Http\Controllers\LabBayonnomaController@edit']);
+            Route::post('/update/{id}', ['as' => '/lab_bayonnoma/update', 'uses' => '\App\Http\Controllers\LabBayonnomaController@update']);
+            Route::get('/delete/{id}', ['as' => '/lab_bayonnoma/delete', 'uses' => '\App\Http\Controllers\LabBayonnomaController@delete']);
+        });
+        // LabBayonnoma otbora end
 
         //Test programs
         Route::group(['prefix' => 'tests-laboratory', 'middleware' => 'auth'], function () {

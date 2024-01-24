@@ -49,8 +49,7 @@
                                             <th class="border-bottom-0 border-top-0">{{ trans('app.Mahsulot turi') }}</th>
                                             <th class="border-bottom-0 border-top-0">{{ trans('app.Mahsulot navi') }}</th>
                                             <th class="border-bottom-0 border-top-0">{{ trans('app.Mahsulot miqdori') }}</th>
-                                            <th class="border-bottom-0 border-top-0">{{ trans('app.Ishlab chiqarilgan sana') }}
-                                            </th>
+                                            {{-- <th class="border-bottom-0 border-top-0">{{ trans('app.Ishlab chiqarilgan sana') }}</th> --}}
                                             <th class="border-bottom-0 border-top-0">{{ trans('app.Action') }}</th>
                                         </tr>
                                     </thead>
@@ -71,7 +70,7 @@
                                                 <td>{{ optional($app->crops->name)->name }}</td>
                                                 <td>{{ optional($app->crops->type)->name }}</td>
                                                 <td>{{ optional($app->crops)->amount_name }}</td>
-                                                <td>{{ optional($app->crops)->year }}</td>
+                                                {{-- <td>{{ optional($app->crops)->year }}</td> --}}
                                                 <td>
                                                     @if ($descion = $app->decision)
                                                         <a href="{!! url('/decision/view/' . $descion->id) !!}"><button type="button"

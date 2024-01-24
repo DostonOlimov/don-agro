@@ -154,6 +154,16 @@
                                             </div>
                                             <div class="table_row row">
                                                 <div class="col-md-5 col-sm-12 table_td">
+                                                    <b>{{ trans('app.Ishlab chiqargan davlat') }}</b>
+                                                </div>
+                                                <div class="col-md-7 col-sm-12 table_td">
+                                                    <span class="txt_color">
+                                                        {{ $country??""}}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="table_row row">
+                                                <div class="col-md-5 col-sm-12 table_td">
                                                     <b>{{ trans('app.Mahsulot tayorlangan shaxobcha yoki sexning nomi') }}</b>
                                                 </div>
                                                 <div class="col-md-7 col-sm-12 table_td">
@@ -221,6 +231,13 @@
                                                         {{ optional($user->crops)->amount_name }}
                                                     </span>
                                                 </div>
+                                            </div>
+                                            <div class="table_row row">
+                                                <div class="col-md-5 col-sm-12 table_td">
+                                                    <b>Hosil yili</b>
+                                                </div>
+                                                <div class="col-md-7 col-sm-12 table_td">
+                                            <span class="txt_color">{{ optional($user->crops)->year  }}</span>
                                             </div>
                                             <div class="table_row row">
                                                 <div class="col-md-5 col-sm-12 table_td">

@@ -113,9 +113,10 @@ class ApplicationController extends Controller
         $countries = DB::table('tbl_countries')->get()->toArray();
         $measure_types = CropData::getMeasureType();
         $requirements = Requirement::get();
+        $year = CropData::getYear();
 
 
-        return view('application.add',compact('names', 'countries','measure_types','type','requirements'));
+        return view('application.add',compact('names', 'countries','measure_types','type','requirements','year'));
 
     }
 
@@ -128,7 +129,6 @@ class ApplicationController extends Controller
             'dob' => 'required|date_format:d.m.Y',
             'app_number' =>['required', new UniqueAppNumber($request->input('dob'))],
         ]);
-        $madeDate = Carbon::createFromFormat('d.m.Y', $request->input('made_date'))->format('Y-m-d');
         $this->authorize('create', Application::class);
         $userA = Auth::user();
         $crop = new CropData();
@@ -137,10 +137,9 @@ class ApplicationController extends Controller
         // $crop->generation_id = $request->input('generation');
         $crop->country_id = $request->input('country');
         $crop->kodtnved = $request->input('tnved');
-        $crop->party_number = $request->input('party_number');
         $crop->measure_type = $request->input('measure_type');
         $crop->amount = $request->input('amount');
-        $crop->made_date = $madeDate;
+        $crop->year = $request->input('year');
         $crop->sxeme_number = $request->input('sxeme_number');
         $crop->save();
         $id = $crop->id;
@@ -197,9 +196,9 @@ class ApplicationController extends Controller
         if($app->user->role == \App\Models\User::ROLE_CUSTOMER){
             return view('application.myedit', compact('app', 'type', 'names', 'countries', 'measure_types', 'title','requirements'));
         }
-        $madeDate = Carbon::createFromFormat('Y-m-d', $app->crops->made_date)->format('d.m.Y');
+        $year = CropData::getYear();
 
-        return view('application.edit', compact('app', 'type', 'names', 'countries', 'measure_types', 'title','requirements','madeDate'));
+        return view('application.edit', compact('app', 'type', 'names', 'countries', 'measure_types', 'title','requirements','year'));
     }
 
 
@@ -209,7 +208,6 @@ class ApplicationController extends Controller
     {
         $userA = Auth::user();
         $app = Application::find($id);
-        $madeDate = Carbon::createFromFormat('d.m.Y', $request->input('made_date'))->format('Y-m-d');
         if($app->status != Application::STATUS_NEW){
             $validated = $request->validate([
                 'app_number' => [
@@ -235,11 +233,10 @@ class ApplicationController extends Controller
         // $crop->generation_id = $request->input('generation');
         $crop->country_id = $request->input('country');
         $crop->kodtnved = $request->input('tnved');
-        $crop->party_number = $request->input('party_number');
         $crop->measure_type = $request->input('measure_type');
         $crop->amount = $request->input('amount');
+        $crop->year = $request->input('year');
         $crop->sxeme_number = $request->input('sxeme_number');
-        $crop->made_date = $madeDate;
         $crop->save();
 
         CropProductionType::where('crop_id','=',$app->crop_data_id)->delete();
@@ -271,8 +268,10 @@ class ApplicationController extends Controller
         $user = Application::findOrFail($id);
         $requirements = AppRequirement::where('app_id',$id)->get();
         $company = OrganizationCompanies::with('city')->findOrFail($user->organization_id);
+        $country = DB::table('tbl_countries')->find($user->crops->country_id);
+        $country=$country->name;
 
-        return view('application.show', compact('user','company','requirements'));
+        return view('application.show', compact('user','company','requirements','country'));
     }
 
     public function myapplications(Request $request)
