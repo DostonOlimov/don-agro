@@ -264,7 +264,7 @@
                     >
                 </div>
                 <div class="workblocks__info__row__duration">
-                    <a href="{{ url('full-report?till='.$till.'&from='.$from.'&city='.$city.'&crop='.$item->id.'&app_type_selector='.$app_type_selector) }}" target="_blank" rel="noopener noreferrer">{{$item->count}} ta</a>
+                    <a href="{{ url('full-report?till='.$till.'&from='.$from.'&city='.$city.'&crop='.$item->id.'&app_type_selector='.$app_type_selector) }}" target="_blank" rel="noopener noreferrer">{{$item->count}} {{trans('message.ta')}}</a>
                 </div>
                 <div class="workblocks__info__row__score">
                     <a href="{{ url('full-report?till='.$till.'&from='.$from.'&city='.$city.'&crop='.$item->id.'&app_type_selector='.$app_type_selector) }}" target="_blank" rel="noopener noreferrer">{{round($item->total_amount,3)}}</a>
