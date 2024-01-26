@@ -42,7 +42,7 @@
                                             <input type="number" id="app_number" name="app_number" value="{{ $app->app_number}}" class="form-control" maxlength="20" required>
                                             @if ($errors->has('app_number'))
                                                 <span class="help-block">
-											<strong>Ariza raqami noto'g'ti shaklda kiritilgan yoki oldindan mavjud</strong>
+											<strong>{{trans("app.Ariza raqami noto'g'ti shaklda kiritilgan yoki oldindan mavjud")}}</strong>
 										</span>
                                             @endif
                                         </div>
@@ -238,7 +238,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                   
+
                                     <div class="col-md-6 form-group has-feedback">
                                         <label class="form-label" for="data">Qo'shimcha ma'lumotlar<label class="text-danger">*</label></label>
                                         <div class="">

@@ -22,7 +22,7 @@
                             <li class="btn-success">
                                 <a class="text-light" onclick="Accept()">
                                     <span class="visible-xs"></span>
-                                    <i class="fa fa-check fa-lg">&nbsp;</i> Qabul qilish
+                                    <i class="fa fa-check fa-lg">&nbsp;</i> {{trans("app.Qabul qilish")}}
                                 </a>
                             </li>
                             <li class="btn-danger">

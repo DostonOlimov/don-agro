@@ -6,7 +6,7 @@
             <div class="page-header">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <i class="fe fe-life-buoy mr-1"></i>&nbsp Sinov dasturini o'zgartirish
+                        <i class="fe fe-life-buoy mr-1"></i>&nbsp {{trans("app.Sinov dasturini o'zgartirish")}}
                     </li>
                 </ol>
             </div>
@@ -55,7 +55,7 @@
                                         <input type="text" readonly name="product_generation" value="{{ optional($test->application->crops)->generation->name}}" class="form-control">
                                     </div> --}}
                                     <div class="col-md-4 form-group has-feedback">
-                                        <label class="form-label" for="app_number">Sinov dasturi sanasi <label class="text-danger">*</label></label>
+                                        <label class="form-label" for="app_number">{{trans("app.Sinov dasturi sanasi")}} <label class="text-danger">*</label></label>
                                         <input type="text" readonly name="app_number" value="{{ $test->application->date}}" class="form-control">
                                     </div>
                                     <div class="col-md-4 form-group has-feedback">

@@ -190,10 +190,10 @@
                                                         <a class="text-light" href="{!! url('/organization/my-organization-edit/' . $company->id) !!}">
                                                             <span class="visible-xs"></span>
                                                             <i class="fa fa-edit">&nbsp;</i>
-                                                            <b>O'zgartirish</b>
+                                                            <b>{{trans('app.Update')}}</b>
                                                         </a>
                                                     </li>
-                                                    <h5> Buyurtmachi korxona yoki tashkilot ma'lumotlari</h5>
+                                                    <h5> {{trans("app.Buyurtmachi korxona yoki tashkilot ma'lumotlari")}}</h5>
                                                 </ul>
                                             </div>
                                         </div>
@@ -203,7 +203,7 @@
                                                     <div class="col-md-8 col-sm-12 right_side">
                                                         <div class="table_row row">
                                                             <div class="col-md-5 col-sm-12 table_td">
-                                                                <b>Tashkilot STIRi</b>
+                                                                <b>{{trans("app.Tashkilot STIRi")}}</b>
                                                             </div>
                                                             <div class="col-md-7 col-sm-12 table_td">
                                                                 <span class="txt_color">
@@ -213,7 +213,7 @@
                                                         </div>
                                                         <div class="table_row row">
                                                             <div class="col-md-5 col-sm-12 table_td">
-                                                                <b>Tashkilot nomi</b>
+                                                                <b>{{trans("app.Tashkilot nomi")}}</b>
                                                             </div>
                                                             <div class="col-md-7 col-sm-12 table_td">
                                                                 <span class="txt_color">
@@ -224,7 +224,7 @@
 
                                                         <div class="table_row row">
                                                             <div class="col-md-5 col-sm-12 table_td">
-                                                                <b>Tashkilot manzili</b>
+                                                                <b>{{trans("app.Tashkilot manzili")}}</b>
                                                             </div>
                                                             <div class="col-md-7 col-sm-12 table_td">
                                                                 <span class="txt_color">
@@ -234,7 +234,7 @@
                                                         </div>
                                                         <div class="table_row row">
                                                             <div class="col-md-5 col-sm-12 table_td">
-                                                                <b>Tashkilot rahbari</b>
+                                                                <b>{{trans("app.Tashkilot rahbari")}}</b>
                                                             </div>
                                                             <div class="col-md-7 col-sm-12 table_td">
                                                                 <span class="txt_color">
@@ -244,7 +244,7 @@
                                                         </div>
                                                         <div class="table_row row">
                                                             <div class="col-md-5 col-sm-12 table_td">
-                                                                <b>Tashkilot telefon raqami</b>
+                                                                <b>{{trans("app.Tashkilot telefon raqami")}}</b>
                                                             </div>
                                                             <div class="col-md-7 col-sm-12 table_td">
                                                                 <span class="txt_color">

@@ -65,7 +65,7 @@
                                     <input type="text" readonly name="product_generation" value="{{ optional($test->application->crops)->generation->name}}" class="form-control">
                                 </div> --}}
                                 <div class="col-md-4 form-group has-feedback">
-                                    <label class="form-label" >Sinov dasturi sanasi <label class="text-danger">*</label></label>
+                                    <label class="form-label" >{{trans("app.Sinov dasturi sanasi")}} <label class="text-danger">*</label></label>
                                     <input type="text" readonly name="app_number" value="{{ $test->application->date}}" class="form-control">
                                 </div>
 
@@ -141,7 +141,7 @@
                                         </div>
                                         @if ($errors->has('given_date'))
                                             <span class="help-block">
-                                                    <strong class="text-danger">Ariza sanasi noto'g'ri shaklda kiritilgan</strong>
+                                                    <strong class="text-danger">{{trans("app.Ariza sanasi noto'g'ri shaklda kiritilgan")}}</strong>
                                             </span>
                                         @endif
                                     </div>

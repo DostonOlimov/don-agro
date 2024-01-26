@@ -241,7 +241,7 @@
                                         <td>
                                             <select class="w-100 form-control" name="year" id="year" >
                                                 @if(count($years))
-                                                    <option value="">Ishlab chiqarilgan sanani tanlang</option>
+                                                    <option value="">{{trans('app.Ishlab chiqarilgan sanani tanlang')}}</option>
                                                 @endif
                                                 @foreach($years as $key=>$name)
                                                     <option value="{{ $key }}"

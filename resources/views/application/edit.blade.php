@@ -69,7 +69,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group overflow-hidden">
-                                            <label class="form-label">Ariza turi<label class="text-danger">*</label></label>
+                                            <label class="form-label">{{trans("app.Ariza turi")}}<label class="text-danger">*</label></label>
                                             <select class="w-100 form-control" name="app_type" required>
                                                 @if(count($type))
                                                     <option value="">{{trans('app.Ariza turini tanlang')}}</option>
@@ -189,7 +189,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4 form-group has-feedback {{ $errors->has('amount') ? ' has-error' : '' }}">
-                                        <label for="middle-name" class="form-label">{{trans('app.Mahsulot miqdori')}} <label class="text-danger">*</label></label>
+                                        <label class="form-label">{{trans('app.Mahsulot miqdori')}} <label class="text-danger">*</label></label>
                                         <input type="number" step="0.01" class="form-control" maxlength="25" value="{{ $app->crops->amount}}"  name="amount" required>
                                         @if ($errors->has('amount'))
                                             <span class="help-block">
@@ -199,7 +199,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group overflow-hidden">
-                                            <label class="form-label">O'lchov turi <label class="text-danger">*</label></label>
+                                            <label class="form-label">{{trans("app.O'lchov turi")}}<label class="text-danger">*</label></label>
                                             <select class="w-100 form-control" name="measure_type" required>
                                                 @if(count($measure_types))
                                                     <option value="">{{trans('app.O\'lchov turini tanlang')}}</option>
@@ -214,10 +214,10 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group overflow-hidden">
-                                            <label class="form-label">Hosil yili<label class="text-danger">*</label></label>
+                                            <label class="form-label">{{trans("app.Hosil yili")}}<label class="text-danger">*</label></label>
                                             <select class="w-100 form-control" name="year" required>
                                                 @if(count($year))
-                                                    <option value="">Hosil yilini tanlang</option>
+                                                    <option value="">{{trans('app.Hosil yilini tanlang')}}</option>
                                                 @endif
                                                 @foreach($year as $key=>$name)
                                                     <option value="{{ $key }}"
@@ -293,10 +293,10 @@
     function disableButton() {
         var button = document.getElementById('submitter');
         button.disabled = true;
-        button.innerText = 'Yuklanmoqda...'; // Optionally, change the text to indicate processing
+        button.innerText = '{{trans("app.Yuklanmoqda...")}}'; // Optionally, change the text to indicate processing
         setTimeout(function() {
             button.disabled = false;
-            button.innerText = 'Saqlash'; // Restore the button text
+            button.innerText = '{{trans("app.Saqlash")}}'; // Restore the button text
         }, 1000);
     }
 </script>
@@ -379,19 +379,19 @@
             },
             language: {
                 inputTooShort: function () {
-                    return 'Korxona (nomi), STIR ini kiritib izlang';
+                    return '{{trans("app.Korxona (nomi), STIR ini kiritib izlang")}}';
                 },
                 searching: function () {
-                    return 'Izlanmoqda...';
+                    return '{{trans("app.Izlanmoqda...")}}';
                 },
                 noResults: function () {
-                    return "Natija topilmadi"
+                    return "{{trans('app.Natija topilmadi')}}"
                 },
                 errorLoading: function () {
-                    return "Natija topilmadi"
+                    return "{{trans('app.Natija topilmadi')}}"
                 }
             },
-            placeholder: 'Korxona nomini kiriting',
+            placeholder: '{{trans("app.Korxona nomini kiriting")}}',
             minimumInputLength: 2
         })
         $('select.owner_search2').select2({
@@ -418,19 +418,19 @@
             },
             language: {
                 inputTooShort: function () {
-                    return 'Korxona nomini kiritib izlang';
+                    return '{{trans("app.Korxona nomini kiritib izlang")}}';
                 },
                 searching: function () {
                     return 'Izlanmoqda...';
                 },
                 noResults: function () {
-                    return "Natija topilmadi"
+                    return "{{trans('app.Natija topilmadi')}}"
                 },
                 errorLoading: function () {
-                    return "Natija topilmadi"
+                    return "{{trans('app.Natija topilmadi')}}"
                 }
             },
-            placeholder: 'Korxona nomini kiriting',
+            placeholder: '{{trans("app.Korxona nomini kiriting")}}',
             minimumInputLength: 2
         })
         function capitalize(text) {
@@ -526,17 +526,17 @@
 <script>
     $(document).ready(function(){
         $('select.crop_production').select2({
-            placeholder: 'Ishlab chiqarish turini tanlang',
+            placeholder: '{{trans("app.Ishlab chiqarish turini tanlang")}}',
             minimumResultsForSearch: Infinity,
             language:{
                 inputTooShort:function(){
-                    return 'Ma\'lumot kiritib izlang';
+                    return '{{trans("app.Ma\'lumot kiritib izlang")}}';
                 },
                 searching:function(){
-                    return 'Izlanmoqda...';
+                    return '{{trans("app.Izlanmoqda...")}}';
                 },
                 noResults:function(){
-                    return "Natija topilmadi"
+                    return "{{trans('app.Natija topilmadi')}}"
                 }
             }
         });
@@ -545,17 +545,17 @@
             var url = $(this).attr('stateurl');
         });
         $('select.requirements').select2({
-            placeholder: 'Ilovani tanlang',
+            placeholder: "{{trans("app.Ilovani tanlang")}}",
             minimumResultsForSearch: Infinity,
             language:{
                 inputTooShort:function(){
-                    return 'Ma\'lumot kiritib izlang';
+                    return '{{trans("app.Ma\'lumot kiritib izlang")}}';
                 },
                 searching:function(){
-                    return 'Izlanmoqda...';
+                    return '{{trans("app.Izlanmoqda...")}}';
                 },
                 noResults:function(){
-                    return "Natija topilmadi"
+                    return "{{trans('app.Natija topilmadi')}}"
                 }
             }
         });

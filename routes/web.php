@@ -18,19 +18,18 @@ use App\Http\Controllers\Customercontroller;
 
 Auth::routes();
 Route::group(
-    [ 'middleware' => ['auth']],
+    ['middleware' => ['auth']],
     function () {
-        // Route::domain('paxta.cert')->get('/', function () {
-        //     return view('/paxta/front/index');
-        // });
-        //Route::get('/', ['middleware' => 'auth','\App\Http\Controllers\DashboardController@index'])->name('home');
+        Route::get('/home', ['middleware' => 'auth', 'uses' => '\App\Http\Controllers\HomeController@dashboard']);
+        Route::get('/', ['middleware' => 'auth', 'uses' => '\App\Http\Controllers\HomeController@dashboard']);
+
+
         Route::post('/register-store', '\App\Http\Controllers\AuthController@store')->name('register.store');
         Route::post('/change-language', [\App\Http\Controllers\LanguageController::class, 'changeLanguage']);
         Route::post('/change-year', [\App\Http\Controllers\LanguageController::class, 'changeYear']);
 
         //Dashboard
         Route::get('/home', ['middleware' => 'auth', 'uses' => '\App\Http\Controllers\HomeController@dashboard']);
-        Route::get('/', [\App\Http\Controllers\DashboardController::class, 'home']);
         Route::get('/about/{id}', [\App\Http\Controllers\DashboardController::class, 'about']);
         Route::get('/all', [\App\Http\Controllers\DashboardController::class, 'all']);
 

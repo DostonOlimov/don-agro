@@ -37,7 +37,7 @@
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                                     <div class="col-md-4 form-group {{ $errors->has('akt_date') ? ' has-error' : '' }}">
-                                        <label class="form-label">{{ trans('app.Namuna  olish dalolatnoma sanasi') }} <label
+                                        <label class="form-label">{{ trans('app.Namuna olish dalolatnoma sanasi') }} <label
                                                 class="text-danger">*</label></label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
@@ -94,7 +94,7 @@
                                     </div>
 
                                     <div class="col-md-4 form-group has-feedback">
-                                        <label class="form-label">{{ trans('app.Asosiy xususiyatlar') }} <label
+                                        <label class="form-label">{{ trans('app.Me\'yoriy hujjatlar') }} <label
                                                 class="text-danger">*</label></label>
                                         <input type="text" readonly
                                             value="{{ \App\Models\Nds::getType()[$data->test->application->crops->name->nds->type_id] . '.' . $data->test->application->crops->name->nds->number . ' ' . $data->test->application->crops->name->nds->name }}"
@@ -172,8 +172,7 @@
                                         </div>
                                         @if ($errors->has('make_date'))
                                             <span class="help-block">
-                                                <strong class="text-danger">Ishlab chiqarilgan sanasi noto'g'ri shaklda
-                                                    kiritilgan</strong>
+                                                <strong class="text-danger">{{trans("app.Ishlab chiqarilgan sanasi noto'g'ri shaklda kiritilgan")}}</strong>
                                             </span>
                                         @endif
                                     </div>
@@ -192,8 +191,7 @@
                                         </div>
                                         @if ($errors->has('expiry_date'))
                                             <span class="help-block">
-                                                <strong class="text-danger">Ishlab chiqarilgan sanasi noto'g'ri shaklda
-                                                    kiritilgan</strong>
+                                                <strong class="text-danger">{{trans("app.Yaroqliylik sanasi noto'g'ri shaklda kiritilgan")}}</strong>
                                             </span>
                                         @endif
                                     </div>
@@ -222,17 +220,17 @@
                                     {{--  --}}
                                     <div
                                         class="col-md-4 form-group has-feedback {{ $errors->has('party_number') ? ' has-error' : '' }}">
-                                        <label for="middle-name" class="form-label">{{ trans('app.Toʼda (partiya) raqami') }}
+                                        <label for="middle-name" class="form-label">{{ trans("app.Toʼda (partiya) soni") }}
                                             <label class="text-danger">*</label></label>
                                         <input type="number" class="form-control" maxlength="25" name="party_number"
                                             value="{{ optional($data)->party_number }}" required id="middle-name">
 
                                     </div>
                                     <div class="col-md-6 form-group has-feedback">
-                                        <label class="form-label">{{ trans('app.Namuna birliklari') }}<label
+                                        <label class="form-label">{{ trans("app.O'lchov birliklari") }}<label
                                                 class="text-danger">*</label></label>
                                         <select class="w-100 form-control" name="measure_type" required>
-                                            <option value="">{{ trans('app.Namuna birliklarni tanlang') }}</option>
+                                            <option value="">{{ trans("app.O'lchov birliklarni tanlang") }}</option>
                                             @foreach ($amount as $key => $item)
                                                 <option value="{{ $key }}"
                                                     @if ($data->measure_type == $key) selected @endif>{{ $item }}

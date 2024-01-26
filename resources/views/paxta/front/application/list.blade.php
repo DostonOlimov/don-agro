@@ -121,13 +121,13 @@
 
 
         swal({
-            title: "O'chirishni istaysizmi?",
-			text: "O'chirilgan ma'lumotlar qayta tiklanmaydi!",
+            title: '{{trans("app.O\'chirishni istaysizmi?")}}',
+			text: '{{trans("app.O\'chirilgan ma\'lumotlar qayta tiklanmaydi!")}}',
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#297FCA",
-            confirmButtonText: "Ha, o'chirish!",
-            cancelButtonText: "O'chirishni bekor qilish",
+            confirmButtonText: '{{trans("app.Ha, o\'chirish!"}}',
+            cancelButtonText: '{{trans("app.O\'chirishni bekor qilish")}}',
             closeOnConfirm: false
         }).then((result) => {
 			window.location.href = url;

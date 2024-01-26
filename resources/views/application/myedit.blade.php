@@ -45,8 +45,7 @@
                                                 value="{{ $app->app_number }}" class="form-control" maxlength="20" required>
                                             @if ($errors->has('app_number'))
                                                 <span class="help-block">
-                                                    <strong>Ariza raqami noto'g'ti shaklda kiritilgan yoki oldindan
-                                                        mavjud</strong>
+                                                    <strong>{{trans("app.Ariza raqami noto'g'ti shaklda kiritilgan yoki oldindan mavjud")}}</strong>
                                                 </span>
                                             @endif
                                         </div>
@@ -485,7 +484,7 @@
                 .then(data => kodtnved.value = data.code);
         });
 
-       
+
         $('select.state_of_country').on('change', function() {
             getPreName($(this));
         });

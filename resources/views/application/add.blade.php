@@ -44,8 +44,7 @@
                                                 value="{{ old('app_number') }}" class="form-control" maxlength="20" required>
                                             @if ($errors->has('app_number'))
                                                 <span class="help-block" style="color:red">
-                                                    <strong>Ariza raqami noto'g'ti shaklda kiritilgan yoki oldindan
-                                                        mavjud</strong>
+                                                    <strong>{{trans("app.Ariza raqami noto'g'ti shaklda kiritilgan yoki oldindan mavjud")}}</strong>
                                                 </span>
                                             @endif
                                         </div>
@@ -64,7 +63,7 @@
                                         </div>
                                         @if ($errors->has('dob'))
                                             <span class="help-block">
-                                                <strong class="text-danger">Ariza sanasi noto'g'ri shaklda kiritilgan</strong>
+                                                <strong class="text-danger">{{trans("app.Ariza sanasi noto'g'ri shaklda kiritilgan")}}</strong>
                                             </span>
                                         @endif
                                     </div>

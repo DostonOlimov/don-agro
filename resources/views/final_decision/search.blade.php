@@ -95,13 +95,13 @@
         $('body').on('click', '.sa-warning', function() {
             var url =$(this).attr('url');
             swal({
-                title: "{{trans('app.O\'chirishni istaysizmi?')}}",
-                text: "{{trans('app.O\'chirilgan ma\'lumotlar qayta tiklanmaydi!')}}",
+                title: "{{ trans('app.O\'chirishni istaysizmi?') }}",
+                text: "{{ trans('app.O\'chirilgan ma\'lumotlar qayta tiklanmaydi!') }}",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#297FCA",
-                confirmButtonText: "{{trans('app.Ha, o\'chirish!')}}",
-                cancelButtonText: "{{trans('app.O\'chirishni bekor qilish')}}",
+                confirmButtonText: "{{ trans('app.Ha, o\'chirish!') }}",
+                cancelButtonText: "{{ trans('app.O\'chirishni bekor qilish') }}",
                 closeOnConfirm: false
             }).then((result) => {
                 window.location.href = url;

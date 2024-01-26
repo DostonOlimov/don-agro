@@ -76,7 +76,7 @@ return[
     'Filtrlash'=>'Филтрлаш',
     'dan'=>'дан',
     'gacha'=>'гача',
-    'mahsulotlar kesimida ma\'lumot'=>'Уруғлар кесимида маълумот',
+    'Mahsulotlar kesimida ma\'lumot'=>'Маҳсулотлар кесимида маълумот',
     'Nomi'=>'Номи',
     'Paxta tolasi kesimida ma\'lumot'=>'Пахта толаси кесимида маълумот',
     'Respublika bo\'yicha'=>'Республика бўйича',

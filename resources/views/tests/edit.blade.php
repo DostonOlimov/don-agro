@@ -7,7 +7,7 @@
             <div class="page-header">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <i class="fe fe-life-buoy mr-1"></i>&nbsp Sinov dasturini o'zgartirish
+                        <i class="fe fe-life-buoy mr-1"></i>&nbsp {{trans("app.Sinov dasturini o'zgartirish")}}
                     </li>
                 </ol>
             </div>
@@ -27,7 +27,7 @@
                                         <li class="active">
                                             <span class="visible-xs"></span>
                                             <i class="fa fa-pencil fa-lg">&nbsp;</i>
-                                            <b>{{ trans('O\'zgartirish')}}</b>
+                                            <b>{{ trans('app.Update')}}</b>
                                         </li>
                                     </ul>
                                 </div>
@@ -40,15 +40,15 @@
                                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                                     <input type="hidden"  name="app_id" value="{{ $app->id}}" >
                                     <div class="col-md-4 form-group has-feedback">
-                                        <label class="form-label" for="app_number">Ariza raqami <label class="text-danger">*</label></label>
+                                        <label class="form-label" for="app_number">{{trans("app.Ariza raqami")}} <label class="text-danger">*</label></label>
                                         <input type="number" readonly name="app_number" value="{{ $app->app_number}}" class="form-control">
                                     </div>
                                     <div class="col-md-4 form-group has-feedback">
-                                        <label class="form-label" for="app_number">Mahsulot nomi <label class="text-danger">*</label></label>
+                                        <label class="form-label" for="app_number">{{trans("app.Mahsulot nomi")}} <label class="text-danger">*</label></label>
                                         <input type="text" readonly name="product_name" value="{{ optional($app->crops)->name->name}}" class="form-control">
                                     </div>
                                     <div class="col-md-4 form-group has-feedback">
-                                        <label class="form-label" for="app_number">Mahsulot navi <label class="text-danger">*</label></label>
+                                        <label class="form-label" for="app_number">{{trans("app.Mahsulot navi")}} <label class="text-danger">*</label></label>
                                         <input type="text" readonly name="product_type" value="{{ optional($app->crops)->type->name}}" class="form-control">
                                     </div>
                                     {{-- <div class="col-md-4 form-group has-feedback">
@@ -56,19 +56,19 @@
                                         <input type="text" readonly name="product_generation" value="{{ optional($app->crops)->generation->name}}" class="form-control">
                                     </div> --}}
                                     <div class="col-md-4 form-group has-feedback">
-                                        <label class="form-label" for="app_number">Sinov dasturi sanasi <label class="text-danger">*</label></label>
+                                        <label class="form-label" for="app_number">{{trans("app.Sinov dasturi sanasi")}} <label class="text-danger">*</label></label>
                                         <input type="text" readonly name="app_number" value="{{ $app->date}}" class="form-control">
                                     </div>
                                     <div class="col-md-4 form-group has-feedback">
-                                        <label class="form-label" for="app_number">{{ trans('app.Asosiy xususiyatlar') }}<label class="text-danger">*</label></label>
+                                        <label class="form-label" for="app_number">{{ trans('app.Me\'yoriy hujjatlar') }}<label class="text-danger">*</label></label>
                                         <input type="text" readonly name="app_number" value="{{ \App\Models\Nds::getType()[$app->crops->name->nds->type_id] . '.' . $app->crops->name->nds->number . ' ' . $app->crops->name->nds->name }}" class="form-control">
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group overflow-hidden">
-                                            <label class="form-label">Rahbar<label class="text-danger">*</label></label>
+                                            <label class="form-label">{{trans("app.Rahbar")}}<label class="text-danger">*</label></label>
                                             <select class="w-100 form-control" name="director_id" required>
                                                 @if(count($directors))
-                                                    <option value="">Rahbarni tanlang</option>
+                                                    <option value="">{{trans("app.Rahbarni tanlang")}}</option>
                                                 @endif
                                                 @foreach($directors as $director)
                                                     <option value="{{$director->id}}" @if($director->id == $test->director_id) selected @endif
@@ -110,7 +110,7 @@
                                         @endif
                                     </div> --}}
                                     @php $i = 1; @endphp
-                                    <h4 style="font-weight: bold">Sifat ko'rsatkichi bo'yicha meyoriy hujjatlar:</h4>
+                                    <h4 style="font-weight: bold">{{trans("app.Sifat ko'rsatgich bo'yicha me'yoriy hujjatlar")}}:</h4>
                                     <div class="col-md-12">
                                         <table style="font-weight: bold" class="table table-bordered align-middle">
                                             @foreach($indicators as $k => $indicator)
@@ -131,7 +131,7 @@
                                         </table>
                                     </div>
                                     <div class="col-md-12 form-group has-feedback">
-                                        <label class="form-label" for="data">Alohida yozuvlar:<label class="text-danger">*</label></label>
+                                        <label class="form-label" for="data">{{trans("app.Alohida yozuvlar:")}}<label class="text-danger">*</label></label>
                                         <div class="">
                                             <textarea id="data" name="data" class="form-control" maxlength="100" >{{ $test->extra_data}}</textarea>
                                         </div>

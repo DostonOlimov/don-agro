@@ -23,7 +23,7 @@
             <div class="page-header">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <i class="fa fa-file mr-1"></i>&nbsp Ariza ma'lumotlari
+                        <i class="fa fa-file mr-1"></i>&nbsp {{trans("app.Ariza ma'lumotlari")}}
                     </li>
                 </ol>
             </div>
@@ -57,7 +57,7 @@
                                         <li class="btn-warning">
                                             <a class="text-light" href="{{ URL::previous() }}">
                                                 <span class="visible-xs"></span>
-                                                <i class="fa fa-arrow-left">&nbsp;</i> Orqaga
+                                                <i class="fa fa-arrow-left">&nbsp;</i> {{trans("app.Orqaga")}}
                                             </a>
                                         </li>
                                         <li class="btn-primary">
@@ -70,13 +70,13 @@
                                             <li class="btn-success">
                                                 <a class="text-light sa-warning" url="{!! url('/application/accept/' . $user->id) !!}">
                                                     <span class="visible-xs"></span>
-                                                    <i class="fa fa-check fa-lg">&nbsp;</i> Qabul qilish
+                                                    <i class="fa fa-check fa-lg">&nbsp;</i> {{trans("app.Qabul qilish")}}
                                                 </a>
                                             </li>
                                             <li class="btn-danger">
                                                 <a class="text-light" href="{!! url('/application/reject/' . $user->id) !!}">
                                                     <span class="visible-xs"></span>
-                                                    <i class="fa fa-times fa-lg">&nbsp;</i> Rad etish
+                                                    <i class="fa fa-times fa-lg">&nbsp;</i> {{trans("app.Rad etish")}}
                                                 </a>
                                             </li>
                                         @endif
@@ -87,10 +87,10 @@
                                 <div class="col-md-12 col-sm-12">
                                     <div class="row">
                                         <div class="col-md-6 col-sm-12 right_side">
-                                            <h4><b>Arizachi ma'lumotlari</b></h4>
+                                            <h4><b>{{trans("app.Arizachi ma'lumotlari")}}</b></h4>
                                             <div class="table_row row">
                                                 <div class="col-md-5 col-sm-12 table_td">
-                                                    <b>Arizachi beruvchi</b>
+                                                    <b>{{trans("app.Ariza beruvchi")}}</b>
                                                 </div>
                                                 <div class="col-md-7 col-sm-12 table_td">
                                                     <span class="txt_color">
@@ -100,7 +100,7 @@
                                             </div>
                                             <div class="table_row row">
                                                 <div class="col-md-5 col-sm-12 table_td">
-                                                    <b>Arizachi ismi-sharifi</b>
+                                                    <b>{{trans("app.Arizachi ismi-sharifi")}}</b>
                                                 </div>
                                                 <div class="col-md-7 col-sm-12 table_td">
                                                     <span class="txt_color">
@@ -110,7 +110,7 @@
                                             </div>
                                             <div class="table_row row">
                                                 <div class="col-md-5 col-sm-12 table_td">
-                                                    <b>Arizachi email manzili</b>
+                                                    <b>{{trans("app.Arizachi elektron pochta manzili")}}</b>
                                                 </div>
                                                 <div class="col-md-7 col-sm-12 table_td">
                                                     <span class="txt_color">
@@ -121,7 +121,7 @@
 
                                             <div class="table_row row">
                                                 <div class="col-md-5 col-sm-12 table_td">
-                                                    <b>Ariza berilgan sanasi</b>
+                                                    <b>{{trans("app.Ariza berilgan sanasi")}}</b>
                                                 </div>
                                                 <div class="col-md-7 col-sm-12 table_td">
                                                     <span class="txt_color">
@@ -130,11 +130,11 @@
                                                 </div>
                                             </div>
                                             <div class="table_row row">
-                                                <h4><b>Ariza ma'lumotlari</b></h4>
+                                                <h4><b>{{trans("app.Ariza ma'lumotlari")}}</b></h4>
                                             </div>
                                             <div class="table_row row">
                                                 <div class="col-md-5 col-sm-12 table_td">
-                                                    <b>Ariza raqami</b>
+                                                    <b>{{trans("app.Ariza raqami")}}</b>
                                                 </div>
                                                 <div class="col-md-7 col-sm-12 table_td">
                                                     <span class="txt_color">
@@ -144,11 +144,11 @@
                                             </div>
                                             <div class="table_row row">
                                                 <div class="col-md-5 col-sm-12 table_td">
-                                                    <b>Ariza qabul qilingan sana</b>
+                                                    <b>{{trans("app.Ariza qabul qilingan sana")}}</b>
                                                 </div>
                                                 <div class="col-md-7 col-sm-12 table_td">
                                                     <span class="txt_color">
-                                                        {{ $user->status == \App\Models\Application::STATUS_ACCEPTED ? \Carbon\Carbon::parse($user->accepted_date)->format('d.m.Y') : '-' }}
+                                                        {{ $user->status == \App\Models\Application::STATUS_FINISHED ? \Carbon\Carbon::parse($user->date)->format('d.m.Y') : '-' }}
                                                     </span>
                                                 </div>
                                             </div>
@@ -204,7 +204,7 @@
                                             </div> --}}
                                             <div class="table_row row">
                                                 <div class="col-md-5 col-sm-12 table_td">
-                                                    <b>Kod TN VED</b>
+                                                    <b>{{trans("app.Kod TN VED")}}</b>
                                                 </div>
                                                 <div class="col-md-7 col-sm-12 table_td">
                                                     <span class="txt_color">
@@ -214,17 +214,17 @@
                                             </div>
                                             <div class="table_row row">
                                                 <div class="col-md-5 col-sm-12 table_td">
-                                                    <b>Partiya raqami</b>
+                                                    <b>{{trans("app.Partiya raqami")}}</b>
                                                 </div>
                                                 <div class="col-md-7 col-sm-12 table_td">
                                                     <span class="txt_color">
-                                                        {{ optional($user->crops)->party_number }}
+                                                        {{ optional($user->tests)->akt[0]->party_number }}
                                                     </span>
                                                 </div>
                                             </div>
                                             <div class="table_row row">
                                                 <div class="col-md-5 col-sm-12 table_td">
-                                                    <b>Miqdori</b>
+                                                    <b>{{trans("message.Miqdori")}}</b>
                                                 </div>
                                                 <div class="col-md-7 col-sm-12 table_td">
                                                     <span class="txt_color">
@@ -234,18 +234,18 @@
                                             </div>
                                             <div class="table_row row">
                                                 <div class="col-md-5 col-sm-12 table_td">
-                                                    <b>Hosil yili</b>
+                                                    <b>{{trans("app.Hosil yili")}}</b>
                                                 </div>
                                                 <div class="col-md-7 col-sm-12 table_td">
                                                     <span class="txt_color">{{ optional($user->crops)->year }}</span>
                                                 </div>
                                                 <div class="table_row row">
                                                     <div class="col-md-5 col-sm-12 table_td">
-                                                        <b>Ishlab chiqarilgan sana</b>
+                                                        <b>{{trans("app.Ishlab chiqarilgan sana")}}</b>
                                                     </div>
                                                     <div class="col-md-7 col-sm-12 table_td">
                                                         <span class="txt_color">
-                                                            {{ optional($user->crops)->made_date }}
+                                                            {{\Carbon\Carbon::parse(optional($user->tests)->akt[0]->make_date)->format('d.m.Y')}}
                                                         </span>
                                                     </div>
                                                 </div>
@@ -255,12 +255,12 @@
                                             <div class="panel panel-primary">
                                                 <div class="tab_wrapper page-tab">
                                                     <ul class="tab_list">
-                                                        <h5><b>Buyurtmachi korxona yoki tashkilot ma'lumotlari</b></h5>
+                                                        <h5><b>{{trans("app.Buyurtmachi korxona yoki tashkilot ma'lumotlari")}}</b></h5>
                                                         <li class="btn-primary">
                                                             <a class="text-light" href="{!! url('/organization/list/edit/' . $company->id) !!}">
                                                                 <span class="visible-xs"></span>
                                                                 <i class="fa fa-edit">&nbsp;</i>
-                                                                <b>O'zgartirish</b>
+                                                                <b>{{trans("app.Update")}}</b>
                                                             </a>
                                                         </li>
                                                     </ul>
@@ -272,7 +272,7 @@
                                                         <div class="col-md-8 col-sm-12 right_side">
                                                             <div class="table_row row">
                                                                 <div class="col-md-5 col-sm-12 table_td">
-                                                                    <b>Tashkilot STIRi</b>
+                                                                    <b>{{trans("app.Tashkilot STIRi")}}</b>
                                                                 </div>
                                                                 <div class="col-md-7 col-sm-12 table_td">
                                                                     <span class="txt_color">
@@ -282,7 +282,7 @@
                                                             </div>
                                                             <div class="table_row row">
                                                                 <div class="col-md-5 col-sm-12 table_td">
-                                                                    <b>Tashkilot nomi</b>
+                                                                    <b>{{trans("app.Tashkilot nomi")}}</b>
                                                                 </div>
                                                                 <div class="col-md-7 col-sm-12 table_td">
                                                                     <span class="txt_color">
@@ -293,7 +293,7 @@
 
                                                             <div class="table_row row">
                                                                 <div class="col-md-5 col-sm-12 table_td">
-                                                                    <b>Tashkilot manzili</b>
+                                                                    <b>{{trans("app.Tashkilot manzili")}}</b>
                                                                 </div>
                                                                 <div class="col-md-7 col-sm-12 table_td">
                                                                     <span class="txt_color">
@@ -303,7 +303,7 @@
                                                             </div>
                                                             <div class="table_row row">
                                                                 <div class="col-md-5 col-sm-12 table_td">
-                                                                    <b>Tashkilot rahbari</b>
+                                                                    <b>{{trans("app.Tashkilot rahbari")}}</b>
                                                                 </div>
                                                                 <div class="col-md-7 col-sm-12 table_td">
                                                                     <span class="txt_color">
@@ -313,7 +313,7 @@
                                                             </div>
                                                             <div class="table_row row">
                                                                 <div class="col-md-5 col-sm-12 table_td">
-                                                                    <b>Tashkilot telefon raqami</b>
+                                                                    <b>{{trans("app.Tashkilot telefon raqami")}}</b>
                                                                 </div>
                                                                 <div class="col-md-7 col-sm-12 table_td">
                                                                     <span class="txt_color">

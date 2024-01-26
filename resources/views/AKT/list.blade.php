@@ -60,7 +60,7 @@
                                             <tr>
                                                 <th>№</th>
                                                 <th>{{ trans('app.Ishlab chiqargan davlat') }}</th>
-                                                <th>{{ trans('app.Asosiy xususiyatlar') }}</th>
+                                                <th>{{ trans('app.Me\'yoriy hujjatlar') }}</th>
                                                 <th>{{ trans('app.Mahsulot nomi') }}</th>
                                                 <th>{{ trans('app.Ishlab chiqarilgan sana') }}
                                                 <th>{{ trans('app.Yaroqliylik sanasi') }}</th>
@@ -151,13 +151,13 @@
 
 
             swal({
-                title: "O'chirishni istaysizmi?",
-                text: "O'chirilgan ma'lumotlar qayta tiklanmaydi!",
+                title: "{{ trans('app.O\'chirishni istaysizmi?') }}",
+                text: "{{ trans('app.O\'chirilgan ma\'lumotlar qayta tiklanmaydi!') }}",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#297FCA",
-                confirmButtonText: "Ha, o'chirish!",
-                cancelButtonText: "O'chirishni bekor qilish",
+                confirmButtonText: "{{ trans('app.Ha, o\'chirish!') }}",
+                cancelButtonText: "{{ trans('app.O\'chirishni bekor qilish') }}",
                 closeOnConfirm: false
             }).then((result) => {
                 window.location.href = url;

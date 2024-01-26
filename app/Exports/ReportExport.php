@@ -32,7 +32,7 @@ class ReportExport implements FromCollection,WithHeadings,WithStyles
             'Na\'muna olingan viloyat',
             'Na\'muna olingan shahar yoki tuman',
             'Buyurtmachi korxona yoki tashkilot nomi',
-            'Mahsulot tayorlangan shaxobcha yoki sexning nomi',
+            'Ishlab chiqaruvchi zavodning nomi',
             'Ishlab chiqargan davlat',
             'Mahsulot turi',
             'Mahsulot navi',

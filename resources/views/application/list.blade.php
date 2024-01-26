@@ -62,7 +62,7 @@
                                 <div class="col-sm-4">
                                     <form class="input-filter">
                                         <select class="form-control fc-datepicker from input-filter" name="ariza_turi" autocomplete="off" required="required">
-                                            <option value="">Ariza turi bo'yicha</option>
+                                            <option value="">{{trans("app.Ariza turi bo'yicha")}}</option>
                                             <option value="1" {{($ariza_turi==1)? 'selected':''}}>Maxalliy ishlab chiqarish uchun</option>
                                             <option value="2" {{($ariza_turi==2)? 'selected':''}}>Import qilingan mahsulotlar uchun</option>
                                             <option value="3" {{($ariza_turi==3)? 'selected':''}}>Eski hosil uchun</option>

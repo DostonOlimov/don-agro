@@ -95,7 +95,7 @@
 									<div class="col-md-12 col-sm-12 text-center">
 										<a class="btn btn-primary" href="{{ URL::previous() }}">{{trans('app.Cancel')}}</a>
 										<button type="submit" id="invoice-form-submitter" class="btn btn-success">{{ trans('app.Submit')}}</button>
-                                        <a class="btn btn-success disabled d-none" id="test_program" href="{!! url('/tests/add/'.$app->id) !!}">Sinov dasturi qo'shish</a>
+                                        <a class="btn btn-success disabled d-none" id="test_program" href="{!! url('/tests/add/'.$app->id) !!}">{{trans("app.Sinov dasturi qo'shish")}}</a>
                                     </div>
 								</div>
 							</div>
@@ -103,8 +103,8 @@
                         <div class="row">
                             @include('decision._cheque', ['classes' => 'd-none'])
                             <div class="col-12 mt-4 form-actions d-none" id="success-actions">
-                                <button class="btn btn-primary" id="print-invoice-btn">Chop etish</button>
-                                <a id="payment-button" href="{{route('decision.payments.create')}}" class="btn btn-primary d-none">To'lov qo'shish</a>
+                                <button class="btn btn-primary" id="print-invoice-btn">{{trans("app.Chop etish")}}</button>
+                                <a id="payment-button" href="{{route('decision.payments.create')}}" class="btn btn-primary d-none">{{trans("app.To'lov qo'shish")}}</a>
                             </div>
                         </div>
 					</div>
@@ -173,7 +173,7 @@
 
                     submitButton.removeClass('btn-loading');
                     submitButton.attr('disabled', false)
-                    swal('Saqlandi!', '', 'success');
+                    swal('{{trans("app.Successfully Submitted")}}', '', 'success');
 
                     $('#invoice-form-submitter').hide()
                     $('#success-actions').removeClass('d-none')
