@@ -10,7 +10,7 @@
                 <div class="page-header">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <i class="fe fe-life-buoy mr-1"></i>&nbsp {{ trans('app.Laboratory bayonnomasi') }}
+                            <i class="fe fe-life-buoy mr-1"></i>&nbsp {{ trans('app.Laboratoriya bayonnomasi') }}
                         </li>
                     </ol>
                 </div>
@@ -77,8 +77,8 @@
                                             @foreach ($data as $key => $item)
                                                 <tr>
                                                     <td>{{ ++$key }}</td>
-                                                    <td>{{ $item->test->application->decision->laboratory->certificate }}</td>
-                                                    <td>{{ \App\Models\Nds::getType()[$item->test->application->crops->name->nds->type_id] . '.' . $item->test->application->crops->name->nds->number . ' ' . $item->test->application->crops->name->nds->name }}
+                                                    <td>{{!empty($item->test->application->decision->laboratory->certificate)??'' }}</td>
+                                                    <td>{{ !empty($item->test->application->decision->laboratory->certificate)? \App\Models\Nds::getType()[$item->test->application->crops->name->nds->type_id] . '.' . $item->test->application->crops->name->nds->number . ' ' . $item->test->application->crops->name->nds->name :'' }}
                                                     </td>
                                                     @if (!empty($item->lab_bayonnoma[0]))
                                                         <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $item->lab_bayonnoma[0]->lab_start_date)->format('d.m.Y') }}
@@ -107,7 +107,7 @@
                                                         @else
                                                             <a href="{!! url('/lab_bayonnoma/add/' . $item->id) !!}"><button type="button"
                                                                     class="btn btn-round btn-success">&nbsp;
-                                                                    {{ trans('app.Laboratory bayonnomasi yaratish') }}
+                                                                    {{ trans('app.Laboratoriya bayonnomasini yaratish') }}
                                                                     &nbsp;</button></a>
                                                         @endif
                                                     </td>

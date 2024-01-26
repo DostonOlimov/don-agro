@@ -158,7 +158,7 @@
                                                 </div>
                                                 <div class="col-md-7 col-sm-12 table_td">
                                                     <span class="txt_color">
-                                                        {{ $country??""}}
+                                                        {{ $country ?? '' }}
                                                     </span>
                                                 </div>
                                             </div>
@@ -237,16 +237,17 @@
                                                     <b>Hosil yili</b>
                                                 </div>
                                                 <div class="col-md-7 col-sm-12 table_td">
-                                            <span class="txt_color">{{ optional($user->crops)->year  }}</span>
-                                            </div>
-                                            <div class="table_row row">
-                                                <div class="col-md-5 col-sm-12 table_td">
-                                                    <b>Ishlab chiqarilgan sana</b>
+                                                    <span class="txt_color">{{ optional($user->crops)->year }}</span>
                                                 </div>
-                                                <div class="col-md-7 col-sm-12 table_td">
-                                                    <span class="txt_color">
-                                                        {{ optional($user->crops)->made_date }}
-                                                    </span>
+                                                <div class="table_row row">
+                                                    <div class="col-md-5 col-sm-12 table_td">
+                                                        <b>Ishlab chiqarilgan sana</b>
+                                                    </div>
+                                                    <div class="col-md-7 col-sm-12 table_td">
+                                                        <span class="txt_color">
+                                                            {{ optional($user->crops)->made_date }}
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -325,7 +326,7 @@
                                                 </div>
                                             </div>
 
-                                            @if ($user->type == 1)
+                                            {{-- @if ($user->type == 1)
                                                 <div class="panel panel-primary">
                                                     <div class="tab_wrapper page-tab">
                                                         <ul class="tab_list">
@@ -555,7 +556,7 @@
                                                             </span>
                                                         </div>
                                                     </div>
-                                            @endif
+                                            @endif --}}
                                         </div>
 
                                         @can('edit', $user)

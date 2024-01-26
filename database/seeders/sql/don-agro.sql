@@ -2392,7 +2392,7 @@ CREATE TABLE `tbl_cities` (
   `state_id` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `list_id` bigint(20) UNSIGNED NOT NULL,
+  `list_id` bigint(20) UNSIGNED NULL,
   `soato` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -2917,7 +2917,7 @@ CREATE TABLE `tbl_states` (
   `country_id` int(11) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `list_id` bigint(20) UNSIGNED NOT NULL,
+  `list_id` bigint(20) UNSIGNED NULL,
   `soato` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
