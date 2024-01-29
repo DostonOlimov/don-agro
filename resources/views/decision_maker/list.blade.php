@@ -60,7 +60,7 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>{{ trans('app.Name') }}</th>
-                                                <th>{{ trans('app.Status') }}</th>
+                                                {{-- <th>{{ trans('app.Status') }}</th> --}}
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -69,7 +69,7 @@
                                                 <tr>
                                                     <td>{{ $i }}</td>
                                                     <td>{{ $decision_maker->name }}</td>
-                                                    <td>{{ $decision_maker->status }}</td>
+                                                    {{-- <td>{{ $decision_maker->status }}</td> --}}
                                                     <td>
                                                         <a href="{!! url('/decision_maker/edit/' . $decision_maker->id) !!}"> <button type="button"
                                                                 class="btn btn-round btn-success">{{ trans('app.Edit') }}</button></a>

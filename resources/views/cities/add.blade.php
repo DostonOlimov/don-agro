@@ -88,11 +88,11 @@
                                                 <div class="col-12 col-md-4">
                                                     <div class="form-group">
                                                         <label class="form-label"
-                                                               for="first-name">SOATO kodi<label
+                                                               for="first-name">{{trans("app.SOATO kodi")}}<label
                                                                 class="text-danger">*</label>
                                                         </label>
                                                         <input type="text" required="required" name="soato"
-                                                               placeholder="SOATO kodi"
+                                                               placeholder="{{trans("app.SOATO kodi")}}"
                                                                class="form-control">
                                                     </div>
                                                 </div>

@@ -145,6 +145,51 @@ return [
     "O'lchov birliklari"=>"Units of measure",
     "O'lchov birliklarni tanlang"=>"Select the units of measure",
 
+    // lab_bayonnoma
+    "Laboratoriya bayonnomasi"=>"Laboratory protocol",
+    'Me\'yoriy hujjat'=>"Regulatory document",
+    "Mahsulotni laboratoriyaga berish sanasi"=>"The date of delivery of the product to the laboratory",
+    'Sinov Bayonnoma to\'ldirish sanasi'=>"The date of filling out the test report",
+    "Sinov Bayonnoma raqami"=>"Test Report Number",
+    "Sinov natijasi"=>"Test result",
+    'Sinov o\'tkazgan mutaxassis'=>"The specialist who conducted the test",
+    "Laboratoriya bayonnomasini yaratish"=>"Creating a laboratory protocol",
+    "Laboratoriya bayonnoma sanasi noto'g'ri shaklda kiritilgan"=>"The date of the laboratory protocol is entered in the wrong format",
+    "Laboratoriya sinov natijasi"=>"Laboratory test result",
+    "Laboratoriya sinov natijasini tanlang"=>"Select the laboratory test result",
+
+    //final results
+    "Qaror raqami"=>"Decision number",
+    "Mahsulotga sertifikat taqdim etish"=>"Providing a product certificate",
+    "Ha"=>"Yes",
+    "Yo'q"=>"No",
+    "Bayonnoma faylini yuklang"=>"Upload the protocol file",
+    "Labaratoriya faylini yuklang"=>"Upload the lab file",
+    "Sertifikat reestr raqami"=>"Certificate registration number",
+    "Sertifikat raqami noto'g'ri shaklda kiritilgan"=>"The certificate number was entered in the wrong format",
+    "Sertifikat berilgan sana"=>"Date of issue of the certificate",
+    "Mahsulot sifati"=>"Product quality",
+    "Nomuvofiq"=>"Inconsistent",
+    "Muvofiq"=>"Appropriate",
+    "Tikilgan papka raqami"=>"Stitched folder number",
+    "Papka raqami noto'g'ri shaklda kiritilgan"=>"The folder number was entered in the wrong format",
+    "Mustaqil baholovchi"=>"Independent evaluator",
+    "Mustaqil baholovchi tanlang"=>"Choose an independent appraiser",
+    "Yakuniy natija"=>"The final result",
+    "Yakuniy natijani ko'rish"=>"View the final result",
+    "Buyurtmachi korxona yoki tashkilot nomi"=>"Customer company or organization name",
+    "Sinov bayonnoma raqami"=>"Test protocol number",
+    "Tahlil natija raqami"=>"Analysis result number",
+    "Sinov bayonnoma sanasi"=>"Test protocol date",
+    "Tahlil natija sanasi"=>"The date of the test result",
+    "Sinov bayonnoma fayli"=>"Test protocol file",
+    "Tahlil natija fayli"=>"Analysis result file",
+    "Tikilgan papka raqami"=>"Stitched folder number",
+
+    // decision
+    "Qaror"=>"Decision",
+    "Nomini kiriting"=>"Enter the name",
+
 
     //og'irlik dalolatnomalari
     ' Og\'irlik bo\'yicha na\'muna olish dalolatnomalari' => ' Sampling records by weight',
@@ -214,6 +259,8 @@ return [
     'Zavod nomi' => 'Factory name',
     'Zavod kodi' => 'Factory code',
     'Zavod nomini qo\'shish' => 'Add factory name',
+    "Mamlakat nomni tanlang"=>"Choose a country name",
+    "Viloyat nomni tanlang"=>"Choose a region name",
 
 
     //crop_name
@@ -266,12 +313,12 @@ return [
 
     //Supplier Add Page
     'First Name' => 'Ismi',
-    'Last Name' => 'Familiya',
-    'Display Name' => 'Otasining ismi',
-    'Gender' => 'Jinsi',
-    'Date Of Birth' => 'Tugilgan sanasi',
+    'Last Name' => 'Last Name',
+    'Display Name' => 'Patronymic',
+    'Gender' => 'Gender',
+    'Date Of Birth' => 'Date Of Birth',
     'Email' => 'Email',
-    'Password' => 'Parol',
+    'Password' => 'Password',
     'Country' => 'Country',
     'State' => 'Viloyat',
     'Town/City' => 'Tuman/Shahar',
@@ -279,13 +326,13 @@ return [
 
 
     //customer add
-    'Enter First Name' => 'Ism kiritish',
-    'Enter Last Name' => 'Familiya kiritish',
-    'Enter Display Name' => 'Otasining ismini kiriting',
-    'Enter Email' => 'Emailni kiriting',
-    'Enter Password' => 'Parolni kiritish',
+    'Enter First Name' => 'Enter First Name',
+    'Enter Last Name' => 'Enter Last Name',
+    'Enter Display Name' => 'Enter Patronymic',
+    'Enter Email' => 'Enter email',
+    'Enter Password' => 'Enter Password',
     'Enter Contact Person Name' => 'Enter Contact Person Name',
-    'Enter Mobile No' => 'Mobil telefon raqamini kiriting',
+    'Enter Mobile No' => 'Enter mobile phone number',
     'Enter LandLine No' => 'Shahar telefon raqamini kiriting',
     'Enter Account No' => 'Enter Account No',
     'Enter IFS Code' => 'Enter IFS Code',
@@ -293,11 +340,11 @@ return [
     'Enter TIN No' => 'Enter TIN No',
     'Enter PAN No' => 'Enter PAN No',
     'Enter GST No' => 'Enter GST No',
-    "Personal Information" => "Xodim ma'lumotalari",
+    "Personal Information" => "Personal Information",
     'Select Country' => 'Select Country',
     'Account Details' => 'Account Details',
-    'Male' => 'Erkak',
-    'Female' => 'Ayol',
+    'Male' => 'Male',
+    'Female' => 'Female',
     'Customer' => 'Mulk egasi',
     //Customer list page
 
@@ -319,7 +366,7 @@ return [
     "Add cities" => "Shahar qo'shish",
     "City Name" => "City Name",
     "Region Name" => "Region Name",
-    "Enter Cityname" => "Shahar nomini kiriting",
+    "Enter Cityname" => "Enter Cityname",
     "fail" => "O'tmadi",
     "pass" => "O'tdi",
     "legal" => "Yuridik shaxs",
@@ -339,5 +386,29 @@ return [
     "Tahrirlash" => "Edit",
     "Berish" => "Berish",
     "Excel fayl" => "Excel file",
+    "SOATO kodi"=>"Code SOATO",
 
+    // Employees
+    "Employees"=>"Employees",
+    "Lavozim"=>"Position",
+    "Mobile Number"=>"Mobile number",
+    "Employee"=>"Employee",
+    "Ism noto'g'ti shaklda kiritilgan"=>"The name was entered in an incorrect format",
+    "Familiya noto'g'ti shaklda kiritilgan"=>"The last name was entered incorrectly",
+    "Otasining ismi noto'g'ti shaklda kiritilgan"=>"His father's name was entered in the wrong form",
+    "Tug'ilgan sana noto'g'ti shaklda kiritilgan"=>"Date of birth entered in incorrect format",
+    "Parol noto'g'ti shaklda kiritilgan"=>"The password was entered incorrectly",
+    "Confirm Password"=>"Confirm Password",
+    "Enter Confirm Password"=>"Enter Confirm Password",
+    "Raqam noto'g'ti shaklda kiritilgan"=>"The number was entered in an incorrect format",
+    "Email noto'g'ti shaklda kiritilgan yoki mavjud emaildan foydalanilgan"=>"The email was entered incorrectly or an existing email was used",
+    "Designation"=>"Position",
+    "View Employee"=>"View Employee",
+
+    // Laboratoriylar
+    "Laboratoriylar"=>"Laboratories",
+    "Laboratoriy"=>"Laboratory",
+    "Certificate"=>"Certificate",
+    "Sertifikatni kiriting"=>"Enter the certificate",
+    "Manzilni kiriting"=>"Enter the address",
 ];

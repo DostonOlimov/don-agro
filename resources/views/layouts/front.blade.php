@@ -7,7 +7,7 @@
     <meta name="description" content="Agroinspeksiya">
     <meta name="keywords" content="Agroinspeksiya, don va uni qayta ishlashda olingan mahsulotlarni sertifikatlashtirish, qishloq xo'jaligi don va uni qayta ishlashda olingan mahsulotlari,don va uni qayta ishlashda olingan mahsulotlarni sertifikatlash">
     <meta name="author" content="Doston Olimov">
-    <title>Don va uni qayta ishlashda olingan mahsulotlarni sertifikatlashtirish organi</title>
+    <title>Don va uni qayta ishlashdan olingan mahsulotlarni sertifikatlashtirish organi</title>
     <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/logoNEW.png">
 
     <link rel="stylesheet" href="{{ URL::asset('front/css/elegant-icons.css') }}" type="text/css">

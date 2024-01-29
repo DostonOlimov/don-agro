@@ -7,7 +7,7 @@ return[
     'Home'=>'Home',
 
     'Paxta tolasini sertifikatlashtirish avtomatlashtirilgan axborot tizimi'=>'Paxta tolasini sertifikatlashtirish avtomatlashtirilgan axborot tizimi',
-    'Don va uni qayta ishlashda olingan mahsulotlarni sertifikatlashtirish organi'=>'Don va uni qayta ishlashda olingan mahsulotlarni sertifikatlashtirish organi',
+    'Don va uni qayta ishlashdan olingan mahsulotlarni sertifikatlashtirish organi'=>'Don va uni qayta ishlashdan olingan mahsulotlarni sertifikatlashtirish organi',
     'Sertifikatlashtirishni o\'tkazish uchun berilgan ariza bo\'yicha qarorlar ro\'yxati'=>'Sertifikatlashtirishni o\'tkazish uchun berilgan ariza bo\'yicha qarorlar ro\'yxati',
     '"Qishloq xo\'jaligi mahsulotlari sifatini baholash markazi" DM 2023 yil hosilidan jamg\'arilgan :name mahsulotlarini sertifikatlanishi bo\'yicha ma\'lumot' => '"Qishloq xo\'jaligi mahsulotlari sifatini baholash markazi" DM 2023 yil hosilidan jamg\'arilgan :name mahsulotlarini sertifikatlanishi bo\'yicha ma\'lumot',
 
@@ -105,7 +105,6 @@ return[
     "Add Supplier"=>"Yetkazib beruvchi qo'shish",
     'Image'=>'Image',
     'First Name'=>'Ismi',
-    'Last Name'=>'Familiya',
     'Email'=>'Email',
     'Action'=>'Harakat',
     'View'=>"Ko'rish",
@@ -143,5 +142,5 @@ return[
     "Hujjatlar ro'yxati" => "Hujjatlar ro'yxati",
     "Tahrirlash" => "Tahrirlash",
     "Berish" => "Berish",
-
+    "Viloyat nomi"=>"Viloyat nomi",
 ];

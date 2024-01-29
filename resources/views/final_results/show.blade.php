@@ -18,7 +18,7 @@
         <div class="page-header">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <i class="fe fe-life-buoy mr-1"></i>&nbsp Yakuniy natija
+                    <i class="fe fe-life-buoy mr-1"></i>&nbsp {{ trans('app.Yakuniy natija') }}
                 </li>
             </ol>
         </div>
@@ -48,7 +48,7 @@
                                     <li class="active">
                                         <span class="visible-xs"></span>
                                         <i class="fa fa-edit fa-lg">&nbsp;</i>
-                                        <b>Yakuniy natijani ko'rish</b>
+                                        <b>{{trans("app.Yakuniy natijani ko'rish")}}</b>
                                     </li>
                                 </ul>
                             </div>
@@ -59,7 +59,7 @@
                                     <div class="col-md-8 col-sm-12 right_side">
                                         <div class="table_row row">
                                             <div class="col-md-5 col-sm-12 table_td">
-                                                <b>Ariza raqami</b>
+                                                <b>{{trans("app.Ariza raqami")}}</b>
                                             </div>
                                             <div class="col-md-7 col-sm-12 table_td">
                                                 <span class="txt_color">
@@ -69,7 +69,7 @@
                                         </div>
                                         <div class="table_row row">
                                             <div class="col-md-5 col-sm-12 table_td">
-                                                <b>Ariza sanasi</b>
+                                                <b>{{trans("app.Ariza sanasi")}}</b>
                                             </div>
                                             <div class="col-md-7 col-sm-12 table_td">
                                                 <span class="txt_color">
@@ -79,7 +79,7 @@
                                         </div>
                                         <div class="table_row row">
                                             <div class="col-md-5 col-sm-12 table_td">
-                                                <b>Mahsulot nomi</b>
+                                                <b>{{trans("app.Mahsulot nomi")}}</b>
                                             </div>
                                             <div class="col-md-7 col-sm-12 table_td">
                                                 <span class="txt_color">
@@ -89,7 +89,7 @@
                                         </div>
                                         <div class="table_row row">
                                             <div class="col-md-5 col-sm-12 table_td">
-                                                <b>Buyurtmachi korxona yoki tashkilot nomi</b>
+                                                <b>{{trans("app.Buyurtmachi korxona yoki tashkilot nomi")}}</b>
                                             </div>
                                             <div class="col-md-7 col-sm-12 table_td">
                                                 <span class="txt_color">
@@ -101,9 +101,9 @@
                                             <div class="col-md-5 col-sm-12 table_td">
                                                 <b>
                                                     @if ($result->type == 2)
-                                                        Sinov bayonnoma raqami
+                                                        {{trans("app.Sinov bayonnoma raqami")}}
                                                     @else
-                                                        Tahlil natija raqami
+                                                        {{trans("app.Tahlil natija raqami")}}
                                                     @endif
                                                 </b>
                                             </div>
@@ -117,9 +117,9 @@
                                             <div class="col-md-5 col-sm-12 table_td">
                                                 <b>
                                                     @if ($result->type == 2)
-                                                        Sinov bayonnoma sanasi
+                                                        {{trans("app.Sinov bayonnoma sanasi")}}
                                                     @else
-                                                        Tahlil natija sanasi
+                                                        {{trans("app.Tahlil natija sanasi")}}
                                                     @endif
                                                 </b>
                                             </div>
@@ -133,9 +133,9 @@
                                             <div class="col-md-5 col-sm-12 table_td">
                                                 <b>
                                                     @if ($result->type == 2)
-                                                        Sinov bayonnoma fayli
+                                                        {{trans("app.Sinov bayonnoma fayli")}}
                                                     @else
-                                                        Tahlil natija fayli
+                                                        {{trans("app.Tahlil natija fayli")}}
                                                     @endif
                                                 </b>
                                             </div>
@@ -144,7 +144,7 @@
                                                     @if (optional($result)->attachment)
                                                         <a href="{{ route('attachment.download', ['id' => $result->attachment->id]) }}"
                                                             class="text-azure">
-                                                            <i class="fa fa-download"></i> Asos fayli
+                                                            <i class="fa fa-download"></i>{{ trans("app.Asos fayli")}}
                                                         </a>
                                                     @endif
                                                 </span>
@@ -153,7 +153,7 @@
                                         @if ($result->type != 2)
                                             <div class="table_row row">
                                                 <div class="col-md-5 col-sm-12 table_td">
-                                                    <b>Tikilgan papka raqami</b>
+                                                    <b>{{trans("app.Tikilgan papka raqami")}}</b>
                                                 </div>
                                                 <div class="col-md-7 col-sm-12 table_td">
                                                     <span class="txt_color">
@@ -163,7 +163,7 @@
                                             </div>
                                             <div class="table_row row">
                                                 <div class="col-md-5 col-sm-12 table_td">
-                                                    <b>Izoh</b>
+                                                    <b>{{trans("app.Izoh")}}</b>
                                                 </div>
                                                 <div class="col-md-7 col-sm-12 table_td">
                                                     <span class="txt_color">
@@ -177,7 +177,7 @@
                                         @can('edit', $result)
                                             <div class="col-12 text-right m-2">
                                                 <a href="/final_results/edit/{{ $result->id }}">
-                                                    <button class="btn btn-primary">O'zgartirish</button>
+                                                    <button class="btn btn-primary">{{trans("app.Update")}}</button>
                                                 </a>
                                             </div>
                                             @endif

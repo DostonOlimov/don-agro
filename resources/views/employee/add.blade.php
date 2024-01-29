@@ -40,14 +40,14 @@
 								</div>
 								<div class="col-md-6 form-group has-feedback {{ $errors->has('firstname') ? ' has-error' : '' }}">
 									<label class="form-label" for="first-name">
-										{{ trans('app.First Name')}} <label class="text-danger">*</label>
+										{{ trans('app.Name')}} <label class="text-danger">*</label>
 									</label>
 									<div class="">
 								  		<input type="text" id="firstname" name="firstname" value="{{ old('firstname') }}"  placeholder="{{
 								  		trans('app.Enter First Name')}}" class="form-control" maxlength="25" required>
 										@if ($errors->has('firstname'))
 								   			<span class="help-block">
-									 			<strong>Ism noto'g'ti shaklda kiritilgan</strong>
+									 			<strong>{{trans("app.Ism noto'g'ti shaklda kiritilgan")}}</strong>
 								  			 </span>
 							 		    @endif
 									</div>
@@ -61,7 +61,7 @@
 								  	<input type="text" id="lastname" name="lastname"  value="{{ old('lastname') }}" placeholder="{{ trans('app.Enter Last Name')}}" class="form-control" maxlength="25" required>
 										@if ($errors->has('lastname'))
 										   <span class="help-block">
-											 <strong>Familiya noto'g'ti shaklda kiritilgan</strong>
+											 <strong>{{trans("app.Familiya noto'g'ti shaklda kiritilgan")}}</strong>
 										   </span>
 										 @endif
 									</div>
@@ -72,7 +72,7 @@
 										<input type="text" id="displayname" class="form-control" value="{{ old('displayname') }}" placeholder="{{ trans('app.Enter Display Name')}}" maxlength="25"  name="displayname">
 										@if ($errors->has('displayname'))
 										   <span class="help-block">
-											 <strong>Otasining ismi noto'g'ti shaklda kiritilgan</strong>
+											 <strong>{{trans("app.Otasining ismi noto'g'ti shaklda kiritilgan")}}</strong>
 										   </span>
 										 @endif
 									</div>
@@ -105,7 +105,7 @@
 										</div>
 									@if ($errors->has('dob'))
 										<span class="help-block">
-											<strong style="margin-left:27%;">Tug'ilgan sana noto'g'ti shaklda kiritilgan</strong>
+											<strong style="margin-left:27%;">{{trans("app.Tug'ilgan sana noto'g'ti shaklda kiritilgan")}}</strong>
 										</span>
 									@endif
 								</div>
@@ -115,7 +115,7 @@
 										<input type="password" id="password" placeholder="{{ trans('app.Enter Password')}}" name="password"  class="form-control" maxlength="20" autocomplete="new-password" required>
 										@if ($errors->has('password'))
 										<span class="help-block">
-											<strong>Parol noto'g'ti shaklda kiritilgan</strong>
+											<strong>{{trans("app.Parol noto'g'ti shaklda kiritilgan")}}</strong>
 										</span>
 										@endif
 									</div>
@@ -126,7 +126,7 @@
 										<input type="password"  name="password_confirmation" placeholder="{{ trans('app.Enter Confirm Password')}}" class="form-control" maxlength="20" title='' required>
 										@if ($errors->has('password_confirmation'))
 										<span class="help-block">
-											<strong>Parol noto'g'ti shaklda kiritilgan</strong>
+											<strong>{{trans("app.Parol noto'g'ti shaklda kiritilgan")}}</strong>
 										</span>
 										@endif
 									</div>
@@ -137,7 +137,7 @@
 										<input type="text" id="mobile" name="mobile" value="{{ old('mobile') }}" placeholder="{{ trans('app.Enter Mobile No')}}"class="form-control" maxlength="15" required>
 										@if ($errors->has('mobile'))
 										<span class="help-block">
-											<strong>Raqam noto'g'ti shaklda kiritilgan</strong>
+											<strong>{{trans("app.Raqam noto'g'ti shaklda kiritilgan")}}</strong>
 										</span>
 										@endif
 									</div>
@@ -149,7 +149,7 @@
 										<input type="text" id="email" name="email" value="{{ old('email') }}" placeholder="{{ trans('app.Enter Email')}}"class="form-control" maxlength="50" required>
 										@if ($errors->has('email'))
 										<span class="help-block" style="color:red">
-											<strong>Email noto'g'ti shaklda kiritilgan yoki mavjud emaildan foydalanilgan</strong>
+											<strong>{{trans("app.Email noto'g'ti shaklda kiritilgan yoki mavjud emaildan foydalanilgan")}}</strong>
 										</span>
 										@endif
 									</div>
@@ -169,7 +169,7 @@
 								</div>
 
 
-
+{{--
 								<div class="col-md-6 form-group has-feedback {{ $errors->has('image') ? ' has-error' : '' }}">
 									<label class="form-label" for="image">{{ trans('app.Image')}}</label>
 									<input type="file" id="image" name="image" style="display: none;">
@@ -186,7 +186,7 @@
 												<strong>Xatolik</strong>
 											</span>
 										@endif
-								</div>
+								</div> --}}
 
 								<div class="form-group col-md-12 col-sm-12">
 									<div class="col-md-12 col-sm-12 text-center">

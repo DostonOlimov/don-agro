@@ -13,7 +13,7 @@
                 <div class="page-header">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <i class="fe fe-life-buoy mr-1"></i>&nbsp {{trans('app.Korxona nomini qo\'shish')}}
+                            <i class="fe fe-life-buoy mr-1"></i>&nbsp {{trans('app.Qo\'shish')}}
                         </li>
                     </ol>
                 </div>

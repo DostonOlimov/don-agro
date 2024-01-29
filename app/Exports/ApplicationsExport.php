@@ -22,7 +22,7 @@
 //     */
 //    public function headings():array{
 //        return[
-//            ['Don va uni qayta ishlashda olingan mahsulotlarni sertifikatlashtirish organi UMUMIY HISOBOTI'],
+//            ['Don va uni qayta ishlashdan olingan mahsulotlarni sertifikatlashtirish organi UMUMIY HISOBOTI'],
 //            [
 //                'Ariza raqami',
 //                'Ariza sanasi',

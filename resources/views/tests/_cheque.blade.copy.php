@@ -1,6 +1,6 @@
 <div id="invoice-cheque" class="py-4 col-12 {{$classes ?? ''}}">
     <h5 class="text-center">Oʼzbekiston Respublikasi Vazirlar Mahkamasi huzuridagi Аgrosanoat majmui ustidan nazorat qilish <br>Inspektsiya qoshidagi “Аgrosanoat majmuida xizmatlar koʼrsatish markazi” davlat unitar korxonasining
-    Don va uni qayta ishlashda olingan mahsulotlarni sertifikatlashtirish organi<br>
+    Don va uni qayta ishlashdan olingan mahsulotlarni sertifikatlashtirish organi<br>
     Toshkent shahar, Shayxontohur tumani Markaz-14, 27-uy.</h5>
     <h4 class="text-right">
        <b> «TАSDIQLАYMАN» </b><br>
@@ -12,7 +12,7 @@
 
     </h4>
     <b>
-        <h4 class="text-center">Don va uni qayta ishlashda olingan mahsulotlarni sertifikatlashtirish boʼyicha<br></h4>
+        <h4 class="text-center">Don va uni qayta ishlashdna olingan mahsulotlarni sertifikatlashtirish boʼyicha<br></h4>
     <h2 class="text-center">SINOV DASTURI</h2></b>
     <div>
         <h4>

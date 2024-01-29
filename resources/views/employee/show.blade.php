@@ -148,7 +148,7 @@
                                     @can('edit', $user)
                                         <div class="col-12 text-right m-2">
                                             <a href="/employee/edit/{{ $user->id }}">
-                                                <button class="btn btn-primary">O'zgartirish</button>
+                                                <button class="btn btn-primary">{{trans("app.Update")}}</button>
                                             </a>
                                         </div>
                                     @endif

@@ -2125,7 +2125,7 @@ CREATE TABLE `prepared_companies` (
   `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `country_id` int(11) NOT NULL,
-  `state_id` int(11) NOT NULL,
+  `state_id` int(11) NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

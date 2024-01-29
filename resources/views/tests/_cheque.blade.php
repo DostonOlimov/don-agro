@@ -2,7 +2,7 @@
     <h4 class="text-center">Oʼzbekiston Respublikasi Qishloq xo'jaligi vazirligi huzuridagi Аgrosanoat majmui ustidan
         nazorat qilish Inspektsiya qoshidagi <br> “Qishloq xo'jaligi mahsulotlarini sifatini baholash markazi” davlat
         muassasining<br>
-        Don va uni qayta ishlashda olingan mahsulotlarni sertifikatlashtirish organi<br>
+        Don va uni qayta ishlashdan olingan mahsulotlarni sertifikatlashtirish organi<br>
         Toshkent shahar, Shayxontohur tumani Markaz-14, 27-uy.</h4>
     <h4 class="text-right">
         <b> «TАSDIQLАYMАN» </b><br>
@@ -14,7 +14,7 @@
         <div class="text-center"> {!! $qrCode !!}</div>
     </h4>
     <b>
-        <h4 class="text-center"> Don va uni qayta ishlashda olingan mahsulotlarni sertifikatlashtirish boʼyicha<br></h4>
+        <h4 class="text-center"> Don va uni qayta ishlashdan olingan mahsulotlarni sertifikatlashtirish boʼyicha<br></h4>
         <h2 class="text-center">SINOV DASTURI</h2>
     </b>
     <div>

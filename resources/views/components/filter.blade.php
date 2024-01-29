@@ -76,6 +76,7 @@
 {{--            </div>--}}
         </div>
     </div>
+    
     <div class="col-4">
         <form class="d-flex">
             <input type="text" name="s" class="search-input form-control"

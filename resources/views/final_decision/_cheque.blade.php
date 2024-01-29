@@ -1,7 +1,7 @@
 <div id="invoice-cheque" class="py-4 col-12 {{$classes ?? ''}}">
     <h4 class="text-center">Oʼzbekiston Respublikasi Qishloq xo'jaligi vazirligi huzuridagi Аgrosanoat majmui ustidan <br>
         nazorat qilish Inspektsiya qoshidagi “Qishloq xo'jaligi mahsulotlarini baholash markazi” davlat muassasining
-        Don va uni qayta ishlashda olingan mahsulotlarni sertifikatlashtirish organi<br>
+        Don va uni qayta ishlashdan olingan mahsulotlarni sertifikatlashtirish organi<br>
         Toshkent shahar, Shayxontohur tumani Markaz-14, 27-uy.</h4>
     <h4 class="text-center">
        <b> Mahsulotni sertifikatlash natijasi bo'yicha <br>
@@ -18,7 +18,7 @@
             {{$decision->test_program->application->date}} &nbsp;&nbsp; {{$decision->test_program->application->app_number}} - sonli
             ariza bo'yicha amalga oshirilgan sertifikatlash jarayonlarida jamlangan barcha ma'lumotlar va natijalarnni tahlili bo'yicha
             o'rnatilgan talablarga @if($decision->type == 2) {{'muvofiq'}} @else {{'nomuvofiq' }} @endif
-            deb topildi, buning asosida Don va uni qayta ishlashda olingan mahsulotlarni sertifikatlashtirish organing
+            deb topildi, buning asosida Don va uni qayta ishlashdan olingan mahsulotlarni sertifikatlashtirish organing
             mustaqil baholash mutaxasisi sertifikatlash natijalari bo'yicha qaror qabul qildi: <br>
             Mahsulot turi &nbsp;{{$decision->test_program->application->crops->name->name}} , mahsulot navi &nbsp; {{$decision->test_program->application->crops->type->name}},
             &nbsp;

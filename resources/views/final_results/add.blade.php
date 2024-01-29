@@ -7,7 +7,7 @@
 		<div class="page-header">
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item">
-					<i class="fe fe-life-buoy mr-1"></i>&nbsp Yakuniy natijalar
+					<i class="fe fe-life-buoy mr-1"></i>&nbsp {{trans('app.Qo\'shish')}}
 				</li>
 			</ol>
 		</div>
@@ -40,7 +40,7 @@
 								<input type="hidden" name="_token" value="{{csrf_token()}}">
                                 <input type="hidden"  name="test_id" value="{{ $test->id}}" >
                                 <div class="col-md-4 form-group has-feedback">
-                                    <label class="form-label" >Qaror raqami <label class="text-danger">*</label></label>
+                                    <label class="form-label" >{{trans("app.Qaror raqami")}} <label class="text-danger">*</label></label>
                                     <input type="number" readonly name="app_number" value="{{ $test->application->app_number}}" class="form-control">
                                 </div>
                                 <div class="col-md-4 form-group has-feedback">
@@ -48,16 +48,16 @@
                                     <input type="number" readonly value="{{ $test->application->crops->sxeme_number}}" class="form-control">
                                 </div>
                                 <div class="col-md-4 form-group has-feedback">
-                                    <label class="form-label">{{ trans('app.Davlat standarti') }}<label class="text-danger">*</label></label>
+                                    <label class="form-label">{{ trans('app.Me\'yoriy hujjat') }}<label class="text-danger">*</label></label>
                                     <input type="text" readonly value="{{ \App\Models\Nds::getType()[$test->application->crops->name->nds->type_id] . '.' . $test->application->crops->name->nds->number . ' ' . $test->application->crops->name->nds->name}}" class="form-control">
                                 </div>
                                {{-- \App\Models\Nds::getType()[$test->application->crops->name->nds->type_id] . '.' . $test->application->crops->name->nds->number . ' ' . $test->application->crops->name->nds->name  --}}
                                 <div class="col-md-4 form-group has-feedback">
-                                    <label class="form-label" >Mahsulot nomi <label class="text-danger">*</label></label>
+                                    <label class="form-label" >{{trans("app.Mahsulot nomi")}} <label class="text-danger">*</label></label>
                                     <input type="text" readonly name="product_name" value="{{ optional($test->application->crops)->name->name}}" class="form-control">
                                 </div>
                                 <div class="col-md-4 form-group has-feedback">
-                                    <label class="form-label" >Mahsulot navi <label class="text-danger">*</label></label>
+                                    <label class="form-label" >{{trans("app.Mahsulot navi")}} <label class="text-danger">*</label></label>
                                     <input type="text" readonly name="product_type" value="{{ optional($test->application->crops)->type->name}}" class="form-control">
                                 </div>
                                 {{-- <div class="col-md-4 form-group has-feedback">
@@ -70,15 +70,15 @@
                                 </div>
 
                                 <div class="col-md-4 form-group has-feedback">
-                                    <label class="form-label">Mahsulotga sertifikat taqdim etidi <label class="text-danger">*</label></label>
+                                    <label class="form-label">{{trans("app.Mahsulotga sertifikat taqdim etish")}}<label class="text-danger">*</label></label>
                                     <div class=" gender">
                                         <label class="custom-control custom-radio">
                                             <input type="radio" class="custom-control-input given_certificate"  name="given_certificate" value="1" checked required >
-                                            <span class="custom-control-label">Ha </span>
+                                            <span class="custom-control-label">{{trans("app.Ha")}} </span>
                                         </label>
                                         <label class="custom-control custom-radio">
                                             <input type="radio"  class="custom-control-input given_certificate" name="given_certificate" value="0" required>
-                                            <span class="custom-control-label">Yo'q </span>
+                                            <span class="custom-control-label">{{trans("app.Yo'q")}} </span>
                                         </label>
                                     </div>
                                 </div>
@@ -111,8 +111,8 @@
                                     @endif
                                 </div> --}}
                                 <div class="col-md-4">
-                                    <label class="form-label certificate">Bayonnoma faylini yuklang</label>
-                                    <label style="display: none" class="form-label nocertificate">Tahlil faylini yuklang</label>
+                                    <label class="form-label certificate">{{trans("app.Bayonnoma faylini yuklang")}}</label>
+                                    <label style="display: none" class="form-label nocertificate">{{trans("app.Labaratoriya faylini yuklang")}}</label>
                                     <input class="form-control" type="file" placeholder="Asos hujjatni yuklang..."
                                            required name="reason-file"
                                            accept="application/pdf"
@@ -120,17 +120,16 @@
                                 </div>
                                 <div class="certificate row">
                                     <div class="col-md-6 form-group has-feedback {{ $errors->has('reestr_number') ? ' has-error' : '' }}">
-                                        <label for="reestr_number" class="form-label ">Sertifikat reestr raqami <label class="text-danger">*</label></label>
-                                        <input type="number" class="form-control" id="reestr_number" maxlength="10" value="{{ old('reestr_number')}}"  name="reestr_number" >
+                                        <label for="reestr_number" class="form-label ">{{trans("app.Sertifikat reestr raqami")}} <label class="text-danger">*</label></label>
+                                        <input type="number" class="form-control" id="reestr_number" size="10" value="{{ old('reestr_number')}}"  name="reestr_number" >
                                         @if ($errors->has('reestr_number'))
                                             <span class="help-block">
-											 <strong>
-                                                 Sertifikat raqami noto'g'ri shaklda kiritilgan</strong>
+											 <strong>{{trans("app.Sertifikat raqami noto'g'ri shaklda kiritilgan")}}</strong>
 										   </span>
                                         @endif
                                     </div>
                                     <div class="col-md-6 form-group {{ $errors->has('given_date') ? ' has-error' : '' }}">
-                                        <label class="form-label ">Sertifikat berilgan sana <label class="text-danger">*</label></label>
+                                        <label class="form-label ">{{trans("app.Sertifikat berilgan sana")}} <label class="text-danger">*</label></label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
@@ -148,29 +147,29 @@
                                 </div>
                                 <div class="nocertificate row" style="display: none">
                                     <div class="col-md-4 form-group has-feedback">
-                                        <label class="form-label">Mahsulot sifati <label class="text-danger">*</label></label>
+                                        <label class="form-label">{{trans("app.Mahsulot sifati")}} <label class="text-danger">*</label></label>
                                         <div class=" gender">
                                             <label class="custom-control custom-radio">
                                                 <input type="radio" class="custom-control-input"  name="type" value="0" checked >
-                                                <span class="custom-control-label">Nomuvofiq </span>
+                                                <span class="custom-control-label">{{trans("app.Nomuvofiq")}} </span>
                                             </label>
                                             <label class="custom-control custom-radio">
                                                 <input type="radio"  class="custom-control-input" name="type" value="1" >
-                                                <span class="custom-control-label">Muvofiq </span>
+                                                <span class="custom-control-label">{{trans("app.Muvofiq")}} </span>
                                             </label>
                                         </div>
                                     </div>
                                     <div class="col-md-4 form-group has-feedback {{ $errors->has('folder_number') ? ' has-error' : '' }}">
-                                        <label class="form-label ">Tikilgan papka raqami <label class="text-danger">*</label></label>
+                                        <label class="form-label ">{{trans("app.Tikilgan papka raqami")}} <label class="text-danger">*</label></label>
                                         <input type="text" class="form-control"  maxlength="25" value="{{ old('folder_number')}}"  name="folder_number" >
                                         @if ($errors->has('folder_number'))
                                             <span class="help-block">
-											 <strong>Papka raqami noto'g'ri shaklda kiritilgan</strong>
+											 <strong>{{trans("app.Papka raqami noto'g'ri shaklda kiritilgan")}}</strong>
 										   </span>
                                         @endif
                                     </div>
                                     <div class="col-md-4 form-group has-feedback">
-                                        <label class="form-label" >Izoh:<label class="text-danger">*</label></label>
+                                        <label class="form-label" >{{trans("app.Izoh:")}}<label class="text-danger">*</label></label>
                                         <div class="">
                                             <textarea id="comment" name="comment" class="form-control" maxlength="200" >{{ old('comment')}}</textarea>
                                         </div>
@@ -181,10 +180,10 @@
 								<div class="form-group col-md-12 col-sm-12">
                                     <div class="col-md-6 col-sm-6">
                                         <div class="form-group overflow-hidden">
-                                            <label class="form-label">Mustaqil baholovchi<label class="text-danger">*</label></label>
+                                            <label class="form-label">{{trans("app.Mustaqil baholovchi")}}<label class="text-danger">*</label></label>
                                             <select class="w-100 form-control" name="maker" required>
                                                 @if(count($makers))
-                                                    <option value="">Mustaqil baholovchi tanlang</option>
+                                                    <option value="">{{trans("app.Mustaqil baholovchi tanlang")}}</option>
                                                 @endif
                                                 @foreach($makers as $maker)
                                                     <option value="{{$maker->id}}" @if($maker->id == old('maker')) selected @endif
@@ -284,10 +283,10 @@
     function disableButton() {
         var button = document.getElementById('submitter');
         button.disabled = true;
-        button.innerText = 'Yuklanmoqda...'; // Optionally, change the text to indicate processing
+        button.innerText = '{{trans("app.Yuklanmoqda...")}}'; // Optionally, change the text to indicate processing
         setTimeout(function() {
             button.disabled = false;
-            button.innerText = 'Saqlash'; // Restore the button text
+            button.innerText = '{{trans("app.Saqlash")}}'; // Restore the button text
         }, 1000);
     }
 </script>

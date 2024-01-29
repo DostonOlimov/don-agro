@@ -7,7 +7,7 @@ return[
     'Home'=>'Home',
 
     'Paxta tolasini sertifikatlashtirish avtomatlashtirilgan axborot tizimi'=>'Автоматизированная информационная система сертификации хлопкового волокна.',
-    'Don va uni qayta ishlashda olingan mahsulotlarni sertifikatlashtirish organi'=>'Орган по сертификации зерна и продуктов, полученных при его переработке',
+    'Don va uni qayta ishlashdan olingan mahsulotlarni sertifikatlashtirish organi'=>'Орган по сертификации зерна и продуктов, полученных при его переработке',
     'Sertifikatlashtirishni o\'tkazish uchun berilgan ariza bo\'yicha qarorlar ro\'yxati'=>'Перечень решений по заявкам на сертификацию',
     '"Qishloq xo\'jaligi mahsulotlari sifatini baholash markazi" DM 2023 yil hosilidan jamg\'arilgan :name mahsulotlarini sertifikatlanishi bo\'yicha ma\'lumot' => 'ДМ «Центр оценки качества сельскохозяйственной продукции» Информация о сертификации семенной :name продукции, собранной от урожая 2023 года',
 
@@ -92,4 +92,5 @@ return[
     'Shaxsiy ma\'lumotlar'=>'Персональная информация',
     'Settings'=>'Настройки',
     'Tizimdan chiqish'=>'Bыход',
+    "Viloyat nomi"=>"Название провинции",
 ];

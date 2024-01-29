@@ -25,7 +25,7 @@ class ReportExport implements FromCollection,WithHeadings,WithStyles
     */
     public function headings():array{
         return[
-            ['Don va uni qayta ishlashda olingan mahsulotlarni sertifikatlashtirish organi'],
+            ['Don va uni qayta ishlashdan olingan mahsulotlarni sertifikatlashtirish organi'],
             [
             'Ariza raqami',
             'Ariza sanasi',

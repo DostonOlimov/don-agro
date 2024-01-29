@@ -13,7 +13,7 @@
                 <div class="page-header">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="/"><i class="fe fe-life-buoy mr-1"></i>&nbsp {{trans('app.Mahsulolar')}}
+                            <a href="/"><i class="fe fe-life-buoy mr-1"></i>&nbsp {{trans('app.Update')}}
                             </a>
                         </li>
                     </ol>
@@ -60,7 +60,7 @@
                                             <div class="row">
                                                 <div class=" col-md-4">
                                                     <label class="form-label"
-                                                           for="first-name">{{ trans('app.Name')}} <label
+                                                           for="first-name">{{ trans('app.Mahsulot nomi')}} <label
                                                             class="text-danger">*</label>
                                                     </label>
                                                     <input type="text" required="required" name="name"

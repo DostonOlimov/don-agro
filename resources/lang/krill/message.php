@@ -7,7 +7,7 @@ return[
     'Home'=>'Home',
 
     'Paxta tolasini sertifikatlashtirish avtomatlashtirilgan axborot tizimi'=>'Пахта толасини сертификатлаштириш автоматлаштирилган ахборот тизими',
-    'Don va uni qayta ishlashda olingan mahsulotlarni sertifikatlashtirish organi'=>'Дон ва уни қайта ишлашда олинган маҳсулотларни сертификатлаштириш органи',
+    'Don va uni qayta ishlashdan olingan mahsulotlarni sertifikatlashtirish organi'=>'Дон ва уни қайта ишлашда олинган маҳсулотларни сертификатлаштириш органи',
     'Sertifikatlashtirishni o\'tkazish uchun berilgan ariza bo\'yicha qarorlar ro\'yxati'=>'Сертификатлаштиришни ўтказиш учун берилган ариза бўйича қарорлар рўйхати',
     '"Qishloq xo\'jaligi mahsulotlari sifatini baholash markazi" DM 2023 yil hosilidan jamg\'arilgan :name mahsulotlarini sertifikatlanishi bo\'yicha ma\'lumot' => '"Қишлоқ хўжалиги маҳсулотлари сифатини баҳолаш маркази" ДМ 2023 йил ҳосилидан жамғарилган :name маҳсулотларини сертификатланиши бўйича маълумот',
 
@@ -91,6 +91,6 @@ return[
     'Shaxsiy ma\'lumotlar'=>'Шахсий ма\'лумотлар',
     'Settings'=>'Созламалар',
     'Tizimdan chiqish'=>'Тизимдан чиқиш',
-
+    "Viloyat nomi"=>"Вилоят номи",
 
 ];

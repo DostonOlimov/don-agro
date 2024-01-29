@@ -4,7 +4,7 @@
     @can('view', \App\Models\User::class)
     <div class=" content-area ">
         <div class="page-header">
-            <h4 class="page-title mb-0">Qaror</h4>
+            <h4 class="page-title mb-0">{{trans("app.Qaror")}}</h4>
         </div>
         <div class="row">
             <div class="col-12">
@@ -14,8 +14,8 @@
 
                     </div>
                     <div class="py-3">
-                        <a href="{{url()->previous()}}" class="btn btn-primary">ortga</a>
-                        <button class="btn btn-primary" id="print-invoice-btn">Chop etish</button>
+                        <a href="{{url()->previous()}}" class="btn btn-primary">{{trans("app.Ortga")}}</a>
+                        <button class="btn btn-primary" id="print-invoice-btn">{{trans("app.Chop etish")}}</button>
                     </div>
                 </div>
             </div>

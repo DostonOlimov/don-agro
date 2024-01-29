@@ -12,7 +12,7 @@
                 <div class="page-header">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="/"><i class="fe fe-life-buoy mr-1"></i>&nbsp {{trans('app.Cities')}}
+                            <a href="/"><i class="fe fe-life-buoy mr-1"></i>&nbsp {{trans('app.Update')}}
                             </a>
                         </li>
                     </ol>
@@ -59,7 +59,7 @@
                                             <div class="row">
                                                 <div class="col-12 col-md-4">
                                                     <label class="form-label"
-                                                           for="first-name">{{ trans('app.City Name')}} <label
+                                                           for="first-name">{{trans('app.Mahsulot tayorlangan shaxobcha yoki sex nomi')}} <label
                                                             class="text-danger">*</label>
                                                     </label>
                                                     <input type="text" required="required" name="name"
@@ -93,7 +93,7 @@
                                                                for="first-name">{{ trans('app.Viloyat nomi')}} <label
                                                                 class="text-danger">*</label>
                                                         </label>
-                                                        <select name="region" class="region" required>
+                                                        <select name="region" class="region">
                                                             <option value="">{{ trans('app.Viloyat nomni tanlang')}}</option>
                                                             @if(!empty($regions))
                                                                 @foreach($regions as $region)

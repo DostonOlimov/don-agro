@@ -7,7 +7,7 @@ return[
     'Home'=>'Home',
 
     'Paxta tolasini sertifikatlashtirish avtomatlashtirilgan axborot tizimi'=>'Cotton fiber certification automated information system                          ',
-    'Don va uni qayta ishlashda olingan mahsulotlarni sertifikatlashtirish organi'=>'Certification body for grain and products obtained during its processing',
+    'Don va uni qayta ishlashdan olingan mahsulotlarni sertifikatlashtirish organi'=>'Certification body for grain and products obtained during its processing',
     'Sertifikatlashtirishni o\'tkazish uchun berilgan ariza bo\'yicha qarorlar ro\'yxati'=>'List of decisions on the application for certification',
     '"Qishloq xo\'jaligi mahsulotlari sifatini baholash markazi" DM 2023 yil hosilidan jamg\'arilgan :name mahsulotlarini sertifikatlanishi bo\'yicha ma\'lumot' => '"Center for Quality Assessment of Agricultural Products" DM Information on certification of :name products collected from the harvest of 2023',
 
@@ -91,4 +91,5 @@ return[
     'Shaxsiy ma\'lumotlar'=>'Personal information',
     'Settings'=>'Settings',
     'Tizimdan chiqish'=>'Log out',
+    "Viloyat nomi"=>"Province name",
 ];

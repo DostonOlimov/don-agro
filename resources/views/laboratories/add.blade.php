@@ -12,7 +12,7 @@
             <div class="page-header">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <i class="fe fe-life-buoy mr-1"></i>&nbsp {{ trans('app.Laboratoriylar') }}
+                        <i class="fe fe-life-buoy mr-1"></i>&nbsp {{ trans('app.Laboratoriy') }}
                     </li>
                 </ol>
             </div>
@@ -59,7 +59,7 @@
                                         <div class="row">
                                             <div class="col-12 col-md-4">
                                                 <div class="form-group">
-                                                    <label class="form-label" for="first-name">{{ trans('app.Nomi') }}
+                                                    <label class="form-label" for="first-name">{{ trans('app.Name') }}
                                                         <label class="text-danger">*</label>
                                                     </label>
                                                     <input type="text" required="required" name="name"
@@ -79,7 +79,7 @@
                                             </div>
                                             <div class="col-12 col-md-4">
                                                 <div class="form-group">
-                                                    <label class="form-label" for="first-name">{{ trans('app.Manzil') }}
+                                                    <label class="form-label" for="first-name">{{ trans('app.Address') }}
                                                         <label class="text-danger">*</label>
                                                     </label>
                                                     <input type="text" required="required" name="address"

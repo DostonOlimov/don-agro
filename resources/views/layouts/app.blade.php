@@ -6,7 +6,7 @@
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta name="description" content="Agroinspeksiya">
     <meta name="author" content="Doston Olimov">
-    <title>Don va uni qayta ishlashda olingan mahsulotlarni sertifikatlashtirish organi</title>
+    <title>Don va uni qayta ishlashdan olingan mahsulotlarni sertifikatlashtirish organi</title>
     <link rel="icon" type="image/png" sizes="192x192" href="{{ URL::asset('/assets/images/logoNEW.png') }}">
 
     <!-- Vendors styles-->

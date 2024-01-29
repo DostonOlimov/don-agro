@@ -40,7 +40,7 @@
 										<p class="col-md-12 col-sm-12 ln_solid"></p>
 									</div>
 									<div class="col-md-6 col-sm-6 form-group has-feedback {{ $errors->has('firstname') ? ' has-error' : '' }}">
-										<label class="form-label" for="first-name">{{ trans('app.First Name')}} <label class="text-danger">*</label></label>
+										<label class="form-label" for="first-name">{{ trans('app.Name')}} <label class="text-danger">*</label></label>
 										<div>
 											<input type="text" id="firstname" name="firstname" placeholder="{{ trans('app.Enter First Name')}}" class="form-control" value="{{ $user->name }}" maxlength="25" required>
 											@if ($errors->has('firstname'))
@@ -144,7 +144,7 @@
 									<div class="col-md-6 col-sm-6 form-group has-feedback {{ $errors->has('email') ? ' has-error' : '' }} ">
 										<label class="form-label" for="Email">{{ trans('app.Email')}} <label class="text-danger">*</label></label>
 										<div>
-										  <input type="text" id="email" name="email" class="form-control" placeholder="Enter Email" value="{{ $user->email }}" maxlength="50" required>
+										  <input type="text" id="email" name="email" class="form-control" placeholder="{{trans("app.Enter Email")}}" value="{{ $user->email }}" maxlength="50" required>
 										   @if ($errors->has('email'))
 												 <span class="help-block">
 												   <strong>{{ $errors->first('email') }}</strong>
@@ -172,8 +172,8 @@
 										</div>
 									</div>
 
-
-
+{{-- rasm yuklash start --}}
+{{--
 									<div class="col-md-6 col-sm-6 form-group has-feedback {{ $errors->has('image') ? ' has-error' : '' }}">
 										<label class="form-label" for="image">{{ trans('app.Image')}}</label>
 										<div>
@@ -193,8 +193,9 @@
 											</span>
 										@endif
 										</div>
-									</div>
+									</div> --}}
 
+{{-- rasm yuklash end --}}
 
 									<div class="col-12 form-group has-feedback">
 										 <label class="form-label" for="Address">{{ trans('app.Address')}} <label class="text-danger">*</label></label>

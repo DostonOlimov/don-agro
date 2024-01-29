@@ -10,7 +10,7 @@
                 <div class="page-header">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <i class="fe fe-life-buoy mr-1"></i>&nbsp Talab etiluvchi hujjatlar
+                            <i class="fe fe-life-buoy mr-1"></i>&nbsp {{trans("message.Talab etiluvchi hujjatlar")}}
                         </li>
                     </ol>
                 </div>
@@ -59,7 +59,7 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Nomlari</th>
+                                                <th>{{trans("app.Name")}}</th>
                                                 <th>{{ trans('app.Action') }}</th>
                                             </tr>
                                         </thead>

@@ -59,9 +59,9 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>{{ trans('app.Nname') }}</th>
+                                                <th>{{ trans('app.Name') }}</th>
                                                 <th>{{ trans('app.Certificate') }}</th>
-                                                <th>{{ trans('app.Manzil') }}</th>
+                                                <th>{{ trans('app.Address') }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>

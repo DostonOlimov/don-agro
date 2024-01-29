@@ -58,7 +58,7 @@
 								<thead>
 									<tr>
 										<th>#</th>
-										<th>{{ trans('app.District') }}</th>
+										<th>{{ trans('app.Tuman nomi') }}</th>
 										<th>{{ trans('app.Region')}}</th>
 										<th>{{ trans('app.Action')}}</th>
 									</tr>
@@ -73,7 +73,7 @@
 										<td>
 											<a href="{!! url ('/cities/list/edit/'.$city->id) !!}"> <button type="button" class="btn btn-round btn-success">{{ trans('app.Edit')}}</button></a>
 
-											<a url="{!! url('/cities/list/delete/'.$city->id)!!}" class="sa-warning"> <button type="button" class="btn btn-round btn-danger dgr">{{ trans('app.Delete')}}</button></a>
+											{{-- <a url="{!! url('/cities/list/delete/'.$city->id)!!}" class="sa-warning"> <button type="button" class="btn btn-round btn-danger dgr">{{ trans('app.Delete')}}</button></a> --}}
 										</td>
 									</tr>
 								<?php $i++; ?>

@@ -6,7 +6,7 @@
             <div class="page-header">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <i class="fe fe-life-buoy mr-1"></i>&nbsp {{trans("app.Sinov dasturini o'zgartirish")}}
+                        <i class="fe fe-life-buoy mr-1"></i>&nbsp {{trans("app.Update")}}
                     </li>
                 </ol>
             </div>
@@ -98,7 +98,7 @@
                                     </div> --}}
                                     <div class="col-md-4">
                                         @if($certificate)
-                                        <label class="form-label certificate">Bayonnoma faylini yuklang</label>
+                                        <label class="form-label certificate">{{trans("app.Bayonnoma faylini yuklang")}}</label>
                                         @else
                                         <label class="form-label nocertificate">Tahlil faylini yuklang</label>
                                         @endif
@@ -119,17 +119,17 @@
                                     @if($certificate)
                                     <div class="certificate row">
                                         <div class="col-md-6 form-group has-feedback {{ $errors->has('reestr_number') ? ' has-error' : '' }}">
-                                            <label for="number" class="form-label ">Sertifikat reestr raqami <label class="text-danger">*</label></label>
-                                            <input type="number" class="form-control" id="reestr_number" maxlength="10" value="{{ $certificate->reestr_number}}"  name="reestr_number" required>
+                                            <label for="number" class="form-label ">{{trans("app.Sertifikat reestr raqami")}} <label class="text-danger">*</label></label>
+                                            <input type="number" class="form-control" id="reestr_number" size="10" value="{{ $certificate->reestr_number}}"  name="reestr_number" required>
                                             @if ($errors->has('reestr_number'))
                                                 <span class="help-block">
 											 <strong>
-                                                 Sertifikat raqami noto'g'ri shaklda kiritilgan</strong>
+                                                 {{trans("app.Sertifikat raqami noto'g'ri shaklda kiritilgan")}}</strong>
 										   </span>
                                             @endif
                                         </div>
                                         <div class="col-md-6 form-group {{ $errors->has('given_date') ? ' has-error' : '' }}">
-                                            <label class="form-label ">Sertifikat berilgan sana <label class="text-danger">*</label></label>
+                                            <label class="form-label ">{{trans("app.Sertifikat berilgan sana")}} <label class="text-danger">*</label></label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text">
@@ -148,7 +148,7 @@
                                     @else
                                     <div class="nocertificate row">
                                         <div class="col-md-4 form-group has-feedback">
-                                            <label class="form-label">Mahsulot sifati <label class="text-danger">*</label></label>
+                                            <label class="form-label">{{trans("app.Mahsulot sifati")}} <label class="text-danger">*</label></label>
                                             <div class=" gender">
                                                 <label class="custom-control custom-radio">
                                                     <input type="radio" class="custom-control-input"  name="type" value="0" @if($result->type == 0)checked @endif>

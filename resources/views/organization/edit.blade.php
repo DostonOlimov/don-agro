@@ -13,7 +13,7 @@
                 <div class="page-header">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="/"><i class="fe fe-life-buoy mr-1"></i>&nbsp {{trans('app.Cities')}}
+                            <a href="/"><i class="fe fe-life-buoy mr-1"></i>&nbsp {{trans('app.Update')}}
                             </a>
                         </li>
                     </ol>

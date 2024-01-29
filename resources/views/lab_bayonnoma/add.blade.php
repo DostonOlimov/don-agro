@@ -45,7 +45,7 @@
                                             class="form-control">
                                     </div>
                                     <div class="col-md-4 form-group has-feedback">
-                                        <label class="form-label">{{ trans('app.Davlat standarti') }}
+                                        <label class="form-label">{{ trans('app.Me\'yoriy hujjat') }}
                                             <label class="text-danger">*</label></label>
                                         <input type="text" readonly
                                             value="{{ \App\Models\Nds::getType()[$data->test->application->crops->name->nds->type_id] . '.' . $data->test->application->crops->name->nds->number . ' ' . $data->test->application->crops->name->nds->name }}"
@@ -68,8 +68,7 @@
                                         </div>
                                         @if ($errors->has('lab_start_date'))
                                             <span class="help-block">
-                                                <strong class="text-danger">Namuna olish dalolatnoma sanasi noto'g'ri shaklda
-                                                    kiritilgan</strong>
+                                                <strong class="text-danger">{{trans("app.Laboratoriya bayonnoma sanasi noto'g'ri shaklda kiritilgan")}}</strong>
                                             </span>
                                         @endif
                                     </div>
@@ -88,8 +87,7 @@
                                         </div>
                                         @if ($errors->has('date'))
                                             <span class="help-block">
-                                                <strong class="text-danger">Namuna olish dalolatnoma sanasi noto'g'ri shaklda
-                                                    kiritilgan</strong>
+                                                <strong class="text-danger">{{trans("app.Laboratoriya bayonnoma sanasi noto'g'ri shaklda kiritilgan")}}</strong>
                                             </span>
                                         @endif
                                     </div>
@@ -104,10 +102,10 @@
                                     </div>
 
                                     <div class="col-md-6 form-group has-feedback">
-                                        <label class="form-label">{{ trans('app.Sinov natijasi') }}<label
+                                        <label class="form-label">{{ trans('app.Laboratoriya sinov natijasi') }}<label
                                                 class="text-danger">*</label></label>
                                         <select class="w-100 form-control" name="test_result" required>
-                                            <option value="">{{ trans('app.Sinov natijasini tanlang') }}</option>
+                                            <option value="">{{ trans('app.Laboratoriya sinov natijasini tanlang') }}</option>
                                             <option value="Muvofiq">Muvofiq</option>
                                             <option value="Nomuvofiq">Nomuvofiq</option>
                                         </select>

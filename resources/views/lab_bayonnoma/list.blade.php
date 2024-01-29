@@ -60,7 +60,7 @@
                                             <tr>
                                                 <th>№</th>
                                                 <th>{{ trans('app.Laboratoriya') }}</th>
-                                                <th>{{ trans('app.Davlat standarti') }}</th>
+                                                <th>{{ trans('app.Me\'yoriy hujjat') }}</th>
                                                 <th>{{ trans('app.Mahsulotni laboratoriyaga berish sanasi') }}</th>
                                                 <th>{{ trans('app.Sinov Bayonnoma to\'ldirish sanasi') }}
                                                 <th>{{ trans('app.Sinov Bayonnoma raqami') }}</th>
