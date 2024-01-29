@@ -411,4 +411,6 @@ return [
     "Certificate"=>"Certificate",
     "Sertifikatni kiriting"=>"Enter the certificate",
     "Manzilni kiriting"=>"Enter the address",
+
+    "Mahsulot tayorlangan shaxobcha yoki sex nomi"=>"The name of the shop or workshop where the product is made",
 ];

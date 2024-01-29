@@ -442,4 +442,6 @@ return [
     "Certificate"=>"Sertifikat",
     "Sertifikatni kiriting"=>"Sertifikatni kiriting",
     "Manzilni kiriting"=>"Manzilni kiriting",
+
+    "Mahsulot tayorlangan shaxobcha yoki sex nomi"=>"Mahsulot tayorlangan shaxobcha yoki sex nomi",
 ];

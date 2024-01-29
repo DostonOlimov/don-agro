@@ -408,4 +408,6 @@ return [
     "Certificate"=>"Сертификат",
     "Sertifikatni kiriting"=>"Сертификатни киритинг",
     "Manzilni kiriting"=>"Манзилни киритинг",
+
+    "Mahsulot tayorlangan shaxobcha yoki sex nomi"=>"Маҳсулот таёрланган шахобча ёки сех номи",
 ];

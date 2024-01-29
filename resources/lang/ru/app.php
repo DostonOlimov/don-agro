@@ -411,4 +411,6 @@ return [
     "Certificate"=>"Сертификат",
     "Sertifikatni kiriting"=>"Введите сертификат",
     "Manzilni kiriting"=>"Введите адрес",
+
+    "Mahsulot tayorlangan shaxobcha yoki sex nomi"=>"Название магазина или мастерской, где изготавливается товар",
 ];
