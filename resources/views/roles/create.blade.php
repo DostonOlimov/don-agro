@@ -24,7 +24,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Nomi:</strong>
-                        <input type="text" name="name" class="form-control" placeholder="Role nomi">
+                        <input type="text" name="name" class="form-control" placeholder="Role nomi" value="{{ old('name') }}">
                         @error('name')
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror

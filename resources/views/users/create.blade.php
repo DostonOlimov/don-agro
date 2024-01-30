@@ -23,7 +23,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-6">
                     <div class="form-group">
                         <strong>User Name:</strong>
-                        <input type="text" name="username" class="form-control" >
+                        <input type="text" name="username" class="form-control" value="{{ old('username') }}">
                         @error('username')
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
@@ -32,7 +32,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-6">
                     <div class="form-group">
                         <strong>Parol:</strong>
-                        <input type="text" name="password" class="form-control" >
+                        <input type="text" name="password" class="form-control" value="{{ old('password') }}">
                         @error('password')
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
@@ -41,7 +41,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-4">
                     <div class="form-group">
                         <strong>Ismi:</strong>
-                        <input type="text" name="first_name" class="form-control" >
+                        <input type="text" name="first_name" class="form-control" value="{{ old('first_name') }}">
                         @error('first_name')
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
@@ -50,7 +50,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-4">
                     <div class="form-group">
                         <strong>Familiyasi:</strong>
-                        <input type="text" name="last_name" class="form-control" >
+                        <input type="text" name="last_name" class="form-control" value="{{ old('last_name') }}">
                         @error('last_name')
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror

@@ -164,10 +164,10 @@ class DecisionController extends Controller
             $akt = AKT::where('test_program_id', $test)->first();
             if ($akt) {
                 LabBayonnoma::where("akt_id", $akt)->delete();
+                $akt->delete();
             }
-            $akt->delete();
+            $test->delete();
         }
-        $test->delete();
         Decision::destroy($id);
         return redirect('decision/search')->with('message', 'Successfully Deleted');
     }

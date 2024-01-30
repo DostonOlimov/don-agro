@@ -74,7 +74,7 @@
                                                     </label>
                                                     <input type="text" required="required" name="certificate"
                                                         placeholder="{{ trans('app.Sertifikatni kiriting') }}"
-                                                        class="form-control">
+                                                        class="form-control" value="{{ old('certificate') }}">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-4">
@@ -84,7 +84,7 @@
                                                     </label>
                                                     <input type="text" required="required" name="address"
                                                         placeholder="{{ trans('app.Manzilni kiriting') }}"
-                                                        class="form-control">
+                                                        class="form-control" value="{{ old('address') }}">
                                                 </div>
                                             </div>
 

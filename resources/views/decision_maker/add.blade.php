@@ -64,7 +64,7 @@
                                                     </label>
                                                     <input type="text" required="required" name="name"
                                                         placeholder="{{ trans('app.Nomini kiriting') }}"
-                                                        class="form-control">
+                                                        class="form-control" value="{{ old('name') }}">
                                                 </div>
                                             </div>
                                             {{-- <div class="col-12 col-md-4">

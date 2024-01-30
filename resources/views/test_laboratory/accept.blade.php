@@ -50,7 +50,7 @@
                                                             class="text-danger">*</label>
                                                     </label>
                                                     <textarea  class="form-control" name="reason">
-
+                                                       {{ old('reason') }}
                                                     </textarea>
                                                 </div>
                                             </div>

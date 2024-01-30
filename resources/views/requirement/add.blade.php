@@ -64,7 +64,7 @@
                                                                 class="text-danger">*</label>
                                                         </label>
                                                         <input type="text" required="required" name="name"
-
+                                                               value="{{ old('name') }}"
                                                                class="form-control">
                                                     </div>
                                                 </div>

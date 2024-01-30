@@ -70,7 +70,7 @@
                                             for="out_check">{{ trans('app.Partiyani tashqi tekshirish natijasi') }}<label
                                                 class="text-danger">*</label></label>
                                         <div class="">
-                                            <textarea id="out_check" name="out_check" class="form-control">{{ old('out_check') }}</textarea>
+                                            <textarea id="out_check" name="out_check" class="form-control" value="{{ old('out_check') }}">{{ old('out_check') }}</textarea>
                                         </div>
                                     </div>
 

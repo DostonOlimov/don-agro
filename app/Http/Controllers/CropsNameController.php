@@ -55,9 +55,9 @@ class CropsNameController extends Controller
         if($app){
             return redirect('crops_name/list')->with('message', 'Cannot Deleted');
         }
-        if(CropsGeneration::where('crop_id','=',$id)->get()){
-            CropsGeneration::where('crop_id','=',$id)->delete();
-        }
+        // if(CropsGeneration::where('crop_id','=',$id)->get()){
+        //     CropsGeneration::where('crop_id','=',$id)->delete();
+        // }
         if(CropsType::where('crop_id','=',$id)->get()){
             CropsType::where('crop_id','=',$id)->delete();
         }

@@ -61,7 +61,7 @@
                                 </div> --}}
                                 <div class="col-md-4 form-group has-feedback">
                                     <label class="form-label" for="app_number">{{trans('app.Qaror sanasi')}} <label class="text-danger">*</label></label>
-                                    <input type="date" name="date" class="form-control" required>
+                                    <input type="date" name="date" value="{{ old('date') }}" class="form-control" required>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group overflow-hidden">

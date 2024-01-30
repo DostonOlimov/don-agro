@@ -104,8 +104,8 @@ class AKTController extends Controller
         $akt = AKT::find($id);
         if ($akt) {
             LabBayonnoma::where("akt_id", $akt)->delete();
+            $akt->delete();
         }
-        $akt->delete();
         return redirect('/akt/list')->with('message', 'Successfully Deleted');
     }
 }

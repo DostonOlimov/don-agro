@@ -66,7 +66,7 @@
                                                         </label>
                                                         <input type="text" required="required" name="city"
                                                                placeholder="{{ trans('app.Enter Cityname')}}"
-                                                               class="form-control">
+                                                               class="form-control" value="{{ old('city') }}">
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-md-4">

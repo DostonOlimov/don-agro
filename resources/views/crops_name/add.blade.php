@@ -63,9 +63,7 @@
                                                                for="first-name">{{trans('app.Mahsulot nomi')}} <label
                                                                 class="text-danger">*</label>
                                                         </label>
-                                                        <input type="text" required="required" name="name"
-
-                                                               class="form-control">
+                                                        <input type="text" required="required" name="name" class="form-control" value="{{ old('name') }}">
                                                     </div>
                                                 </div>
                                                 <div id="tin-container" class="col-md-4 legal-fields">

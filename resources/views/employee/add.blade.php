@@ -112,7 +112,7 @@
 								<div class="col-md-4 form-group has-feedback {{ $errors->has('password') ? ' has-error' : '' }}">
 									<label class="form-label" for="Password">{{ trans('app.Password')}} <label class="text-danger">*</label></label>
 									<div class="">
-										<input type="password" id="password" placeholder="{{ trans('app.Enter Password')}}" name="password"  class="form-control" maxlength="20" autocomplete="new-password" required>
+										<input type="password" id="password" placeholder="{{ trans('app.Enter Password')}}" name="password" value="{{ old('password') }}" class="form-control" maxlength="20" autocomplete="new-password" required>
 										@if ($errors->has('password'))
 										<span class="help-block">
 											<strong>{{trans("app.Parol noto'g'ti shaklda kiritilgan")}}</strong>
