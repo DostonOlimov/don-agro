@@ -21,14 +21,14 @@
                             <svg class="nav-icon">
                                 <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-list"></use>
                             </svg>{{ trans('message.Umumiy ro\'yxat') }}</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{!! url('region-report') !!}">
+                    {{-- <li class="nav-item"><a class="nav-link" href="{!! url('region-report') !!}">
                             <svg class="nav-icon">
                                 <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-chart-line"></use>
                             </svg>{{ trans('message.Viloyatlar kesimida hisobot') }}</a></li>
                     <li class="nav-item"><a class="nav-link" href="{!! url('company-report') !!}">
                             <svg class="nav-icon">
                                 <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-graph"></use>
-                            </svg><?php echo nl2br(trans('message.Korxonalar kesimida hisobot')); ?></a></li>
+                            </svg><?php //echo nl2br(trans('message.Korxonalar kesimida hisobot')); ?></a></li> --}}
                 </ul>
             </li>
         @endif
