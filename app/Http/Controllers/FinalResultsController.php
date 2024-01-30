@@ -42,6 +42,7 @@ class FinalResultsController extends Controller
             ->with('application.crops.name')
             ->with('application.crops.type')
             ->with('application.organization')
+            ->with('akt')
             ->with('final_result');
         if ($user->role == \App\Models\User::STATE_EMPLOYEE) {
             $user_city = $user->state_id;

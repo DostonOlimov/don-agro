@@ -21,6 +21,8 @@ class Nds extends Model
 
     const TYPE_DST= 1;
     const TYPE_GOST = 2;
+    const TYPE_UZTR= 3;
+    const TYPE_MTR = 4;
 
 
     public function crops()
@@ -33,6 +35,8 @@ class Nds extends Model
         $arr = [
             self::TYPE_DST => "O`z DSt",
             self::TYPE_GOST => 'ГОСТ',
+            self::TYPE_UZTR => 'UzTR',
+            self::TYPE_MTR => 'MTR',
         ];
 
         if ($type === null) {

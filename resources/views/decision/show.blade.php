@@ -10,7 +10,11 @@
             <div class="col-12">
                 <div class="card p-4">
                     <div class="row">
+                        @if($decision->application->crops->amount)
                             @include('decision._cheque')
+                        @else
+                        @include('decision._cheque2')
+                        @endif
 
                     </div>
                     <div class="py-3">
@@ -44,10 +48,11 @@
                 $('#application-id').text(currentdecision.app_id)
                 $('#application-organization').text(currentdecision.application.organization.name)
                 $('#crop-name').text(currentdecision.application.crops.name.name)
-                $('#crop-type').text(currentdecision.application.crops.type.name)
+                $('#crop-type').text(type)
                 $('#crop-party').text(currentdecision.application.crops.party_number)
                 $('#measure-type').text(measure_type)
                 $('#crop-amount').text(currentdecision.application.crops.amount)
+                $('#sceme').text(currentdecision.application.crops.sxeme_number)
 
                 $('#laboratory-address').text(currentdecision.laboratory.address)
                 $('#laboratory-certificate').text(currentdecision.laboratory.certificate)
@@ -70,6 +75,7 @@
             let measure_type = @json($measure_type);
             let nds_type = @json($nds_type);
             let qrCode = @json($qrCode);
+            let type = @json(optional($decision->application->crops->type)->name)
 
 
             fillCheque()

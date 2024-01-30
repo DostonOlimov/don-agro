@@ -51,7 +51,8 @@
                                         </div>
                                         @if ($errors->has('akt_date'))
                                             <span class="help-block">
-                                                <strong class="text-danger">{{trans("app.Namuna olish dalolatnoma sanasi noto'g'ri shaklda kiritilgan")}}</strong>
+                                                <strong
+                                                    class="text-danger">{{ trans("app.Namuna olish dalolatnoma sanasi noto'g'ri shaklda kiritilgan") }}</strong>
                                             </span>
                                         @endif
                                     </div>
@@ -69,7 +70,7 @@
                                             for="out_check">{{ trans('app.Partiyani tashqi tekshirish natijasi') }}<label
                                                 class="text-danger">*</label></label>
                                         <div class="">
-                                            <textarea id="out_check" name="out_check" class="form-control" maxlength="100">{{ old('out_check') }}</textarea>
+                                            <textarea id="out_check" name="out_check" class="form-control">{{ old('out_check') }}</textarea>
                                         </div>
                                     </div>
 
@@ -142,20 +143,23 @@
                                         <input type="text" readonly value="{{ $data->application->crops->country->name }}"
                                             class="form-control">
                                     </div>
-                                    <div class="col-md-4 form-group has-feedback">
-                                        <label class="form-label">{{ trans('app.Umumiy miqdor') }} <label
-                                                class="text-danger">*</label></label>
-                                        <input type="text" readonly value="{{ $data->application->crops->amount }}"
-                                            class="form-control">
-                                    </div>
-                                    <div class="col-md-4 form-group has-feedback">
-                                        <label class="form-label">{{ trans('app.Mahsulot birligi') }} <label
-                                                class="text-danger">*</label></label>
-                                        <input type="text" readonly
-                                            value="{{ $amount[$data->application->crops->measure_type] }}"
-                                            class="form-control">
-                                    </div>
-
+                                    @if ($data->application->crops->amount)
+                                        <div class="col-md-4 form-group has-feedback">
+                                            <label class="form-label">{{ trans('app.Umumiy miqdor') }} <label
+                                                    class="text-danger">*</label></label>
+                                            <input type="text" readonly value="{{ $data->application->crops->amount }}"
+                                                class="form-control">
+                                        </div>
+                                    @endif
+                                    @if ($data->application->crops->measure_type)
+                                        <div class="col-md-4 form-group has-feedback">
+                                            <label class="form-label">{{ trans('app.Mahsulot birligi') }} <label
+                                                    class="text-danger">*</label></label>
+                                            <input type="text" readonly
+                                                value="{{ $amount[$data->application->crops->measure_type] ?? '' }}"
+                                                class="form-control">
+                                        </div>
+                                    @endif
                                     <div class="col-md-4 form-group {{ $errors->has('make_date') ? ' has-error' : '' }}">
                                         <label class="form-label">{{ trans('app.Ishlab chiqarilgan sana') }} <label
                                                 class="text-danger">*</label></label>
@@ -171,7 +175,8 @@
                                         </div>
                                         @if ($errors->has('make_date'))
                                             <span class="help-block">
-                                                <strong class="text-danger">{{trans("app.Ishlab chiqarilgan sanasi noto'g'ri shaklda kiritilgan")}}</strong>
+                                                <strong
+                                                    class="text-danger">{{ trans("app.Ishlab chiqarilgan sanasi noto'g'ri shaklda kiritilgan") }}</strong>
                                             </span>
                                         @endif
                                     </div>
@@ -190,7 +195,8 @@
                                         </div>
                                         @if ($errors->has('expiry_date'))
                                             <span class="help-block">
-                                                <strong class="text-danger">{{trans("app.Yaroqliylik sanasi noto'g'ri shaklda kiritilgan")}}</strong>
+                                                <strong
+                                                    class="text-danger">{{ trans("app.Yaroqliylik sanasi noto'g'ri shaklda kiritilgan") }}</strong>
                                             </span>
                                         @endif
                                     </div>
@@ -219,7 +225,7 @@
                                     {{--  --}}
                                     <div
                                         class="col-md-4 form-group has-feedback {{ $errors->has('party_number') ? ' has-error' : '' }}">
-                                        <label for="middle-name" class="form-label">{{ trans("app.Toʼda (partiya) soni") }}
+                                        <label for="middle-name" class="form-label">{{ trans('app.Toʼda (partiya) soni') }}
                                             <label class="text-danger">*</label></label>
                                         <input type="number" class="form-control" maxlength="25" name="party_number"
                                             value="{{ old('party_number') }}" required id="middle-name">
@@ -228,7 +234,7 @@
                                     <div class="col-md-6 form-group has-feedback">
                                         <label class="form-label">{{ trans("app.O'lchov birliklari") }}<label
                                                 class="text-danger">*</label></label>
-                                        <select class="w-100 form-control" name="measure_type" required>
+                                        <select class="w-100 form-control" name="measure_type">
                                             <option value="">{{ trans("app.O'lchov birliklarni tanlang") }}</option>
                                             @foreach ($amount as $key => $item)
                                                 <option value="{{ $key }}">{{ $item }}</option>

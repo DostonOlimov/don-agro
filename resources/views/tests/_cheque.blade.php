@@ -20,7 +20,7 @@
     <div>
         <h4>
             1. {{ $decision->application->crops->year }}- yil xosilidan ,
-            {{ $decision->application->crops->type->name }} - navli,&nbsp; {{-- {{$decision->application->crops->generation->name}} - avlodli &nbsp; --}}
+            {{ ($decision->application->crops->type)? $decision->application->crops->type->name." - navli," : '' }} {{-- {{$decision->application->crops->generation->name}} - avlodli &nbsp; --}}
             {{-- {{ $decision->application->crops->pre_name }} urugʼlik &nbsp; --}}
             {{ $decision->application->crops->name->name }}
             &nbsp; mahsuloti &nbsp;

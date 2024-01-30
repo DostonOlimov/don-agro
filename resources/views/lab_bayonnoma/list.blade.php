@@ -77,8 +77,9 @@
                                             @foreach ($data as $key => $item)
                                                 <tr>
                                                     <td>{{ ++$key }}</td>
-                                                    <td>{{!empty($item->test->application->decision->laboratory->certificate)??'' }}</td>
-                                                    <td>{{ !empty($item->test->application->decision->laboratory->certificate)? \App\Models\Nds::getType()[$item->test->application->crops->name->nds->type_id] . '.' . $item->test->application->crops->name->nds->number . ' ' . $item->test->application->crops->name->nds->name :'' }}
+                                                    <td>{{ !empty($item->test->application->decision->laboratory->certificate) ?? '' }}
+                                                    </td>
+                                                    <td>{{ !empty($item->test->application->decision->laboratory->certificate) ? \App\Models\Nds::getType()[$item->test->application->crops->name->nds->type_id] . '.' . $item->test->application->crops->name->nds->number . ' ' . $item->test->application->crops->name->nds->name : '' }}
                                                     </td>
                                                     @if (!empty($item->lab_bayonnoma[0]))
                                                         <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $item->lab_bayonnoma[0]->lab_start_date)->format('d.m.Y') }}
@@ -116,6 +117,7 @@
 
                                         </tbody>
                                     </table>
+                                    {{ $data->links() }}
                                 </div>
                             </div>
                         </div>

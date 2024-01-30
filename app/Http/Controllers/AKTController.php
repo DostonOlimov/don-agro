@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AKT;
 use Carbon\Carbon;
 use App\Models\CropData;
+use App\Models\LabBayonnoma;
 use App\Models\TestPrograms;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class AKTController extends Controller
 {
     function list()
     {
-        $data = TestPrograms::with('application.crops.country', 'application.crops.name.nds', 'akt')->get();
+        $data = TestPrograms::with('application.crops.country', 'application.crops.name.nds', 'akt')->paginate(50);
         $amount = CropData::getMeasureType();
 
         return view('AKT.list', compact('data', 'amount'));
@@ -91,7 +92,11 @@ class AKTController extends Controller
     function delete($id)
     {
         $this->authorize('setting_delete', User::class);
-        $factory = AKT::where('id', '=', $id)->delete();
+        $akt = AKT::find($id);
+        if ($akt) {
+            LabBayonnoma::where("akt_id", $akt)->delete();
+        }
+        $akt->delete();
         return redirect('/akt/list')->with('message', 'Successfully Deleted');
     }
 }

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AKT;
 use App\Models\Application;
 use App\Models\AppRequirement;
 use App\Models\CropData;
 use App\Models\Decision;
+use App\Models\LabBayonnoma;
 use App\Models\Laboratories;
 use App\Models\Nds;
 use App\Models\TestPrograms;
@@ -157,7 +159,15 @@ class DecisionController extends Controller
     {
         $this->authorize('mydelete', Application::class);
         $decision = Decision::find($id);
-        TestPrograms::where('app_id', $decision->app_id)->delete();
+        $test = TestPrograms::where('app_id', $decision->app_id)->first();
+        if ($test) {
+            $akt = AKT::where('test_program_id', $test)->first();
+            if ($akt) {
+                LabBayonnoma::where("akt_id", $akt)->delete();
+            }
+            $akt->delete();
+        }
+        $test->delete();
         Decision::destroy($id);
         return redirect('decision/search')->with('message', 'Successfully Deleted');
     }

@@ -11,7 +11,6 @@
            {{$decision->test_program->application->app_number}}-sonli<br>
         <h1>Qaror</h1> </b>
     </h4>
-
     <div>
         <h4>
             &ensp; Buyurtmachi {{$decision->test_program->application->organization->name}} &ensp;
@@ -20,11 +19,11 @@
             o'rnatilgan talablarga @if($decision->type == 2) {{'muvofiq'}} @else {{'nomuvofiq' }} @endif
             deb topildi, buning asosida Don va uni qayta ishlashdan olingan mahsulotlarni sertifikatlashtirish organing
             mustaqil baholash mutaxasisi sertifikatlash natijalari bo'yicha qaror qabul qildi: <br>
-            Mahsulot turi &nbsp;{{$decision->test_program->application->crops->name->name}} , mahsulot navi &nbsp; {{$decision->test_program->application->crops->type->name}},
-            &nbsp;
-            &nbsp;partiyasi,
-            &nbsp;miqdori&nbsp;{{$decision->test_program->application->crops->amount}}&nbsp;{{\App\Models\CropData::getMeasureType($decision->test_program->application->crops->measure_type)}},
-            &nbsp;ishlab chiqarilgan sana &nbsp;{{$decision->test_program->application->crops->year}}  bo'lgan mahsulotiga
+            Mahsulot turi &nbsp;{{$decision->test_program->application->crops->name->name}} {{($decision->test_program->application->crops->type)? "mahsulot navi ".$decision->test_program->application->crops->type->name : ''}},
+            {{-- &nbsp; --}}
+            {{-- &nbsp;{{$decision->test_program->akt[0]->party_number}} partiyasi, --}}
+            &nbsp;{{($decision->test_program->application->crops->amount)? "miqdori ".$decision->test_program->application->crops->amount:""}}{{($decision->test_program->application->crops->measure_type)?\App\Models\CropData::getMeasureType($decision->test_program->application->crops->measure_type):""}}
+            ishlab chiqarilgan sana &nbsp;{{$decision->test_program->akt[0]->make_date??''}}  bo'lgan mahsulotiga {{($decision->test_program->application->crops)?$decision->test_program->application->crops->sxeme_number:''}} - sxema bo'yicha
             @if($decision->type == 2) {{'Muvofiqlik sertifikati rasmiylashtirilsin.'}} @else {{'tahlil natijasida sertifikat rasmiylashtirishga rad etiladi' }} @endif
 
         </h4>

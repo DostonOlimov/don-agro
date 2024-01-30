@@ -292,7 +292,7 @@ CREATE TABLE `crops_name` (
   `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `kodtnved` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `measure_type` int(2) NOT NULL DEFAULT 1,
+  `measure_type` int(2) NULL DEFAULT 1,
   `img` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'default.png',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -507,14 +507,14 @@ CREATE TABLE `crops_type` (
 
 CREATE TABLE `crop_data` (
   `id` int(11) NOT NULL,
-  `name_id` int(11) NOT NULL,
+  `name_id` int(11) NULL,
   `type_id` int(11) NULL,
 --   `generation_id` int(11) NOT NULL,
   `kodtnved` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `measure_type` int(11) NOT NULL,
+  `measure_type` int(11) NULL,
   `amount` double DEFAULT NULL,
   `sxeme_number` int(11) NOT NULL,
-  `year` int(11) NOT NULL,
+  `year` int(11) NULL,
   `country_id` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -2071,7 +2071,7 @@ CREATE TABLE `lists` (
 
 CREATE TABLE `nds` (
   `id` int(11) NOT NULL,
-  `type_id` int(11) NOT NULL,
+  `type_id` int(11) NULL,
   `number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(511) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `crop_id` int(11) NOT NULL,

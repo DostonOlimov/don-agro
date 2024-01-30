@@ -194,7 +194,7 @@
                                         <label for="middle-name" class="form-label">{{ trans('app.Mahsulot miqdori') }}
                                             <label class="text-danger">*</label></label>
                                         <input type="number" step="0.01" class="form-control" maxlength="25"
-                                            value="{{ old('amount') }}" name="amount" required>
+                                            value="{{ old('amount') }}" name="amount">
                                         @if ($errors->has('amount'))
                                             <span class="help-block">
                                                 <strong></strong>
@@ -205,7 +205,7 @@
                                         <div class="form-group overflow-hidden">
                                             <label class="form-label">{{ trans('app.O\'lchov turi') }} <label
                                                     class="text-danger">*</label></label>
-                                            <select class="w-100 form-control" name="measure_type" required>
+                                            <select class="w-100 form-control" name="measure_type">
                                                 @if (count($measure_types))
                                                     <option value="">{{ trans('app.O\'lchov turini tanlang') }}</option>
                                                 @endif
@@ -221,7 +221,7 @@
                                         <div class="form-group overflow-hidden">
                                             <label class="form-label">{{ trans('app.Hosil yili') }}<label
                                                     class="text-danger">*</label></label>
-                                            <select class="w-100 form-control" name="year" required>
+                                            <select class="w-100 form-control" name="year">
                                                 @if (count($year))
                                                     <option value="">{{ trans('app.Hosil yilini tanlang') }}</option>
                                                 @endif

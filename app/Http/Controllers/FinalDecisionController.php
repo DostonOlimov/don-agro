@@ -29,6 +29,7 @@ class FinalDecisionController extends Controller
         $till = $request->input('till');
         $apps= FinalResult::with('test_program')
             ->with('test_program.application')
+            ->with('test_program.akt')
             ->with('test_program.application.crops.name')
             ->with('test_program.application.crops.type')
             ->with('test_program.application.organization');
@@ -114,6 +115,7 @@ class FinalDecisionController extends Controller
             ->with('test_program.application.crops.type')
             // ->with('test_program.application.crops.generation')
             ->with('test_program.application')
+            ->with('test_program.akt')
             ->with('decision_maker')
             ->find($id);
 //        $measure_type = CropData::getMeasureType(Application::find($final_decision->app_id)->crops->measure_type);

@@ -46,8 +46,8 @@
 										<th class="border-bottom-0 border-top-0">{{trans('app.Buyurtmachi korxona yoki tashkilot nomi')}}</th>
 										<th class="border-bottom-0 border-top-0">{{trans('app.Mahsulot turi')}}</th>
 										<th class="border-bottom-0 border-top-0">{{trans('app.Mahsulot miqdori')}}</th>
-										<th class="border-bottom-0 border-top-0">{{trans('app.Ishlab chiqarilgan sana ')}}</th>
-                                        <th class="border-bottom-0 border-top-0">{{trans('app.Action')}}</th>
+										<th class="border-bottom-0 border-top-0">{{trans('app.Ishlab chiqarilgan sana')}}</th>
+                                        <th class="border-bottom-0 border-top-0">{{trans('app.Hosil yili')}}</th>
                                         <th class="border-bottom-0 border-top-0">{{trans('app.Action')}}</th>
 									</tr>
                                     </thead>
@@ -61,10 +61,10 @@
                                             <td>{{ optional(optional($app->test_program)->application)->app_number }}</td>
                                             <td>{{ optional(optional($app->test_program)->application)->date}}</td>
                                             <td>{{ optional(optional($app->test_program)->application)->organization->name }}</td>
-                                            <td>{{ optional(optional($app->test_program)->application)->crops->name->name}}</td>
-                                            <td>{{ optional($app->test_program)->application->crops->type->name }}</td>
-                                            <td>{{ optional($app->test_program)->application->crops->amount_name }}</td>
-                                            <td>{{ optional($app->test_program)->application->crops->year }}</td>
+                                            <td>{{ optional(optional($app->test_program)->application)->crops->name->name??''}}</td>
+                                            <td>{{ optional($app->test_program)->application->crops->type->name ??''}}</td>
+                                            <td>{{ optional($app->test_program)->akt[0]->make_date ??''}}</td>
+                                            <td>{{ optional($app->test_program)->application->crops->year ??''}}</td>
                                             <td>
                                                 <a href="{!! url('/final_decision/view/'.$app->id) !!}"><button type="button" class="btn btn-round btn-info">{{ trans('app.View')}}</button></a>
                                             </td>
