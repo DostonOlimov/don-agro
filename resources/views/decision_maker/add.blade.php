@@ -84,7 +84,7 @@
                                                 <a class="btn btn-primary"
                                                     href="{{ URL::previous() }}">{{ trans('app.Cancel') }}</a>
                                                 <button type="submit"
-                                                    class="btn btn-success">{{ trans('app.Update') }}</button>
+                                                    class="btn btn-success">{{ trans('app.Qo\'shish') }}</button>
                                             </div>
                                         </div>
                                     </form>

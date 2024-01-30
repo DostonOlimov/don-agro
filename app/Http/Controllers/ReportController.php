@@ -140,7 +140,7 @@ class ReportController extends Controller{
         }
 
         $crop_names = DB::table('crops_name')->get()->toArray();
-        $name = CropsName::find($crop)->name;
+        $name = CropsName::find($crop)->name??'';
         $years = CropData::getYear();
         $measure_type = ($crop == 20 or $crop == 8) ? trans('message.dona') : trans('message.tonna');
 
@@ -187,7 +187,7 @@ class ReportController extends Controller{
 
         $years = CropData::getYear();
         $crop_names = DB::table('crops_name')->get()->toArray();
-        $name = CropsName::find($crop)->name;
+        $name = CropsName::find($crop)->name??'';
         $measure_type = ($crop == 20 or $crop == 8) ? trans('message.dona') : trans('message.tonna');
 
 
