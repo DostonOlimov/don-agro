@@ -84,7 +84,7 @@
                                                     @if (!empty($item->akt[0]))
                                                         <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $item->akt[0]->make_date)->format('d.m.Y') }}
                                                         </td>
-                                                        <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $item->akt[0]->expiry_date)->format('d.m.Y') }}
+                                                        <td>{{ ($item->akt[0]->expiry_date)?\Carbon\Carbon::createFromFormat('Y-m-d', $item->akt[0]->expiry_date)->format('d.m.Y'):"" }}
                                                         </td>
                                                         <td>{{ $item->akt[0]->simple_size }}</td>
                                                         <td>{{ $amount[$item->akt[0]->measure_type] }}</td>

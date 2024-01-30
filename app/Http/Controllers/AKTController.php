@@ -31,10 +31,16 @@ class AKTController extends Controller
     }
     function store(Request $request)
     {
-        $akt_date = Carbon::createFromFormat('d.m.Y', $request->input('akt_date'))->format('Y-m-d');
-        $make_date = Carbon::createFromFormat('d.m.Y', $request->input('make_date'))->format('Y-m-d');
-        $expiry_date = Carbon::createFromFormat('d.m.Y', $request->input('expiry_date'))->format('Y-m-d');
-
+        if($request->input('expiry_date')){
+            $akt_date = Carbon::createFromFormat('d.m.Y', $request->input('akt_date'))->format('Y-m-d');
+            $make_date = Carbon::createFromFormat('d.m.Y', $request->input('make_date'))->format('Y-m-d');
+            $expiry_date = Carbon::createFromFormat('d.m.Y', $request->input('expiry_date'))->format('Y-m-d');
+        }
+        else{
+            $akt_date = Carbon::createFromFormat('d.m.Y', $request->input('akt_date'))->format('Y-m-d');
+            $make_date = Carbon::createFromFormat('d.m.Y', $request->input('make_date'))->format('Y-m-d');
+            $expiry_date = null;
+        }
         $userA = Auth::user();
         $akt = new AKT();
         $akt->akt_date =  $akt_date;
