@@ -143,6 +143,13 @@
                                 <svg class="nav-icon">
                                 </svg>{{ trans('message.Talab etiluvchi hujjatlar') }}</a>
                         </li>
+
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/laboratories/list') }}"><span
+                                    class="nav-icon"></span>
+                                <svg class="nav-icon">
+                                    <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-city"></use>
+                                </svg>{{ trans('message.Laboratoriyalar') }}</a>
+                        </li>
                     </ul>
                 </li>
             @endif
@@ -187,12 +194,6 @@
                             <svg class="nav-icon">
                                 <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-city"></use>
                             </svg>{{ trans('message.Shaxar va tumanlar') }}</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url('/laboratories/list') }}"><span
-                                class="nav-icon"></span>
-                            <svg class="nav-icon">
-                                <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-city"></use>
-                            </svg>{{ trans('message.Laboratoriyalar') }}</a>
                     </li>
                 </ul>
             </li>

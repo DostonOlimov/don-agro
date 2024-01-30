@@ -47,10 +47,13 @@
                                         <label class="form-label" for="app_number">{{trans("app.Mahsulot nomi")}} <label class="text-danger">*</label></label>
                                         <input type="text" readonly name="product_name" value="{{ optional($app->crops)->name->name}}" class="form-control">
                                     </div>
+                                    @if ($app->crops->type)
+
                                     <div class="col-md-4 form-group has-feedback">
                                         <label class="form-label" for="app_number">{{trans("app.Mahsulot navi")}} <label class="text-danger">*</label></label>
                                         <input type="text" readonly name="product_type" value="{{ optional($app->crops)->type->name}}" class="form-control">
                                     </div>
+                                    @endif
                                     {{-- <div class="col-md-4 form-group has-feedback">
                                         <label class="form-label" for="app_number">Mahsulot avlodi <label class="text-danger">*</label></label>
                                         <input type="text" readonly name="product_generation" value="{{ optional($app->crops)->generation->name}}" class="form-control">

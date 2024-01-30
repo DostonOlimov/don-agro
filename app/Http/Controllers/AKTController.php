@@ -31,12 +31,11 @@ class AKTController extends Controller
     }
     function store(Request $request)
     {
-        if($request->input('expiry_date')){
+        if ($request->input('expiry_date')) {
             $akt_date = Carbon::createFromFormat('d.m.Y', $request->input('akt_date'))->format('Y-m-d');
             $make_date = Carbon::createFromFormat('d.m.Y', $request->input('make_date'))->format('Y-m-d');
             $expiry_date = Carbon::createFromFormat('d.m.Y', $request->input('expiry_date'))->format('Y-m-d');
-        }
-        else{
+        } else {
             $akt_date = Carbon::createFromFormat('d.m.Y', $request->input('akt_date'))->format('Y-m-d');
             $make_date = Carbon::createFromFormat('d.m.Y', $request->input('make_date'))->format('Y-m-d');
             $expiry_date = null;
@@ -64,11 +63,15 @@ class AKTController extends Controller
     {
         $data = AKT::with('test.application.organization.city.region', 'test.application.crops.name.nds', 'test.application.crops.country')->find($id);
         $amount = CropData::getMeasureType();
-        $akt_date=Carbon::createFromFormat('Y-m-d', $data->akt_date)->format('d.m.Y');
-        $make_date=Carbon::createFromFormat('Y-m-d', $data->make_date)->format('d.m.Y');
-        $expiry_date=Carbon::createFromFormat('Y-m-d', $data->expiry_date)->format('d.m.Y');
+        $akt_date = Carbon::createFromFormat('Y-m-d', $data->akt_date)->format('d.m.Y');
+        $make_date = Carbon::createFromFormat('Y-m-d', $data->make_date)->format('d.m.Y');
+        if ($data->expiry_date) {
+            $expiry_date = Carbon::createFromFormat('Y-m-d', $data->expiry_date)->format('d.m.Y');
+        } else {
+            $expiry_date = null;
+        }
 
-        return view('AKT.edit', compact('data', 'amount','akt_date','make_date','expiry_date'));
+        return view('AKT.edit', compact('data', 'amount', 'akt_date', 'make_date', 'expiry_date'));
     }
     function update(Request $request, $id)
     {
