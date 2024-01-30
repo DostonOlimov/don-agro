@@ -22,7 +22,7 @@
             Mahsulot turi &nbsp;{{$decision->test_program->application->crops->name->name}} {{($decision->test_program->application->crops->type)? "mahsulot navi ".$decision->test_program->application->crops->type->name : ''}},
             {{-- &nbsp; --}}
             {{-- &nbsp;{{$decision->test_program->akt[0]->party_number}} partiyasi, --}}
-            &nbsp;{{($decision->test_program->application->crops->amount)? "miqdori ".$decision->test_program->application->crops->amount:""}}{{($decision->test_program->application->crops->measure_type)?\App\Models\CropData::getMeasureType($decision->test_program->application->crops->measure_type):""}}
+            &nbsp;{{($decision->test_program->application->crops->amount)? "miqdori ".$decision->test_program->application->crops->amount:""}}{{($decision->test_program->application->crops->amount)?\App\Models\CropData::getMeasureType($decision->test_program->application->crops->measure_type):""}}
             ishlab chiqarilgan sana &nbsp;{{$decision->test_program->akt[0]->make_date??''}}  bo'lgan mahsulotiga {{($decision->test_program->application->crops)?$decision->test_program->application->crops->sxeme_number:''}} - sxema bo'yicha
             @if($decision->type == 2) {{'Muvofiqlik sertifikati rasmiylashtirilsin.'}} @else {{'tahlil natijasida sertifikat rasmiylashtirishga rad etiladi' }} @endif
 
