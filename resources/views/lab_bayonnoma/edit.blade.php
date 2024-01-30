@@ -96,7 +96,7 @@
                                         <div class="form-group">
                                             <label class="form-label">{{ trans('app.Sinov Bayonnoma raqami') }}<label
                                                     class="text-danger">*</label></label>
-                                            <input class="form-control" type="number" name="number"
+                                            <input class="form-control" type="text" name="number"
                                                 value="{{ $data->number }}" />
                                         </div>
                                     </div>

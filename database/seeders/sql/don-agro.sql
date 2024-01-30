@@ -57,7 +57,7 @@ CREATE TABLE `lab_bayonnoma` (
   `id` int(11) NOT NULL,
   `lab_start_date` date DEFAULT NULL,
   `date` date DEFAULT NULL,
-  `number` int(11) NULL,
+  `number` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
   `test_result` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
   `test_employee` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
   `akt_id` int(11) NOT NULL,
