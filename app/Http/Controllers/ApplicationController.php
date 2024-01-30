@@ -133,7 +133,7 @@ class ApplicationController extends Controller
         $userA = Auth::user();
         $crop = new CropData();
         $crop->name_id = $request->input('name');
-        $crop->type_id = $request->input('type')??'';
+        $crop->type_id = $request->input('type')??null;
         // $crop->generation_id = $request->input('generation');
         $crop->country_id = $request->input('country');
         $crop->kodtnved = $request->input('tnved');
