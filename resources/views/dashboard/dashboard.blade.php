@@ -152,6 +152,51 @@
                     <p class="lineUp">{{$global_app}} {{trans('message.ta')}}</p>
                 </div>
             </div>
+
+            {{-- start eskirish --}}
+            <div class="circle_persentages__statistics">
+                <div class="circle-persentages__circle">
+                    <svg viewBox="0 0 4.5 4.5" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Lower circle -->
+                        <circle
+                            cx="2.25"
+                            cy="2.25"
+                            r="2"
+                            fill="transparent"
+                            stroke="#353941"
+                            stroke-width="0.35"
+                        />
+                        <!-- Actual circle -->
+                        <circle
+                            cx="2.25"
+                            cy="2.25"
+                            r="2"
+                            fill="transparent"
+                            stroke="#db3949"
+                            stroke-width="0.35"
+                            stroke-dasharray="0.5 100"
+                            stroke-linecap="round"
+                            transform="rotate(-90 2.25 2.25)"
+                        />
+                    </svg>
+                    <div class="circle">
+                        <div class="mask full">
+                            <div class="fill"></div>
+                        </div>
+
+                        <div class="mask half">
+                            <div class="fill"></div>
+                        </div>
+
+                        <div class="inside-circle">@php echo round(100 * ($all_app_count > 0 ? $old_app / $all_app_count : 0),1);@endphp%</div>
+                    </div>
+                </div>
+                <div class="circle_persentages__statistics__texts">
+                    <h3 class="lineUp">{{trans('message.Eski hosil uchun')}}</h3>
+                    <p class="lineUp">{{$old_app}} {{trans('message.ta')}}</p>
+                </div>
+            </div>
+            {{-- end eskirish --}}
         </div>
     </div>
 

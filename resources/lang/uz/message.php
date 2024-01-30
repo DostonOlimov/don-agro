@@ -52,6 +52,7 @@ return[
     'Hududlar'=>'Hududlar',
     'Viloyatlar'=>'Viloyatlar',
     'Shaxar va tumanlar'=>'Shaxar va tumanlar',
+    "Eski hosil uchun"=>"Eski hosil uchun",
 
     'Profile'=>'Profil',
     'Shaxsiy ma\'lumotlar'=>'Shaxsiy ma\'lumotlar',

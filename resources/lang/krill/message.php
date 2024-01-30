@@ -52,6 +52,7 @@ return[
     'Hududlar'=>'Ҳудудлар',
     'Viloyatlar'=>'Вилоятлар',
     'Shaxar va tumanlar'=>'Шахар ва туманлар',
+    "Eski hosil uchun"=>"Эски ҳосил учун",
 
      //home page
     'Xush kelibsiz'=>'Хуш келибсиз',

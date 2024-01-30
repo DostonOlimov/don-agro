@@ -34,6 +34,7 @@ class HomeController extends Controller
         $all_app_count = Application::count();
         $local_app = Application::where('type','=',Application::TYPE_1)->count();
         $global_app = Application::where('type','=',Application::TYPE_2)->count();
+        $old_app = Application::where('type','=',Application::TYPE_3)->count();
         $month_app_count = Application::whereDate('created_at', '>=', $startDate)->count();
         $month_cer_count = Sertificate::whereDate('created_at', '>=', $startDate)->count();
         $all_cer_count = Sertificate::count();
@@ -101,7 +102,7 @@ class HomeController extends Controller
 
         return view('dashboard.dashboard',
             compact('crops','app_states','states','crop_names','role','all_app_count',
-                'month_app_count','month_cer_count','all_cer_count','local_app','global_app',
+                'month_app_count','month_cer_count','all_cer_count','local_app','global_app','old_app',
                 'from','till','city','crop','app_type_selector')
         );
     }

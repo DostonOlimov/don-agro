@@ -53,6 +53,7 @@ return[
     'Hududlar'=>'Области',
     'Viloyatlar'=>'Провинции',
     'Shaxar va tumanlar'=>'Города и районы',
+    "Eski hosil uchun"=>"Для старого урожая",
 
     //home page
     'Xush kelibsiz'=>'Добро пожаловать',
