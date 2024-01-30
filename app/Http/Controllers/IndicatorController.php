@@ -75,6 +75,7 @@ class IndicatorController extends Controller
     {
         $type = Indicator::findOrFail($id);
         $type->name = $request->input('name');
+        $type->nd_name = $request->input('nd_name');
         $type->crop_id = $request->input('crop');
         $type->save();
 
