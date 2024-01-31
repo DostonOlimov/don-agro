@@ -5,11 +5,11 @@ return [
     'Barcha arizalar bo\'yicha umumiy ro\'yxat' => 'Общий список всех приложений',
     'Ariza sanasi' => 'Дата подачи заявки',
     'Mahsulot turi' => 'Тип Продукт',
-    'Mahsulot navi' => 'Сорт Продукт',
+    // 'Mahsulot navi' => 'Сорт Продукт',
     'Mahsulot turini tanlang' => 'Выберите тип урожая',
     // 'Ekin avlodini tanlang'=>'Выберите поколение урожая',
     // 'Ekin avlodi'=>'Генерация урожая',
-    'Mahsulot navi' => 'Сорт продукт',
+    'Mahsulot navi' => 'Класс продукта (сорта)',
     'Mahsulot nomi' => 'Имя продукт',
     // 'Urug\' avlodi'=>'Генерация семян',
     'Mahsulot miqdori' => 'Количество продукта',
@@ -413,4 +413,5 @@ return [
     "Manzilni kiriting"=>"Введите адрес",
 
     "Mahsulot tayorlangan shaxobcha yoki sex nomi"=>"Название магазина или мастерской, где изготавливается товар",
+    "Mahsulot (nav) sinfini tanlang"=>"Выберите класс товара (сорта)",
 ];

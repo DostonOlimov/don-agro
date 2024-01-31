@@ -6,11 +6,11 @@ return [
     'Barcha arizalar bo\'yicha umumiy ro\'yxat' => 'General list of all applications',
     'Ariza sanasi' => 'Date of application',
     'Mahsulot turi' => 'Product type',
-    'Mahsulot navi' => 'Product variety',
+    // 'Mahsulot navi' => 'Product variety',
     'Mahsulot turini tanlang' => 'Select the type of product',
     // 'Ekin avlodini tanlang'=>'Select the crop generation',
     // 'Ekin avlodi'=>'Crop generation',
-    'Mahsulot navi' => 'Product type',
+    'Mahsulot navi' => 'Product (variety) class',
     'Mahsulot nomi' => 'Product name',
     // 'Urug\' avlodi'=>'Seed generation',
     'Mahsulot miqdori' => 'Amount of product',
@@ -413,4 +413,5 @@ return [
     "Manzilni kiriting"=>"Enter the address",
 
     "Mahsulot tayorlangan shaxobcha yoki sex nomi"=>"The name of the shop or workshop where the product is made",
+    "Mahsulot (nav) sinfini tanlang"=>"Select the product (variety) class",
 ];

@@ -5,11 +5,11 @@ return [
     'Barcha arizalar bo\'yicha umumiy ro\'yxat' => 'Барча аризалар бўйича умумий рўйхат',
     'Ariza sanasi' => 'Ариза санаси',
     'Mahsulot turi' => 'Маҳсулот тури',
-    'Mahsulot navi' => 'Маҳсулот нави',
+    // 'Mahsulot navi' => 'Маҳсулот нави',
     'Mahsulot turini tanlang' => 'Маҳсулот турини танланг',
     // 'Ekin avlodini tanlang'=>'Экин авлодини танланг',
     // 'Ekin avlodi'=>'Екин авлоди',
-    'Mahsulot navi' => 'Маҳсулот нави',
+    'Mahsulot navi' => 'Маҳсулот (нави) синфи',
     'Mahsulot nomi' => 'Маҳсулот номи',
     // 'Urug\' avlodi'=>'Уруғ авлоди',
     'Mahsulot  miqdori' => 'Маҳсулот миқдори',
@@ -21,7 +21,7 @@ return [
     'Buyurtmachi korxona yoki tashkilot nomi' => 'Буюртмачи корхона ёки ташкилот номи',
     'Mahsulot lik tayorlangan shaxobcha yoki sexning nomi' => 'Ишлаб чиқарувчи заводнинг номи',
     'Ishlab chiqargan davlat' => 'Ишлаб чиқарилган давлат',
-    'Toʼda (partiya) raqami' => 'Тўда (партия) рақами',
+    'Toʼda (partiya) raqami' => 'Тўда (партия) сонни',
     'amount' => 'Миқдори',
     'Ishlab chiqarilgan sana' => 'Ишлаб чиқарилган сана',
     'Sinov bayonnoma raqami' => 'Синов баённома рақами',
@@ -410,4 +410,5 @@ return [
     "Manzilni kiriting"=>"Манзилни киритинг",
 
     "Mahsulot tayorlangan shaxobcha yoki sex nomi"=>"Маҳсулот таёрланган шахобча ёки сех номи",
+    "Mahsulot (nav) sinfini tanlang"=>"Маҳсулот (нав) синфини танланг",
 ];

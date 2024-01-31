@@ -34,7 +34,7 @@
 //                'Mahsulot turi',
 //                'Mahsulot navi',
 //                'Urug\'lik avlodi',
-//                'Toʼda (partiya) raqami',
+//                'Toʼda (partiya) sonni',
 //                'Mahsulot miqdori',
 //                'Ishlab chiqarilgan sana',
 //                'Sinov bayonnoma raqami',

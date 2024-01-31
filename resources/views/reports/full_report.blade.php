@@ -203,9 +203,9 @@
                                             </select>
                                         </td>
                                         <td>
-                                            {{-- <select class="form-control w-100 type_of_corn custom-select" name="type" id="type">
+                                            <select class="form-control w-100 type_of_corn custom-select" name="type" id="type">
                                                 @if($types)
-                                                    <option value="">{{trans('app.Mahsulot navini tanlang')}}</option>
+                                                    <option value="">{{trans('app.Mahsulot (nav) sinfini tanlang')}}</option>
                                                 @endif
                                                 @if(!empty($types))
                                                     @foreach($types as $type_name)
@@ -214,7 +214,7 @@
                                                     @endforeach
 
                                                 @endif
-                                            </select> --}}
+                                            </select>
                                         </td>
                                         {{-- <td>
                                             <select class="form-control w-100 generation_of_corn custom-select" name="generation" id="generation" >
