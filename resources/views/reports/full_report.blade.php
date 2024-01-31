@@ -203,7 +203,7 @@
                                             </select>
                                         </td>
                                         <td>
-                                            <select class="form-control w-100 type_of_corn custom-select" name="type" id="type">
+                                            {{-- <select class="form-control w-100 type_of_corn custom-select" name="type" id="type">
                                                 @if($types)
                                                     <option value="">{{trans('app.Mahsulot navini tanlang')}}</option>
                                                 @endif
@@ -214,7 +214,7 @@
                                                     @endforeach
 
                                                 @endif
-                                            </select>
+                                            </select> --}}
                                         </td>
                                         {{-- <td>
                                             <select class="form-control w-100 generation_of_corn custom-select" name="generation" id="generation" >
@@ -279,10 +279,10 @@
                                             <td>{{ optional($app->crops->name)->name }}</td>
                                             <td>{{ optional($app->crops->type)->name }}</td>
                                             {{-- <td>{{ optional($app->crops->generation)->name }}</td> --}}
-                                            <td>{{ optional($app->crops)->party_number }}</td>
+                                            <td>{{optional($app->tests)->akt[0]->party_number??""}}</td>
                                             <td>{{ optional($app->crops)->amount_name }}</td>
                                             <td>{{ optional($app->crops)->year }}</td>
-                                            <td>@if($type == 2){{ optional(optional($app->tests)->result)->number }}@else @if(is_null($type)) <button class="btn btn-warning">{{trans('app.Jarayonda')}}</button>@endif @endif</td>
+                                            <td>@if($type == 2){{$app->tests->akt[0]->lab_bayonnoma[0]->number??"" }}@else @if(is_null($type)) <button class="btn btn-warning">{{trans('app.Jarayonda')}}</button>@endif @endif</td>
                                             <td>{{ optional(optional(optional($app->tests)->result)->certificate)->reestr_number }}</td>
                                             <td>{{ optional(optional(optional($app->tests)->result)->certificate)->given_date }}</td>
                                             <td>@if($type != 2 ){{ optional(optional($app->tests)->result)->number }}@endif</td>

@@ -91,7 +91,7 @@ class DecisionController extends Controller
     //index
     public function add($id)
     {
-        $app = Application::find($id);
+        $app = Application::with("crops.type","crops.name")->find($id);
         $qrCode = null;
         if ($nd = Nds::where('crop_id', '=', $app->crops->name->id)->first()) {
             $laboratories = Laboratories::get();

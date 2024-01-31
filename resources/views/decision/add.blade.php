@@ -101,7 +101,15 @@
 							</div>
 						</form>
                         <div class="row">
-                            @include('decision._cheque', ['classes' => 'd-none'])
+                            @if ($app->crops->type && $app->crops->amount)
+                                    @include('decision._cheque', ['classes' => 'd-none'])
+                                @elseif ($app->crops->amount && !$app->crops->type)
+                                    @include('decision._cheque2', ['classes' => 'd-none'])
+                                @elseif (!$app->crops->amount && $app->crops->type)
+                                    @include('decision._cheque3', ['classes' => 'd-none'])
+                                @else
+                                    @include('decision._cheque4', ['classes' => 'd-none'])
+                                @endif
                             <div class="col-12 mt-4 form-actions d-none" id="success-actions">
                                 <button class="btn btn-primary" id="print-invoice-btn">{{trans("app.Chop etish")}}</button>
                                 <a id="payment-button" href="{{route('decision.payments.create')}}" class="btn btn-primary d-none">{{trans("app.To'lov qo'shish")}}</a>

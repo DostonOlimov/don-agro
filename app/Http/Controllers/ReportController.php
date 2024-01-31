@@ -98,10 +98,10 @@ class ReportController extends Controller{
         if($city){
             $cities = DB::table('tbl_cities')->where('state_id',$city)->get()->toArray();
         }
-        // if($crop){
-        //     $types = DB::table('crops_type')->where('crop_id',$crop)->get()->toArray();
-        //     $generations = DB::table('crops_generation')->where('crop_id',$crop)->get()->toArray();
-        // }
+        if($crop){
+            $types = DB::table('crops_type')->where('crop_id',$crop)->get()->toArray();
+            // $generations = DB::table('crops_generation')->where('crop_id',$crop)->get()->toArray();
+        }
 
         $names = DB::table('crops_name')->get();
         $countries = DB::table('tbl_countries')->get();
@@ -252,6 +252,7 @@ class ReportController extends Controller{
             // ->with('crops.generation')
             ->with('decision')
             ->with('tests')
+            ->with('tests.akt.lab_bayonnoma')
             ->with('tests.result')
             ->with('tests.result.certificate')
             ->whereIn('status',[Application::STATUS_ACCEPTED,Application::STATUS_FINISHED]);
@@ -336,13 +337,12 @@ class ReportController extends Controller{
         });
         $apps->when($request->input('s'), function ($query, $searchQuery) {
             $query->where(function ($query) use ($searchQuery) {
-                $query->whereHas('crops', function ($query) use ($searchQuery) {
+                $query->whereHas('tests.akt', function ($query) use ($searchQuery) {
                     $query->where('party_number', 'like', '%' . addslashes($searchQuery) . '%');
                 });
 
             });
         });
-
         return $apps;
     }
 

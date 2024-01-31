@@ -10,14 +10,15 @@
                 <div class="col-12">
                     <div class="card p-4">
                         <div class="row">
-                            @if ($decision->application->crops->type_id && $decision->application->crops->amount == null)
-                                @include('decision._cheque2')
-                            @elseif ($decision->application->crops->amount && $decision->application->crops->type_id == null)
-                                @include('decision._cheque3')
-                            @elseif ($decision->application->crops->amount == null && $decision->application->crops->type_id == null)
-                                @include('decision._cheque4')
-                            @else
+
+                            @if ($decision->application->crops->type_id && $decision->application->crops->amount)
                                 @include('decision._cheque')
+                            @elseif ($decision->application->crops->amount && !$decision->application->crops->type_id)
+                                @include('decision._cheque2')
+                            @elseif (!$decision->application->crops->amount && $decision->application->crops->type_id )
+                                @include('decision._cheque3')
+                            @else
+                                @include('decision._cheque4')
                             @endif
 
                         </div>

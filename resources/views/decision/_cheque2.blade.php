@@ -22,8 +22,7 @@
             <td colspan="4" class="align-left">
                 <h4 class=" text-left">
                     Buyurtmachi  <span id="application-organization"></span> <br>
-                    <span id="crop-type"></span> navli,</span>&nbsp<span id="crop-pre-name"></span>
-                    mahsulot &nbsp <span id="crop-name"></span> &nbsp mahsulotini sertifikatlashtirish uchun berilgan arizasini koʼrib chiqib quyidagilarni ma'lum qilamiz:
+                    mahsulot &nbsp <span id="crop-name"></span> &nbsp <span id="crop-amount"></span> <span id="measure-type"></span> , &nbsp mahsulotini sertifikatlashtirish uchun berilgan arizasini koʼrib chiqib quyidagilarni ma'lum qilamiz:
                 </h4>
             </td>
         </tr>
@@ -90,10 +89,10 @@
         $('#application-id').text(currentInvoice.app_id)
         $('#application-organization').text(currentInvoice.application.organization.name)
         $('#crop-name').text(currentInvoice.application.crops.name.name)
-        $('#crop-type').text(currentInvoice.application.crops.type.name)
+        // $('#crop-type').text(currentInvoice.application.crops.type.name)
         $('#crop-party').text(currentInvoice.application.crops.party_number)
         $('#measure-type').text(measure_type)
-        // $('#crop-amount').text(currentInvoice.application.crops.amount)
+        $('#crop-amount').text(currentInvoice.application.crops.amount)
         $('#sceme').text(currentInvoice.application.crops.sxeme_number)
 
         $('#laboratory-address').text(currentInvoice.laboratory.address)
