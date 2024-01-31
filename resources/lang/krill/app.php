@@ -21,7 +21,7 @@ return [
     'Buyurtmachi korxona yoki tashkilot nomi' => 'Буюртмачи корхона ёки ташкилот номи',
     'Mahsulot lik tayorlangan shaxobcha yoki sexning nomi' => 'Ишлаб чиқарувчи заводнинг номи',
     'Ishlab chiqargan davlat' => 'Ишлаб чиқарилган давлат',
-    'Toʼda (partiya) raqami' => 'Тўда (партия) сонни',
+    'Toʼda (partiya) raqami' => 'Тўда (партия) сони',
     'amount' => 'Миқдори',
     'Ishlab chiqarilgan sana' => 'Ишлаб чиқарилган сана',
     'Sinov bayonnoma raqami' => 'Синов баённома рақами',

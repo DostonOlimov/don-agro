@@ -509,9 +509,9 @@
     });
 
 
-    $('select.state_of_country').on('change', function () {
-        getPreName($(this));
-    });
+    // $('select.state_of_country').on('change', function () {
+    //     getPreName($(this));
+    // });
     $('select.state_of_country').on('change', function () {
         getCitiesOfState($(this));
     });
