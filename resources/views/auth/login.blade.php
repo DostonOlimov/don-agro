@@ -6,7 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="{{ URL::asset('resources/assets/images/paxta_logo.png') }}" type="image/x-icon"/>
-    <title>Paxta tolasini sertifikatlash tizimi</title>
+    <title>Don va uni qayta ishlashdan olingan mahsulotlarni sertifikatlashtirish organi</title>
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ URL::asset('/assets/images/logoNEW.png') }}">
 
     <link href="{{ URL::asset('vendors/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('resources/assets/css/style.css') }}">
