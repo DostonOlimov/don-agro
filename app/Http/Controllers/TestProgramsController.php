@@ -235,11 +235,13 @@ class TestProgramsController extends Controller
             $qrCode = QrCode::size(100)->generate($url);
         }
 
-        $measure_type = (Application::find($tests->app_id)->crops->name->measure_type == 2) ? "dona" : "kg";
+        // $measure_type = (Application::find($tests->app_id)->crops->name->measure_type == 2) ? "dona" : "kg";
+        $app_id = Application::find($tests->app_id);
         $nds_type = Nds::getType(Application::find($tests->app_id)->crops->name->nds->type_id);
         return view('tests.show', [
             'decision' => $tests,
-            'measure_type' => $measure_type,
+            // 'measure_type' => $measure_type,
+            'app_id' => $app_id,
             'nds_type' => $nds_type,
             'indicators' => $indicators,
             'qrCode' => $qrCode

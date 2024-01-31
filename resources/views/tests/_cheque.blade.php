@@ -30,19 +30,19 @@
             xolda amalga oshirilsin.
         </h4>
     </div>
-    <h4>2.Namunaning identifikatsiya raqami va vazni:</h4>
+    <h4>2.Namunaning identifikatsiya raqami:  {{$app_id->id}}</h4>
     @php
-        $k = 1;
-        $count = $decision->count;
+        // $k = 1;
+        // $count = $decision->count;
     @endphp
     <div>
         @php
-            $number = $decision->count; // Replace with your actual number
-            $columns = 5;
-            $rows = ceil($number / $columns);
+            // $number = $decision->count; // Replace with your actual number
+            // $columns = 5;
+            // $rows = ceil($number / $columns);
         @endphp
 
-        <table class="table table-bordered align-middle first-table">
+        {{-- <table class="table table-bordered align-middle first-table">
             @for ($row = 1; $row <= $rows; $row++)
                 <tr>
                     @for ($col = 1; $col <= $columns; $col++)
@@ -63,7 +63,7 @@
                     &nbsp;{{ $measure_type }}
                 </td>
             </tr>
-        </table>
+        </table> --}}
     </div>
     @php $t = 1; @endphp
     <h4>3.Sifat ko‘rsatkichlari bo‘yicha me’yoriy hujjatlar:</h4>

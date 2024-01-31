@@ -36,8 +36,8 @@ Route::group(
         //profile
         Route::get('/instruction', '\App\Http\Controllers\Customercontroller@instruction');
         Route::get('/full-report', '\App\Http\Controllers\ReportController@report')->name('report.full_report');
-        Route::get('/region-report', '\App\Http\Controllers\ReportController@region_report')->name('report.region_report');
-        Route::get('/company-report', '\App\Http\Controllers\ReportController@company_report')->name('report.company_report');
+        // Route::get('/region-report', '\App\Http\Controllers\ReportController@region_report')->name('report.region_report');
+        // Route::get('/company-report', '\App\Http\Controllers\ReportController@company_report')->name('report.company_report');
         Route::get('/export', '\App\Http\Controllers\ReportController@excel_export')->name('excel.export');
         Route::get('/city-export', '\App\Http\Controllers\ReportController@excel_city_export')->name('excel.city');
         Route::get('/sign', '\App\Http\Controllers\Customercontroller@sign');

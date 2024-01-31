@@ -57,7 +57,6 @@
             }
 
             let currentdecision = @json($decision);
-            let measure_type = @json($measure_type);
             let nds_type = @json($nds_type);
             let qrCode = @json($qrCode);
 
