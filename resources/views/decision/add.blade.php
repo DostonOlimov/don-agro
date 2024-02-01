@@ -174,7 +174,8 @@
                 success: function (data) {
                     currentInvoice = data['decision']
                     measure_type = data['measure_type']
-                    nds_type = data['nds_type']
+                    nds = data['nds']
+                    // nds_type = data['nds_type']
 
                     test_program_btn.classList.remove('disabled');
                     test_program_btn.classList.remove('d-none');

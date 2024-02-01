@@ -36,7 +36,7 @@ class NdsController extends Controller
         $count = DB::table('nds')
             ->where('crop_id','=',$crop)
             ->count();
-        if ($count == 0) {
+        // if ($count == 0) {
             $nd = new Nds();
             $nd->type_id = $type;
             $nd->number = $number;
@@ -44,9 +44,9 @@ class NdsController extends Controller
             $nd->crop_id = $crop;
             $nd->save();
             return redirect('nds/list')->with('message', 'Successfully Submitted');
-        } else {
-            return redirect('nds/add')->with('message', 'Duplicate Data');
-        }
+        // } else {
+        //     return redirect('nds/add')->with('message', 'Duplicate Data');
+        // }
     }
 
     public function destory($id)

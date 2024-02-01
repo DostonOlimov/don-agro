@@ -65,9 +65,10 @@
                 $('#laboratory-certificate').text(currentdecision.laboratory.certificate)
                 $('#laboratory-name').text(currentdecision.laboratory.name)
 
-                $('#nds-name').text(currentdecision.application.crops.name.nds.name)
-                $('#nds-number').text(currentdecision.application.crops.name.nds.number)
-                $('#nds-type').text(nds_type)
+                // $('#nds-name').text(currentdecision.application.crops.name.nds.name)
+                // $('#nds-number').text(currentdecision.application.crops.name.nds.number)
+                // $('#nds-type').text(nds_type)
+                $('#nds').text(nds)
 
                 $('#requirement').text(currentdecision.requirement)
             }
@@ -81,7 +82,7 @@
 
             let currentdecision = @json($decision);
             let measure_type = @json($measure_type);
-            let nds_type = @json($nds_type);
+            let nds = @json($nds);
             let qrCode = @json($qrCode);
             let type = @json(optional($decision->application->crops->type)->name)
 

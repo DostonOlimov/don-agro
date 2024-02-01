@@ -91,7 +91,7 @@ class DecisionController extends Controller
     //index
     public function add($id)
     {
-        $app = Application::with("crops.type","crops.name")->find($id);
+        $app = Application::with("crops.type", "crops.name")->find($id);
         $qrCode = null;
         if ($nd = Nds::where('crop_id', '=', $app->crops->name->id)->first()) {
             $laboratories = Laboratories::get();
@@ -136,7 +136,14 @@ class DecisionController extends Controller
         $active->time = date('Y-m-d H:i:s');
         $active->save();
         $measure_type = CropData::getMeasureType(Application::find($app_id)->crops->measure_type);
-        $nds_type = Nds::getType(Application::find($app_id)->crops->name->nds->type_id);
+        // $nds_type = Nds::getType(Application::find($app_id)->crops->name->nds->type_id);
+
+        $nds = [];
+        foreach (Nds::where('crop_id', Application::find($decision->app_id)->crops->name_id)->get() as $item) {
+            $nds[] = Nds::getType($item->type_id) . " " . $item->number . " " . $item->name;
+        }
+        $nds=implode(",", $nds);
+
         return
             [
                 'decision' => $decision->fresh(
@@ -151,7 +158,8 @@ class DecisionController extends Controller
                     ]
                 ),
                 'measure_type' => $measure_type,
-                'nds_type' => $nds_type
+                'nds' => $nds
+                // 'nds_type' => $nds_type,
             ];
     }
 
@@ -190,11 +198,19 @@ class DecisionController extends Controller
             $qrCode = QrCode::size(100)->generate($url);
         }
         $measure_type = CropData::getMeasureType(Application::find($decision->app_id)->crops->measure_type);
-        $nds_type = Nds::getType(Application::find($decision->app_id)->crops->name->nds->type_id);
+        // $nds_type = Nds::getType(Application::find($decision->app_id)->crops->name->nds->type_id);
+
+        $nds = [];
+        foreach (Nds::where('crop_id', Application::find($decision->app_id)->crops->name_id)->get() as $item) {
+            $nds[] = Nds::getType($item->type_id) . " " . $item->number . " " . $item->name;
+        }
+        $nds=implode(",", $nds);
+
         return view('decision.show', [
             'decision' => $decision,
             'measure_type' => $measure_type,
-            'nds_type' => $nds_type,
+            // 'nds_type' => $nds_type,
+            'nds' => $nds,
             'qrCode' => $qrCode
         ]);
     }

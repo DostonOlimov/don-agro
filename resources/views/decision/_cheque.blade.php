@@ -45,7 +45,7 @@
         <tr>
             <td colspan="4" class="align-left">
                 <h4 class=" text-left">
-                    3. Sertifikatlashtirish &nbsp;<span id="nds-type"></span>&nbsp;  <span id="nds-number"></span>&nbsp; <span id="nds-name"></span>
+                    3. Sertifikatlashtirish &nbsp;<span id="nds"></span>
                     davlat standarti talablarga muvofiq amalga oshiriladi.
                 </h4>
             </td>
@@ -101,9 +101,10 @@
         $('#laboratory-certificate').text(currentInvoice.laboratory.certificate)
         $('#laboratory-name').text(currentInvoice.laboratory.name)
 
-        $('#nds-name').text(currentInvoice.application.crops.name.nds.name)
-        $('#nds-number').text(currentInvoice.application.crops.name.nds.number)
-        $('#nds-type').text(nds_type)
+        // $('#nds-name').text(currentInvoice.application.crops.name.nds.name)
+        // $('#nds-number').text(currentInvoice.application.crops.name.nds.number)
+        // $('#nds-type').text(nds_type)
+        $('#nds').text(nds)
 
         $('#requirement').text(currentInvoice.requirement)
     }
