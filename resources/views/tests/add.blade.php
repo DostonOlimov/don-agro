@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="col-md-4 form-group has-feedback">
                                     <label class="form-label" for="app_number">{{ trans('app.Me\'yoriy hujjatlar') }}<label class="text-danger">*</label></label>
-                                    <input type="text" readonly name="app_number" value="{{ \App\Models\Nds::getType()[$app->crops->name->nds->type_id] . '.' . $app->crops->name->nds->number . ' ' . $app->crops->name->nds->name }}" class="form-control">
+                                    <input type="text" readonly name="app_number" value="{{ $nds }}" class="form-control">
                                 </div>
 
 

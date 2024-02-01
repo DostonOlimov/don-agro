@@ -24,8 +24,7 @@
             {{-- {{ $decision->application->crops->pre_name }} urugʼlik &nbsp; --}}
             {{ $decision->application->crops->name->name }}
             &nbsp; mahsuloti &nbsp;
-            {{ $nds_type }}&nbsp;
-            {{ $decision->application->crops->name->nds->number }}&nbsp;{{ $decision->application->crops->name->nds->name }}
+            {{ $nds }}
             talablariga muvofiq, sifat koʼrsatkichlarini sinovdan oʼtkazish quyidagi standartlardagi usullarni qoʼllagan
             xolda amalga oshirilsin.
         </h4>

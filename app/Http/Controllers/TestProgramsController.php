@@ -94,13 +94,19 @@ class TestProgramsController extends Controller
     {
         $app = Application::with('crops.name.nds')->find($id);
 
-        if ($nd = Nds::where('crop_id', '=', $app->crops->name->id)->first()) {
+        $nds = [];
+        foreach (Nds::where('crop_id', Application::find($app->id)->crops->name_id)->get() as $item) {
+            $nds[] = Nds::getType($item->type_id) . " " . $item->number . " " . $item->name;
+        }
+        $nds = implode(",", $nds);
+
+        if ($nds) {
             $measure_types = CropData::getMeasureType();
             unset($measure_types[1]);
             $directors = User::where('role', '=', 55)->get();
             $indicators = Indicator::where('crop_id', '=', $app->crops->name->id)
                 ->get();
-            return view('tests.add', compact('app', 'nd', 'directors', 'measure_types', 'indicators'));
+            return view('tests.add', compact('app', 'nds', 'directors', 'measure_types', 'indicators'));
         } else {
             return redirect('nds/list')->with('message', 'nds not found');
         }
@@ -159,8 +165,13 @@ class TestProgramsController extends Controller
         $directors = User::where('role', '=', 55)->get();
         $indicators = Indicator::where('crop_id', '=', $app->crops->name->id)
             ->get();
+        $nds = [];
+        foreach (Nds::where('crop_id', Application::find($app->id)->crops->name_id)->get() as $item) {
+            $nds[] = Nds::getType($item->type_id) . " " . $item->number . " " . $item->name;
+        }
+        $nds = implode(",", $nds);
 
-        return view('tests.edit', compact('app', 'test', 'directors', 'indicators', 'measure_types'));
+        return view('tests.edit', compact('app', 'test', 'directors', 'indicators', 'measure_types','nds'));
     }
 
 
@@ -237,12 +248,17 @@ class TestProgramsController extends Controller
 
         // $measure_type = (Application::find($tests->app_id)->crops->name->measure_type == 2) ? "dona" : "kg";
         $app_id = Application::find($tests->app_id);
-        $nds_type = Nds::getType(Application::find($tests->app_id)->crops->name->nds->type_id);
+
+        $nds = [];
+        foreach (Nds::where('crop_id', Application::find($app_id->id)->crops->name_id)->get() as $item) {
+            $nds[] = Nds::getType($item->type_id) . " " . $item->number . " " . $item->name;
+        }
+        $nds=implode(",", $nds);
         return view('tests.show', [
             'decision' => $tests,
             // 'measure_type' => $measure_type,
             'app_id' => $app_id,
-            'nds_type' => $nds_type,
+            'nds' => $nds,
             'indicators' => $indicators,
             'qrCode' => $qrCode
         ]);
