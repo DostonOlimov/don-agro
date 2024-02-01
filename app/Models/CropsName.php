@@ -26,9 +26,9 @@ class CropsName extends Model
     {
         return $this->hasMany(CropData::class,'name_id','id');
     }
-    public function nds(): BelongsTo
+    public function nds()
     {
-        return $this->belongsTo(Nds::class,'id','crop_id');
+        return $this->hasMany(Nds::class,'crop_id','id');
     }
     public function areas(): HasMany
     {

@@ -97,14 +97,22 @@
                                         <label class="form-label">{{ trans('app.Me\'yoriy hujjatlar') }} <label
                                                 class="text-danger">*</label></label>
                                         <input type="text" readonly
-                                            value="{{ \App\Models\Nds::getType()[$data->test->application->crops->name->nds->type_id] . '.' . $data->test->application->crops->name->nds->number . ' ' . $data->test->application->crops->name->nds->name }}"
+                                            value="@php
+                                                    foreach ($data->test->application->crops->name->nds as $value) {
+                                                        echo \App\Models\Nds::getType($value->type_id) . '.' . $value->number . ' ' . $value->name . ", ";
+                                                    }
+                                                @endphp"
                                             class="form-control">
                                     </div>
                                     <div class="col-md-4 form-group has-feedback">
                                         <label class="form-label">{{ trans('app.Saqlash shartlari') }} <label
                                                 class="text-danger">*</label></label>
                                         <input type="text" readonly
-                                            value="{{ \App\Models\Nds::getType()[$data->test->application->crops->name->nds->type_id] . '.' . $data->test->application->crops->name->nds->number . ' ' . $data->test->application->crops->name->nds->name }}"
+                                            value="@php
+                                                    foreach ($data->test->application->crops->name->nds as $value) {
+                                                        echo \App\Models\Nds::getType($value->type_id) . '.' . $value->number . ' ' . $value->name . ", ";
+                                                    }
+                                                @endphp"
                                             class="form-control">
                                     </div>
 

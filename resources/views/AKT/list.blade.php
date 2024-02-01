@@ -78,7 +78,13 @@
                                                 <tr>
                                                     <td>{{ ++$key }}</td>
                                                     <td>{{ optional($item->application->crops->country)->name }}</td>
-                                                    <td>{{ \App\Models\Nds::getType()[$item->application->crops->name->nds->type_id] . '.' . $item->application->crops->name->nds->number . ' ' . $item->application->crops->name->nds->name }}
+                                                    <td>
+                                                        @php
+                                                            foreach ($item->application->crops->name->nds as $value) {
+
+                                                                echo \App\Models\Nds::getType()[$value->type_id] . '.' . $value->number . ' ' . $value->name ."<br>";
+                                                            }
+                                                        @endphp
                                                     </td>
                                                     <td>{{ optional($item->application->crops->name)->name }}</td>
                                                     @if (!empty($item->akt[0]))
