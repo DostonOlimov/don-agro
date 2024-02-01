@@ -161,9 +161,9 @@ class DecisionController extends Controller
         $decision = Decision::find($id);
         $test = TestPrograms::where('app_id', $decision->app_id)->first();
         if ($test) {
-            $akt = AKT::where('test_program_id', $test)->first();
+            $akt = AKT::where('test_program_id', $test->id)->first();
             if ($akt) {
-                LabBayonnoma::where("akt_id", $akt)->delete();
+                LabBayonnoma::where("akt_id", $akt->id)->delete();
                 $akt->delete();
             }
             $test->delete();
