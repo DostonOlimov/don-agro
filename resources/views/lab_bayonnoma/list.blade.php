@@ -79,7 +79,14 @@
                                                     <td>{{ ++$key }}</td>
                                                     <td>{{ !empty($item->test->application->decision->laboratory->certificate) ?? '' }}
                                                     </td>
-                                                    <td>{{ !empty($item->test->application->decision->laboratory->certificate) ? \App\Models\Nds::getType()[$item->test->application->crops->name->nds->type_id] . '.' . $item->test->application->crops->name->nds->number . ' ' . $item->test->application->crops->name->nds->name : '' }}
+                                                    <td>    
+                                                        @php
+                                                            if (!empty($item->test->application->decision->laboratory->certificate)) {
+                                                                foreach ($item->test->application->crops->name->nds as $value) {
+                                                                    echo \App\Models\Nds::getType()[$value->type_id] . '.' . $value->number . ' ' . $value->name . '<br>';
+                                                                }
+                                                            }
+                                                        @endphp
                                                     </td>
                                                     @if (!empty($item->lab_bayonnoma[0]))
                                                         <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $item->lab_bayonnoma[0]->lab_start_date)->format('d.m.Y') }}
