@@ -79,7 +79,7 @@
                                                     <td>{{ ++$key }}</td>
                                                     <td>{{ !empty($item->test->application->decision->laboratory->certificate) ?? '' }}
                                                     </td>
-                                                    <td>    
+                                                    <td>
                                                         @php
                                                             if (!empty($item->test->application->decision->laboratory->certificate)) {
                                                                 foreach ($item->test->application->crops->name->nds as $value) {
@@ -107,11 +107,13 @@
                                                     @endif
                                                     <td>
                                                         @if (!empty($item->lab_bayonnoma[0]))
-                                                            <a href="{!! url('/lab_bayonnoma/edit/' . $item->lab_bayonnoma[0]->id) !!}"><button type="button"
-                                                                    class="btn btn-round btn-info">{{ trans('app.Edit') }}</button></a>
-                                                            <a url="{!! url('/lab_bayonnoma/delete/' . $item->lab_bayonnoma[0]->id) !!}" class="sa-warning"> <button
-                                                                    type="button"
-                                                                    class="btn btn-round btn-danger dgr">{{ trans('app.Delete') }}</button></a>
+                                                            @if (empty($item->test->final_result))
+                                                                <a href="{!! url('/lab_bayonnoma/edit/' . $item->lab_bayonnoma[0]->id) !!}"><button type="button"
+                                                                        class="btn btn-round btn-info">{{ trans('app.Edit') }}</button></a>
+                                                                <a url="{!! url('/lab_bayonnoma/delete/' . $item->lab_bayonnoma[0]->id) !!}" class="sa-warning"> <button
+                                                                        type="button"
+                                                                        class="btn btn-round btn-danger dgr">{{ trans('app.Delete') }}</button></a>
+                                                            @endif
                                                         @else
                                                             <a href="{!! url('/lab_bayonnoma/add/' . $item->id) !!}"><button type="button"
                                                                     class="btn btn-round btn-success">&nbsp;

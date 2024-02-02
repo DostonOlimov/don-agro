@@ -35,6 +35,7 @@ class DecisionController extends Controller
             ->with('crops.type')
             ->with('organization')
             ->with('decision')
+            ->with('tests.final_result')
             ->whereIn('status', [Application::STATUS_ACCEPTED, Application::STATUS_FINISHED]);
 
         if ($user->role == \App\Models\User::STATE_EMPLOYEE) {

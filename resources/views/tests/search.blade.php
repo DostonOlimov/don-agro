@@ -79,13 +79,13 @@
                                                             @if ($app->tests)
                                                                 <a href="{!! url('/tests/view/' . $app->tests->id) !!}"><button type="button"
                                                                         class="btn btn-round btn-info">{{ trans('app.Sinov dasturi fayli') }}</button></a>
-                                                                @if (!$app->tests->code)
+                                                                @if (!$app->tests->code && !$app->tests->final_result)
                                                                     <a href="{!! url('/tests/list/edit/' . $app->tests->id) !!}"><button type="button"
                                                                             class="btn btn-round btn-warning">{{ trans('app.Edit') }}</button></a>
                                                                     {{-- <a url="{!! url('/tests/send/'.$app->tests->id) !!}" class="sa-warning"> <button type="button" class="btn btn-round btn-success ">{{ trans('app.Yubor')}}</button></a> --}}
                                                                 @else
-                                                                    <button type="button"
-                                                                        class="btn btn-round btn-danger ">{{ trans('app.Yuborilgan') }}</button></a>
+                                                                    {{-- <button type="button"
+                                                                        class="btn btn-round btn-danger ">{{ trans('app.Yuborilgan') }}</button></a> --}}
                                                                 @endif
                                                             @else
                                                                 <a href="{!! url('/tests/add/' . $app->id) !!}"><button type="button"

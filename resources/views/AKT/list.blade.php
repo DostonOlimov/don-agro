@@ -81,8 +81,7 @@
                                                     <td>
                                                         @php
                                                             foreach ($item->application->crops->name->nds as $value) {
-
-                                                                echo \App\Models\Nds::getType()[$value->type_id] . '.' . $value->number . ' ' . $value->name ."<br>";
+                                                                echo \App\Models\Nds::getType()[$value->type_id] . '.' . $value->number . ' ' . $value->name . '<br>';
                                                             }
                                                         @endphp
                                                     </td>
@@ -90,7 +89,7 @@
                                                     @if (!empty($item->akt[0]))
                                                         <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $item->akt[0]->make_date)->format('d.m.Y') }}
                                                         </td>
-                                                        <td>{{ ($item->akt[0]->expiry_date)?\Carbon\Carbon::createFromFormat('Y-m-d', $item->akt[0]->expiry_date)->format('d.m.Y'):"" }}
+                                                        <td>{{ $item->akt[0]->expiry_date ? \Carbon\Carbon::createFromFormat('Y-m-d', $item->akt[0]->expiry_date)->format('d.m.Y') : '' }}
                                                         </td>
                                                         <td>{{ $item->akt[0]->simple_size }}</td>
                                                         <td>{{ $amount[$item->akt[0]->measure_type] }}</td>
@@ -104,11 +103,13 @@
                                                     @endif
                                                     <td>
                                                         @if (!empty($item->akt[0]))
-                                                            <a href="{!! url('/akt/edit/' . $item->akt[0]->id) !!}"><button type="button"
-                                                                    class="btn btn-round btn-info">{{ trans('app.Edit') }}</button></a>
-                                                            <a url="{!! url('/akt/delete/' . $item->akt[0]->id) !!}" class="sa-warning"> <button
-                                                                    type="button"
-                                                                    class="btn btn-round btn-danger dgr">{{ trans('app.Delete') }}</button></a>
+                                                            @if (empty($item->final_result))
+                                                                <a href="{!! url('/akt/edit/' . $item->akt[0]->id) !!}"><button type="button"
+                                                                        class="btn btn-round btn-info">{{ trans('app.Edit') }}</button></a>
+                                                                <a url="{!! url('/akt/delete/' . $item->akt[0]->id) !!}" class="sa-warning"> <button
+                                                                        type="button"
+                                                                        class="btn btn-round btn-danger dgr">{{ trans('app.Delete') }}</button></a>
+                                                            @endif
                                                         @else
                                                             <a href="{!! url('/akt/add/' . $item->id) !!}"><button type="button"
                                                                     class="btn btn-round btn-success">&nbsp;

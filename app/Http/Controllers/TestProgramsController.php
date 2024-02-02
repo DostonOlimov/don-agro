@@ -37,6 +37,7 @@ class TestProgramsController extends Controller
             ->with('organization')
             ->with('decision')
             ->with('tests')
+            ->with('tests.final_result')
             ->whereIn('status', [Application::STATUS_ACCEPTED, Application::STATUS_FINISHED]);
         if ($user->role == \App\Models\User::STATE_EMPLOYEE) {
             $user_city = $user->state_id;
