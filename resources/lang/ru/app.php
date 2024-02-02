@@ -414,4 +414,8 @@ return [
 
     "Mahsulot tayorlangan shaxobcha yoki sex nomi"=>"Название магазина или мастерской, где изготавливается товар",
     "Mahsulot (nav) sinfini tanlang"=>"Выберите класс товара (сорта)",
+    "Jami og'irligi:"=>"Общий вес:",
+    "tonna"=>"тонны",
+    "Jami partiyalar sonni:"=>"Общее количество партий:",
+    "ta"=>"та",
 ];

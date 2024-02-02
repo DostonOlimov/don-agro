@@ -411,4 +411,8 @@ return [
 
     "Mahsulot tayorlangan shaxobcha yoki sex nomi"=>"Маҳсулот таёрланган шахобча ёки сех номи",
     "Mahsulot (nav) sinfini tanlang"=>"Маҳсулот (нав) синфини танланг",
+    "Jami og'irligi:"=>"Жами оғирлиги:",
+    "tonna"=>"тонна",
+    "Jami partiyalar sonni:"=>"Жами партиялар сонни:",
+    "ta"=>"та",
 ];

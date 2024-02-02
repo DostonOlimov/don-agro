@@ -445,4 +445,8 @@ return [
 
     "Mahsulot tayorlangan shaxobcha yoki sex nomi"=>"Mahsulot tayorlangan shaxobcha yoki sex nomi",
     "Mahsulot (nav) sinfini tanlang"=>"Mahsulot (nav) sinfini tanlan",
+    "Jami og'irligi:"=>"Jami og'irligi:",
+    "tonna"=>"tonna",
+    "Jami partiyalar sonni:"=>"Jami partiyalar sonni:",
+    "ta"=>"ta",
 ];

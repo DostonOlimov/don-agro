@@ -323,7 +323,7 @@
                                 </div>
                                 {{ $apps->links() }}
                         </div>
-                        <h4 style="position: sticky; bottom: 0; padding: 1%; color: #0052cc; width: 100%; display: flex; justify-content: space-between; background-color: white">{{ "Jami og'irligi: ".number_format($all_amount, 2, ',', ' ')." tonna"}} <br> <span style="color: #097a22;"> {{"Jami partiyalar sonni: ".number_format($partiya,0,'',' ')." ta"}} </span></h4>
+                        <h4 style="position: sticky; bottom: 0; padding: 1%; color: #0052cc; width: 100%; display: flex; justify-content: space-between; background-color: white">{{ trans("app.Jami og'irligi:")." ".number_format($all_amount, 2, ',', ' ')." ".trans("app.tonna")}} <br> <span style="color: #097a22;"> {{trans("app.Jami partiyalar sonni:")." ".number_format($partiya,0,'',' ')." ".trans("app.ta")}} </span></h4>
                     </div>
                 </div>
             </div>

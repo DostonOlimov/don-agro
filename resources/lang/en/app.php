@@ -414,4 +414,8 @@ return [
 
     "Mahsulot tayorlangan shaxobcha yoki sex nomi"=>"The name of the shop or workshop where the product is made",
     "Mahsulot (nav) sinfini tanlang"=>"Select the product (variety) class",
+    "Jami og'irligi:"=>"Total weight:",
+    "tonna"=>"tons",
+    "Jami partiyalar sonni:"=>"Total number of parties:",
+    "ta"=>"",
 ];
