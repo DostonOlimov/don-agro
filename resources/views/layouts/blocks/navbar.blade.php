@@ -4,10 +4,11 @@
             <svg class="icon icon-lg">
                 <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-menu"></use>
             </svg>
-        </button><a class="header-brand d-md-none" href="#">
+        </button>
+        {{-- <a class="header-brand d-md-none" href="#">
             <svg width="90" height="46" alt="CoreUI Logo">
                 <use xlink:href="/assets/brand/coreui.svg#full"></use>
-            </svg></a>
+            </svg></a> --}}
         @php
             $currentFlag = "/img/flags/uzbekistan.png";
             if(app()->getLocale() == 'ru'){

@@ -264,6 +264,8 @@
                                     </tr>
                                     @php
                                         $offset = (request()->get('page', 1) - 1) * 50;
+                                        $partiya=0;
+                                        $all_amount=0;
                                     @endphp
                                     @foreach($apps as $app)
                                         <tr>
@@ -279,6 +281,16 @@
                                             <td>{{ optional($app->crops->name)->name }}</td>
                                             <td>{{ optional($app->crops->type)->name }}</td>
                                             {{-- <td>{{ optional($app->crops->generation)->name }}</td> --}}
+                                            @php
+                                                $akt = optional(optional($app->tests)->akt)[0];
+                                                if ($akt && $akt->party_number) {
+                                                    $partiya += $akt->party_number;
+                                                }
+                                                $amounts = $app->crops;
+                                                if ($amounts) {
+                                                    $all_amount += $amounts->amount/1000;
+                                                }
+                                            @endphp
                                             <td>{{optional($app->tests)->akt[0]->party_number??""}}</td>
                                             <td>{{ optional($app->crops)->amount_name }}</td>
                                             <td>{{ optional($app->crops)->year }}</td>
@@ -311,6 +323,7 @@
                                 </div>
                                 {{ $apps->links() }}
                         </div>
+                        <h4 style="position: sticky; bottom: 0; padding: 1%; color: #0052cc; width: 100%; display: flex; justify-content: space-between; background-color: white">{{ "Jami og'irligi: ".number_format($all_amount, 2, ',', ' ')." tonna"}} <br> <span style="color: #097a22;"> {{"Jami partiyalar sonni: ".number_format($partiya,0,'',' ')." ta"}} </span></h4>
                     </div>
                 </div>
             </div>
