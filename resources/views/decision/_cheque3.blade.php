@@ -10,6 +10,7 @@
         boʼlimi boshligʼi<br>
         <span id="director-name"></span><br>
         <span id="application-date"></span> yil
+        <div class="text-center"> {!! $qrCode !!}</div>
 
 
     </h4>

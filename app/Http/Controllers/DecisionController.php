@@ -189,13 +189,13 @@ class DecisionController extends Controller
             ->with('application.crops.name.nds')
             ->with('application.crops.type')
             // ->with('application.crops.generation')
-            ->with('application')
+            ->with('application.tests.result')
             ->with('laboratory')
             ->find($id);
         //create qr code
         $url = route('decision.view', $id);
         $qrCode = null;
-        if ($decision->code) {
+        if ($decision->application->tests->result) {
             $qrCode = QrCode::size(100)->generate($url);
         }
         $measure_type = CropData::getMeasureType(Application::find($decision->app_id)->crops->measure_type);
