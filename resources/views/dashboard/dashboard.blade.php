@@ -64,7 +64,7 @@
                     </div>
                 </div>
                 <div class="circle_persentages__statistics__texts">
-                    <h3 class="lineUp">{{trans('message.Jami arizalar')}}</h3>
+                    <h3 class="lineUp"><a href="{!! url('/application/list/') !!}" style="color: white"> {{ trans('message.Jami arizalar') }} </a></h3>
                     <p class="lineUp">{{$all_app_count}} {{trans('message.ta')}}</p>
                 </div>
             </div>
@@ -106,7 +106,7 @@
                     </div>
                 </div>
                 <div class="circle_persentages__statistics__texts">
-                    <h3 class="lineUp">{{ trans('message.Mahaliy mahsulotlar uchun arizalar') }}</h3>
+                    <h3 class="lineUp"> <a href="{!! url('/application/list/' . '?ariza_turi=1') !!}" style="color: white"> {{ trans('message.Mahaliy mahsulotlar uchun arizalar') }} </a></h3>
                     <p class="lineUp">{{$local_app}} {{trans('message.ta')}}</p>
                 </div>
             </div>
@@ -148,7 +148,7 @@
                     </div>
                 </div>
                 <div class="circle_persentages__statistics__texts">
-                    <h3 class="lineUp">{{trans('message.Import qilingan mahsulotlar uchun')}}</h3>
+                    <h3 class="lineUp"> <a href="{!! url('/application/list/' . '?ariza_turi=2') !!}" style="color: white"> {{ trans('message.Import qilingan mahsulotlar uchun') }} </a></h3>
                     <p class="lineUp">{{$global_app}} {{trans('message.ta')}}</p>
                 </div>
             </div>
@@ -192,7 +192,7 @@
                     </div>
                 </div>
                 <div class="circle_persentages__statistics__texts">
-                    <h3 class="lineUp">{{trans('message.Eski hosil uchun')}}</h3>
+                    <h3 class="lineUp"><a href="{!! url('/application/list/' . '?ariza_turi=3') !!}" style="color: white"> {{ trans('message.Eski hosil uchun') }} </a></h3>
                     <p class="lineUp">{{$old_app}} {{trans('message.ta')}}</p>
                 </div>
             </div>
