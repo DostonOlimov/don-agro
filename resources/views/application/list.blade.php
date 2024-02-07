@@ -125,8 +125,10 @@
                                                 <td>
                                                     <a href="{!! url('/application/view/' . $app->id) !!}"><button type="button"
                                                             class="btn btn-round btn-info">{{ trans('app.View') }}</button></a>
+                                                @if (!isset($app->tests->result))
                                                     <a href="{!! url('/application/edit/' . $app->id) !!}"><button type="button"
                                                             class="btn btn-round btn-success">{{ trans('app.Edit') }}</button></a>
+                                                @endif
                                                 </td>
                                             </tr>
                                         @endforeach

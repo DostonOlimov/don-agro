@@ -75,7 +75,7 @@
                                                     @if ($descion = $app->decision)
                                                         <a href="{!! url('/decision/view/' . $descion->id) !!}"><button type="button"
                                                                 class="btn btn-round btn-info">{{ trans('app.Qaror fayli') }}</button></a>
-                                                        @if (!$descion->code && !$app->tests->final_result)
+                                                        @if (!$descion->code && !isset($app->tests->final_result))
                                                             <a url="{!! url('/decision/list/delete/' . $descion->id) !!}" class="sa-warning"> <button
                                                                     type="button"
                                                                     class="btn btn-round btn-danger dgr">{{ trans('app.Delete') }}</button></a>
