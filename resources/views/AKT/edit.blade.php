@@ -199,7 +199,7 @@
                                             </div>
                                             <input type="text" class="form-control" placeholder="dd.mm.yyyy"
                                                 name="expiry_date" data-mask="00.00.0000" value="{{ $expiry_date ??''}}"
-                                                required />
+                                                />
                                         </div>
                                         @if ($errors->has('expiry_date'))
                                             <span class="help-block">
