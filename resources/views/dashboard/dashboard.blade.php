@@ -46,7 +46,7 @@
                             fill="transparent"
                             stroke="#4fe4ff"
                             stroke-width="0.35"
-                            stroke-dasharray="100 100"
+                            stroke-dasharray="{{($all_app_count > 0)? 100 : 0.5}} 100"
                             stroke-linecap="round"
                             transform="rotate(-90 2.25 2.25)"
                         />
@@ -60,7 +60,7 @@
                             <div class="fill"></div>
                         </div>
 
-                        <div class="inside-circle">100%</div>
+                        <div class="inside-circle">{{($all_app_count > 0)? 100 : 0}}%</div>
                     </div>
                 </div>
                 <div class="circle_persentages__statistics__texts">
