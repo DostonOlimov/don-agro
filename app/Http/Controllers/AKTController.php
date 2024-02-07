@@ -17,7 +17,7 @@ class AKTController extends Controller
 {
     function list()
     {
-        $data = TestPrograms::with('application.crops.country', 'application.crops.name.nds', 'akt', 'final_result')->paginate(50);
+        $data = TestPrograms::with('application.crops.country', 'application.crops.name.nds', 'akt', 'final_result')->orderBy('id', 'desc')->paginate(50);
         $amount = CropData::getMeasureType();
 
         return view('AKT.list', compact('data', 'amount'));

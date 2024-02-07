@@ -72,11 +72,11 @@
                                         </thead>
                                         <tbody>
                                             @php
-                                                // dd($data);
+                                                $offset = (request()->get('page', 1) - 1) * 50;
                                             @endphp
                                             @foreach ($data as $key => $item)
                                                 <tr>
-                                                    <td>{{ ++$key }}</td>
+                                                    <td>{{ $offset + $loop->iteration}}</td>
                                                     <td>{{ optional($item->application->crops->country)->name }}</td>
                                                     <td>
                                                         @php
