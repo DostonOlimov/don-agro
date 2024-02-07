@@ -13,7 +13,12 @@ class LabBayonnomaController extends Controller
 {
     function list()
     {
-        $data = AKT::with('test.application.organization.city.region', 'test.application.decision.laboratory', 'test.application.crops.name.nds','lab_bayonnoma','test.final_result')->orderBy('id', 'desc')->paginate(50);
+        $data = AKT::with('test.application.organization.city.region',
+        'test.application.decision.laboratory',
+        'test.application.crops.name.nds','lab_bayonnoma',
+        'test.final_result')
+        ->whereHas('test.application.decision.laboratory')
+        ->orderBy('id', 'desc')->paginate(50);
 // dd($data);
         return view('lab_bayonnoma.list', compact('data'));
     }

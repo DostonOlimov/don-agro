@@ -75,7 +75,6 @@
                                                 $offset = (request()->get('page', 1) - 1) * 50;
                                             @endphp
                                             @foreach ($data as $key => $item)
-                                            @if (isset($item->test->application->decision->laboratory))
                                                 <tr>
                                                     <td>{{ $offset + $loop->iteration}}</td>
                                                     <td>{{ !empty($item->test->application->decision->laboratory->certificate) ?? '' }}
@@ -123,7 +122,6 @@
                                                         @endif
                                                     </td>
                                                 </tr>
-                                            @endif
                                             @endforeach
 
                                         </tbody>
