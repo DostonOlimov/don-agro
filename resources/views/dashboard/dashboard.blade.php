@@ -46,7 +46,7 @@
                             fill="transparent"
                             stroke="#4fe4ff"
                             stroke-width="0.35"
-                            stroke-dasharray="{{($all_app_count > 0)? 100 : 0.5}} 100"
+                            stroke-dasharray="{{($all_app_count > 0)? 100 : 0}} 100"
                             stroke-linecap="round"
                             transform="rotate(-90 2.25 2.25)"
                         />
@@ -88,7 +88,7 @@
                             fill="transparent"
                             stroke="#c50fb4"
                             stroke-width="0.40"
-                            stroke-dasharray="0.5 100"
+                            stroke-dasharray="{{(round(100 * ($all_app_count > 0 ? $local_app / $all_app_count : 0),1)*12.5/100)??0}} 100"
                             stroke-linecap="round"
                             transform="rotate(-90 2.25 2.25)"
                         />
@@ -130,7 +130,7 @@
                             fill="transparent"
                             stroke="#009dd4"
                             stroke-width="0.35"
-                            stroke-dasharray="0.5 100"
+                            stroke-dasharray="{{(round(100 * ($all_app_count > 0 ? $global_app / $all_app_count : 0),1)*12.5/100)??0}} 100"
                             stroke-linecap="round"
                             transform="rotate(-90 2.25 2.25)"
                         />
@@ -174,7 +174,7 @@
                             fill="transparent"
                             stroke="#db3949"
                             stroke-width="0.35"
-                            stroke-dasharray="0.5 100"
+                            stroke-dasharray="{{(round(100 * ($all_app_count > 0 ? $old_app / $all_app_count : 0),1)*12.5/100)??0}} 100"
                             stroke-linecap="round"
                             transform="rotate(-90 2.25 2.25)"
                         />
