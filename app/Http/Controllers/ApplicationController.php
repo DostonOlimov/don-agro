@@ -128,7 +128,7 @@ class ApplicationController extends Controller
     {
         $validated = $request->validate([
             'dob' => 'required|date_format:d.m.Y',
-            'app_number' =>['required', new UniqueAppNumber($request->input('dob'))],
+            // 'app_number' =>['required', new UniqueAppNumber($request->input('dob'))],
         ]);
         $this->authorize('create', Application::class);
         $userA = Auth::user();
@@ -209,17 +209,17 @@ class ApplicationController extends Controller
     {
         $userA = Auth::user();
         $app = Application::find($id);
-        if($app->status != Application::STATUS_NEW){
-            $validated = $request->validate([
-                'app_number' => [
-                    'required', new EditAppNumber($request->input('dob'),$id),
-                ],
-            ]);
-        }
-        if($app->user->role != \App\Models\User::ROLE_CUSTOMER or $app->user->role != \App\Models\User::ROLE_INSPECTION_DIROCTOR)
-        {
-            $this->authorize('update', $app);
-        }
+        // if($app->status != Application::STATUS_NEW){
+        //     $validated = $request->validate([
+        //         'app_number' => [
+        //             'required', new EditAppNumber($request->input('dob'),$id),
+        //         ],
+        //     ]);
+        // }
+        // if($app->user->role != \App\Models\User::ROLE_CUSTOMER or $app->user->role != \App\Models\User::ROLE_INSPECTION_DIROCTOR)
+        // {
+        //     $this->authorize('update', $app);
+        // }
         $app->app_number =  $request->input('app_number');
         $app->organization_id = $request->input('organization');
         $app->prepared_id = $request->input('prepared');
