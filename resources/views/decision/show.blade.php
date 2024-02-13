@@ -10,7 +10,7 @@
                 <div class="col-12">
                     <div class="card p-4">
                         <div class="row">
-
+                        @if (!empty($decision))
                             @if ($decision->application->crops->type_id && $decision->application->crops->amount)
                                 @include('decision._cheque')
                             @elseif ($decision->application->crops->amount && !$decision->application->crops->type_id)
@@ -20,7 +20,7 @@
                             @else
                                 @include('decision._cheque4')
                             @endif
-
+                        @endif
                         </div>
                         <div class="py-3">
                             <a href="{{ url()->previous() }}" class="btn btn-primary">{{ trans('app.Ortga') }}</a>
@@ -84,8 +84,13 @@
             let measure_type = @json($measure_type);
             let nds = @json($nds);
             let qrCode = @json($qrCode);
-            let type = @json(optional($decision->application->crops->type)->name)
-
+            @php
+                if(!empty($decision)):
+            @endphp
+                let type = @json(optional($decision->application->crops->type)->name)
+            @php
+                endif
+            @endphp
 
             fillCheque()
 

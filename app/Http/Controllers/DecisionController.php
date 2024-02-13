@@ -195,23 +195,25 @@ class DecisionController extends Controller
         //create qr code
         $url = route('decision.view', $id);
         $qrCode = null;
-        if ($decision->application->tests->result) {
-            $qrCode = QrCode::size(100)->generate($url);
-        }
-        $measure_type = CropData::getMeasureType(Application::find($decision->app_id)->crops->measure_type);
-        // $nds_type = Nds::getType(Application::find($decision->app_id)->crops->name->nds->type_id);
+        if(!empty($decision)){
+            if ($decision->application->tests->result) {
+                $qrCode = QrCode::size(100)->generate($url);
+            }
+            $measure_type = CropData::getMeasureType(Application::find($decision->app_id)->crops->measure_type);
+            // $nds_type = Nds::getType(Application::find($decision->app_id)->crops->name->nds->type_id);
 
-        $nds = [];
-        foreach (Nds::where('crop_id', Application::find($decision->app_id)->crops->name_id)->get() as $item) {
-            $nds[] = Nds::getType($item->type_id) . " " . $item->number . " " . $item->name;
+            $nds = [];
+            foreach (Nds::where('crop_id', Application::find($decision->app_id)->crops->name_id)->get() as $item) {
+                $nds[] = Nds::getType($item->type_id) . " " . $item->number . " " . $item->name;
+            }
+            $nds=implode(",", $nds);
         }
-        $nds=implode(",", $nds);
 
         return view('decision.show', [
             'decision' => $decision,
-            'measure_type' => $measure_type,
+            'measure_type' => $measure_type??'',
             // 'nds_type' => $nds_type,
-            'nds' => $nds,
+            'nds' => $nds??'',
             'qrCode' => $qrCode
         ]);
     }
