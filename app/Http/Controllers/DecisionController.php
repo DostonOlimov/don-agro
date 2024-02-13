@@ -208,6 +208,10 @@ class DecisionController extends Controller
             }
             $nds=implode(",", $nds);
         }
+        else
+        {
+            return abort(404);
+        }
 
         return view('decision.show', [
             'decision' => $decision,
