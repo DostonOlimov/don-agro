@@ -196,7 +196,7 @@ class DecisionController extends Controller
         $url = route('decision.view', $id);
         $qrCode = null;
         if(!empty($decision)){
-            if ($decision->application->tests->result) {
+            if (isset($decision->application->tests->result)) {
                 $qrCode = QrCode::size(100)->generate($url);
             }
             $measure_type = CropData::getMeasureType(Application::find($decision->app_id)->crops->measure_type);
