@@ -40,7 +40,8 @@
     'type'=>$type,
     // 'generation'=>$generation,
     'region'=>$region,
-    'country'=>$country
+    'country'=>$country,
+    'year'=>$year
     ]) }}">
                         <i class="fa fa-file-excel-o" style="margin-right: 6px"></i>{{trans('app.Excel fayl')}}</a>
                 </div>
