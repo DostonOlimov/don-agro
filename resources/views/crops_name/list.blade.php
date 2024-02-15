@@ -62,6 +62,7 @@
                                         <thead>
                                             <tr>
                                                 <th>№</th>
+                                                <th>{{ trans('app.Image') }}</th>
                                                 <th>{{ trans('app.Nomlari') }}</th>
                                                 <th>{{ trans('app.Kod TN VED') }}</th>
                                                 <th>{{ trans('app.Action') }}</th>
@@ -72,6 +73,7 @@
                                             @foreach ($crops as $crop)
                                                 <tr>
                                                     <td>{{ $i }}</td>
+                                                    <td><img src="{{ URL::asset('crops/' . $crop->img) }}" width="50px" height="50px" class="img-circle"></td>
                                                     <td>{{ $crop->name }}</td>
                                                     <td>{{ $crop->kodtnved }}</td>
                                                     <td>

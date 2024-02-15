@@ -339,6 +339,7 @@ return [
     'State' => 'Viloyat',
     'Town/City' => 'Tuman/Shahar',
     'Image' => 'Rasm',
+    "Rasmni yuklang"=>"Rasmni yuklang",
 
 
     //customer add

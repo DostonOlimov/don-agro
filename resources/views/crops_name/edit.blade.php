@@ -66,7 +66,7 @@
                                                     <input type="text" required="required" name="name"
                                                            value="{{ $crops->name }}" class="form-control">
                                                 </div>
-                                                <div id="tin-container" class="col-md-4 legal-fields">
+                                                <div id="tin-container" class="col-md-5 legal-fields">
                                                     <div class="form-group">
                                                         <label class="form-label">Kod TN VED<label class="text-danger">*</label></label>
                                                         <input class="form-control" type="text" name="tnved" data-field-name="tin" data-field-length="10"
@@ -75,6 +75,21 @@
                                                                title="10ta raqam kiriting!" data-pattern-mismatch="Noto'g'ri shakl" value="{{ $crops->kodtnved }}"
                                                         />
                                                     </div>
+                                                </div>
+
+                                                <div class="col-6 col-md-4 {{ $errors->has('image') ? ' has-error' : '' }}">
+                                                    <div class="row" style="display: flex; justify-content: center; align-items: center; margin-top: 6.6%;">
+                                                        <label class="btn btn-primary" style="width: 30%;">
+                                                            <input type="file" name="image" style="display: none;"  />
+                                                            {{ trans('app.Rasmni yuklang') }}
+                                                        </label>
+                                                    </div>
+                                                    <img src="{{ URL::asset('crops/'.$crops->img) }}"  width="40%" height="40%" style="margin-top:10px; margin-left: 30%">
+                                                    @if ($errors->has('image'))
+                                                        <span class="help-block">
+                                                            <strong>Xatolik</strong>
+                                                        </span>
+                                                    @endif
                                                 </div>
 
                                                 <div class=" col-md-4">

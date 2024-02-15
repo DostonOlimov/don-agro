@@ -41,6 +41,14 @@ class CropsNameController extends Controller
             $crop = new CropsName();
             $crop->name = $name;
             $crop->kodtnved = $request->input('tnved');
+            if (!empty($request->hasFile('image'))) {
+                $file = $request->file('image');
+                $filename = $file->getClientOriginalName();
+                $file->move(public_path() . '/crops/', $file->getClientOriginalName());
+                $crop->img = $filename;
+            } else {
+                $crop->img = null;
+            }
             $crop->save();
             return redirect('crops_name/list')->with('message', 'Successfully Submitted');
         } else {
@@ -51,17 +59,29 @@ class CropsNameController extends Controller
     public function destory($id)
     {
         $this->authorize('setting_delete', User::class);
-        $app = CropData::where('name_id',$id)->first();
-        if($app){
+        $app = CropData::where('name_id', $id)->first();
+        $name = CropsName::find($id);
+
+        if ($app) {
             return redirect('crops_name/list')->with('message', 'Cannot Deleted');
         }
         // if(CropsGeneration::where('crop_id','=',$id)->get()){
         //     CropsGeneration::where('crop_id','=',$id)->delete();
         // }
-        if(CropsType::where('crop_id','=',$id)->get()){
-            CropsType::where('crop_id','=',$id)->delete();
+
+        if ($name->img) {
+            $oldImagePath = public_path('crops/' . $name->img);
+            if (file_exists($oldImagePath)) {
+                unlink($oldImagePath);
+            }
         }
-        CropsName::destroy($id);
+
+        $type=CropsType::where('crop_id', $id)->first();
+        if($type){
+            $type->delete();
+        }
+        $name->delete();
+
         return redirect('crops_name/list')->with('message', 'Successfully Deleted');
     }
 
@@ -79,6 +99,22 @@ class CropsNameController extends Controller
         $crop = CropsName::findOrFail($id);
         $crop->name = $request->input('name');
         $crop->kodtnved = $request->input('tnved');
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = $file->getClientOriginalName();
+            $file->move(public_path() . '/crops/', $filename);
+            if (!is_null($crop->img)) {
+                $oldImagePath = public_path() . '/crops/' . $crop->img;
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
+            }
+
+            $crop->img = $filename;
+        } else {
+            $crop->img = $crop->img;
+        }
         $crop->save();
 
         return redirect('crops_name/list')->with('message', 'Successfully Updated');
