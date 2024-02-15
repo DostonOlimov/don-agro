@@ -129,7 +129,7 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                            <div class="table_row row">
+                                            <div class="table_row row" style="margin-top: 5%">
                                                 <h4><b>{{ trans("app.Ariza ma'lumotlari") }}</b></h4>
                                             </div>
                                             <div class="table_row row">

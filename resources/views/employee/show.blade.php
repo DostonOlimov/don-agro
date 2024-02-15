@@ -66,21 +66,25 @@
                                             </div>
                                             <div class="col-md-7 col-sm-12 table_td">
                                             <span class="txt_color">
-                                            {{ $user->first_name.' '.$user->last_name }}
+                                            {{ $user->name.' '.$user->lastname.' '.$user->display_name }}
                                             </span>
                                             </div>
                                         </div>
-{{--                                        <div class="table_row row">--}}
-{{--                                            <div class="col-md-5 col-sm-12 table_td">--}}
-{{--                                                <i class="fa fa-id-card"></i>--}}
-{{--                                                <b>Lavozimi</b>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="col-md-7 col-sm-12 table_td">--}}
-{{--                                            <span class="txt_color">--}}
-{{--                                                {{ optional($user->level)->position ?? 'Adminstrator' }}--}}
-{{--                                            </span>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
+                                        {{-- start --}}
+
+                                        <div class="table_row row">
+                                           <div class="col-md-5 col-sm-12 table_td">
+                                               <i class="fa fa-id-card"></i>
+                                               <b>Lavozimi</b>
+                                           </div>
+                                           <div class="col-md-7 col-sm-12 table_td">
+                                           <span class="txt_color">
+                                               {{ optional($user->level)->name ?? 'Adminstrator' }}
+                                           </span>
+                                           </div>
+                                       </div>
+
+                                       {{-- end --}}
                                         <div class="table_row row">
                                             <div class="col-md-5 col-sm-12 table_td">
                                                 <i class="fa fa-envelope"></i>

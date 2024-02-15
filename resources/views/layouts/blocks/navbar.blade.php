@@ -51,13 +51,14 @@
                 <div class="dropdown-menu dropdown-menu-start pt-0" style="transform: translateX(-180px) translateY(30px)">
                     <div class="dropdown-header bg-light">
                             <div class="fw-semibold">{{auth()->user()->name.' '.auth()->user()->lastname}}</div>
-                    <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="{!! url('/employee/view/' . auth()->user()->id) !!}">
                         <svg class="icon me-2">
                             <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-user"></use>
-                        </svg>{{trans('message.Shaxsiy ma\'lumotlar')}}</a><a class="dropdown-item" href="#">
+                        </svg>{{trans('message.Shaxsiy ma\'lumotlar')}}</a>
+                        {{-- <a class="dropdown-item" href="#">
                         <svg class="icon me-2">
                             <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
-                        </svg>{{trans('message.Sozlamalar')}}</a>
+                        </svg>{{trans('message.Sozlamalar')}}</a> --}}
                         <a class="dropdown-item" href="#" title="Logout" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                         <svg class="icon me-2">
                             <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
