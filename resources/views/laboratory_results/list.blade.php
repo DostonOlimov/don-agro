@@ -68,7 +68,7 @@
                 <div class="col-md-4">
                 <a href="{!! url ('/laboratory-results/indicator/'.$crop->id) !!}">
                     <div class="crop-container">
-                        <img src={{$crop->img_url}} alt="{{ $crop->name }}" >
+                        <img src={{ URL::asset('crops/' . $crop->img) }} alt="{{ $crop->name }}" >
                         <p>{{ $crop->name }}</p>
                     </div>
                 </a>
