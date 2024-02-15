@@ -66,6 +66,28 @@
         <li class="nav-item"><a class="nav-link" href="{!! url('/final_decision/search') !!}"> <svg class="nav-icon">
                     <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-library"></use>
                 </svg><?php echo nl2br(trans('message.Yakuniy qarorlar')); ?></a></li>
+
+                {{-- start labratoyiy --}}
+
+            @if(auth()->user()->branch_id == \App\Models\User::BRANCH_INSPECTION or auth()->user()->branch_id == \App\Models\User::BRANCH_LABORATORY)
+                <li class="nav-title">{{trans('message.Laboratoriya')}}</li>
+                <li class="nav-item"><a class="nav-link" href="{!! url('/tests-laboratory/list') !!}"> <svg class="nav-icon">
+                            <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-file"></use>
+                        </svg>{{trans('app.Sinov dasturlari')}}</a></li>
+                <li class="nav-item"><a class="nav-link" href="{!! url('/laboratory-results/list') !!}"> <svg class="nav-icon">
+                            <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-beaker"></use>
+                        </svg>{{trans('message.Sinov natijalari')}}</a></li>
+                <li class="nav-item"><a class="nav-link" href="{!! url('/tests-laboratory/report') !!}"> <svg class="nav-icon">
+                            <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-bar-chart"></use>
+                        </svg>{{trans('message.Yakuniy natijalar')}}</a></li>
+                <li class="nav-item"><a class="nav-link" href="{!! url('/laboratory-protocol/list') !!}"> <svg class="nav-icon">
+                            <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-list"></use>
+                        </svg>{{trans('message.Sinov bayonnomalari')}}</a></li>
+            @endif
+
+                {{-- end labratoyiy --}}
+
+
         @if (auth()->user()->role != \App\Models\User::ROLE_INSPECTION_DIROCTOR)
             <li class="nav-title">{{ trans('message.Tizim sozlamalari') }}</li>
             <li class="nav-group"><a class="nav-link nav-group-toggle">

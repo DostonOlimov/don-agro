@@ -169,7 +169,7 @@
 								</div>
 
 
-{{--
+
 								<div class="col-md-6 form-group has-feedback {{ $errors->has('image') ? ' has-error' : '' }}">
 									<label class="form-label" for="image">{{ trans('app.Image')}}</label>
 									<input type="file" id="image" name="image" style="display: none;">
@@ -186,7 +186,7 @@
 												<strong>Xatolik</strong>
 											</span>
 										@endif
-								</div> --}}
+								</div>
 
 								<div class="form-group col-md-12 col-sm-12">
 									<div class="col-md-12 col-sm-12 text-center">

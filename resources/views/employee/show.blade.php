@@ -56,7 +56,7 @@
                             <div class="col-md-12 col-sm-12">
                                 <div class="row">
                                     <div class="col-md-4 col-sm-12 left_side">
-                                        <img src="{{ URL::asset('public/employee/'.$user->image) }}" class="cimg">
+                                        <img src="{{ URL::asset('employee/'.$user->image) }}" class="cimg">
                                     </div>
                                     <div class="col-md-8 col-sm-12 right_side">
                                         <div class="table_row row">

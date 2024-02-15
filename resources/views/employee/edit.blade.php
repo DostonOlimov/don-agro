@@ -173,7 +173,7 @@
 									</div>
 
 {{-- rasm yuklash start --}}
-{{--
+
 									<div class="col-md-6 col-sm-6 form-group has-feedback {{ $errors->has('image') ? ' has-error' : '' }}">
 										<label class="form-label" for="image">{{ trans('app.Image')}}</label>
 										<div>
@@ -186,14 +186,14 @@
 											  	<textarea disabled name="file-name" style="width: 100%; height: 2.375rem; background-color: #f1f2fd"></textarea>
 											</div>
 										</div>
-										 <img src="{{ URL::asset('public/employee/'.$user->image) }}"  width="40px" height="40px" class="img-circle" style="margin-top:10px;">
+										 <img src="{{ URL::asset('employee/'.$user->image) }}"  width="40px" height="40px" class="img-circle" style="margin-top:10px;">
 										 @if ($errors->has('image'))
 											<span class="help-block">
 												<strong>{{ $errors->first('image') }}</strong>
 											</span>
 										@endif
 										</div>
-									</div> --}}
+									</div>
 
 {{-- rasm yuklash end --}}
 

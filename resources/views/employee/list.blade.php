@@ -59,7 +59,7 @@
 
                                         <tr>
                                             <th>#</th>
-                                            {{-- <th>{{ trans('app.Image') }}</th> --}}
+                                            <th>{{ trans('app.Image') }}</th>
                                             <th>{{ trans('app.Name') }}</th>
                                             <th>{{ trans('app.Last Name') }}</th>
                                             <th>{{trans("app.Lavozim")}}</th>
@@ -74,7 +74,7 @@
                                         @foreach ($users as $user)
                                             <tr>
                                                 <td>{{ $i }}</td>
-                                                {{-- <td><img src="{{ URL::asset('public/employee/' . $user->image) }}" width="50px" height="50px" class="img-circle"></td> --}}
+                                                <td><img src="{{ URL::asset('employee/' . $user->image) }}" width="50px" height="50px" class="img-circle"></td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->lastname }}</td>
                                                 <td>{{ $user->position }}</td>
