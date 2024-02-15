@@ -52,7 +52,7 @@
                 $('#application-year').text(moment(currentdecision.application.date).format('YYYY'))
                 $('#application-month').text(moment(currentdecision.application.date).format('MM'))
                 $('#application-day').text(moment(currentdecision.application.date).format('DD'))
-                $('#application-id').text(currentdecision.app_id)
+                $('#application-id').text(currentdecision.application.app_number)
                 $('#application-organization').text(currentdecision.application.organization.name)
                 $('#crop-name').text(currentdecision.application.crops.name.name)
                 $('#crop-type').text(type)
