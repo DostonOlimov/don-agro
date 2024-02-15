@@ -227,7 +227,12 @@ class employeecontroller extends Controller
         $active->action = "Inspektor O'chirildi";
         $active->time = date('Y-m-d H:i:s');
         $active->save();
-
+        if ($user->image) {
+            $oldImagePath = public_path('employee/' . $user->image);
+            if (file_exists($oldImagePath)) {
+                unlink($oldImagePath);
+            }
+        }
         $user->delete();
 
         return redirect('employee/list')->with('message', 'Successfully Deleted');
