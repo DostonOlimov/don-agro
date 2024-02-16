@@ -94,4 +94,7 @@ return[
     'Settings'=>'Настройки',
     'Tizimdan chiqish'=>'Bыход',
     "Viloyat nomi"=>"Название провинции",
+
+    "Laboratoriya"=>"Лаборатория",
+    "Sinov natijalari"=>"Результаты теста",
 ];

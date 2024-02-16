@@ -450,4 +450,6 @@ return [
     "tonna"=>"tonna",
     "Jami partiyalar sonni:"=>"Jami partiyalar sonni:",
     "ta"=>"ta",
+
+    "Laboratoriya natijalarini kiritish oynasi"=>"Laboratoriya natijalarini kiritish oynasi",
 ];

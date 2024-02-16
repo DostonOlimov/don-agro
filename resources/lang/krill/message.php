@@ -94,4 +94,6 @@ return[
     'Tizimdan chiqish'=>'Тизимдан чиқиш',
     "Viloyat nomi"=>"Вилоят номи",
 
+    "Laboratoriya"=>"Лаборатория",
+    "Sinov natijalari"=>"Синов натижалари",
 ];

@@ -416,4 +416,6 @@ return [
     "tonna"=>"тонна",
     "Jami partiyalar sonni:"=>"Жами партиялар сонни:",
     "ta"=>"та",
+
+    "Laboratoriya natijalarini kiritish oynasi"=>"Лаборатория натижаларини киритиш ойнаси",
 ];

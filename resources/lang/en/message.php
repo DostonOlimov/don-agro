@@ -93,4 +93,6 @@ return[
     'Settings'=>'Settings',
     'Tizimdan chiqish'=>'Log out',
     "Viloyat nomi"=>"Province name",
+    "Laboratoriya"=>"Laboratory",
+    "Sinov natijalari"=>"Test results",
 ];

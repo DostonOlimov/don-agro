@@ -89,6 +89,10 @@ class employeecontroller extends Controller
             $user->image = 'avtar.png';
         }
         $user->role = $request->input('role');
+
+        if ( $request->input('role')>=90) {
+            $user->branch_id = User::BRANCH_LABORATORY;
+        }
         $user->save();
         $last_id = DB::table('users')->orderBy('id', 'desc')->get()->first();
         $userA = Auth::user();
@@ -190,6 +194,9 @@ class employeecontroller extends Controller
             $user->image = $filename;
         }
         $user->role = $role;
+        if ( $request->input('role')>=90) {
+            $user->branch_id = 3;
+        }
         $user->save();
 
         $userA = Auth::user();

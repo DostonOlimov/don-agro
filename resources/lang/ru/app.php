@@ -419,4 +419,6 @@ return [
     "tonna"=>"тонны",
     "Jami partiyalar sonni:"=>"Общее количество партий:",
     "ta"=>"та",
+
+    "Laboratoriya natijalarini kiritish oynasi"=>"Окно ввода результатов лабораторных исследований",
 ];

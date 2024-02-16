@@ -144,4 +144,7 @@ return[
     "Tahrirlash" => "Tahrirlash",
     "Berish" => "Berish",
     "Viloyat nomi"=>"Viloyat nomi",
+
+    "Laboratoriya"=>"Laboratoriya",
+    "Sinov natijalari"=>"Sinov natijalari",
 ];
