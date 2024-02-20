@@ -21,7 +21,7 @@ class TestPrograms  extends Model
     use  LogsActivity;
 
     const STATUS_NEW = 1;
-    const STATUS_SEEN = 2;
+    const STATUS_SEND = 2;
     const STATUS_ACCEPTED = 3;
     const STATUS_REJECTED = 4;
     const STATUS_FINISHED = 5;
@@ -59,6 +59,10 @@ class TestPrograms  extends Model
     {
         return $this->hasMany(TestProgramIndicators::class, 'id', 'test_program_id');
     }
+    public function laboratory_numbers()
+    {
+        return $this->hasMany(LaboratoryNumbers::class,'test_program_id','id');
+    }
     public function akt()
     {
         return $this->hasMany(AKT::class, 'test_program_id', 'id');
@@ -75,7 +79,7 @@ class TestPrograms  extends Model
     {
         $arr = [
             self::STATUS_NEW => 'Yangi ariza  ',
-            self::STATUS_SEEN => 'Tasdiqlanmagan',
+            self::STATUS_SEND => 'Yangi ariza  ',
             self::STATUS_ACCEPTED => 'Qabul qilingan',
             self::STATUS_REJECTED => 'Rad etilgan',
             self::STATUS_FINISHED => 'Yakunlangan',

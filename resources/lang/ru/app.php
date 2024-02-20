@@ -421,4 +421,8 @@ return [
     "ta"=>"та",
 
     "Laboratoriya natijalarini kiritish oynasi"=>"Окно ввода результатов лабораторных исследований",
+
+    "Sinov dastur raqami"=>"Номер тестовой программы",
+    "Na'munalar raqami"=>"Номер образца",
+    "Yuborilgan sana"=>"Дата отправки",
 ];

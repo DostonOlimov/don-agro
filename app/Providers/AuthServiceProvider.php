@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 use App\Models\Application;
+use App\Models\LaboratoryResult;
 use App\Models\OrganizationCompanies;
 use App\Models\TestPrograms;
 use App\Policies\ApplicationPolicy;
+use App\Policies\LaboratoryPolicy;
 use App\Policies\OrganizationPolicy;
 use App\Policies\TestProgramsPolicy;
 use App\Policies\UserPolicy;
@@ -24,6 +26,7 @@ class AuthServiceProvider extends ServiceProvider
         Application::class => ApplicationPolicy::class,
         OrganizationCompanies::class => OrganizationPolicy::class,
         TestPrograms::class => TestProgramsPolicy::class,
+        LaboratoryResult::class => LaboratoryPolicy::class,
     ];
 
     /**

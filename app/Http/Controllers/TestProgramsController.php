@@ -320,14 +320,20 @@ class TestProgramsController extends Controller
         $max_number = LaboratoryNumbers::max('number');
 
         $measure_type = (Application::find($tests->app_id)->crops->name->measure_type == 2) ? "dona" : "kg";
-        $nds_type = Nds::getType(Application::find($tests->app_id)->crops->name->nds->type_id);
+        $nds = [];
+        foreach (Nds::where('crop_id', Application::find($tests->app_id)->crops->name_id)->get() as $item) {
+            $nds[] = Nds::getType($item->type_id) . " " . $item->number . " " . $item->name;
+        }
+        $app_id = Application::find($tests->app_id);
+        $nds_type=implode(",", $nds);
         return view('tests.lab_view', [
             'decision' => $tests,
             'measure_type' => $measure_type,
-            'nds_type' => $nds_type,
+            'nds' => $nds_type,
             'indicators' => $indicators,
             'qrCode' => $qrCode,
-            'max_number' => $max_number
+            'max_number' => $max_number,
+            'app_id'=>$app_id
         ]);
     }
 }

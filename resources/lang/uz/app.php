@@ -452,4 +452,8 @@ return [
     "ta"=>"ta",
 
     "Laboratoriya natijalarini kiritish oynasi"=>"Laboratoriya natijalarini kiritish oynasi",
+
+    "Sinov dastur raqami"=>"Sinov dastur raqami",
+    "Na'munalar raqami"=>"Na'munalar raqami",
+    "Yuborilgan sana"=>"Yuborilgan sana",
 ];

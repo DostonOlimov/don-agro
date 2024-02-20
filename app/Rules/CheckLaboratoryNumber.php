@@ -9,14 +9,18 @@ use Illuminate\Contracts\Validation\Rule;
 class CheckLaboratoryNumber implements Rule
 {
     protected $count;
+    protected $year;
+    protected $type;
     /**
      * Create a new rule instance.
      *
      * @return void
      */
-    public function __construct($count)
+    public function __construct($tests,$type=null)
     {
-        $this->count = $count;
+        $this->count = $tests->akt[0]->party_number;
+        $this->type = $type;
+        $this->year = $tests->application->getYear();
     }
 
     /**
@@ -28,8 +32,8 @@ class CheckLaboratoryNumber implements Rule
      */
     public function passes($attribute, $value)
     {
-        for($i=$value;$i<$value+2*$this->count;$i++){
-            if(LaboratoryNumbers::where('number',$i)->first()){
+        for($i=$value;$i<$value+$this->count;$i++){
+            if(LaboratoryNumbers::where('number',$i)->where('year',$this->year)->where('laboratory_category_type',$this->type)->first()){
                 return false;
             }
         }

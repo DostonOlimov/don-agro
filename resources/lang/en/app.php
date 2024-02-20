@@ -420,4 +420,7 @@ return [
     "Jami partiyalar sonni:"=>"Total number of parties:",
     "ta"=>"",
     "Laboratoriya natijalarini kiritish oynasi"=>"Laboratory results input window",
+    "Sinov dastur raqami"=>"Test program number",
+    "Na'munalar raqami"=>"Sample number",
+    "Yuborilgan sana"=>"Date sent",
 ];

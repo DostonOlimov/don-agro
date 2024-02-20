@@ -101,7 +101,7 @@
                                                         <td></td>
                                                         <td></td>
                                                     @endif
-                                                    <td>
+                                                    {{-- <td>
                                                         @if (!empty($item->akt[0]))
                                                             @if (empty($item->final_result))
                                                                 <a href="{!! url('/akt/edit/' . $item->akt[0]->id) !!}"><button type="button"
@@ -112,6 +112,27 @@
                                                             @endif
                                                         @else
                                                             <a href="{!! url('/akt/add/' . $item->id) !!}"><button type="button"
+                                                                    class="btn btn-round btn-success">&nbsp;
+                                                                    {{ trans('app.Namuna olish dalolatnomasi yaratish') }}
+                                                                    &nbsp;</button></a>
+                                                        @endif
+                                                    </td> --}}
+
+                                                    <td>
+                                                        <?php $appid=Auth::User()->id; ?>
+                                                            @if(!empty($item->akt[0]))
+                                                                @if(!empty($item->akt[0]))
+                                                                    {{-- <a href="{!! url('/tests/view/'.$app->tests->id) !!}"><button type="button" class="btn btn-round btn-info">{{trans('app.Sinov dasturi fayli')}}</button></a> --}}
+                                                                        <a href="{!!  url('/akt/edit/' . $item->akt[0]->id) !!} !!}"><button type="button" class="btn btn-round btn-warning">{{ trans('app.Edit')}}</button></a>
+                                                                        <a url="{!! url('/tests/send/'.$item->id) !!}" class="sa-warning"> <button type="button" class="btn btn-round btn-success ">{{ trans('app.Yubor')}}</button></a>
+
+                                                                        <button type="button" class="btn btn-round btn-danger ">{{ trans('app.Yuborilgan')}}</button></a>
+
+                                                                @else
+                                                                    <a href="{!! url('/tests/add/'.$item->id) !!}"><button type="button" class="btn btn-round btn-success">&nbsp; {{trans('app.Sinov dasturini shakllantirish')}} &nbsp;</button></a>
+                                                                @endif
+                                                           @else
+                                                                <a href="{!! url('/akt/add/' . $item->id) !!}"><button type="button"
                                                                     class="btn btn-round btn-success">&nbsp;
                                                                     {{ trans('app.Namuna olish dalolatnomasi yaratish') }}
                                                                     &nbsp;</button></a>

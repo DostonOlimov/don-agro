@@ -10,7 +10,7 @@
     </style>
 @endsection
 @section('content')
-    @can('view', \App\Models\User::class)
+    @can('add_number',\App\Models\LaboratoryResult::class)
         <div class=" content-area ">
             <div class="page-header">
                 <h4 class="page-title mb-0" style="color:white">Sinov dasturi</h4>
@@ -18,11 +18,11 @@
             <div class="panel panel-primary">
                 <div class="tab_wrapper page-tab">
                     <ul class="tab_list">
-                        @if($decision->status == \App\Models\TestPrograms::STATUS_NEW or $decision->status == \App\Models\TestPrograms::STATUS_SEEN)
+                        @if($decision->status == \App\Models\TestPrograms::STATUS_NEW or $decision->status == \App\Models\TestPrograms::STATUS_SEND)
                             <li class="btn-success">
                                 <a class="text-light" onclick="Accept()">
                                     <span class="visible-xs"></span>
-                                    <i class="fa fa-check fa-lg">&nbsp;</i> {{trans("app.Qabul qilish")}}
+                                    <i class="fa fa-check fa-lg">&nbsp;</i> Qabul qilish
                                 </a>
                             </li>
                             <li class="btn-danger">
@@ -70,6 +70,7 @@
                     <div class="col-md-4 form-group has-feedback {{ $errors->has('number') ? ' has-error' : '' }}">
                         <label for="middle-name" class="form-label">Sinov na'munalarning ro'yxatga olingan raqami <label class="text-danger">*</label>(Oxirgi ro'yxatga olingan raqam : {{$max_number}})</label>
                         <input type="number" class="form-control" maxlength="25"  name="number" value="{{ old('number')}}" required>
+                        <input type="number" hidden value="{{$decision->application->crops->name->laboratory_category_type??null}}" name="type">
                         @if ($errors->has('number'))
                             <span class="help-block" style="color:red">
                                 <strong>Bunday raqamlar oldindan ro'yxatdan o'tgan</strong>
@@ -127,7 +128,7 @@
 
             let currentdecision = @json($decision);
             let measure_type = @json($measure_type);
-            let nds_type = @json($nds_type);
+            let nds = @json($nds);
             let qrCode = @json($qrCode);
 
 
