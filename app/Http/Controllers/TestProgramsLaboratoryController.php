@@ -148,60 +148,58 @@ class TestProgramsLaboratoryController extends Controller
 
         return redirect('tests-laboratory/list')->with('message', 'Successfully Submitted');
     }
-    // public function report(Request $request)
-    // {
-    //     $user = Auth::user();
-    //     $crop = $request->input('crop');
-    //     $from = $request->input('from');
-    //     $till = $request->input('till');
+    public function report(Request $request)
+    {
+        $user = Auth::user();
+        $crop = $request->input('crop');
+        $from = $request->input('from');
+        $till = $request->input('till');
 
-    //     $apps= TestPrograms::with('application')
-    //         ->with('application.crops.name')
-    //         ->with('application.crops.type')
-    //         ->with('application.organization')
-    //         ->with('final_result')
-    //         ->whereNotNull('code')
-    //         ->where('status',TestPrograms::STATUS_ACCEPTED);
-    //     if ($from && $till) {
-    //         $fromTime = join('-', array_reverse(explode('-', $from)));
-    //         $tillTime = join('-', array_reverse(explode('-', $till)));
-    //         $apps->whereHas('application', function ($query) use ($fromTime,$tillTime) {
-    //             $apps = $query->whereDate('date', '>=', $fromTime)
-    //                 ->whereDate('date', '<=', $tillTime);
-    //         });
-    //     }
-    //     if ($crop) {
-    //         $apps = $apps->whereHas('application.crops', function ($query) use ($crop) {
-    //             $query->where('name_id', '=', $crop);
-    //         });
-    //     }
-    //     $apps->when($request->input('s'), function ($query, $searchQuery) {
-    //         $query->where(function ($query) use ($searchQuery) {
-    //             if (is_numeric($searchQuery)) {
-    //                 $query->whereHas('application', function ($query) use ($searchQuery) {
-    //                     $query->where('app_number', $searchQuery);
-    //                 });
-    //             } else {
-    //                 $query->whereHas('application.crops.name', function ($query) use ($searchQuery) {
-    //                     $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
-    //                 })->orWhereHas('application.crops.type', function ($query) use ($searchQuery) {
-    //                     $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
-    //                 })->orWhereHas('application.crops.generation', function ($query) use ($searchQuery) {
-    //                     $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
-    //                 });
+        $apps= TestPrograms::with('application')
+            ->with('application.crops.name')
+            ->with('application.crops.type')
+            ->with('application.organization')
+            ->with('final_result')
+            ->whereNotNull('code')
+            ->where('status',TestPrograms::STATUS_ACCEPTED);
+        if ($from && $till) {
+            $fromTime = join('-', array_reverse(explode('-', $from)));
+            $tillTime = join('-', array_reverse(explode('-', $till)));
+            $apps->whereHas('application', function ($query) use ($fromTime,$tillTime) {
+                $apps = $query->whereDate('date', '>=', $fromTime)
+                    ->whereDate('date', '<=', $tillTime);
+            });
+        }
+        if ($crop) {
+            $apps = $apps->whereHas('application.crops', function ($query) use ($crop) {
+                $query->where('name_id', '=', $crop);
+            });
+        }
+        $apps->when($request->input('s'), function ($query, $searchQuery) {
+            $query->where(function ($query) use ($searchQuery) {
+                if (is_numeric($searchQuery)) {
+                    $query->whereHas('application', function ($query) use ($searchQuery) {
+                        $query->where('app_number', $searchQuery);
+                    });
+                } else {
+                    $query->whereHas('application.crops.name', function ($query) use ($searchQuery) {
+                        $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
+                    })->orWhereHas('application.crops.type', function ($query) use ($searchQuery) {
+                        $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
+                    });
 
-    //             }
-    //         });
-    //     });
+                }
+            });
+        });
 
-    //     $tests = $apps->latest('id')
-    //         ->paginate(50)
-    //         ->appends(['s' => $request->input('s')])
-    //         ->appends(['till' => $request->input('till')])
-    //         ->appends(['from' => $request->input('from')])
-    //         ->appends(['crop' => $request->input('crop')]);
-    //     return view('test_laboratory.report', compact('tests','from','till','crop'));
-    // }
+        $tests = $apps->latest('id')
+            ->paginate(50)
+            ->appends(['s' => $request->input('s')])
+            ->appends(['till' => $request->input('till')])
+            ->appends(['from' => $request->input('from')])
+            ->appends(['crop' => $request->input('crop')]);
+        return view('test_laboratory.report', compact('tests','from','till','crop'));
+    }
     // public function report_view($test_id)
     // {
     //     $test = TestPrograms::with('indicators')

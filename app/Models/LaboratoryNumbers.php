@@ -14,4 +14,8 @@ class LaboratoryNumbers extends Model
     {
         return $this->belongsTo(TestPrograms::class, 'test_program_id', 'id');
     }
+    public function results()
+    {
+        return $this->hasMany(LaboratoryResult::class,'number_id','id');
+    }
 }

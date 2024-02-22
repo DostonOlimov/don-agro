@@ -72,7 +72,7 @@
             @if(auth()->user()->branch_id == \App\Models\User::BRANCH_INSPECTION or auth()->user()->branch_id == \App\Models\User::BRANCH_LABORATORY)
                 <li class="nav-title">{{trans('message.Laboratoriya')}}</li>
                 <li class="nav-item"><a class="nav-link" href="{!! url('/tests-laboratory/list') !!}"> <svg class="nav-icon">
-                            <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-file"></use>
+                            <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-equalizer"></use>
                         </svg>{{trans('app.Sinov dasturlari')}}</a></li>
                 <li class="nav-item"><a class="nav-link" href="{!! url('/laboratory-results/list') !!}"> <svg class="nav-icon">
                             <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-beaker"></use>

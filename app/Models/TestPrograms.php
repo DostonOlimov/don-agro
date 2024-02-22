@@ -57,7 +57,7 @@ class TestPrograms  extends Model
     }
     public function indicators()
     {
-        return $this->hasMany(TestProgramIndicators::class, 'id', 'test_program_id');
+        return $this->hasMany(TestProgramIndicators::class, 'test_program_id' , 'id');
     }
     public function laboratory_numbers()
     {

@@ -2,7 +2,7 @@
 @section('content')
     <!-- page content -->
     <?php $userid = Auth::user()->id; ?>
-    @can('viewAny',\App\Models\User::class)
+    @can('viewAny',\App\Models\LaboratoryResult::class)
         <div class="section">
             <!-- PAGE-HEADER -->
             <div class="page-header">
@@ -35,7 +35,7 @@
                                 <div class="tab_wrapper page-tab">
                                     <ul class="tab_list">
                                         <li class="active">
-                                            <a href="{!! url('/laboratory-results/indicator')!!}">
+                                            <a href="{!! url('/laboratory-results/list')!!}">
                                                 <span class="visible-xs"></span>
                                                 <i class="fa fa-list fa-lg">&nbsp;</i>
                                                 {{ trans('app.Ro\'yxat')}}
@@ -51,7 +51,6 @@
                                     </ul>
                                 </div>
                             </div>
-
 
                             <div class="table-responsive">
                                 @php $t = 1; @endphp
