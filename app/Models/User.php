@@ -7,6 +7,7 @@ use App\Models\Level;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Str;
+use Laravel\Passport\HasApiTokens;
 
 /**
  * Class User
@@ -21,6 +22,8 @@ use Illuminate\Support\Str;
  */
 class User extends Authenticatable
 {
+    use HasApiTokens;
+
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 0;
 

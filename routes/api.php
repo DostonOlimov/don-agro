@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CertConnetionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +17,7 @@ use Illuminate\Support\Facades\Route;
 // Route::post('notifications/{notifiableType}/{notifiableId}', 'NotificationsController@store')->name('notifications.store');
 
 
-
+Route::post('login', [CertConnetionController::class, 'login']);
+Route::middleware('auth:api')->group(function (){
+    Route::post('cropData', [CertConnetionController::class, 'crop_data']);
+});
