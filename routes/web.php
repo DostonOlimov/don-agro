@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\Customercontroller;
+// use App\Http\Controllers\Customercontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +26,8 @@ Route::group(
 
 
         Route::post('/register-store', '\App\Http\Controllers\AuthController@store')->name('register.store');
-        Route::post('/change-language', [\App\Http\Controllers\LanguageController::class, 'changeLanguage']);
-        Route::post('/change-year', [\App\Http\Controllers\LanguageController::class, 'changeYear']);
+        Route::post('/change-language', [LanguageController::class, 'changeLanguage']);
+        Route::post('/change-year', [LanguageController::class, 'changeYear']);
 
         //Dashboard
         Route::get('/home', ['middleware' => 'auth', 'uses' => '\App\Http\Controllers\HomeController@dashboard']);
@@ -34,21 +35,21 @@ Route::group(
         Route::get('/all', [\App\Http\Controllers\DashboardController::class, 'all']);
 
         //profile
-        Route::get('/instruction', '\App\Http\Controllers\Customercontroller@instruction');
+        // Route::get('/instruction', '\App\Http\Controllers\Customercontroller@instruction');
         Route::get('/full-report', '\App\Http\Controllers\ReportController@report')->name('report.full_report');
         // Route::get('/region-report', '\App\Http\Controllers\ReportController@region_report')->name('report.region_report');
         // Route::get('/company-report', '\App\Http\Controllers\ReportController@company_report')->name('report.company_report');
         Route::get('/export', '\App\Http\Controllers\ReportController@excel_export')->name('excel.export');
         Route::get('/city-export', '\App\Http\Controllers\ReportController@excel_city_export')->name('excel.city');
-        Route::get('/sign', '\App\Http\Controllers\Customercontroller@sign');
+        // Route::get('/sign', '\App\Http\Controllers\Customercontroller@sign');
         Route::post('/save-amount', [\App\Http\Controllers\ReportController::class, 'save_amount'])->name('save.required_amount');
 
 
 
         Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
-            Route::get('/list', 'Usercontroller@userslist');
-            Route::get('/list/{id}', 'Usercontroller@usershow');
-            Route::get('/get', 'Usercontroller@get_users');
+            Route::get('/list',[UserController::class, 'userslist']);
+            Route::get('/list/{id}', [UserController::class,'usershow']);
+            Route::get('/get', [UserController::class,'get_users']);
         });
         //employee module
         Route::get('/attachments/{id}/download', '\App\Http\Controllers\AttachmentsController@download')->name('attachment.download');
@@ -68,11 +69,11 @@ Route::group(
         //settings
         Route::group(['prefix' => 'setting', 'middleware' => 'auth'], function () {
 
-            Route::get('/list', ['as' => 'listlanguage', 'uses' => 'Languagecontroller@index']);
+            Route::get('/list', ['as' => 'listlanguage', 'uses' => [ LanguageController::class, 'index']]);
 
             //language
-            Route::get('language/direction/list', ['as' => 'listlanguagedirection', 'uses' => 'Languagecontroller@index1']);
-            Route::post('language/direction/store', ['as' => 'storelanguagedirection', 'uses' => 'Languagecontroller@store1']);
+            Route::get('language/direction/list', ['as' => 'listlanguagedirection', 'uses' => [LanguageController::class, 'index1'] ]);
+            Route::post('language/direction/store', ['as' => 'storelanguagedirection', 'uses' => [LanguageController::class, 'store1']]);
             //accessrights
             Route::get('accessrights/add', '\App\Http\Controllers\Accessrightscontroller@addposition');
             Route::post('accessrights/addstore',  '\App\Http\Controllers\Accessrightscontroller@storeposition');
@@ -82,14 +83,14 @@ Route::group(
             Route::GET('/accessrights/change_role',  '\App\Http\Controllers\Accessrightscontroller@change_role');
 
             //general_setting
-            Route::get('general_setting/list', 'GeneralController@index');
-            Route::post('general_setting/store', 'GeneralController@store');
+            // Route::get('general_setting/list', 'GeneralController@index');
+            // Route::post('general_setting/store', 'GeneralController@store');
 
             //currancy
-            Route::post('currancy/store', 'Timezonecontroller@currancy');
+            // Route::post('currancy/store', 'Timezonecontroller@currancy');
 
-            Route::get('/getrole', 'employeecontroller@getrole');
-            Route::get('messages', 'Admin\MessagesController@index')->name('messages.index');
+            Route::get('/getrole', '\App\Http\Controllers\employeecontroller@getrole');
+            // Route::get('messages', 'Admin\MessagesController@index')->name('messages.index');
         });
         //Country City State ajax
         Route::get('/getstatefromcountry', '\App\Http\Controllers\CountryAjaxcontroller@getstate');
@@ -295,7 +296,7 @@ Route::group(
         Route::post('decision/store', '\App\Http\Controllers\DecisionController@store')->name('decision.store');
         Route::get('decision/report', '\App\Http\Controllers\DecisionController@report')->name('decision.report');
         Route::get('decision/report/export', '\App\Http\Controllers\DecisionController@export')->name('decision.report.export');
-        Route::resource('decision/payments', '\App\Http\Controllers\PaymentsController', ['as' => 'decision']);
+        // Route::resource('decision/payments', '\App\Http\Controllers\PaymentsController', ['as' => 'decision']);
         Route::get('decision/{invoice_id}/serve', '\App\Http\Controllers\DecisionController@serve')->name('decision.serve');
         Route::get('decision/{id}/redo', '\App\Http\Controllers\DecisionController@redo')->name('decision.redo');
         Route::get('decision/view/{id}', '\App\Http\Controllers\DecisionController@view')->name('decision.view');
