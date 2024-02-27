@@ -9,6 +9,14 @@ use function PHPUnit\Framework\isNull;
 
 class OrganizationCompanies extends Model
 {
+    protected $fillable = [
+        'name', 
+        'city_id',
+        'address',
+        'owner_name',
+        'phone_number',
+        'inn',
+    ];
     public function city()
     {
         return $this->belongsTo(Area::class, 'city_id');

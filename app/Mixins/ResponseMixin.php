@@ -7,7 +7,7 @@ class ResponseMixin
 
     public function successJson()
     {
-        return function ($data, $status = true, $code = 200, $msg = 'success') {
+        return function ($data, $code = 200, $msg = 'successfully', $status = true) {
             return [
                 'result' => $status,
                 'code' => $code,
@@ -19,7 +19,7 @@ class ResponseMixin
 
     public function errorJson()
     {
-        return function ($data, $status = false, $code = 404, $msg = 'fail') {
+        return function ($data, $code = 404, $msg = 'fail', $status = false) {
             return [
                 'result' => $status,
                 'code' => $code,
