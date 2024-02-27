@@ -300,6 +300,7 @@ return [
     'Jami:' => 'Общий:',
     'date' => 'По состоянию на :date',
     'Viloyatni tanlang' => 'Выберите регион',
+    "Arizalar soni:"=>"Количество заявок",
 
 
     //General Settings

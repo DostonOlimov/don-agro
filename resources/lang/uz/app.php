@@ -448,7 +448,7 @@ return [
     "Mahsulot (nav) sinfini tanlang"=>"Mahsulot (nav) sinfini tanlan",
     "Jami og'irligi:"=>"Jami og'irligi:",
     "tonna"=>"tonna",
-    "Jami partiyalar sonni:"=>"Jami partiyalar sonni:",
+    "Jami partiyalar sonni:"=>"Jami partiyalar soni:",
     "ta"=>"ta",
 
     "Laboratoriya natijalarini kiritish oynasi"=>"Laboratoriya natijalarini kiritish oynasi",
@@ -456,4 +456,5 @@ return [
     "Sinov dastur raqami"=>"Sinov dastur raqami",
     "Na'munalar raqami"=>"Na'munalar raqami",
     "Yuborilgan sana"=>"Yuborilgan sana",
+    "Arizalar soni:"=>"Arizalar soni",
 ];

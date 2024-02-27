@@ -267,8 +267,9 @@
                                         $offset = (request()->get('page', 1) - 1) * 50;
                                         $partiya=0;
                                         $all_amount=0;
+                                        $count_app=0;
                                     @endphp
-                                    @foreach($apps as $app)
+                                    @foreach($apps as $key=>$app)
                                         <tr>
                                             @php $type = optional(optional($app->tests)->result)->type ; @endphp
                                             <td>{{$offset + $loop->iteration}}</td>
@@ -291,6 +292,7 @@
                                                 if ($amounts) {
                                                     $all_amount += $amounts->amount/1000;
                                                 }
+                                                $count_app=$offset + $loop->iteration??0;
                                             @endphp
                                             <td>{{optional($app->tests)->akt[0]->party_number??""}}</td>
                                             <td>{{ optional($app->crops)->amount_name }}</td>
@@ -324,7 +326,10 @@
                                 </div>
                                 {{ $apps->links() }}
                         </div>
-                        <h4 style="position: sticky; bottom: 0; padding: 1%; color: #0052cc; width: 100%; display: flex; justify-content: space-between; background-color: white">{{ trans("app.Jami og'irligi:")." ".number_format($all_amount, 2, ',', ' ')." ".trans("app.tonna")}} <br> <span style="color: #097a22;"> {{trans("app.Jami partiyalar sonni:")." ".number_format($partiya,0,'',' ')." ".trans("app.ta")}} </span></h4>
+                        <h4 style="position: sticky; bottom: 0; padding: 1%; color: #0052cc; width: 100%; display: flex; justify-content: space-between; background-color: white">
+                            <span>{{ trans("app.Jami og'irligi:")." ".number_format($all_amount, 2, ',', ' ')." ".trans("app.tonna")}}</span>
+                            <span style="color: #197da5;">{{trans("app.Arizalar soni:")}} {{$count_app}}  {{trans("app.ta")}}</span>
+                            <span style="color: #097a22;"> {{trans("app.Jami partiyalar sonni:")." ".number_format($partiya,0,'',' ')." ".trans("app.ta")}} </span></h4>
                     </div>
                 </div>
             </div>

@@ -267,6 +267,7 @@ return [
     'Viloyatni tanlang' => 'Вилоятни танланг',
     'Mahsulot tayorlangan shaxobcha yoki sexning nomi' => 'Ишлаб чиқариш заводининг номи',
     'Mahsulot miqdori' => 'Маҳсулот миқдори',
+    "Arizalar soni:"=>"Аризалар сони",
 
     //NDS
     'Qaror shakllantirishdan oldin normativ hujjatni qo\'shish kerak' => 'Қарор шакллантиришдан олдин норматив ҳужжатни қўшиш керак',
@@ -414,7 +415,7 @@ return [
     "Mahsulot (nav) sinfini tanlang"=>"Маҳсулот (нав) синфини танланг",
     "Jami og'irligi:"=>"Жами оғирлиги:",
     "tonna"=>"тонна",
-    "Jami partiyalar sonni:"=>"Жами партиялар сонни:",
+    "Jami partiyalar sonni:"=>"Жами партиялар сони:",
     "ta"=>"та",
 
     "Laboratoriya natijalarini kiritish oynasi"=>"Лаборатория натижаларини киритиш ойнаси",
