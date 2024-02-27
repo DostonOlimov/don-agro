@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::post('login', [CertConnetionController::class, 'login']);
+
 Route::middleware('auth:api')->group(function (){
-    Route::post('cropData', [CertConnetionController::class, 'crop_data']);
+    Route::post('cropName', [CertConnetionController::class, 'crop_name']);
+    Route::get('cropType/{id}', [CertConnetionController::class, 'crop_type']);
 });

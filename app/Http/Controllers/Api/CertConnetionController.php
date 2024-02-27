@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\CropData;
+use App\Models\CropsName;
+use App\Models\CropsType;
 use Illuminate\Http\Request;
 
 class CertConnetionController extends Controller
@@ -29,10 +31,20 @@ class CertConnetionController extends Controller
         return response()->json(['user' => $token]);
     }
 
-    public function crop_data() 
+    public function crop_name()
     {
-        $cropData=CropData::with('name')->with('type')->get();
+        $cropData=CropsName::get();
         // dd(request()->getHost());
         return response()->successJson($cropData);
+    }
+    public function crop_type(Request $request)
+    {
+        $name_id=$request->id;
+        if($name_id){
+            $cropData=CropsType::where('crop_id', $name_id)->get();
+
+            return response()->successJson($cropData);
+        }
+        return abort(404);
     }
 }
