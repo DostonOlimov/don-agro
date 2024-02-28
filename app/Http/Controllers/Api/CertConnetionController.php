@@ -157,7 +157,7 @@ class CertConnetionController extends Controller
         $page = $request->input('page') ?? 1;
         $rows = 10;
         $year =  $request->input('year');
-        $user = Application::withoutGlobalScopes()->with(['organization', 'prepared', 'crops'])->whereYear('date', $year)
+        $user = Application::withoutGlobalScopes()->with(['organization', 'prepared', 'crops.name','crops.type'])->whereYear('date', $year)
             ->where('created_by', $id)
             ->paginate($rows, ['*'], 'page', $page);
 
@@ -181,7 +181,7 @@ class CertConnetionController extends Controller
         $user_id = $request->input('user_id');
         $app_id = $request->input('app_id');
 
-        $user = Application::with(['organization', 'prepared', 'crops'])->where('created_by', $user_id)->where('id', $app_id)->first();
+        $user = Application::with(['organization', 'prepared', 'crops.name.type'])->where('created_by', $user_id)->where('id', $app_id)->first();
 
         return response()->successJson($user, 200);
     }
