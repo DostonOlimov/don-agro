@@ -112,7 +112,7 @@
                                 @endif
                             <div class="col-12 mt-4 form-actions d-none" id="success-actions">
                                 <button class="btn btn-primary" id="print-invoice-btn">{{trans("app.Chop etish")}}</button>
-                                <a id="payment-button" href="{{route('decision.payments.create')}}" class="btn btn-primary d-none">{{trans("app.To'lov qo'shish")}}</a>
+                                {{-- <a id="payment-button" href="{{route('decision.payments.create')}}" class="btn btn-primary d-none">{{trans("app.To'lov qo'shish")}}</a> --}}
                             </div>
                         </div>
 					</div>

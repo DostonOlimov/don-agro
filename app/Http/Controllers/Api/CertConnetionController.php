@@ -57,31 +57,15 @@ class CertConnetionController extends Controller
 
     public function organization_company(Request $request)
     {
-        $rules = [
-            "name" => 'required|string|max:255',
-            "city_id" => 'required|numeric',
-            "address" => 'required|string|max:255',
-            "owner_name" => 'required|string|max:255',
-            "phone_number" => 'required|string|max:15',
-            "inn" => 'required|digits:9',
-        ];
+        $data = $request->all()['data'];
+        unset($data['id']);
+        $model = OrganizationCompanies::firstOrCreate($data);
 
-        $validator = Validator::make($request->all(), $rules);
-
-        if ($validator->fails()) {
-            return response()->errorJson($validator->errors(), 422, 'Validation error');
+        if ($model) {
+            return response()->json(true);
         }
 
-        $model = OrganizationCompanies::create([
-            'name' => $request->input('name'),
-            'city_id' => $request->input('city_id'),
-            'address' => $request->input('address'),
-            'owner_name' => $request->input('owner_name'),
-            'phone_number' => $request->input('phone_number'),
-            'inn' => $request->input('inn'),
-        ]);
-
-        return response()->successJson($model, 201);
+        return response()->json(null);
     }
 
     public function full_data(Request $request)
@@ -140,7 +124,7 @@ class CertConnetionController extends Controller
 
         $now = Carbon::now()->format('Y-m-d');
         $application = Application::create([
-            // 'app_number',  //null
+            'app_number' => 0,  //tastiqlangandan keyin oladi raqamni
             'crop_data_id' => $crop->id,
             'organization_id' => $organization->id,
             'prepared_id' => $prepared->id,
@@ -162,8 +146,34 @@ class CertConnetionController extends Controller
             $active->action = "Ariza qo'shildi Urug'dan";
             $active->time = date('Y-m-d H:i:s');
             $active->save();
-            return response()->successJson(['application'=>$application,'prepared'=>$prepared,'crop'=>$crop], 201);
+            return response()->successJson(['application' => $application, 'prepared' => $prepared, 'crop' => $crop], 201);
         }
         return response()->errorJson(null, 422, 'Application not created');
+    }
+
+    public function apps_user($id)
+    {
+        $user = Application::where('created_by', $id)->paginate(50);
+
+        return response()->json($user);
+    }
+    public function app_view(Request $request)
+    {
+        $rules = [
+            'user_id' => 'required|numeric',
+            'app_id' => 'required|numeric',
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return response()->errorJson($validator->errors(), 422, 'Validation error');
+        }
+
+        $user_id = $request->input('user_id');
+        $app_id = $request->input('app_id');
+
+        $user = Application::with(['organization', 'prepared', 'crops', 'tests.akt'])->where('created_by', $user_id)->where('id', $app_id)->first();
+
+        return response()->successJson($user, 200);
     }
 }
