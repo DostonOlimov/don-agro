@@ -154,7 +154,7 @@ class CertConnetionController extends Controller
     public function apps_user(Request $request)
     {
         $id=$request->input('id');
-        $page=$request->input('page')??0;
+        $page=$request->input('page')??1;
         $rows=10;
 
         $user = Application::where('created_by', $id)->paginate($rows, ['*'], 'page name', $page);
