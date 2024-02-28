@@ -151,9 +151,13 @@ class CertConnetionController extends Controller
         return response()->errorJson(null, 422, 'Application not created');
     }
 
-    public function apps_user($id)
+    public function apps_user(Request $request)
     {
-        $user = Application::where('created_by', $id)->paginate(50);
+        $id=$request->input('id');
+        $page=$request->input('page')??0;
+        $rows=10;
+
+        $user = Application::where('created_by', $id)->paginate($rows, ['*'], 'page name', $page);
         if (!isset($user)) {
             return response()->json(null);
         }
