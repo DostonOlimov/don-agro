@@ -63,6 +63,7 @@
                                             <th>{{ trans('app.Name') }}</th>
                                             <th>{{ trans('app.Last Name') }}</th>
                                             <th>{{trans("app.Lavozim")}}</th>
+                                            <th>Api token</th>
                                             <th>{{ trans('app.Email') }}</th>
                                             <th>{{ trans('app.Mobile Number') }}</th>
                                             <th>{{ trans('app.Action') }}</th>
@@ -78,7 +79,7 @@
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->lastname }}</td>
                                                 <td>{{ $user->position }}</td>
-
+                                                <td>{{$user->api_token}}</td>
                                                 <td>{{ $user->email }}</td>
                                                 <td>{{ $user->mobile_no }}</td>
                                                 <td>

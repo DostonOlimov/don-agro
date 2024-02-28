@@ -80,6 +80,7 @@ class employeecontroller extends Controller
         $user->password = bcrypt($password);
         $user->mobile_no = $request->input('mobile');
         $user->address = $request->input('address');
+        $user->api_token= auth()->user()->createToken('authToken')->accessToken;
         if (!empty($request->hasFile('image'))) {
             $file = $request->file('image');
             $filename = $file->getClientOriginalName();

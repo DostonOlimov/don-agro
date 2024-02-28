@@ -143,7 +143,7 @@
                                                 <i class="fa fa-lock"></i> <b>API Token</b>
                                             </div>
                                             <div class="col-md-7 col-sm-12 table_td">
-                                                <span class="txt_color">{{$user->api_token}}</span>
+                                                <span class="txt_color">{{$user->api_token??''}}</span>
                                             </div>
                                         </div>
                                     </div>

@@ -154,7 +154,9 @@ class CertConnetionController extends Controller
     public function apps_user($id)
     {
         $user = Application::where('created_by', $id)->paginate(50);
-
+        if (!isset($user)) {
+            return response()->json(null);
+        }
         return response()->json($user);
     }
     public function app_view(Request $request)
