@@ -22,6 +22,20 @@ class Application extends Model
     protected $table = 'applications';
 
 
+    protected $fillable = [
+        'id',
+        'app_number',
+        'crop_data_id',
+        'organization_id',
+        'prepared_id',
+        'type',
+        'date',
+        'accepted_date',
+        'accepted_id',
+        'data',
+        'status',
+        'created_by',
+    ];
 
     public function user()
     {

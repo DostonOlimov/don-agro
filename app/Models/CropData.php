@@ -14,6 +14,18 @@ class CropData extends Model
     const MEASURE_TYPE_KG = 2;
     const MEASURE_TYPE_DONA = 3;
 
+    protected $fillable = [
+        'id',
+        'name_id',
+        'type_id',
+        'kodtnved',
+        'measure_type',
+        'amount',
+        'sxeme_number',
+        'year',
+        'country_id',
+    ];
+
     public function name()
     {
         return $this->belongsTo(CropsName::class, 'name_id');

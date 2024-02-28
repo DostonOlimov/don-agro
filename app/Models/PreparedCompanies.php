@@ -8,6 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class PreparedCompanies extends Model
 {
+    protected $fillable = [
+        'name',
+        'country_id',
+        'state_id',
+    ];
     public function region()
     {
         return $this->belongsTo(Region::class, 'state_id');
