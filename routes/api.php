@@ -25,7 +25,7 @@ Route::middleware('auth:api')->group(function (){
     Route::get('cropType/{id}', [CertConnetionController::class, 'crop_type']);
     Route::post('organization_company', [CertConnetionController::class, 'organization_company']);
     Route::post('prepared_company', [CertConnetionController::class, 'prepared_company']);
-    Route::post('full_data', [CertConnetionController::class, 'full_data']);
+    Route::post('app_add', [AppOnlineController::class, 'app_add']);
     Route::get('apps_user', [AppOnlineController::class, 'apps_user']);
     Route::post('app_view', [AppOnlineController::class, 'app_view']);
     Route::post('app_edit', [AppOnlineController::class, 'app_edit']);
