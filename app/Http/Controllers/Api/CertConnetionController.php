@@ -64,10 +64,10 @@ class CertConnetionController extends Controller
             $model = OrganizationCompanies::where('inn', $data['inn'])->first();
 
             if ($model) {
-                return response()->json(true);
+                return response()->json($model->id);
             } else {
-                OrganizationCompanies::create($data);
-                return response()->json(true);
+                $data=OrganizationCompanies::create($data);
+                return response()->json($data->id);
             }
         } else {
             return response()->json(null);

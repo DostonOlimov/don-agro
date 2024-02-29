@@ -48,6 +48,7 @@ class AppOnlineController extends Controller
 
     public function app_edit(Request $request)
     {
+        
     }
     public function app_delete(Request $request)
     {
