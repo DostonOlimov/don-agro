@@ -57,15 +57,21 @@ class CertConnetionController extends Controller
 
     public function organization_company(Request $request)
     {
+        // unset($data['id']);
         $data = $request->all()['data'];
-        unset($data['id']);
-        $model = OrganizationCompanies::firstOrCreate($data);
 
-        if ($model) {
-            return response()->json(true);
+        if (isset($data['inn'])) {
+            $model = OrganizationCompanies::where('inn', $data['inn'])->first();
+
+            if ($model) {
+                return response()->json(true);
+            } else {
+                OrganizationCompanies::create($data);
+                return response()->json(true);
+            }
+        } else {
+            return response()->json(null);
         }
-
-        return response()->json(null);
     }
 
     public function full_data(Request $request)
@@ -150,5 +156,4 @@ class CertConnetionController extends Controller
         }
         return response()->errorJson(null, 422, 'Application not created');
     }
-
 }

@@ -17,7 +17,7 @@ class AppOnlineController extends Controller
         $page = $request->input('page') ?? 1;
         $rows = 10;
         $year =  $request->input('year');
-        $user = Application::withoutGlobalScopes()->with(['organization', 'prepared', 'crops.name','crops.type'])->whereYear('date', $year)
+        $user = Application::withoutGlobalScopes()->with(['organization', 'prepared', 'crops.name', 'crops.type'])->whereYear('date', $year)
             ->where('created_by', $id)
             ->paginate($rows, ['*'], 'page', $page);
 
@@ -44,5 +44,23 @@ class AppOnlineController extends Controller
         $user = Application::with(['organization', 'prepared', 'crops.name.type'])->where('created_by', $user_id)->where('id', $app_id)->first();
 
         return response()->successJson($user, 200);
+    }
+
+    public function app_edit(Request $request)
+    {
+    }
+    public function app_delete(Request $request)
+    {
+        $id = $request->input('id');
+
+        $application = Application::find($id);
+
+        if (!$application) {
+            return response()->errorJson(null, 404, 'Application not found');
+        }
+
+        $application->delete();
+
+        return response()->successJson(true, 200, 'Application deleted successfully');
     }
 }
