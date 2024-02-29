@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AppOnlineController;
 use App\Http\Controllers\Api\CertConnetionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,6 @@ Route::middleware('auth:api')->group(function (){
     Route::get('cropType/{id}', [CertConnetionController::class, 'crop_type']);
     Route::post('organization_company', [CertConnetionController::class, 'organization_company']);
     Route::post('full_data', [CertConnetionController::class, 'full_data']);
-    Route::get('apps_user', [CertConnetionController::class, 'apps_user']);
-    Route::post('app_view', [CertConnetionController::class, 'app_view']);
+    Route::get('apps_user', [AppOnlineController::class, 'apps_user']);
+    Route::post('app_view', [AppOnlineController::class, 'app_view']);
 });
