@@ -14,6 +14,7 @@ use App\tbl_activities;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Expr\Cast\Array_;
 
 class CertConnetionController extends Controller
 {
@@ -66,8 +67,24 @@ class CertConnetionController extends Controller
             if ($model) {
                 return response()->json($model->id);
             } else {
-                $data=OrganizationCompanies::create($data);
+                $data = OrganizationCompanies::create($data);
                 return response()->json($data->id);
+            }
+        } else {
+            return response()->json(null);
+        }
+    }
+    public function prepared_company(Request $request)
+    {
+        $data = $request->all()['data'];
+
+        if (isset($data['name'])) {
+            $model = PreparedCompanies::where('name', 'like', $data['name'] )->first();
+            if ($model) {
+                return response()->json($model->id);
+            } else {
+                $newModel = PreparedCompanies::create($data);
+                return response()->json($newModel->id);
             }
         } else {
             return response()->json(null);
