@@ -18,6 +18,13 @@ class AppForeignFile extends Model
     const PATH_YUK_XATI = 'public/foreign/yuk_xati';
     const PATH_SMR = 'public/foreign/smr';
 
+    protected $fillable = [
+        'app_id',
+        'sess_file',
+        'file',
+        'comment',
+    ];
+
     public function getKarantinFileAttribute(){
         return self::PATH_KARANTIN . '/' .$this->karantin;
     }

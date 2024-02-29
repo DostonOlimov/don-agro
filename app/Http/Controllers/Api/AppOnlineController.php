@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\AppForeignFile;
 use App\Models\Application;
 use App\Models\CropData;
 use App\Models\CropsName;
@@ -164,13 +165,10 @@ class AppOnlineController extends Controller
 
             return response()->successJson($application, 200);
         } catch (QueryException $e) {
-            // Check if the error is due to a foreign key constraint violation
             if ($e->errorInfo[1] == 1452) {
-                // Handle foreign key constraint violation
                 return response()->errorJson(null, 422, 'Foreign key constraint violation: The organization ID provided does not exist.');
             }
 
-            // Handle other query exceptions if needed
             return response()->errorJson(null, 500, 'Database error: ' . $e->getMessage());
         }
     }
@@ -187,5 +185,34 @@ class AppOnlineController extends Controller
         $application->update(['status' => Application::STATUS_DELETED]);
 
         return response()->successJson($application, 200, 'Application deleted successfully');
+    }
+    public function app_file(Request $request)
+    {
+        $rules = [
+            'app_id' => 'required|numeric',
+            'file_path' => 'required|string',
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return response()->errorJson($validator->errors(), 422, 'Validation error');
+        }
+        $app_id = $request->input('app_id');
+        $file_path = $request->input('file_path');
+
+        $application = Application::find($app_id);
+
+        if (!$application) {
+            return response()->errorJson(null, 404, 'Application ID Not found');
+        }
+
+
+        $result = AppForeignFile::create([
+            'app_id' => $app_id,
+            'sess_file' => $file_path,
+        ]);
+
+        return response()->successJson($result->app_id, 200, 'File add application successfully');
     }
 }

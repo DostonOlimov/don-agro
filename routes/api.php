@@ -30,4 +30,5 @@ Route::middleware('auth:api')->group(function (){
     Route::post('app_view', [AppOnlineController::class, 'app_view']);
     Route::post('app_edit', [AppOnlineController::class, 'app_edit']);
     Route::delete('app_delete', [AppOnlineController::class, 'app_delete']);
+    Route::post('app_file', [AppOnlineController::class, 'app_file']);
 });
