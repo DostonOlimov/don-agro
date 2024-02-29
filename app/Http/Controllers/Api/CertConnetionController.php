@@ -106,7 +106,7 @@ class CertConnetionController extends Controller
         $rules = [
             'app_type' => 'required|numeric',
             'name_id' => 'required|numeric',
-            'type_id' => 'required|numeric',
+            'type_id' => 'nullable|numeric',
             'kodtnved' => 'required|numeric',
             'country_id' => 'required|numeric',
             'measure_type' => 'required|numeric',
