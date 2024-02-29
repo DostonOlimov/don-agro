@@ -21,11 +21,13 @@ use Illuminate\Support\Facades\Route;
 Route::post('login', [CertConnetionController::class, 'login']);
 
 Route::middleware('auth:api')->group(function (){
-    Route::post('cropName', [CertConnetionController::class, 'crop_name']);
+    Route::get('cropName', [CertConnetionController::class, 'crop_name']);
     Route::get('cropType/{id}', [CertConnetionController::class, 'crop_type']);
     Route::post('organization_company', [CertConnetionController::class, 'organization_company']);
     Route::post('prepared_company', [CertConnetionController::class, 'prepared_company']);
     Route::post('full_data', [CertConnetionController::class, 'full_data']);
     Route::get('apps_user', [AppOnlineController::class, 'apps_user']);
     Route::post('app_view', [AppOnlineController::class, 'app_view']);
+    Route::post('app_edit', [AppOnlineController::class, 'app_edit']);
+    Route::delete('app_delete/{id}', [AppOnlineController::class, 'app_delete']);
 });
