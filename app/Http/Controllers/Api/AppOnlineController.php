@@ -27,7 +27,6 @@ class AppOnlineController extends Controller
             'amount' => 'required|numeric',
             'year' => 'required|numeric',
             'sxema_number' => 'required|numeric',
-            'inn' => 'required|digits:9',
             'user_id' => 'required|numeric',
             'organization_id' => 'required|numeric',
             'prepared_id' => 'required|numeric'
