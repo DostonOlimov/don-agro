@@ -23,7 +23,7 @@ class AppOnlineController extends Controller
             'name_id' => 'required|numeric',
             'type_id' => 'nullable|numeric',
             'kodtnved' => 'required|numeric',
-            'country_id' => 'required|numeric',
+            'country_id' => 'nullable|numeric',
             'measure_type' => 'required|numeric',
             'amount' => 'required|numeric',
             'year' => 'required|numeric',
@@ -71,7 +71,7 @@ class AppOnlineController extends Controller
             // 'accepted_date', //null qabul qilingan vaqt
             // 'accepted_id' => , //null qabul qiluvchi id si
             // 'data',
-            'status' => Application::STATUS_FINISHED,
+            'status' => Application::STATUS_NEW,
             'created_by' => $request->input('user_id'),
         ]);
 
