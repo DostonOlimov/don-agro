@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Application;
 use App\Models\CropData;
+use App\Models\CropsName;
 use App\tbl_activities;
 use Carbon\Carbon;
 use Illuminate\Database\QueryException;
@@ -38,7 +39,11 @@ class AppOnlineController extends Controller
             return response()->errorJson($validator->errors(), 422, 'Validation error');
         }
 
+        $cropCheck = CropsName::find($request->input('name_id'));
 
+        if (!$cropCheck) {
+            return response()->errorJson(null, 404, 'Crop Name not found');
+        }
 
         $userA = Auth::user();
         $crop = CropData::create([

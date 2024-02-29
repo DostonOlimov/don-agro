@@ -42,13 +42,14 @@ class CertConnetionController extends Controller
     }
     public function crop_type(Request $request)
     {
-        $name_id = $request->id;
+        $name_id = $request->input('id');
+
         if ($name_id) {
             $cropData = CropsType::where('crop_id', $name_id)->get();
 
             return response()->successJson($cropData);
         }
-        return abort(404);
+        return response()->errorJson(null, 404, 'Crop Type not found');
     }
 
     public function organization_company(Request $request)
@@ -95,5 +96,4 @@ class CertConnetionController extends Controller
             return response()->json(null);
         }
     }
-
 }
