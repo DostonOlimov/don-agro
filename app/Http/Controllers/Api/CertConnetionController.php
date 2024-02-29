@@ -76,14 +76,24 @@ class CertConnetionController extends Controller
     }
     public function prepared_company(Request $request)
     {
-        $data = $request->all()['data'];
+        $name = $request->input('name');
+        $country_id = $request->input('country_id');
+        $state_id = $request->input('state_id');
 
-        if (isset($data['name'])) {
-            $model = PreparedCompanies::where('name', 'like', $data['name'] )->first();
+        if ($name !== null) {
+            $model = PreparedCompanies::where('name', 'like', $name)
+                ->where('country_id', $country_id)
+                ->where('state_id', $state_id)
+                ->first();
+
             if ($model) {
                 return response()->json($model->id);
             } else {
-                $newModel = PreparedCompanies::create($data);
+                $newModel = PreparedCompanies::create([
+                    'name' => $name,
+                    'country_id' => $country_id,
+                    'state_id' => $state_id,
+                ]);
                 return response()->json($newModel->id);
             }
         } else {
@@ -103,10 +113,10 @@ class CertConnetionController extends Controller
             'amount' => 'required|numeric',
             'year' => 'required|numeric',
             'sxema_number' => 'required|numeric',
-            'prepared_name' => 'required|string|max:255',
             'inn' => 'required|digits:9',
-            'prepared_stated_id' => 'required|numeric',
             'user_id' => 'required|numeric',
+            'organization_id' => 'required|numeric',
+            'prepared_id' => 'required|numeric',
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -115,20 +125,7 @@ class CertConnetionController extends Controller
             return response()->errorJson($validator->errors(), 422, 'Validation error');
         }
 
-        $inn = $request->input('inn');
-        $organization = OrganizationCompanies::where('inn', $inn)->first();
-        if (!$organization) {
-            return response()->errorJson(null, 404, 'INN not found. Please create the Organization Company before proceeding');
-        }
 
-        $prepared = PreparedCompanies::where('name', 'like', '%' . $request->input('prepared_name') . '%')->first();
-        if (!$prepared) {
-            $prepared = PreparedCompanies::firstOrCreate([
-                "name" => $request->input('prepared_name'),
-                "country_id" => $request->input('country_id'),
-                "state_id" => $request->input('prepared_stated_id')
-            ]);
-        }
 
         $userA = Auth::user();
         $crop = CropData::create([
@@ -149,8 +146,8 @@ class CertConnetionController extends Controller
         $application = Application::create([
             'app_number' => 0,  //tastiqlangandan keyin oladi raqamni
             'crop_data_id' => $crop->id,
-            'organization_id' => $organization->id,
-            'prepared_id' => $prepared->id,
+            'organization_id' => $request->input('organization_id'),
+            'prepared_id' => $request->input('prepared_id'),
             'type'  => $request->input('app_type'),
             'date' => $now,
             // 'accepted_date', //null qabul qilingan vaqt
@@ -169,7 +166,7 @@ class CertConnetionController extends Controller
             $active->action = "Ariza qo'shildi Urug'dan";
             $active->time = date('Y-m-d H:i:s');
             $active->save();
-            return response()->successJson(['application' => $application, 'prepared' => $prepared, 'crop' => $crop], 201);
+            return response()->successJson(['application' => $application, 'crop' => $crop], 201);
         }
         return response()->errorJson(null, 422, 'Application not created');
     }
