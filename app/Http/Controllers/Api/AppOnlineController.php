@@ -99,6 +99,7 @@ class AppOnlineController extends Controller
         $year =  $request->input('year');
         $user = Application::withoutGlobalScopes()->with(['organization', 'prepared', 'crops.name', 'crops.type'])->whereYear('date', $year)
             ->where('created_by', $id)
+            ->where('status','!=', Application::STATUS_DELETED)
             ->paginate($rows, ['*'], 'page', $page);
 
         if (!isset($user)) {
@@ -125,7 +126,7 @@ class AppOnlineController extends Controller
         if (!$user) {
             return response()->errorJson(false, 404, 'Not found');
         }
-        
+
         return response()->successJson($user, 200);
     }
 
@@ -177,12 +178,11 @@ class AppOnlineController extends Controller
     }
     public function app_delete(Request $request)
     {
-        $id = $request->input('id');
+        $id = $request->id;
 
-        $application = Application::find($id);
-
+        $application = Application::where('id',$id)->first();
         if (!$application) {
-            return response()->errorJson(null, 404, 'Application not found');
+            return response()->errorJson([], 404, 'Application not found');
         }
 
         $application->update(['status' => Application::STATUS_DELETED]);
