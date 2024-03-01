@@ -70,6 +70,19 @@ class CertConnetionController extends Controller
             return response()->json(null);
         }
     }
+    public function org_compy_view(Request $request)
+    {
+        // unset($data['id']);
+        $id = $request->input('id');
+
+        $model = OrganizationCompanies::with(['city.region'])->find($id);
+
+        if ($model) {
+            return response()->json($model);
+        } else {
+            return response()->json(false);
+        }
+    }
     public function prepared_company(Request $request)
     {
         $name = $request->input('name');
