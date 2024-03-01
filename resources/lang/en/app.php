@@ -96,6 +96,8 @@ return [
     "Tashkilot telefon raqami" => "Organization phone number",
     "Ariza raqami noto'g'ti shaklda kiritilgan yoki oldindan mavjud" => "Application number entered in wrong form or already exists",
     "Ariza sanasi noto'g'ri shaklda kiritilgan" => "The application date was entered in the wrong format",
+    "Rad etildi"=>"Rejected",
+    "Yangi ariza"=>"New application",
 
     //decision
     'Qaror sanasi' => 'Date of decision',

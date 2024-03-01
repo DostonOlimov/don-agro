@@ -46,6 +46,7 @@ class ApplicationController extends Controller
             ->with('crops.name')
             ->with('crops.country')
             ->with('tests.result')
+            ->with('comment')
             ->with('crops.type');
         if($user->role == \App\Models\User::STATE_EMPLOYEE){
             $user_city = $user->state_id;

@@ -61,15 +61,19 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                     <form class="input-filter">
-                                        <select class="form-control fc-datepicker from input-filter" name="ariza_turi" autocomplete="off" required="required">
-                                            <option value="">{{trans("app.Ariza turi bo'yicha")}}</option>
-                                            <option value="1" {{($ariza_turi==1)? 'selected':''}}>Maxalliy ishlab chiqarish uchun</option>
-                                            <option value="2" {{($ariza_turi==2)? 'selected':''}}>Import qilingan mahsulotlar uchun</option>
-                                            <option value="3" {{($ariza_turi==3)? 'selected':''}}>Eski hosil uchun</option>
+                                        <select class="form-control fc-datepicker from input-filter" name="ariza_turi"
+                                            autocomplete="off" required="required">
+                                            <option value="">{{ trans("app.Ariza turi bo'yicha") }}</option>
+                                            <option value="1" {{ $ariza_turi == 1 ? 'selected' : '' }}>Maxalliy ishlab
+                                                chiqarish uchun</option>
+                                            <option value="2" {{ $ariza_turi == 2 ? 'selected' : '' }}>Import qilingan
+                                                mahsulotlar uchun</option>
+                                            <option value="3" {{ $ariza_turi == 3 ? 'selected' : '' }}>Eski hosil uchun
+                                            </option>
                                         </select>
-                                            <button type='submit'
-                                                class="btn btn-primary  filter-button">{{ trans('message.Filtrlash') }}
-                                            </button>
+                                        <button type='submit'
+                                            class="btn btn-primary  filter-button">{{ trans('message.Filtrlash') }}
+                                        </button>
 
                                     </form>
                                 </div>
@@ -86,14 +90,17 @@
                                             {{-- <th class="border-bottom-0 border-top-0">{{ trans('app.Ariza statusi') }}</th> --}}
                                             <th class="border-bottom-0 border-top-0">{{ trans('app.Ariza raqami') }}</th>
                                             <th class="border-bottom-0 border-top-0">{{ trans('app.Ariza sanasi') }}</th>
-                                            <th class="border-bottom-0 border-top-0">{{ trans('app.Ishlab chiqargan davlat') }}</th>
-                                            <th class="border-bottom-0 border-top-0">{{ trans('app.Buyurtmachi korxona yoki tashkilot nomi') }}</th>
-                                            <th class="border-bottom-0 border-top-0">{{ trans('app.Sertifikatlashtirish sxemasi') }}</th>
+                                            <th class="border-bottom-0 border-top-0">{{ trans('app.Ishlab chiqargan davlat') }}
+                                            </th>
+                                            <th class="border-bottom-0 border-top-0">
+                                                {{ trans('app.Buyurtmachi korxona yoki tashkilot nomi') }}</th>
+                                            <th class="border-bottom-0 border-top-0">
+                                                {{ trans('app.Sertifikatlashtirish sxemasi') }}</th>
                                             <th class="border-bottom-0 border-top-0">{{ trans('app.Mahsulot turi') }}</th>
                                             <th class="border-bottom-0 border-top-0">{{ trans('app.Mahsulot navi') }}</th>
                                             <th class="border-bottom-0 border-top-0">{{ trans('app.Mahsulot miqdori') }}</th>
                                             <th class="border-bottom-0 border-top-0">{{ trans('app.Ariza turi') }}</th>
-                                            <th class="border-bottom-0 border-top-0">{{trans('app.Hosil yili')}}</th>
+                                            <th class="border-bottom-0 border-top-0">{{ trans('app.Hosil yili') }}</th>
                                             <th class="border-bottom-0 border-top-0">{{ trans('app.Action') }}</th>
                                         </tr>
                                     </thead>
@@ -123,12 +130,22 @@
                                                 <td>{{ \app\models\Application::getType($app->type) }}</td>
                                                 <td>{{ optional($app->crops)->year }}</td>
                                                 <td>
-                                                    <a href="{!! url('/application/view/' . $app->id) !!}"><button type="button"
-                                                            class="btn btn-round btn-info">{{ trans('app.View') }}</button></a>
-                                                @if (!isset($app->tests->result))
-                                                    <a href="{!! url('/application/edit/' . $app->id) !!}"><button type="button"
-                                                            class="btn btn-round btn-success">{{ trans('app.Edit') }}</button></a>
-                                                @endif
+                                                    @if ($app->status == \App\Models\Application::STATUS_REJECTED)
+                                                        <button class="btn btn-secondary"
+                                                            onclick="buttonClickHandler('{{ $app->comment->comment ?? '' }}')">{{trans("app.Rad etildi")}}</button>
+                                                    @else
+                                                        @if ($app->status == 1)
+                                                            <a href="{!! url('/application/view/' . $app->id) !!}"><button type="button"
+                                                                    class="btn btn-round btn-warning">{{trans("app.Yangi ariza")}}</button></a>
+                                                        @else
+                                                            <a href="{!! url('/application/view/' . $app->id) !!}"><button type="button"
+                                                                    class="btn btn-round btn-info">{{ trans('app.View') }}</button></a>
+                                                            @if (!isset($app->tests->result))
+                                                                <a href="{!! url('/application/edit/' . $app->id) !!}"><button type="button"
+                                                                        class="btn btn-round btn-success">{{ trans('app.Edit') }}</button></a>
+                                                            @endif
+                                                        @endif
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -171,6 +188,11 @@
 
             });
         });
+    </script>
+    <script>
+        function buttonClickHandler(data) {
+            alert(data);
+        }
     </script>
 
 @endsection

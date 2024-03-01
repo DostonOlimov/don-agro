@@ -91,6 +91,8 @@ return [
     "Tashkilot telefon raqami" => "Телефон организации",
     "Ariza raqami noto'g'ti shaklda kiritilgan yoki oldindan mavjud" => "Номер заявки введен в неправильной форме или уже существует",
     "Ariza sanasi noto'g'ri shaklda kiritilgan" => "Дата подачи заявления введена в неправильном формате",
+    "Rad etildi"=>"Отклоненный",
+    "Yangi ariza"=>"Новое приложение",
 
     //decision
     'Qaror sanasi' => 'Дата принятия решения',

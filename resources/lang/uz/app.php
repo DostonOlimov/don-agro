@@ -100,6 +100,8 @@ return [
     "Tashkilot telefon raqami" => "Tashkilot telefon raqami",
     "Ariza raqami noto'g'ti shaklda kiritilgan yoki oldindan mavjud" => "Ariza raqami noto'g'ti shaklda kiritilgan yoki oldindan mavjud",
     "Ariza sanasi noto'g'ri shaklda kiritilgan" => "Ariza sanasi noto'g'ri shaklda kiritilgan",
+    "Rad etildi"=>"Rad qilindi",
+    "Yangi ariza"=>"Yangi ariza",
 
     //decision
     'Qaror sanasi' => 'Qaror sanasi',

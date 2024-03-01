@@ -94,6 +94,8 @@ return [
     "Tashkilot telefon raqami" => "Ташкилот телефон рақами",
     "Ariza raqami noto'g'ti shaklda kiritilgan yoki oldindan mavjud" => "Ариза рақами нотўғти шаклда киритилган ёки олдиндан мавжуд",
     "Ariza sanasi noto'g'ri shaklda kiritilgan" => "Ариза санаси нотўғри шаклда киритилган",
+    "Rad etildi"=>"Рад қилинди",
+    "Yangi ariza"=>"Янги ариза",
 
     //decision
     'Qaror sanasi' => 'Қарор санаси',

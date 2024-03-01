@@ -122,7 +122,10 @@ class AppOnlineController extends Controller
         $app_id = $request->input('app_id');
 
         $user = Application::with(['organization', 'prepared', 'crops.name.type'])->where('created_by', $user_id)->where('id', $app_id)->first();
-
+        if (!$user) {
+            return response()->errorJson(false, 404, 'Not found');
+        }
+        
         return response()->successJson($user, 200);
     }
 
