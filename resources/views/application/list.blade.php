@@ -132,7 +132,7 @@
                                                 <td>
                                                     @if ($app->status == \App\Models\Application::STATUS_REJECTED)
                                                         <button class="btn btn-secondary"
-                                                            onclick="buttonClickHandler('{{ $app->comment->comment ?? '' }}')">{{trans("app.Rad etildi")}}</button>
+                                                            onclick="buttonClickHandler(`{{ $app->comment->comment }}`)">{{trans("app.Rad etildi")}}</button>
                                                     @else
                                                         @if ($app->status == 1)
                                                             <a href="{!! url('/application/view/' . $app->id) !!}"><button type="button"
