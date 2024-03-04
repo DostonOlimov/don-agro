@@ -29,8 +29,8 @@ class LaboratoryResultsController extends Controller
     public function indicator_view($indicator_id, $number_id, Request $request)
     {
         $test_id = $request->input('test_id');
-        $numbers = LaboratoryNumbers::with('test_program.indicators')
-            ->with('test_program.application.crops')
+        $numbers = LaboratoryNumbers::with('test_program')
+            ->with('test_program.application')
             ->with('results')
             ->whereHas('test_program.application.crops', function ($query) use ($number_id) {
                 $query->where('name_id', '=', $number_id);
@@ -43,8 +43,7 @@ class LaboratoryResultsController extends Controller
                 $query->where('id', $test_id);
             });
         }
-
-        $numbers = $numbers->paginate(50);
+        $numbers = $numbers->orderBy('number', 'desc')->paginate(50);
         $indicators = LaboratoryIndicators::with('childs')
             ->with('parent')
             ->with('indicators')

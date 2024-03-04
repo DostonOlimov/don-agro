@@ -160,7 +160,6 @@ class TestProgramsLaboratoryController extends Controller
             ->with('application.crops.type')
             ->with('application.organization')
             ->with('final_result')
-            ->whereNotNull('code')
             ->where('status',TestPrograms::STATUS_ACCEPTED);
         if ($from && $till) {
             $fromTime = join('-', array_reverse(explode('-', $from)));
@@ -200,99 +199,101 @@ class TestProgramsLaboratoryController extends Controller
             ->appends(['crop' => $request->input('crop')]);
         return view('test_laboratory.report', compact('tests','from','till','crop'));
     }
-    // public function report_view($test_id)
-    // {
-    //     $test = TestPrograms::with('indicators')
-    //         ->with('laboratory_numbers')
-    //         ->with('laboratory_numbers.results')
-    //         ->with('laboratory_numbers.results.users')
-    //         ->find($test_id);
-    //     $originusers = [];
 
-    //     foreach($test->laboratory_numbers as $mynumbers)
-    //     {
-    //         foreach($mynumbers->results as $myresult){
-    //             $originusers[] = [
-    //                 'id'=>$myresult->users->id,
-    //                 'fullname'=>  $myresult->users->name . ' ' .$myresult->users->lastname,
-    //             ];
-    //         }
-    //     }
+    // bilmadim lekin ishlatmadim
+    public function report_view($test_id)
+    {
+        $test = TestPrograms::with('indicators')
+            ->with('laboratory_numbers')
+            ->with('laboratory_numbers.results')
+            ->with('laboratory_numbers.results.users')
+            ->find($test_id);
+        $originusers = [];
 
-    //     $flattenedArray = call_user_func_array('array_merge', $originusers);
+        foreach($test->laboratory_numbers as $mynumbers)
+        {
+            foreach($mynumbers->results as $myresult){
+                $originusers[] = [
+                    'id'=>$myresult->users->id,
+                    'fullname'=>  $myresult->users->name . ' ' .$myresult->users->lastname,
+                ];
+            }
+        }
 
-    //     $uniqueElements = array_unique(array_map('serialize', $originusers));
+        $flattenedArray = call_user_func_array('array_merge', $originusers);
 
-    //     $users = array_map('unserialize', $uniqueElements);
+        $uniqueElements = array_unique(array_map('serialize', $originusers));
 
-
-    //     $crop_id = optional(optional($test->application)->crops)->name->id;
-    //     return view('test_laboratory.report_view', compact('test','crop_id','users'));
-    // }
-
-    // //index
-    // public function add($test_id)
-    // {
-    //     $test = TestPrograms::with('indicators')
-    //         ->with('laboratory_numbers')
-    //         ->find($test_id);
-    //     $crop_id = optional(optional($test->application)->crops)->name->id;
-
-    //         return view('test_laboratory.add', compact('test','crop_id'));
-    // }
-    // public function store(Request $request)
-    // {
-    //     $validated = $request->validate([
-    //         'data' =>['required'],
-    //     ]);
-    //  //   $this->authorize('create', User::class);
-    //     $userA = Auth::user();
-    //     $id = $request->input('id');
-    //     $start_date = $request->input('start_date');
-    //     $end_date = $request->input('end_date');
-    //     $harorat = $request->input('harorat');
-    //     $namlik = $request->input('namlik');
-    //     $checkbox = $request->input('checkbox');
-    //     $data = $request->input('data');
-    //     $type = $request->input('type');
-
-    //     $tests = new LaboratoryFinalResults();
-    //     $tests->test_program_id = $id;
-    //     $tests->end_date = join('-', array_reverse(explode('-', $end_date)));
-    //     $tests->start_date = join('-', array_reverse(explode('-', $start_date)));
-    //     $tests->harorat = $harorat;
-    //     $tests->namlik = $namlik;
-    //     $tests->quality = $type;
-    //     $tests->data = $data;
-    //     $tests->user_id = $userA->id;
-    //     $tests->save();
-
-    //     $amounts = [];
-    //     if(!empty($checkbox)) {
-    //         foreach ($checkbox as $check) {
-    //             $amounts[] = [
-    //                 'results_id' => $tests->id,
-    //                 'user_id' => $check,
-    //             ];
-    //         }
-    //     }
-    //     DB::transaction(function () use ($amounts) {
-    //         LaboratoryResultUsers::insert($amounts);
-    //     });
-    //     $indicators = TestProgramIndicators::where('test_program_id',$id)
-    //         ->get();
-    //     foreach($indicators as $indicator){
-    //             $indicator->result = $request->input('value'.$indicator->id);
-    //             $indicator->type = $request->input('type'.$indicator->id) ?? 1;
-    //             $indicator->save();
-    //     }
-    //     $test_program = TestPrograms::find($id);
-    //     $test_program->status = TestPrograms::STATUS_FINISHED;
-    //     $test_program->save();
-
-    //     return redirect('/tests-laboratory/report')->with('message', 'Successfully Submitted');
+        $users = array_map('unserialize', $uniqueElements);
 
 
-    // }
+        $crop_id = optional(optional($test->application)->crops)->name->id;
+        return view('test_laboratory.report_view', compact('test','crop_id','users'));
+    }
+
+    //index
+    public function add($test_id)
+    {
+        $test = TestPrograms::with('indicators')
+            ->with('laboratory_numbers')
+            ->find($test_id);
+        $crop_id = optional(optional($test->application)->crops)->name->id;
+
+            return view('test_laboratory.add', compact('test','crop_id'));
+    }
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'data' =>['required'],
+        ]);
+     //   $this->authorize('create', User::class);
+        $userA = Auth::user();
+        $id = $request->input('id');
+        $start_date = $request->input('start_date');
+        $end_date = $request->input('end_date');
+        $harorat = $request->input('harorat');
+        $namlik = $request->input('namlik');
+        $checkbox = $request->input('checkbox');
+        $data = $request->input('data');
+        $type = $request->input('type');
+
+        $tests = new LaboratoryFinalResults();
+        $tests->test_program_id = $id;
+        $tests->end_date = join('-', array_reverse(explode('-', $end_date)));
+        $tests->start_date = join('-', array_reverse(explode('-', $start_date)));
+        $tests->harorat = $harorat;
+        $tests->namlik = $namlik;
+        $tests->quality = $type;
+        $tests->data = $data;
+        $tests->user_id = $userA->id;
+        $tests->save();
+
+        $amounts = [];
+        if(!empty($checkbox)) {
+            foreach ($checkbox as $check) {
+                $amounts[] = [
+                    'results_id' => $tests->id,
+                    'user_id' => $check,
+                ];
+            }
+        }
+        DB::transaction(function () use ($amounts) {
+            LaboratoryResultUsers::insert($amounts);
+        });
+        $indicators = TestProgramIndicators::where('test_program_id',$id)
+            ->get();
+        foreach($indicators as $indicator){
+                $indicator->result = $request->input('value'.$indicator->id);
+                $indicator->type = $request->input('type'.$indicator->id) ?? 1;
+                $indicator->save();
+        }
+        $test_program = TestPrograms::find($id);
+        $test_program->status = TestPrograms::STATUS_FINISHED;
+        $test_program->save();
+
+        return redirect('/tests-laboratory/report')->with('message', 'Successfully Submitted');
+
+
+    }
 
 }

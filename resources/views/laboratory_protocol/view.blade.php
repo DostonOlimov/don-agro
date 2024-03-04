@@ -16,7 +16,7 @@
     </style>
 @endsection
 @section('content')
-    @can('add_number', \App\Models\LaboratoryResult::class)
+    @can('view', \App\Models\User::class)
         <div class=" content-area ">
             <div class="page-header">
                 <h4 class="page-title mb-0" style="color:white">{{ trans('app.Sinov bayonnomasi') }}</h4>

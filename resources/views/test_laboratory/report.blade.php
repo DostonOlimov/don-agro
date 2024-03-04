@@ -60,8 +60,7 @@
                                             <td>{{  $test->application->app_number }}</a></td>
                                             <td>{{ optional($test->status_change->where('status_type',\App\Models\TestPrograms::STATUS_SEND)->first())->created_at }}</td>
                                             <td>{{ $test->application->crops->pre_name }} {{ $test->application->crops->name->name }}</td>
-                                            <td>{{ optional($test->application)->crops->type->name }}</td>
-                                            <td>{{ optional($test->application)->crops->generation->name }}</td>
+                                            <td>{{ optional($test->application)->crops->type->name??'' }}</td>
                                             <td>@if($test->status == \App\Models\TestPrograms::STATUS_ACCEPTED) @foreach($test->laboratory_numbers as $number) {{$number->number}}; @endforeach @endif</td>
                                             <td>
                                                 <a href="{!! url('/tests-laboratory/report-view/'.$test->id) !!}"><button type="button" class="btn btn-round btn-primary"><i class="fa fa-eye"></i> {{trans('app.View')}}</button></a>

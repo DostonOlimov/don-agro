@@ -47,9 +47,9 @@ Route::group(
 
 
         Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
-            Route::get('/list',[UserController::class, 'userslist']);
-            Route::get('/list/{id}', [UserController::class,'usershow']);
-            Route::get('/get', [UserController::class,'get_users']);
+            Route::get('/list', [UserController::class, 'userslist']);
+            Route::get('/list/{id}', [UserController::class, 'usershow']);
+            Route::get('/get', [UserController::class, 'get_users']);
         });
         //employee module
         Route::get('/attachments/{id}/download', '\App\Http\Controllers\AttachmentsController@download')->name('attachment.download');
@@ -69,10 +69,10 @@ Route::group(
         //settings
         Route::group(['prefix' => 'setting', 'middleware' => 'auth'], function () {
 
-            Route::get('/list', ['as' => 'listlanguage', 'uses' => [ LanguageController::class, 'index']]);
+            Route::get('/list', ['as' => 'listlanguage', 'uses' => [LanguageController::class, 'index']]);
 
             //language
-            Route::get('language/direction/list', ['as' => 'listlanguagedirection', 'uses' => [LanguageController::class, 'index1'] ]);
+            Route::get('language/direction/list', ['as' => 'listlanguagedirection', 'uses' => [LanguageController::class, 'index1']]);
             Route::post('language/direction/store', ['as' => 'storelanguagedirection', 'uses' => [LanguageController::class, 'store1']]);
             //accessrights
             Route::get('accessrights/add', '\App\Http\Controllers\Accessrightscontroller@addposition');
@@ -339,10 +339,14 @@ Route::group(
         //Test programs
         Route::group(['prefix' => 'tests-laboratory', 'middleware' => 'auth'], function () {
             Route::get('/list', '\App\Http\Controllers\TestProgramsLaboratoryController@list')->name('test_laboratory.list');
-            Route::get('/accept/{id}', ['as' => '/tests/accept', 'uses' => '\App\Http\Controllers\TestProgramsLaboratoryController@accept']);
-            Route::get('/reject/{id}', ['as' => '/tests/reject', 'uses' => '\App\Http\Controllers\TestProgramsLaboratoryController@reject']);
-            Route::post('/accept/store', ['as' => 'tests.acceptstore', 'uses' => '\App\Http\Controllers\TestProgramsLaboratoryController@accept_store']);
-            Route::post('/reject/store', ['as' => 'tests.rejectstore', 'uses' => '\App\Http\Controllers\TestProgramsLaboratoryController@reject_store']);
+            Route::get('/accept/{id}', ['as' => '/tests/accept','uses' => '\App\Http\Controllers\TestProgramsLaboratoryController@accept']);
+            Route::get('/reject/{id}', ['as' => '/tests/reject','uses' => '\App\Http\Controllers\TestProgramsLaboratoryController@reject']);
+            Route::post('/accept/store', ['as' => 'tests.acceptstore','uses' => '\App\Http\Controllers\TestProgramsLaboratoryController@accept_store']);
+            Route::post('/reject/store', ['as' => 'tests.rejectstore','uses' => '\App\Http\Controllers\TestProgramsLaboratoryController@reject_store']);
+            Route::get('/report', '\App\Http\Controllers\TestProgramsLaboratoryController@report');
+            Route::get('/report-view/{id}', '\App\Http\Controllers\TestProgramsLaboratoryController@report_view');
+            Route::get('/add/{id}', '\App\Http\Controllers\TestProgramsLaboratoryController@add');
+            Route::post('/store', '\App\Http\Controllers\TestProgramsLaboratoryController@store')->name('tests_laboratory.store');
         });
 
 
@@ -351,6 +355,16 @@ Route::group(
             Route::get('/list', '\App\Http\Controllers\LaboratoryResultsController@list');
             Route::get('/indicator/{id}', '\App\Http\Controllers\LaboratoryResultsController@indicator');
             Route::get('/indicator-view/{indicator_id}/{crop_id}', '\App\Http\Controllers\LaboratoryResultsController@indicator_view');
+            Route::post('/save-result', [\App\Http\Controllers\LaboratoryResultsController::class, 'save_result'])->name('save.laboratory_result');
+        });
+
+        //Laboratory results
+        Route::group(['prefix' => 'laboratory-protocol', 'middleware' => 'auth'], function () {
+            Route::get('/list', '\App\Http\Controllers\LaboratoryProtocolController@list');
+            Route::get('/add/{id}', '\App\Http\Controllers\LaboratoryProtocolController@add');
+            Route::get('/view/{id}', '\App\Http\Controllers\LaboratoryProtocolController@view')->name('lab.view');
+            Route::post('/store', '\App\Http\Controllers\LaboratoryProtocolController@store');
+            Route::get('/change/{id}', '\App\Http\Controllers\LaboratoryProtocolController@change_status');
         });
         //Final results
         Route::group(['prefix' => 'final_results', 'middleware' => 'auth'], function () {

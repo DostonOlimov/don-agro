@@ -98,18 +98,18 @@ class TestPrograms  extends Model
     }
     public function getStatusColorAttribute()
     {
-        if ($this->status == self::STATUS_NEW) {
+        if($this->status == self::STATUS_NEW){
             return 'warning';
-        } elseif ($this->status == self::STATUS_REJECTED) {
+        }elseif($this->status == self::STATUS_REJECTED){
             return 'danger';
-        } elseif ($this->status == self::STATUS_ACCEPTED) {
+        }elseif($this->status == self::STATUS_ACCEPTED){
             return 'success';
-        } elseif ($this->status == self::STATUS_DELETED) {
+        }elseif($this->status == self::STATUS_DELETED){
             return 'danger';
-        } elseif ($this->status == self::STATUS_FINISHED) {
+        }elseif($this->status == self::STATUS_FINISHED){
             return 'secondary';
-        } elseif ($this->status == self::STATUS_SEEN) {
-            return 'secondary';
+        }elseif($this->status == self::STATUS_SEND){
+            return 'warning';
         }
     }
     protected static function boot()
