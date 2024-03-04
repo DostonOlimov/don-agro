@@ -267,7 +267,7 @@ class ApplicationController extends Controller
 
     public function showapplication($id)
     {
-        $user = Application::with('tests.akt')->findOrFail($id);
+        $user = Application::with(['tests.akt', 'organization'])->findOrFail($id);
         $requirements = AppRequirement::where('app_id',$id)->get();
         $company = OrganizationCompanies::with('city')->findOrFail($user->organization_id);
         $country = DB::table('tbl_countries')->find($user->crops->country_id);
