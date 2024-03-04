@@ -271,8 +271,8 @@ class ApplicationController extends Controller
         $requirements = AppRequirement::where('app_id',$id)->get();
         $company = OrganizationCompanies::with('city')->findOrFail($user->organization_id);
         $country = DB::table('tbl_countries')->find($user->crops->country_id);
-        $country=$country->name;
-// dd($user);
+        $country=$country->name??'';
+
         return view('application.show', compact('user','company','requirements','country'));
     }
 
