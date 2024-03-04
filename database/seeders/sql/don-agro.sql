@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 29, 2024 at 05:23 PM
+-- Generation Time: Mar 04, 2024 at 11:58 AM
 -- Server version: 10.3.29-MariaDB-log
 -- PHP Version: 7.4.33
 
@@ -40,9 +40,6 @@ CREATE TABLE `activity_log` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `activity_log`
---
 
 -- --------------------------------------------------------
 
@@ -383,36 +380,13 @@ INSERT INTO `applications` (`id`, `app_number`, `crop_data_id`, `organization_id
 (139, 17, 139, 6, 92, 2, '2024-02-23', '2024-02-23', 25, NULL, 4, 25, '2024-02-26 12:38:47', '2024-02-26 12:38:47'),
 (140, 18, 140, 6, 93, 2, '2024-02-26', '2024-02-26', 25, NULL, 4, 25, '2024-02-27 17:07:51', '2024-02-27 17:07:51'),
 (141, 19, 141, 50, 69, 1, '2024-02-26', '2024-02-26', 25, NULL, 4, 25, '2024-02-28 16:17:04', '2024-02-28 16:17:04'),
-(144, 0, 144, 71, 94, 1, '2024-02-29', NULL, NULL, NULL, 4, 6, '2024-02-29 13:58:21', '2024-02-29 09:18:35'),
-(145, 0, 145, 71, 94, 1, '2024-02-29', NULL, NULL, NULL, 4, 6, '2024-02-29 14:00:10', '2024-02-29 09:18:38'),
-(146, 0, 146, 71, 94, 1, '2024-02-29', NULL, NULL, NULL, 4, 6, '2024-02-29 14:00:32', '2024-02-29 09:18:43'),
-(147, 0, 147, 71, 94, 1, '2024-02-29', NULL, NULL, NULL, 4, 6, '2024-02-29 14:01:21', '2024-02-29 09:18:48'),
-(148, 0, 148, 71, 94, 2, '2024-02-29', NULL, NULL, NULL, 4, 6, '2024-02-29 14:19:49', '2024-02-29 14:19:49');
+(152, 0, 152, 71, 95, 1, '2024-03-01', NULL, NULL, NULL, 1, 6, '2024-03-01 17:45:02', '2024-03-01 17:45:02'),
+(153, 0, 153, 71, 97, 1, '2024-03-01', NULL, NULL, NULL, 1, 6, '2024-03-01 18:06:38', '2024-03-01 18:06:38');
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `app_file_foreign`
---
-
-CREATE TABLE `app_file_foreign` (
-  `id` int(11) NOT NULL,
-  `app_id` int(11) NOT NULL,
-  `karantin` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fitosanitar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `sertifikat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `markirovka` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `invoys` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `smr` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `yuk_xati` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `app_file_local`
 --
 
 CREATE TABLE `app_file_foreign` (
@@ -425,6 +399,24 @@ CREATE TABLE `app_file_foreign` (
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `app_file_local`
+--
+
+CREATE TABLE `app_file_local` (
+  `id` int(11) NOT NULL,
+  `app_id` int(11) NOT NULL,
+  `a_dalolatnoma` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `a_xulosa` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `d_xulosa` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `markirovka` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `certificate` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1039,11 +1031,8 @@ INSERT INTO `crop_data` (`id`, `name_id`, `type_id`, `kodtnved`, `measure_type`,
 (139, 25, 189, '1001990000', 1, 991.5, 7, 2023, 112, '2024-02-26 12:38:46', '2024-02-26 12:38:46'),
 (140, 25, 189, '1001990000', 1, 699.65, 7, 2023, 112, '2024-02-27 17:07:51', '2024-02-27 17:07:51'),
 (141, 26, 187, '1101001509', NULL, NULL, 3, 2024, 234, '2024-02-28 16:17:04', '2024-02-28 16:17:04'),
-(144, 25, 188, '1001990000', 1, 12, 3, 2024, 5, '2024-02-29 13:58:21', '2024-02-29 13:58:21'),
-(145, 25, 188, '1001990000', 1, 12, 3, 2024, 5, '2024-02-29 14:00:10', '2024-02-29 14:00:10'),
-(146, 25, 188, '1001990000', 1, 12, 3, 2024, 5, '2024-02-29 14:00:32', '2024-02-29 14:00:32'),
-(147, 25, 188, '1001990000', 1, 12, 3, 2024, 5, '2024-02-29 14:01:21', '2024-02-29 14:01:21'),
-(148, 25, NULL, '1001990000', 2, 234, 7, 2019, 5, '2024-02-29 14:19:49', '2024-02-29 14:19:49');
+(152, 25, NULL, '1001990000', 2, 23, 3, 2018, NULL, '2024-03-01 17:45:02', '2024-03-01 17:45:02'),
+(153, 26, NULL, '1101001509', 1, 23, 7, 2018, NULL, '2024-03-01 18:06:38', '2024-03-01 18:06:38');
 
 -- --------------------------------------------------------
 
@@ -1683,30 +1672,6 @@ CREATE TABLE `lists` (
 -- Table structure for table `migrations`
 --
 
-CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `migrations`
---
-
-INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_resets_table', 1),
-(3, '2019_08_19_000000_create_failed_jobs_table', 1),
-(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(5, '2023_05_22_045030_create_employees_table', 1),
-(6, '2023_06_05_053320_create_table_roles', 1),
-(7, '2023_06_22_093728_add_oldid_column', 1),
-(8, '2023_06_23_143056_add_fullname_to_tables', 1),
-(9, '2016_06_01_000001_create_oauth_auth_codes_table', 2),
-(10, '2016_06_01_000002_create_oauth_access_tokens_table', 2),
-(11, '2016_06_01_000003_create_oauth_refresh_tokens_table', 2),
-(12, '2016_06_01_000004_create_oauth_clients_table', 2),
-(13, '2016_06_01_000005_create_oauth_personal_access_clients_table', 2);
 
 -- --------------------------------------------------------
 
@@ -1744,18 +1709,6 @@ INSERT INTO `nds` (`id`, `type_id`, `number`, `name`, `crop_id`, `created_at`, `
 -- Table structure for table `oauth_access_tokens`
 --
 
-CREATE TABLE `oauth_access_tokens` (
-  `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `client_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `scopes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `revoked` tinyint(1) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `expires_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 --
 -- Dumping data for table `oauth_access_tokens`
 --
@@ -1772,36 +1725,10 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 
 --
 -- Table structure for table `oauth_auth_codes`
---
-
-CREATE TABLE `oauth_auth_codes` (
-  `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
-  `client_id` bigint(20) UNSIGNED NOT NULL,
-  `scopes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `revoked` tinyint(1) NOT NULL,
-  `expires_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `oauth_clients`
 --
-
-CREATE TABLE `oauth_clients` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `secret` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `provider` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `redirect` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `personal_access_client` tinyint(1) NOT NULL,
-  `password_client` tinyint(1) NOT NULL,
-  `revoked` tinyint(1) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `oauth_clients`
@@ -1813,38 +1740,13 @@ INSERT INTO `oauth_clients` (`id`, `user_id`, `name`, `secret`, `provider`, `red
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `oauth_personal_access_clients`
---
-
-CREATE TABLE `oauth_personal_access_clients` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `client_id` bigint(20) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
 -- Dumping data for table `oauth_personal_access_clients`
 --
 
 INSERT INTO `oauth_personal_access_clients` (`id`, `client_id`, `created_at`, `updated_at`) VALUES
 (1, 1, '2024-02-28 16:12:51', '2024-02-28 16:12:51');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `oauth_refresh_tokens`
---
-
-CREATE TABLE `oauth_refresh_tokens` (
-  `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `access_token_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `revoked` tinyint(1) NOT NULL,
-  `expires_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
+-- ------------------------------------------------------------------------------
 
 --
 -- Table structure for table `organization_companies`
@@ -2051,7 +1953,10 @@ INSERT INTO `prepared_companies` (`id`, `name`, `country_id`, `state_id`, `creat
 (91, 'A.J \"QIZIL TEPA UN ZAVODI\"', 234, 4008, '2024-02-23 15:03:13', '2024-02-23 15:03:13'),
 (92, 'ТОО \"ЖАНЫСБАЙ XXI\"', 234, NULL, '2024-02-26 12:25:25', '2024-02-27 17:02:11'),
 (93, 'ТОО 1. \"АGRIMER ZHANYSPAY\", TOO 2. \"КОЙБАГОРСКИЙ ЭЛЕВАТОР\"', 112, NULL, '2024-02-27 16:59:51', '2024-02-27 17:02:54'),
-(94, 'test', 234, 4003, '2024-02-29 11:09:36', '2024-02-29 11:09:36');
+(94, 'test', 234, 4003, '2024-02-29 11:09:36', '2024-02-29 11:09:36'),
+(95, 'test', 234, 4000, '2024-02-29 15:11:14', '2024-02-29 15:11:14'),
+(96, 'Azimebk', 234, 3999, '2024-02-29 16:44:04', '2024-02-29 16:44:04'),
+(97, 'test', 234, 3999, '2024-03-01 18:06:24', '2024-03-01 18:06:24');
 
 -- --------------------------------------------------------
 
@@ -2376,596 +2281,6 @@ CREATE TABLE `tbl_activities` (
 --
 -- Dumping data for table `tbl_activities`
 --
-
-INSERT INTO `tbl_activities` (`id`, `user_id`, `action_id`, `city_id`, `action_type`, `ip_adress`, `action`, `time`, `created_at`, `updated_at`) VALUES
-(1, 1, 24, NULL, 'user_added', '192.168.20.241', 'Foydalanuvchi qo\'shildi', '2024-01-30 11:52:48', '2024-01-30 11:52:48', '2024-01-30 11:52:48'),
-(2, 1, 25, NULL, 'user_added', '192.168.20.241', 'Foydalanuvchi qo\'shildi', '2024-01-30 11:57:48', '2024-01-30 11:57:48', '2024-01-30 11:57:48'),
-(3, 24, 1, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-01-30 12:29:32', '2024-01-30 12:29:32', '2024-01-30 12:29:32'),
-(4, 25, 1, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-01-30 12:42:17', '2024-01-30 12:42:17', '2024-01-30 12:42:17'),
-(5, 25, 1, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-01-30 12:43:55', '2024-01-30 12:43:55', '2024-01-30 12:43:55'),
-(6, 25, 1, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-01-30 13:21:08', '2024-01-30 13:21:08', '2024-01-30 13:21:08'),
-(7, 25, 2, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-01-30 15:45:11', '2024-01-30 15:45:11', '2024-01-30 15:45:11'),
-(8, 25, 2, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-01-30 15:45:54', '2024-01-30 15:45:54', '2024-01-30 15:45:54'),
-(9, 25, 2, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-01-30 15:46:31', '2024-01-30 15:46:31', '2024-01-30 15:46:31'),
-(10, 25, 2, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-01-30 16:00:26', '2024-01-30 16:00:26', '2024-01-30 16:00:26'),
-(11, 25, 3, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-01-30 16:22:11', '2024-01-30 16:22:11', '2024-01-30 16:22:11'),
-(12, 25, 3, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-01-30 16:22:50', '2024-01-30 16:22:50', '2024-01-30 16:22:50'),
-(13, 25, 3, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-01-30 16:23:29', '2024-01-30 16:23:29', '2024-01-30 16:23:29'),
-(14, 1, 4, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-01-30 16:40:51', '2024-01-30 16:40:51', '2024-01-30 16:40:51'),
-(15, 1, 4, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-01-30 16:43:32', '2024-01-30 16:43:32', '2024-01-30 16:43:32'),
-(16, 1, 4, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-01-30 16:43:59', '2024-01-30 16:43:59', '2024-01-30 16:43:59'),
-(17, 1, 3, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-01-30 16:49:08', '2024-01-30 16:49:08', '2024-01-30 16:49:08'),
-(18, 1, 5, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-01-30 16:58:29', '2024-01-30 16:58:29', '2024-01-30 16:58:29'),
-(19, 1, 5, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-01-30 16:59:36', '2024-01-30 16:59:36', '2024-01-30 16:59:36'),
-(20, 1, 5, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-01-30 17:00:13', '2024-01-30 17:00:13', '2024-01-30 17:00:13'),
-(21, 1, 4, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-01-30 17:05:51', '2024-01-30 17:05:51', '2024-01-30 17:05:51'),
-(22, 25, 6, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-01-30 17:16:11', '2024-01-30 17:16:11', '2024-01-30 17:16:11'),
-(23, 25, 6, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-01-30 17:17:02', '2024-01-30 17:17:02', '2024-01-30 17:17:02'),
-(24, 25, 6, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-01-30 17:17:29', '2024-01-30 17:17:29', '2024-01-30 17:17:29'),
-(25, 25, 5, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-01-30 17:23:18', '2024-01-30 17:23:18', '2024-01-30 17:23:18'),
-(26, 25, 7, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-01-30 17:25:19', '2024-01-30 17:25:19', '2024-01-30 17:25:19'),
-(27, 25, 7, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-01-30 17:25:47', '2024-01-30 17:25:47', '2024-01-30 17:25:47'),
-(28, 25, 7, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-01-30 17:26:06', '2024-01-30 17:26:06', '2024-01-30 17:26:06'),
-(29, 25, 6, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-01-30 17:31:27', '2024-01-30 17:31:27', '2024-01-30 17:31:27'),
-(30, 25, 8, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-01-30 17:52:31', '2024-01-30 17:52:31', '2024-01-30 17:52:31'),
-(31, 25, 8, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-01-30 17:52:56', '2024-01-30 17:52:56', '2024-01-30 17:52:56'),
-(32, 25, 8, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-01-30 17:53:16', '2024-01-30 17:53:16', '2024-01-30 17:53:16'),
-(33, 25, 7, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-01-30 17:59:45', '2024-01-30 17:59:45', '2024-01-30 17:59:45'),
-(34, 25, 9, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-01-30 18:04:06', '2024-01-30 18:04:06', '2024-01-30 18:04:06'),
-(35, 25, 9, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-01-30 18:04:45', '2024-01-30 18:04:45', '2024-01-30 18:04:45'),
-(36, 25, 9, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-01-30 18:05:05', '2024-01-30 18:05:05', '2024-01-30 18:05:05'),
-(37, 25, 8, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-01-30 18:08:31', '2024-01-30 18:08:31', '2024-01-30 18:08:31'),
-(38, 25, 10, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-01-31 09:54:20', '2024-01-31 09:54:20', '2024-01-31 09:54:20'),
-(39, 25, 10, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-01-31 09:54:40', '2024-01-31 09:54:40', '2024-01-31 09:54:40'),
-(40, 25, 10, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-01-31 09:55:06', '2024-01-31 09:55:06', '2024-01-31 09:55:06'),
-(41, 25, 9, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-01-31 09:59:53', '2024-01-31 09:59:53', '2024-01-31 09:59:53'),
-(42, 25, 11, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-01-31 10:23:30', '2024-01-31 10:23:30', '2024-01-31 10:23:30'),
-(43, 25, 11, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-01-31 10:23:50', '2024-01-31 10:23:50', '2024-01-31 10:23:50'),
-(44, 25, 11, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-01-31 10:24:06', '2024-01-31 10:24:06', '2024-01-31 10:24:06'),
-(45, 25, 10, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-01-31 10:27:21', '2024-01-31 10:27:21', '2024-01-31 10:27:21'),
-(46, 25, 12, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-01-31 10:36:26', '2024-01-31 10:36:26', '2024-01-31 10:36:26'),
-(47, 25, 12, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-01-31 10:41:45', '2024-01-31 10:41:45', '2024-01-31 10:41:45'),
-(48, 25, 12, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-01-31 10:43:51', '2024-01-31 10:43:51', '2024-01-31 10:43:51'),
-(49, 25, 11, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-01-31 10:52:49', '2024-01-31 10:52:49', '2024-01-31 10:52:49'),
-(50, 25, 13, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-01-31 11:01:41', '2024-01-31 11:01:41', '2024-01-31 11:01:41'),
-(51, 25, 13, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-01-31 11:03:15', '2024-01-31 11:03:15', '2024-01-31 11:03:15'),
-(52, 25, 13, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-01-31 11:04:09', '2024-01-31 11:04:09', '2024-01-31 11:04:09'),
-(53, 25, 12, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-01-31 11:10:48', '2024-01-31 11:10:48', '2024-01-31 11:10:48'),
-(54, 25, 14, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-01-31 11:17:00', '2024-01-31 11:17:00', '2024-01-31 11:17:00'),
-(55, 25, 14, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-01-31 11:17:29', '2024-01-31 11:17:29', '2024-01-31 11:17:29'),
-(56, 25, 14, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-01-31 11:17:51', '2024-01-31 11:17:51', '2024-01-31 11:17:51'),
-(57, 25, 13, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-01-31 11:40:49', '2024-01-31 11:40:49', '2024-01-31 11:40:49'),
-(58, 25, 15, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-01-31 11:47:56', '2024-01-31 11:47:56', '2024-01-31 11:47:56'),
-(59, 25, 15, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-01-31 11:48:15', '2024-01-31 11:48:15', '2024-01-31 11:48:15'),
-(60, 25, 15, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-01-31 11:48:35', '2024-01-31 11:48:35', '2024-01-31 11:48:35'),
-(61, 25, 14, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-01-31 12:00:37', '2024-01-31 12:00:37', '2024-01-31 12:00:37'),
-(62, 25, 16, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-07 11:16:12', '2024-02-07 11:16:12', '2024-02-07 11:16:12'),
-(63, 25, 16, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-07 11:19:11', '2024-02-07 11:19:11', '2024-02-07 11:19:11'),
-(64, 25, 16, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-07 11:19:28', '2024-02-07 11:19:28', '2024-02-07 11:19:28'),
-(65, 25, 15, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-07 11:34:54', '2024-02-07 11:34:54', '2024-02-07 11:34:54'),
-(66, 25, 17, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-07 11:38:07', '2024-02-07 11:38:07', '2024-02-07 11:38:07'),
-(67, 25, 16, NULL, 'app_edit', '192.168.20.241', 'Ariza O\'zgartirildi', '2024-02-07 11:39:45', '2024-02-07 11:39:45', '2024-02-07 11:39:45'),
-(68, 25, 17, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-07 11:40:12', '2024-02-07 11:40:12', '2024-02-07 11:40:12'),
-(69, 25, 17, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-07 11:40:41', '2024-02-07 11:40:41', '2024-02-07 11:40:41'),
-(70, 25, 16, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-07 11:45:29', '2024-02-07 11:45:29', '2024-02-07 11:45:29'),
-(71, 25, 18, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-07 11:47:27', '2024-02-07 11:47:27', '2024-02-07 11:47:27'),
-(72, 25, 18, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-07 11:47:47', '2024-02-07 11:47:47', '2024-02-07 11:47:47'),
-(73, 25, 18, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-07 11:48:02', '2024-02-07 11:48:02', '2024-02-07 11:48:02'),
-(74, 25, 17, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-07 11:53:17', '2024-02-07 11:53:17', '2024-02-07 11:53:17'),
-(75, 25, 19, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-07 12:05:42', '2024-02-07 12:05:42', '2024-02-07 12:05:42'),
-(76, 25, 19, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-07 12:05:59', '2024-02-07 12:05:59', '2024-02-07 12:05:59'),
-(77, 25, 19, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-07 12:06:13', '2024-02-07 12:06:13', '2024-02-07 12:06:13'),
-(78, 25, 18, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-07 12:11:05', '2024-02-07 12:11:05', '2024-02-07 12:11:05'),
-(79, 25, 20, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-07 12:12:27', '2024-02-07 12:12:27', '2024-02-07 12:12:27'),
-(80, 25, 20, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-07 12:12:44', '2024-02-07 12:12:44', '2024-02-07 12:12:44'),
-(81, 25, 20, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-07 12:13:45', '2024-02-07 12:13:45', '2024-02-07 12:13:45'),
-(82, 25, 19, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-07 12:21:08', '2024-02-07 12:21:08', '2024-02-07 12:21:08'),
-(83, 25, 21, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-07 12:23:06', '2024-02-07 12:23:06', '2024-02-07 12:23:06'),
-(84, 25, 21, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-07 12:23:30', '2024-02-07 12:23:30', '2024-02-07 12:23:30'),
-(85, 25, 21, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-07 12:23:43', '2024-02-07 12:23:43', '2024-02-07 12:23:43'),
-(86, 25, 20, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-07 12:26:27', '2024-02-07 12:26:27', '2024-02-07 12:26:27'),
-(87, 25, 22, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-07 12:28:12', '2024-02-07 12:28:12', '2024-02-07 12:28:12'),
-(88, 25, 22, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-07 12:28:31', '2024-02-07 12:28:31', '2024-02-07 12:28:31'),
-(89, 25, 22, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-07 12:28:43', '2024-02-07 12:28:43', '2024-02-07 12:28:43'),
-(90, 25, 21, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-07 12:31:42', '2024-02-07 12:31:42', '2024-02-07 12:31:42'),
-(91, 25, 23, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-07 12:45:23', '2024-02-07 12:45:23', '2024-02-07 12:45:23'),
-(92, 25, 23, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-07 12:48:20', '2024-02-07 12:48:20', '2024-02-07 12:48:20'),
-(93, 25, 23, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-07 12:48:34', '2024-02-07 12:48:34', '2024-02-07 12:48:34'),
-(94, 25, 22, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-07 13:03:49', '2024-02-07 13:03:49', '2024-02-07 13:03:49'),
-(95, 25, 24, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-07 13:50:10', '2024-02-07 13:50:10', '2024-02-07 13:50:10'),
-(96, 25, 24, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-07 13:50:35', '2024-02-07 13:50:35', '2024-02-07 13:50:35'),
-(97, 25, 24, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-07 13:51:39', '2024-02-07 13:51:39', '2024-02-07 13:51:39'),
-(98, 25, 23, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-07 13:57:10', '2024-02-07 13:57:10', '2024-02-07 13:57:10'),
-(99, 25, 25, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-07 14:03:31', '2024-02-07 14:03:31', '2024-02-07 14:03:31'),
-(100, 25, 25, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-07 14:04:30', '2024-02-07 14:04:30', '2024-02-07 14:04:30'),
-(101, 25, 25, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-07 14:05:04', '2024-02-07 14:05:04', '2024-02-07 14:05:04'),
-(102, 25, 24, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-07 14:08:40', '2024-02-07 14:08:40', '2024-02-07 14:08:40'),
-(103, 25, 26, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-07 14:12:02', '2024-02-07 14:12:02', '2024-02-07 14:12:02'),
-(104, 25, 26, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-07 14:12:32', '2024-02-07 14:12:32', '2024-02-07 14:12:32'),
-(105, 25, 26, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-07 14:12:48', '2024-02-07 14:12:48', '2024-02-07 14:12:48'),
-(106, 25, 25, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-07 14:15:51', '2024-02-07 14:15:51', '2024-02-07 14:15:51'),
-(107, 25, 27, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-07 14:35:59', '2024-02-07 14:35:59', '2024-02-07 14:35:59'),
-(108, 25, 27, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-07 14:40:15', '2024-02-07 14:40:15', '2024-02-07 14:40:15'),
-(109, 25, 27, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-07 14:40:31', '2024-02-07 14:40:31', '2024-02-07 14:40:31'),
-(110, 25, 26, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-07 14:43:21', '2024-02-07 14:43:21', '2024-02-07 14:43:21'),
-(111, 25, 28, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-07 14:45:02', '2024-02-07 14:45:02', '2024-02-07 14:45:02'),
-(112, 25, 28, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-07 14:46:01', '2024-02-07 14:46:01', '2024-02-07 14:46:01'),
-(113, 25, 29, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-07 14:47:04', '2024-02-07 14:47:04', '2024-02-07 14:47:04'),
-(114, 25, 28, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-07 14:47:24', '2024-02-07 14:47:24', '2024-02-07 14:47:24'),
-(115, 25, 27, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-07 14:50:10', '2024-02-07 14:50:10', '2024-02-07 14:50:10'),
-(116, 25, 29, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-07 14:55:19', '2024-02-07 14:55:19', '2024-02-07 14:55:19'),
-(117, 25, 30, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-07 14:55:42', '2024-02-07 14:55:42', '2024-02-07 14:55:42'),
-(118, 25, 29, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-07 14:55:58', '2024-02-07 14:55:58', '2024-02-07 14:55:58'),
-(119, 25, 28, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-07 14:59:34', '2024-02-07 14:59:34', '2024-02-07 14:59:34'),
-(120, 25, 30, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-07 15:04:27', '2024-02-07 15:04:27', '2024-02-07 15:04:27'),
-(121, 25, 31, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-07 15:04:45', '2024-02-07 15:04:45', '2024-02-07 15:04:45'),
-(122, 25, 30, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-07 15:04:58', '2024-02-07 15:04:58', '2024-02-07 15:04:58'),
-(123, 25, 29, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-07 15:08:45', '2024-02-07 15:08:45', '2024-02-07 15:08:45'),
-(124, 25, 31, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-07 15:10:52', '2024-02-07 15:10:52', '2024-02-07 15:10:52'),
-(125, 25, 32, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-07 15:11:36', '2024-02-07 15:11:36', '2024-02-07 15:11:36'),
-(126, 25, 31, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-07 15:11:54', '2024-02-07 15:11:54', '2024-02-07 15:11:54'),
-(127, 25, 30, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-07 15:15:57', '2024-02-07 15:15:57', '2024-02-07 15:15:57'),
-(128, 25, 32, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-07 15:37:02', '2024-02-07 15:37:02', '2024-02-07 15:37:02'),
-(129, 25, 33, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-07 15:37:29', '2024-02-07 15:37:29', '2024-02-07 15:37:29'),
-(130, 25, 32, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-07 15:37:44', '2024-02-07 15:37:44', '2024-02-07 15:37:44'),
-(131, 25, 31, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-07 15:42:33', '2024-02-07 15:42:33', '2024-02-07 15:42:33'),
-(132, 25, 33, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-08 11:12:50', '2024-02-08 11:12:50', '2024-02-08 11:12:50'),
-(133, 25, 34, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-08 11:13:18', '2024-02-08 11:13:18', '2024-02-08 11:13:18'),
-(134, 25, 33, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-08 11:13:32', '2024-02-08 11:13:32', '2024-02-08 11:13:32'),
-(135, 25, 32, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-08 11:18:47', '2024-02-08 11:18:47', '2024-02-08 11:18:47'),
-(136, 25, 34, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-08 11:23:03', '2024-02-08 11:23:03', '2024-02-08 11:23:03'),
-(137, 25, 35, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-08 11:24:04', '2024-02-08 11:24:04', '2024-02-08 11:24:04'),
-(138, 25, 34, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-08 11:24:21', '2024-02-08 11:24:21', '2024-02-08 11:24:21'),
-(139, 25, 33, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-08 11:30:45', '2024-02-08 11:30:45', '2024-02-08 11:30:45'),
-(140, 25, 35, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-08 13:20:54', '2024-02-08 13:20:54', '2024-02-08 13:20:54'),
-(141, 25, 36, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-08 13:21:16', '2024-02-08 13:21:16', '2024-02-08 13:21:16'),
-(142, 25, 35, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-08 13:21:52', '2024-02-08 13:21:52', '2024-02-08 13:21:52'),
-(143, 25, 34, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-08 13:26:32', '2024-02-08 13:26:32', '2024-02-08 13:26:32'),
-(144, 25, 36, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-08 13:28:19', '2024-02-08 13:28:19', '2024-02-08 13:28:19'),
-(145, 25, 37, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-08 13:28:59', '2024-02-08 13:28:59', '2024-02-08 13:28:59'),
-(146, 25, 36, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-08 13:29:18', '2024-02-08 13:29:18', '2024-02-08 13:29:18'),
-(147, 25, 35, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-08 13:34:17', '2024-02-08 13:34:17', '2024-02-08 13:34:17'),
-(148, 25, 37, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-08 13:38:28', '2024-02-08 13:38:28', '2024-02-08 13:38:28'),
-(149, 25, 38, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-08 13:38:55', '2024-02-08 13:38:55', '2024-02-08 13:38:55'),
-(150, 25, 37, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-08 13:39:09', '2024-02-08 13:39:09', '2024-02-08 13:39:09'),
-(151, 25, 36, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-08 13:43:25', '2024-02-08 13:43:25', '2024-02-08 13:43:25'),
-(152, 25, 38, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-08 13:44:52', '2024-02-08 13:44:52', '2024-02-08 13:44:52'),
-(153, 25, 39, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-08 13:45:12', '2024-02-08 13:45:12', '2024-02-08 13:45:12'),
-(154, 25, 38, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-08 13:45:24', '2024-02-08 13:45:24', '2024-02-08 13:45:24'),
-(155, 25, 37, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-08 13:48:42', '2024-02-08 13:48:42', '2024-02-08 13:48:42'),
-(156, 25, 39, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-08 13:53:01', '2024-02-08 13:53:01', '2024-02-08 13:53:01'),
-(157, 25, 40, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-08 13:53:21', '2024-02-08 13:53:21', '2024-02-08 13:53:21'),
-(158, 25, 39, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-08 13:53:33', '2024-02-08 13:53:33', '2024-02-08 13:53:33'),
-(159, 25, 38, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-08 13:57:54', '2024-02-08 13:57:54', '2024-02-08 13:57:54'),
-(160, 25, 40, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-08 14:01:50', '2024-02-08 14:01:50', '2024-02-08 14:01:50'),
-(161, 25, 41, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-08 14:02:08', '2024-02-08 14:02:08', '2024-02-08 14:02:08'),
-(162, 25, 40, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-08 14:02:26', '2024-02-08 14:02:26', '2024-02-08 14:02:26'),
-(163, 25, 39, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-08 14:06:05', '2024-02-08 14:06:05', '2024-02-08 14:06:05'),
-(164, 25, 41, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-08 14:46:17', '2024-02-08 14:46:17', '2024-02-08 14:46:17'),
-(165, 25, 42, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-08 14:47:16', '2024-02-08 14:47:16', '2024-02-08 14:47:16'),
-(166, 25, 41, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-08 14:47:28', '2024-02-08 14:47:28', '2024-02-08 14:47:28'),
-(167, 25, 40, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-08 14:52:41', '2024-02-08 14:52:41', '2024-02-08 14:52:41'),
-(168, 25, 42, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-08 15:06:54', '2024-02-08 15:06:54', '2024-02-08 15:06:54'),
-(169, 25, 43, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-08 15:07:22', '2024-02-08 15:07:22', '2024-02-08 15:07:22'),
-(170, 25, 42, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-08 15:07:41', '2024-02-08 15:07:41', '2024-02-08 15:07:41'),
-(171, 25, 41, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-08 15:11:28', '2024-02-08 15:11:28', '2024-02-08 15:11:28'),
-(172, 25, 43, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-08 15:29:46', '2024-02-08 15:29:46', '2024-02-08 15:29:46'),
-(173, 25, 44, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-08 15:32:58', '2024-02-08 15:32:58', '2024-02-08 15:32:58'),
-(174, 25, 43, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-08 15:33:40', '2024-02-08 15:33:40', '2024-02-08 15:33:40'),
-(175, 25, 42, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-08 15:37:35', '2024-02-08 15:37:35', '2024-02-08 15:37:35'),
-(176, 25, 44, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-08 15:47:35', '2024-02-08 15:47:35', '2024-02-08 15:47:35'),
-(177, 25, 45, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-08 15:48:58', '2024-02-08 15:48:58', '2024-02-08 15:48:58'),
-(178, 25, 44, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-08 15:49:13', '2024-02-08 15:49:13', '2024-02-08 15:49:13'),
-(179, 25, 44, NULL, 'edit_test', '192.168.20.241', 'Sinov dasturi yangilandi', '2024-02-08 15:49:35', '2024-02-08 15:49:35', '2024-02-08 15:49:35'),
-(180, 25, 43, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-08 15:52:37', '2024-02-08 15:52:37', '2024-02-08 15:52:37'),
-(181, 25, 45, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-08 15:57:14', '2024-02-08 15:57:14', '2024-02-08 15:57:14'),
-(182, 25, 46, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-08 15:57:39', '2024-02-08 15:57:39', '2024-02-08 15:57:39'),
-(183, 25, 45, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-08 15:57:55', '2024-02-08 15:57:55', '2024-02-08 15:57:55'),
-(184, 25, 44, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-08 16:01:12', '2024-02-08 16:01:12', '2024-02-08 16:01:12'),
-(185, 1, 26, NULL, 'user_added', '192.168.20.241', 'Foydalanuvchi qo\'shildi', '2024-02-08 17:12:23', '2024-02-08 17:12:23', '2024-02-08 17:12:23'),
-(186, 1, 26, NULL, 'user_edit', '192.168.20.241', 'Foydalanuvchi O\'zgartrildi', '2024-02-08 17:13:58', '2024-02-08 17:13:58', '2024-02-08 17:13:58'),
-(187, 25, 46, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-09 10:46:39', '2024-02-09 10:46:39', '2024-02-09 10:46:39'),
-(188, 25, 47, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-09 10:47:17', '2024-02-09 10:47:17', '2024-02-09 10:47:17'),
-(189, 25, 46, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-09 10:47:32', '2024-02-09 10:47:32', '2024-02-09 10:47:32'),
-(190, 25, 45, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-09 10:52:08', '2024-02-09 10:52:08', '2024-02-09 10:52:08'),
-(191, 25, 47, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-09 11:00:55', '2024-02-09 11:00:55', '2024-02-09 11:00:55'),
-(192, 25, 48, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-09 11:01:20', '2024-02-09 11:01:20', '2024-02-09 11:01:20'),
-(193, 25, 47, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-09 11:01:43', '2024-02-09 11:01:43', '2024-02-09 11:01:43'),
-(194, 25, 46, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-09 11:05:47', '2024-02-09 11:05:47', '2024-02-09 11:05:47'),
-(195, 25, 48, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-09 12:01:25', '2024-02-09 12:01:25', '2024-02-09 12:01:25'),
-(196, 25, 49, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-09 12:01:54', '2024-02-09 12:01:54', '2024-02-09 12:01:54'),
-(197, 25, 48, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-09 12:02:17', '2024-02-09 12:02:17', '2024-02-09 12:02:17'),
-(198, 25, 47, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-09 12:06:03', '2024-02-09 12:06:03', '2024-02-09 12:06:03'),
-(199, 25, 49, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-09 12:10:44', '2024-02-09 12:10:44', '2024-02-09 12:10:44'),
-(200, 25, 50, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-09 12:11:05', '2024-02-09 12:11:05', '2024-02-09 12:11:05'),
-(201, 25, 49, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-09 12:11:16', '2024-02-09 12:11:16', '2024-02-09 12:11:16'),
-(202, 25, 48, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-09 12:13:59', '2024-02-09 12:13:59', '2024-02-09 12:13:59'),
-(203, 25, 50, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-09 12:15:29', '2024-02-09 12:15:29', '2024-02-09 12:15:29'),
-(204, 25, 51, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-09 12:15:45', '2024-02-09 12:15:45', '2024-02-09 12:15:45'),
-(205, 25, 50, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-09 12:15:57', '2024-02-09 12:15:57', '2024-02-09 12:15:57'),
-(206, 25, 50, NULL, 'app_edit', '192.168.20.241', 'Ariza O\'zgartirildi', '2024-02-09 12:17:36', '2024-02-09 12:17:36', '2024-02-09 12:17:36'),
-(207, 25, 49, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-09 12:19:08', '2024-02-09 12:19:08', '2024-02-09 12:19:08'),
-(208, 25, 51, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-09 12:20:04', '2024-02-09 12:20:04', '2024-02-09 12:20:04'),
-(209, 25, 52, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-09 12:20:18', '2024-02-09 12:20:18', '2024-02-09 12:20:18'),
-(210, 25, 51, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-09 12:20:43', '2024-02-09 12:20:43', '2024-02-09 12:20:43'),
-(211, 25, 50, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-09 12:22:52', '2024-02-09 12:22:52', '2024-02-09 12:22:52'),
-(212, 25, 52, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-09 12:23:54', '2024-02-09 12:23:54', '2024-02-09 12:23:54'),
-(213, 25, 53, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-09 12:24:08', '2024-02-09 12:24:08', '2024-02-09 12:24:08'),
-(214, 25, 52, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-09 12:24:21', '2024-02-09 12:24:21', '2024-02-09 12:24:21'),
-(215, 25, 51, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-09 12:26:48', '2024-02-09 12:26:48', '2024-02-09 12:26:48'),
-(216, 25, 53, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-09 12:27:51', '2024-02-09 12:27:51', '2024-02-09 12:27:51'),
-(217, 25, 54, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-09 12:28:08', '2024-02-09 12:28:08', '2024-02-09 12:28:08'),
-(218, 25, 53, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-09 12:28:19', '2024-02-09 12:28:19', '2024-02-09 12:28:19'),
-(219, 25, 52, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-09 12:30:19', '2024-02-09 12:30:19', '2024-02-09 12:30:19'),
-(220, 25, 54, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-09 14:20:27', '2024-02-09 14:20:27', '2024-02-09 14:20:27'),
-(221, 25, 55, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-09 14:20:47', '2024-02-09 14:20:47', '2024-02-09 14:20:47'),
-(222, 25, 54, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-09 14:21:01', '2024-02-09 14:21:01', '2024-02-09 14:21:01'),
-(223, 25, 53, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-09 15:25:02', '2024-02-09 15:25:02', '2024-02-09 15:25:02'),
-(224, 25, 55, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-09 15:26:11', '2024-02-09 15:26:11', '2024-02-09 15:26:11'),
-(225, 25, 56, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-09 15:26:28', '2024-02-09 15:26:28', '2024-02-09 15:26:28'),
-(226, 25, 55, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-09 15:26:38', '2024-02-09 15:26:38', '2024-02-09 15:26:38'),
-(227, 25, 54, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-09 15:29:02', '2024-02-09 15:29:02', '2024-02-09 15:29:02'),
-(228, 25, 50, NULL, 'app_edit', '192.168.20.241', 'Ariza O\'zgartirildi', '2024-02-09 15:30:35', '2024-02-09 15:30:35', '2024-02-09 15:30:35'),
-(229, 25, 51, NULL, 'app_edit', '192.168.20.241', 'Ariza O\'zgartirildi', '2024-02-09 15:30:56', '2024-02-09 15:30:56', '2024-02-09 15:30:56'),
-(230, 25, 56, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-09 15:53:28', '2024-02-09 15:53:28', '2024-02-09 15:53:28'),
-(231, 25, 57, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-09 16:21:52', '2024-02-09 16:21:52', '2024-02-09 16:21:52'),
-(232, 25, 56, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-09 16:22:08', '2024-02-09 16:22:08', '2024-02-09 16:22:08'),
-(233, 25, 55, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-09 16:25:00', '2024-02-09 16:25:00', '2024-02-09 16:25:00'),
-(234, 25, 57, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-09 16:27:42', '2024-02-09 16:27:42', '2024-02-09 16:27:42'),
-(235, 25, 58, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-09 16:27:59', '2024-02-09 16:27:59', '2024-02-09 16:27:59'),
-(236, 25, 57, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-09 16:28:09', '2024-02-09 16:28:09', '2024-02-09 16:28:09'),
-(237, 25, 56, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-09 16:31:55', '2024-02-09 16:31:55', '2024-02-09 16:31:55'),
-(238, 25, 58, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-09 16:34:13', '2024-02-09 16:34:13', '2024-02-09 16:34:13'),
-(239, 25, 59, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-09 16:34:28', '2024-02-09 16:34:28', '2024-02-09 16:34:28'),
-(240, 25, 58, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-09 16:35:03', '2024-02-09 16:35:03', '2024-02-09 16:35:03'),
-(241, 25, 57, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-09 16:37:41', '2024-02-09 16:37:41', '2024-02-09 16:37:41'),
-(242, 25, 59, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-09 16:43:11', '2024-02-09 16:43:11', '2024-02-09 16:43:11'),
-(243, 25, 60, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-09 16:44:01', '2024-02-09 16:44:01', '2024-02-09 16:44:01'),
-(244, 25, 59, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-09 16:44:13', '2024-02-09 16:44:13', '2024-02-09 16:44:13'),
-(245, 25, 58, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-09 16:47:21', '2024-02-09 16:47:21', '2024-02-09 16:47:21'),
-(246, 25, 60, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-09 16:52:01', '2024-02-09 16:52:01', '2024-02-09 16:52:01'),
-(247, 25, 61, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-09 16:52:19', '2024-02-09 16:52:19', '2024-02-09 16:52:19'),
-(248, 25, 60, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-09 16:52:35', '2024-02-09 16:52:35', '2024-02-09 16:52:35'),
-(249, 25, 59, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-09 17:01:55', '2024-02-09 17:01:55', '2024-02-09 17:01:55'),
-(250, 25, 61, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-09 23:15:25', '2024-02-09 23:15:25', '2024-02-09 23:15:25'),
-(251, 25, 62, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-09 23:15:57', '2024-02-09 23:15:57', '2024-02-09 23:15:57'),
-(252, 25, 61, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-09 23:30:54', '2024-02-09 23:30:54', '2024-02-09 23:30:54'),
-(253, 25, 62, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-10 15:26:04', '2024-02-10 15:26:04', '2024-02-10 15:26:04'),
-(254, 25, 62, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-10 15:31:11', '2024-02-10 15:31:11', '2024-02-10 15:31:11'),
-(255, 25, 63, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-10 15:31:55', '2024-02-10 15:31:55', '2024-02-10 15:31:55'),
-(256, 25, 62, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-10 15:32:09', '2024-02-10 15:32:09', '2024-02-10 15:32:09'),
-(257, 25, 63, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-10 15:34:33', '2024-02-10 15:34:33', '2024-02-10 15:34:33'),
-(258, 25, 63, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-10 15:38:37', '2024-02-10 15:38:37', '2024-02-10 15:38:37'),
-(259, 25, 64, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-10 15:39:05', '2024-02-10 15:39:05', '2024-02-10 15:39:05'),
-(260, 25, 63, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-10 15:39:18', '2024-02-10 15:39:18', '2024-02-10 15:39:18'),
-(261, 25, 64, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-10 15:41:33', '2024-02-10 15:41:33', '2024-02-10 15:41:33'),
-(262, 25, 64, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-10 15:43:22', '2024-02-10 15:43:22', '2024-02-10 15:43:22'),
-(263, 25, 65, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-10 15:43:44', '2024-02-10 15:43:44', '2024-02-10 15:43:44'),
-(264, 25, 64, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-10 15:43:59', '2024-02-10 15:43:59', '2024-02-10 15:43:59'),
-(265, 25, 66, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-10 15:52:41', '2024-02-10 15:52:41', '2024-02-10 15:52:41'),
-(266, 25, 65, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-10 15:55:49', '2024-02-10 15:55:49', '2024-02-10 15:55:49'),
-(267, 25, 66, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-10 15:56:16', '2024-02-10 15:56:16', '2024-02-10 15:56:16'),
-(268, 25, 65, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-10 15:56:29', '2024-02-10 15:56:29', '2024-02-10 15:56:29'),
-(269, 25, 67, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-10 15:59:10', '2024-02-10 15:59:10', '2024-02-10 15:59:10'),
-(270, 25, 66, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-10 16:03:09', '2024-02-10 16:03:09', '2024-02-10 16:03:09'),
-(271, 25, 67, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-10 16:03:26', '2024-02-10 16:03:26', '2024-02-10 16:03:26'),
-(272, 25, 66, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-10 16:03:40', '2024-02-10 16:03:40', '2024-02-10 16:03:40'),
-(273, 25, 68, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-10 16:06:38', '2024-02-10 16:06:38', '2024-02-10 16:06:38'),
-(274, 25, 67, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-10 16:10:42', '2024-02-10 16:10:42', '2024-02-10 16:10:42'),
-(275, 25, 68, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-10 16:10:57', '2024-02-10 16:10:57', '2024-02-10 16:10:57'),
-(276, 25, 67, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-10 16:11:08', '2024-02-10 16:11:08', '2024-02-10 16:11:08'),
-(277, 25, 69, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-10 16:13:21', '2024-02-10 16:13:21', '2024-02-10 16:13:21'),
-(278, 25, 68, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-10 16:15:42', '2024-02-10 16:15:42', '2024-02-10 16:15:42'),
-(279, 25, 69, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-10 16:15:58', '2024-02-10 16:15:58', '2024-02-10 16:15:58'),
-(280, 25, 68, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-10 16:16:16', '2024-02-10 16:16:16', '2024-02-10 16:16:16'),
-(281, 25, 70, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-10 16:20:15', '2024-02-10 16:20:15', '2024-02-10 16:20:15'),
-(282, 25, 69, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-10 16:30:46', '2024-02-10 16:30:46', '2024-02-10 16:30:46'),
-(283, 25, 70, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-10 16:31:05', '2024-02-10 16:31:05', '2024-02-10 16:31:05'),
-(284, 25, 69, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-10 16:31:15', '2024-02-10 16:31:15', '2024-02-10 16:31:15'),
-(285, 25, 71, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-10 16:34:07', '2024-02-10 16:34:07', '2024-02-10 16:34:07'),
-(286, 25, 70, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-10 16:36:42', '2024-02-10 16:36:42', '2024-02-10 16:36:42'),
-(287, 25, 71, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-10 16:37:08', '2024-02-10 16:37:08', '2024-02-10 16:37:08'),
-(288, 25, 70, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-10 16:37:18', '2024-02-10 16:37:18', '2024-02-10 16:37:18'),
-(289, 25, 72, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-10 16:39:15', '2024-02-10 16:39:15', '2024-02-10 16:39:15'),
-(290, 25, 71, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-10 16:42:13', '2024-02-10 16:42:13', '2024-02-10 16:42:13'),
-(291, 25, 72, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-10 16:42:47', '2024-02-10 16:42:47', '2024-02-10 16:42:47'),
-(292, 25, 71, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-10 16:42:57', '2024-02-10 16:42:57', '2024-02-10 16:42:57'),
-(293, 25, 73, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-10 16:45:21', '2024-02-10 16:45:21', '2024-02-10 16:45:21'),
-(294, 25, 72, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-10 16:48:03', '2024-02-10 16:48:03', '2024-02-10 16:48:03'),
-(295, 25, 73, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-10 16:48:37', '2024-02-10 16:48:37', '2024-02-10 16:48:37'),
-(296, 25, 72, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-10 16:48:50', '2024-02-10 16:48:50', '2024-02-10 16:48:50'),
-(297, 25, 74, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-10 16:51:33', '2024-02-10 16:51:33', '2024-02-10 16:51:33'),
-(298, 25, 73, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-10 16:57:03', '2024-02-10 16:57:03', '2024-02-10 16:57:03'),
-(299, 25, 74, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-10 16:57:24', '2024-02-10 16:57:24', '2024-02-10 16:57:24'),
-(300, 25, 73, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-10 16:57:35', '2024-02-10 16:57:35', '2024-02-10 16:57:35'),
-(301, 25, 75, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-10 17:00:45', '2024-02-10 17:00:45', '2024-02-10 17:00:45'),
-(302, 25, 74, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-10 17:17:50', '2024-02-10 17:17:50', '2024-02-10 17:17:50'),
-(303, 25, 75, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-10 17:18:07', '2024-02-10 17:18:07', '2024-02-10 17:18:07'),
-(304, 25, 74, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-10 17:18:27', '2024-02-10 17:18:27', '2024-02-10 17:18:27'),
-(305, 25, 76, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-10 17:20:36', '2024-02-10 17:20:36', '2024-02-10 17:20:36'),
-(306, 25, 75, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-10 17:26:34', '2024-02-10 17:26:34', '2024-02-10 17:26:34'),
-(307, 25, 76, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-10 17:26:50', '2024-02-10 17:26:50', '2024-02-10 17:26:50'),
-(308, 25, 75, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-10 17:27:01', '2024-02-10 17:27:01', '2024-02-10 17:27:01'),
-(309, 25, 77, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-10 17:29:32', '2024-02-10 17:29:32', '2024-02-10 17:29:32'),
-(310, 25, 76, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-10 17:32:01', '2024-02-10 17:32:01', '2024-02-10 17:32:01'),
-(311, 25, 77, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-10 17:32:21', '2024-02-10 17:32:21', '2024-02-10 17:32:21'),
-(312, 25, 76, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-10 17:32:41', '2024-02-10 17:32:41', '2024-02-10 17:32:41'),
-(313, 25, 78, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-10 17:36:32', '2024-02-10 17:36:32', '2024-02-10 17:36:32'),
-(314, 25, 77, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-10 17:39:18', '2024-02-10 17:39:18', '2024-02-10 17:39:18'),
-(315, 25, 78, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-10 17:39:51', '2024-02-10 17:39:51', '2024-02-10 17:39:51'),
-(316, 25, 77, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-10 17:40:01', '2024-02-10 17:40:01', '2024-02-10 17:40:01'),
-(317, 25, 79, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-10 17:42:48', '2024-02-10 17:42:48', '2024-02-10 17:42:48'),
-(318, 25, 78, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-12 09:33:22', '2024-02-12 09:33:22', '2024-02-12 09:33:22'),
-(319, 25, 79, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-12 09:33:58', '2024-02-12 09:33:58', '2024-02-12 09:33:58'),
-(320, 25, 78, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-12 09:34:09', '2024-02-12 09:34:09', '2024-02-12 09:34:09'),
-(321, 25, 80, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-12 09:37:25', '2024-02-12 09:37:25', '2024-02-12 09:37:25'),
-(322, 25, 79, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-12 09:41:55', '2024-02-12 09:41:55', '2024-02-12 09:41:55'),
-(323, 25, 80, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-12 09:42:17', '2024-02-12 09:42:17', '2024-02-12 09:42:17'),
-(324, 25, 79, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-12 09:42:38', '2024-02-12 09:42:38', '2024-02-12 09:42:38'),
-(325, 25, 81, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-12 09:46:02', '2024-02-12 09:46:02', '2024-02-12 09:46:02'),
-(326, 25, 80, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-12 10:11:01', '2024-02-12 10:11:01', '2024-02-12 10:11:01'),
-(327, 25, 81, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-12 10:11:29', '2024-02-12 10:11:29', '2024-02-12 10:11:29'),
-(328, 25, 80, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-12 10:11:46', '2024-02-12 10:11:46', '2024-02-12 10:11:46'),
-(329, 25, 82, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-12 10:20:59', '2024-02-12 10:20:59', '2024-02-12 10:20:59'),
-(330, 25, 81, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-12 10:23:54', '2024-02-12 10:23:54', '2024-02-12 10:23:54'),
-(331, 25, 82, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-12 10:26:53', '2024-02-12 10:26:53', '2024-02-12 10:26:53'),
-(332, 25, 81, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-12 10:27:09', '2024-02-12 10:27:09', '2024-02-12 10:27:09'),
-(333, 25, 83, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-12 10:32:35', '2024-02-12 10:32:35', '2024-02-12 10:32:35'),
-(334, 25, 82, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-12 10:48:14', '2024-02-12 10:48:14', '2024-02-12 10:48:14'),
-(335, 25, 83, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-12 10:48:28', '2024-02-12 10:48:28', '2024-02-12 10:48:28'),
-(336, 25, 82, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-12 10:48:39', '2024-02-12 10:48:39', '2024-02-12 10:48:39'),
-(337, 25, 84, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-12 10:51:38', '2024-02-12 10:51:38', '2024-02-12 10:51:38'),
-(338, 25, 83, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-12 11:01:34', '2024-02-12 11:01:34', '2024-02-12 11:01:34');
-INSERT INTO `tbl_activities` (`id`, `user_id`, `action_id`, `city_id`, `action_type`, `ip_adress`, `action`, `time`, `created_at`, `updated_at`) VALUES
-(339, 25, 84, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-12 11:01:50', '2024-02-12 11:01:50', '2024-02-12 11:01:50'),
-(340, 25, 83, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-12 11:02:02', '2024-02-12 11:02:02', '2024-02-12 11:02:02'),
-(341, 25, 85, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-12 11:05:00', '2024-02-12 11:05:00', '2024-02-12 11:05:00'),
-(342, 25, 84, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-12 11:10:19', '2024-02-12 11:10:19', '2024-02-12 11:10:19'),
-(343, 25, 85, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-12 11:10:41', '2024-02-12 11:10:41', '2024-02-12 11:10:41'),
-(344, 25, 84, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-12 11:10:52', '2024-02-12 11:10:52', '2024-02-12 11:10:52'),
-(345, 25, 84, NULL, 'app_edit', '192.168.20.241', 'Ariza O\'zgartirildi', '2024-02-12 11:14:13', '2024-02-12 11:14:13', '2024-02-12 11:14:13'),
-(346, 25, 86, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-12 11:15:20', '2024-02-12 11:15:20', '2024-02-12 11:15:20'),
-(347, 25, 85, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-12 11:20:31', '2024-02-12 11:20:31', '2024-02-12 11:20:31'),
-(348, 25, 86, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-12 11:21:19', '2024-02-12 11:21:19', '2024-02-12 11:21:19'),
-(349, 25, 85, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-12 11:23:17', '2024-02-12 11:23:17', '2024-02-12 11:23:17'),
-(350, 25, 87, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-12 11:25:51', '2024-02-12 11:25:51', '2024-02-12 11:25:51'),
-(351, 25, 86, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-12 11:44:45', '2024-02-12 11:44:45', '2024-02-12 11:44:45'),
-(352, 25, 87, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-12 11:45:01', '2024-02-12 11:45:01', '2024-02-12 11:45:01'),
-(353, 25, 86, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-12 11:45:14', '2024-02-12 11:45:14', '2024-02-12 11:45:14'),
-(354, 25, 88, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-12 11:47:51', '2024-02-12 11:47:51', '2024-02-12 11:47:51'),
-(355, 25, 87, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-12 11:56:20', '2024-02-12 11:56:20', '2024-02-12 11:56:20'),
-(356, 25, 88, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-12 11:56:41', '2024-02-12 11:56:41', '2024-02-12 11:56:41'),
-(357, 25, 87, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-12 11:56:56', '2024-02-12 11:56:56', '2024-02-12 11:56:56'),
-(358, 25, 89, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-12 12:00:14', '2024-02-12 12:00:14', '2024-02-12 12:00:14'),
-(359, 25, 88, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-12 12:04:04', '2024-02-12 12:04:04', '2024-02-12 12:04:04'),
-(360, 25, 89, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-12 12:04:56', '2024-02-12 12:04:56', '2024-02-12 12:04:56'),
-(361, 25, 88, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-12 12:05:07', '2024-02-12 12:05:07', '2024-02-12 12:05:07'),
-(362, 25, 90, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-12 12:07:40', '2024-02-12 12:07:40', '2024-02-12 12:07:40'),
-(363, 25, 89, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-12 12:15:20', '2024-02-12 12:15:20', '2024-02-12 12:15:20'),
-(364, 25, 90, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-12 12:15:59', '2024-02-12 12:15:59', '2024-02-12 12:15:59'),
-(365, 25, 89, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-12 12:17:12', '2024-02-12 12:17:12', '2024-02-12 12:17:12'),
-(366, 25, 91, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-12 12:21:11', '2024-02-12 12:21:11', '2024-02-12 12:21:11'),
-(367, 25, 90, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-12 12:45:39', '2024-02-12 12:45:39', '2024-02-12 12:45:39'),
-(368, 25, 91, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-12 12:46:02', '2024-02-12 12:46:02', '2024-02-12 12:46:02'),
-(369, 25, 90, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-12 12:46:13', '2024-02-12 12:46:13', '2024-02-12 12:46:13'),
-(370, 25, 92, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-12 12:49:44', '2024-02-12 12:49:44', '2024-02-12 12:49:44'),
-(371, 25, 91, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-12 12:52:34', '2024-02-12 12:52:34', '2024-02-12 12:52:34'),
-(372, 25, 92, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-12 12:52:53', '2024-02-12 12:52:53', '2024-02-12 12:52:53'),
-(373, 25, 91, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-12 12:53:39', '2024-02-12 12:53:39', '2024-02-12 12:53:39'),
-(374, 25, 93, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-12 12:57:02', '2024-02-12 12:57:02', '2024-02-12 12:57:02'),
-(375, 25, 92, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-12 13:00:13', '2024-02-12 13:00:13', '2024-02-12 13:00:13'),
-(376, 25, 93, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-12 13:00:34', '2024-02-12 13:00:34', '2024-02-12 13:00:34'),
-(377, 25, 92, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-12 13:00:45', '2024-02-12 13:00:45', '2024-02-12 13:00:45'),
-(378, 25, 94, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-12 13:03:14', '2024-02-12 13:03:14', '2024-02-12 13:03:14'),
-(379, 25, 93, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-12 13:06:22', '2024-02-12 13:06:22', '2024-02-12 13:06:22'),
-(380, 25, 94, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-12 13:08:29', '2024-02-12 13:08:29', '2024-02-12 13:08:29'),
-(381, 25, 93, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-12 13:08:41', '2024-02-12 13:08:41', '2024-02-12 13:08:41'),
-(382, 25, 95, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-12 13:11:07', '2024-02-12 13:11:07', '2024-02-12 13:11:07'),
-(383, 25, 94, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-12 13:14:40', '2024-02-12 13:14:40', '2024-02-12 13:14:40'),
-(384, 25, 95, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-12 13:15:03', '2024-02-12 13:15:03', '2024-02-12 13:15:03'),
-(385, 25, 94, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-12 13:15:14', '2024-02-12 13:15:14', '2024-02-12 13:15:14'),
-(386, 25, 96, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-12 13:17:19', '2024-02-12 13:17:19', '2024-02-12 13:17:19'),
-(387, 25, 95, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-12 13:20:53', '2024-02-12 13:20:53', '2024-02-12 13:20:53'),
-(388, 25, 96, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-12 13:21:22', '2024-02-12 13:21:22', '2024-02-12 13:21:22'),
-(389, 25, 95, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-12 13:21:33', '2024-02-12 13:21:33', '2024-02-12 13:21:33'),
-(390, 25, 97, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-12 13:23:35', '2024-02-12 13:23:35', '2024-02-12 13:23:35'),
-(391, 25, 96, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-12 13:25:50', '2024-02-12 13:25:50', '2024-02-12 13:25:50'),
-(392, 25, 97, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-12 13:26:04', '2024-02-12 13:26:04', '2024-02-12 13:26:04'),
-(393, 25, 96, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-12 13:26:15', '2024-02-12 13:26:15', '2024-02-12 13:26:15'),
-(394, 25, 98, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-12 13:28:44', '2024-02-12 13:28:44', '2024-02-12 13:28:44'),
-(395, 25, 97, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-12 13:36:17', '2024-02-12 13:36:17', '2024-02-12 13:36:17'),
-(396, 25, 98, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-12 13:36:32', '2024-02-12 13:36:32', '2024-02-12 13:36:32'),
-(397, 25, 97, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-12 13:36:44', '2024-02-12 13:36:44', '2024-02-12 13:36:44'),
-(398, 25, 99, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-12 13:39:17', '2024-02-12 13:39:17', '2024-02-12 13:39:17'),
-(399, 25, 98, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-12 13:47:03', '2024-02-12 13:47:03', '2024-02-12 13:47:03'),
-(400, 25, 99, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-12 13:47:18', '2024-02-12 13:47:18', '2024-02-12 13:47:18'),
-(401, 25, 98, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-12 13:47:28', '2024-02-12 13:47:28', '2024-02-12 13:47:28'),
-(402, 25, 100, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-12 13:50:02', '2024-02-12 13:50:02', '2024-02-12 13:50:02'),
-(403, 25, 99, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-12 14:17:27', '2024-02-12 14:17:27', '2024-02-12 14:17:27'),
-(404, 25, 100, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-12 14:17:48', '2024-02-12 14:17:48', '2024-02-12 14:17:48'),
-(405, 25, 99, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-12 14:17:58', '2024-02-12 14:17:58', '2024-02-12 14:17:58'),
-(406, 25, 101, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-12 14:21:49', '2024-02-12 14:21:49', '2024-02-12 14:21:49'),
-(407, 25, 100, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-12 14:22:54', '2024-02-12 14:22:54', '2024-02-12 14:22:54'),
-(408, 25, 101, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-12 14:23:08', '2024-02-12 14:23:08', '2024-02-12 14:23:08'),
-(409, 25, 100, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-12 14:23:18', '2024-02-12 14:23:18', '2024-02-12 14:23:18'),
-(410, 25, 102, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-12 14:25:35', '2024-02-12 14:25:35', '2024-02-12 14:25:35'),
-(411, 25, 101, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-12 14:29:19', '2024-02-12 14:29:19', '2024-02-12 14:29:19'),
-(412, 25, 102, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-12 14:29:37', '2024-02-12 14:29:37', '2024-02-12 14:29:37'),
-(413, 25, 101, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-12 14:29:47', '2024-02-12 14:29:47', '2024-02-12 14:29:47'),
-(414, 25, 103, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-12 14:32:44', '2024-02-12 14:32:44', '2024-02-12 14:32:44'),
-(415, 25, 102, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-12 14:33:44', '2024-02-12 14:33:44', '2024-02-12 14:33:44'),
-(416, 25, 103, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-12 14:33:58', '2024-02-12 14:33:58', '2024-02-12 14:33:58'),
-(417, 25, 102, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-12 14:34:18', '2024-02-12 14:34:18', '2024-02-12 14:34:18'),
-(418, 25, 104, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-12 14:36:55', '2024-02-12 14:36:55', '2024-02-12 14:36:55'),
-(419, 25, 103, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-12 14:48:09', '2024-02-12 14:48:09', '2024-02-12 14:48:09'),
-(420, 25, 104, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-12 14:48:24', '2024-02-12 14:48:24', '2024-02-12 14:48:24'),
-(421, 25, 103, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-12 14:48:36', '2024-02-12 14:48:36', '2024-02-12 14:48:36'),
-(422, 25, 105, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-12 14:58:14', '2024-02-12 14:58:14', '2024-02-12 14:58:14'),
-(423, 25, 104, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-12 14:59:41', '2024-02-12 14:59:41', '2024-02-12 14:59:41'),
-(424, 25, 105, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-12 14:59:57', '2024-02-12 14:59:57', '2024-02-12 14:59:57'),
-(425, 25, 104, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-12 15:00:08', '2024-02-12 15:00:08', '2024-02-12 15:00:08'),
-(426, 25, 106, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-12 15:02:21', '2024-02-12 15:02:21', '2024-02-12 15:02:21'),
-(427, 25, 105, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-12 15:10:40', '2024-02-12 15:10:40', '2024-02-12 15:10:40'),
-(428, 25, 106, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-12 15:11:06', '2024-02-12 15:11:06', '2024-02-12 15:11:06'),
-(429, 25, 105, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-12 15:11:15', '2024-02-12 15:11:15', '2024-02-12 15:11:15'),
-(430, 25, 107, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-12 15:13:46', '2024-02-12 15:13:46', '2024-02-12 15:13:46'),
-(431, 25, 106, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-13 13:26:34', '2024-02-13 13:26:34', '2024-02-13 13:26:34'),
-(432, 25, 107, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-13 13:27:23', '2024-02-13 13:27:23', '2024-02-13 13:27:23'),
-(433, 25, 106, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-13 13:27:35', '2024-02-13 13:27:35', '2024-02-13 13:27:35'),
-(434, 25, 108, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-13 13:32:26', '2024-02-13 13:32:26', '2024-02-13 13:32:26'),
-(435, 25, 107, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-13 13:38:59', '2024-02-13 13:38:59', '2024-02-13 13:38:59'),
-(436, 25, 108, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-13 13:39:26', '2024-02-13 13:39:26', '2024-02-13 13:39:26'),
-(437, 25, 107, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-13 13:39:38', '2024-02-13 13:39:38', '2024-02-13 13:39:38'),
-(438, 25, 109, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-13 13:42:22', '2024-02-13 13:42:22', '2024-02-13 13:42:22'),
-(439, 25, 108, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-13 13:45:43', '2024-02-13 13:45:43', '2024-02-13 13:45:43'),
-(440, 25, 109, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-13 13:45:59', '2024-02-13 13:45:59', '2024-02-13 13:45:59'),
-(441, 25, 108, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-13 13:46:10', '2024-02-13 13:46:10', '2024-02-13 13:46:10'),
-(442, 25, 110, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-13 13:48:53', '2024-02-13 13:48:53', '2024-02-13 13:48:53'),
-(443, 25, 109, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-13 13:59:07', '2024-02-13 13:59:07', '2024-02-13 13:59:07'),
-(444, 25, 110, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-13 13:59:23', '2024-02-13 13:59:23', '2024-02-13 13:59:23'),
-(445, 25, 109, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-13 13:59:33', '2024-02-13 13:59:33', '2024-02-13 13:59:33'),
-(446, 25, 111, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-13 14:03:04', '2024-02-13 14:03:04', '2024-02-13 14:03:04'),
-(447, 25, 110, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-13 14:20:41', '2024-02-13 14:20:41', '2024-02-13 14:20:41'),
-(448, 25, 111, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-13 14:21:04', '2024-02-13 14:21:04', '2024-02-13 14:21:04'),
-(449, 25, 110, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-13 14:21:16', '2024-02-13 14:21:16', '2024-02-13 14:21:16'),
-(450, 25, 112, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-13 14:24:48', '2024-02-13 14:24:48', '2024-02-13 14:24:48'),
-(451, 25, 111, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-13 15:06:42', '2024-02-13 15:06:42', '2024-02-13 15:06:42'),
-(452, 25, 112, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-13 15:07:00', '2024-02-13 15:07:00', '2024-02-13 15:07:00'),
-(453, 25, 111, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-13 15:07:12', '2024-02-13 15:07:12', '2024-02-13 15:07:12'),
-(454, 25, 113, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-13 15:10:48', '2024-02-13 15:10:48', '2024-02-13 15:10:48'),
-(455, 25, 112, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-13 15:15:57', '2024-02-13 15:15:57', '2024-02-13 15:15:57'),
-(456, 25, 113, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-13 15:16:13', '2024-02-13 15:16:13', '2024-02-13 15:16:13'),
-(457, 25, 112, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-13 15:16:25', '2024-02-13 15:16:25', '2024-02-13 15:16:25'),
-(458, 25, 114, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-13 15:19:33', '2024-02-13 15:19:33', '2024-02-13 15:19:33'),
-(459, 25, 113, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-13 15:23:22', '2024-02-13 15:23:22', '2024-02-13 15:23:22'),
-(460, 25, 114, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-13 15:23:40', '2024-02-13 15:23:40', '2024-02-13 15:23:40'),
-(461, 25, 113, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-13 15:23:52', '2024-02-13 15:23:52', '2024-02-13 15:23:52'),
-(462, 25, 115, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-13 15:28:03', '2024-02-13 15:28:03', '2024-02-13 15:28:03'),
-(463, 25, 114, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-13 17:25:25', '2024-02-13 17:25:25', '2024-02-13 17:25:25'),
-(464, 25, 115, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-13 17:25:57', '2024-02-13 17:25:57', '2024-02-13 17:25:57'),
-(465, 25, 114, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-13 17:26:08', '2024-02-13 17:26:08', '2024-02-13 17:26:08'),
-(466, 25, 116, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-13 17:28:11', '2024-02-13 17:28:11', '2024-02-13 17:28:11'),
-(467, 25, 115, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-13 17:37:14', '2024-02-13 17:37:14', '2024-02-13 17:37:14'),
-(468, 25, 116, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-13 17:37:35', '2024-02-13 17:37:35', '2024-02-13 17:37:35'),
-(469, 25, 115, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-13 17:37:46', '2024-02-13 17:37:46', '2024-02-13 17:37:46'),
-(470, 25, 117, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-13 17:41:33', '2024-02-13 17:41:33', '2024-02-13 17:41:33'),
-(471, 25, 116, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-13 17:45:30', '2024-02-13 17:45:30', '2024-02-13 17:45:30'),
-(472, 25, 117, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-13 17:45:48', '2024-02-13 17:45:48', '2024-02-13 17:45:48'),
-(473, 25, 116, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-13 17:46:12', '2024-02-13 17:46:12', '2024-02-13 17:46:12'),
-(474, 25, 118, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-13 17:50:53', '2024-02-13 17:50:53', '2024-02-13 17:50:53'),
-(475, 25, 117, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-13 18:00:56', '2024-02-13 18:00:56', '2024-02-13 18:00:56'),
-(476, 25, 118, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-13 18:01:15', '2024-02-13 18:01:15', '2024-02-13 18:01:15'),
-(477, 25, 117, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-13 18:01:27', '2024-02-13 18:01:27', '2024-02-13 18:01:27'),
-(478, 25, 119, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-13 18:06:14', '2024-02-13 18:06:14', '2024-02-13 18:06:14'),
-(479, 25, 118, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-15 10:11:34', '2024-02-15 10:11:34', '2024-02-15 10:11:34'),
-(480, 25, 119, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-15 10:22:14', '2024-02-15 10:22:14', '2024-02-15 10:22:14'),
-(481, 25, 118, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-15 13:15:16', '2024-02-15 13:15:16', '2024-02-15 13:15:16'),
-(482, 25, 120, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-15 14:08:22', '2024-02-15 14:08:22', '2024-02-15 14:08:22'),
-(483, 25, 119, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-15 16:47:21', '2024-02-15 16:47:21', '2024-02-15 16:47:21'),
-(484, 25, 120, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-15 16:47:50', '2024-02-15 16:47:50', '2024-02-15 16:47:50'),
-(485, 25, 119, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-15 16:48:01', '2024-02-15 16:48:01', '2024-02-15 16:48:01'),
-(486, 25, 121, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-15 16:51:57', '2024-02-15 16:51:57', '2024-02-15 16:51:57'),
-(487, 25, 120, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-15 16:54:49', '2024-02-15 16:54:49', '2024-02-15 16:54:49'),
-(488, 25, 121, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-15 16:55:07', '2024-02-15 16:55:07', '2024-02-15 16:55:07'),
-(489, 25, 120, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-15 16:55:20', '2024-02-15 16:55:20', '2024-02-15 16:55:20'),
-(490, 25, 122, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-15 16:58:20', '2024-02-15 16:58:20', '2024-02-15 16:58:20'),
-(491, 25, 121, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-16 11:24:00', '2024-02-16 11:24:00', '2024-02-16 11:24:00'),
-(492, 25, 122, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-16 11:24:19', '2024-02-16 11:24:19', '2024-02-16 11:24:19'),
-(493, 25, 121, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-16 11:24:31', '2024-02-16 11:24:31', '2024-02-16 11:24:31'),
-(494, 25, 123, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-16 11:26:54', '2024-02-16 11:26:54', '2024-02-16 11:26:54'),
-(495, 25, 122, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-19 13:16:31', '2024-02-19 13:16:31', '2024-02-19 13:16:31'),
-(496, 25, 123, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-19 13:16:56', '2024-02-19 13:16:56', '2024-02-19 13:16:56'),
-(497, 25, 122, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-19 13:17:10', '2024-02-19 13:17:10', '2024-02-19 13:17:10'),
-(498, 25, 124, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-19 13:21:30', '2024-02-19 13:21:30', '2024-02-19 13:21:30'),
-(499, 25, 123, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-19 13:25:14', '2024-02-19 13:25:14', '2024-02-19 13:25:14'),
-(500, 25, 124, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-19 13:26:59', '2024-02-19 13:26:59', '2024-02-19 13:26:59'),
-(501, 25, 123, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-19 13:27:36', '2024-02-19 13:27:36', '2024-02-19 13:27:36'),
-(502, 25, 125, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-19 13:31:06', '2024-02-19 13:31:06', '2024-02-19 13:31:06'),
-(503, 25, 124, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-19 13:33:41', '2024-02-19 13:33:41', '2024-02-19 13:33:41'),
-(504, 25, 124, NULL, 'app_edit', '192.168.20.241', 'Ariza O\'zgartirildi', '2024-02-19 13:34:03', '2024-02-19 13:34:03', '2024-02-19 13:34:03'),
-(505, 25, 124, NULL, 'app_edit', '192.168.20.241', 'Ariza O\'zgartirildi', '2024-02-19 13:35:38', '2024-02-19 13:35:38', '2024-02-19 13:35:38'),
-(506, 25, 125, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-19 13:35:57', '2024-02-19 13:35:57', '2024-02-19 13:35:57'),
-(507, 25, 124, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-19 13:36:13', '2024-02-19 13:36:13', '2024-02-19 13:36:13'),
-(508, 25, 126, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-19 13:40:01', '2024-02-19 13:40:01', '2024-02-19 13:40:01'),
-(509, 25, 125, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-19 13:45:42', '2024-02-19 13:45:42', '2024-02-19 13:45:42'),
-(510, 25, 126, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-19 13:46:02', '2024-02-19 13:46:02', '2024-02-19 13:46:02'),
-(511, 25, 125, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-19 13:46:52', '2024-02-19 13:46:52', '2024-02-19 13:46:52'),
-(512, 25, 127, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-19 13:50:14', '2024-02-19 13:50:14', '2024-02-19 13:50:14'),
-(513, 25, 126, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-19 13:54:16', '2024-02-19 13:54:16', '2024-02-19 13:54:16'),
-(514, 25, 127, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-19 13:55:07', '2024-02-19 13:55:07', '2024-02-19 13:55:07'),
-(515, 25, 126, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-19 13:55:27', '2024-02-19 13:55:27', '2024-02-19 13:55:27'),
-(516, 25, 128, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-19 13:58:39', '2024-02-19 13:58:39', '2024-02-19 13:58:39'),
-(517, 25, 127, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-21 11:20:22', '2024-02-21 11:20:22', '2024-02-21 11:20:22'),
-(518, 25, 128, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-21 11:20:50', '2024-02-21 11:20:50', '2024-02-21 11:20:50'),
-(519, 25, 127, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-21 11:21:08', '2024-02-21 11:21:08', '2024-02-21 11:21:08'),
-(520, 25, 129, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-21 11:26:57', '2024-02-21 11:26:57', '2024-02-21 11:26:57'),
-(521, 25, 128, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-21 11:28:52', '2024-02-21 11:28:52', '2024-02-21 11:28:52'),
-(522, 25, 129, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-21 11:29:24', '2024-02-21 11:29:24', '2024-02-21 11:29:24'),
-(523, 25, 128, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-21 11:29:35', '2024-02-21 11:29:35', '2024-02-21 11:29:35'),
-(524, 25, 130, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-21 11:31:55', '2024-02-21 11:31:55', '2024-02-21 11:31:55'),
-(525, 25, 129, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-21 11:38:09', '2024-02-21 11:38:09', '2024-02-21 11:38:09'),
-(526, 25, 130, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-21 11:38:25', '2024-02-21 11:38:25', '2024-02-21 11:38:25'),
-(527, 25, 129, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-21 11:38:38', '2024-02-21 11:38:38', '2024-02-21 11:38:38'),
-(528, 25, 131, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-21 11:44:15', '2024-02-21 11:44:15', '2024-02-21 11:44:15'),
-(529, 25, 130, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-21 11:51:09', '2024-02-21 11:51:09', '2024-02-21 11:51:09'),
-(530, 25, 131, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-21 11:51:37', '2024-02-21 11:51:37', '2024-02-21 11:51:37'),
-(531, 25, 130, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-21 11:52:51', '2024-02-21 11:52:51', '2024-02-21 11:52:51'),
-(532, 25, 132, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-21 11:55:42', '2024-02-21 11:55:42', '2024-02-21 11:55:42'),
-(533, 25, 131, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-23 15:05:56', '2024-02-23 15:05:56', '2024-02-23 15:05:56'),
-(534, 25, 132, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-23 15:06:18', '2024-02-23 15:06:18', '2024-02-23 15:06:18'),
-(535, 25, 131, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-23 15:06:30', '2024-02-23 15:06:30', '2024-02-23 15:06:30'),
-(536, 25, 133, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-23 15:11:04', '2024-02-23 15:11:04', '2024-02-23 15:11:04'),
-(537, 25, 132, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-26 12:28:47', '2024-02-26 12:28:47', '2024-02-26 12:28:47'),
-(538, 25, 133, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-26 12:29:23', '2024-02-26 12:29:23', '2024-02-26 12:29:23'),
-(539, 25, 134, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-26 12:30:55', '2024-02-26 12:30:55', '2024-02-26 12:30:55'),
-(540, 25, 135, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-26 12:31:15', '2024-02-26 12:31:15', '2024-02-26 12:31:15'),
-(541, 25, 136, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-26 12:35:08', '2024-02-26 12:35:08', '2024-02-26 12:35:08'),
-(542, 1, 137, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-26 12:36:50', '2024-02-26 12:36:50', '2024-02-26 12:36:50'),
-(543, 25, 138, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-26 12:37:39', '2024-02-26 12:37:39', '2024-02-26 12:37:39'),
-(544, 25, 139, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-26 12:38:47', '2024-02-26 12:38:47', '2024-02-26 12:38:47'),
-(545, 25, 133, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-26 12:39:48', '2024-02-26 12:39:48', '2024-02-26 12:39:48'),
-(546, 25, 132, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-26 12:40:01', '2024-02-26 12:40:01', '2024-02-26 12:40:01'),
-(547, 25, 132, NULL, 'edit_test', '192.168.20.241', 'Sinov dasturi yangilandi', '2024-02-26 12:41:56', '2024-02-26 12:41:56', '2024-02-26 12:41:56'),
-(548, 25, 134, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-26 12:42:34', '2024-02-26 12:42:34', '2024-02-26 12:42:34'),
-(549, 25, 133, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-26 12:43:17', '2024-02-26 12:43:17', '2024-02-26 12:43:17'),
-(550, 25, 134, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-26 12:45:56', '2024-02-26 12:45:56', '2024-02-26 12:45:56'),
-(551, 25, 121, NULL, 'app_edit', '192.168.20.241', 'Ariza O\'zgartirildi', '2024-02-26 12:47:25', '2024-02-26 12:47:25', '2024-02-26 12:47:25'),
-(552, 25, 140, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-27 17:07:52', '2024-02-27 17:07:52', '2024-02-27 17:07:52'),
-(553, 25, 135, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-27 17:08:10', '2024-02-27 17:08:10', '2024-02-27 17:08:10'),
-(554, 25, 134, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-27 17:08:21', '2024-02-27 17:08:21', '2024-02-27 17:08:21'),
-(555, 25, 135, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-27 17:13:00', '2024-02-27 17:13:00', '2024-02-27 17:13:00'),
-(556, 25, 141, NULL, 'app_add', '192.168.20.241', 'Ariza qo\'shildi', '2024-02-28 16:17:04', '2024-02-28 16:17:04', '2024-02-28 16:17:04'),
-(557, 25, 136, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-28 16:23:24', '2024-02-28 16:23:24', '2024-02-28 16:23:24'),
-(558, 25, 135, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-28 16:23:37', '2024-02-28 16:23:37', '2024-02-28 16:23:37'),
-(559, 25, 136, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-28 16:30:46', '2024-02-28 16:30:46', '2024-02-28 16:30:46'),
-(560, 1, 27, NULL, 'user_added', '192.168.20.241', 'Foydalanuvchi qo\'shildi', '2024-02-28 16:50:02', '2024-02-28 16:50:02', '2024-02-28 16:50:02'),
-(561, 25, 137, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-29 10:07:07', '2024-02-29 10:07:07', '2024-02-29 10:07:07'),
-(562, 25, 136, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-29 10:07:38', '2024-02-29 10:07:38', '2024-02-29 10:07:38'),
-(563, 25, 137, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-29 10:12:28', '2024-02-29 10:12:28', '2024-02-29 10:12:28'),
-(564, 25, 138, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-29 10:14:12', '2024-02-29 10:14:12', '2024-02-29 10:14:12'),
-(565, 25, 137, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-29 10:14:28', '2024-02-29 10:14:28', '2024-02-29 10:14:28'),
-(566, 25, 138, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-29 10:17:44', '2024-02-29 10:17:44', '2024-02-29 10:17:44'),
-(567, 25, 139, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-29 10:19:23', '2024-02-29 10:19:23', '2024-02-29 10:19:23'),
-(568, 25, 138, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-29 10:19:35', '2024-02-29 10:19:35', '2024-02-29 10:19:35'),
-(569, 25, 139, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-29 10:24:52', '2024-02-29 10:24:52', '2024-02-29 10:24:52'),
-(570, 25, 140, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-29 10:25:44', '2024-02-29 10:25:44', '2024-02-29 10:25:44'),
-(571, 25, 139, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-29 10:25:56', '2024-02-29 10:25:56', '2024-02-29 10:25:56'),
-(572, 25, 140, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-29 10:29:08', '2024-02-29 10:29:08', '2024-02-29 10:29:08'),
-(573, 25, 141, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-29 10:30:30', '2024-02-29 10:30:30', '2024-02-29 10:30:30'),
-(574, 25, 140, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-29 10:30:42', '2024-02-29 10:30:42', '2024-02-29 10:30:42'),
-(575, 25, 141, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-29 10:32:55', '2024-02-29 10:32:55', '2024-02-29 10:32:55'),
-(576, 25, 142, NULL, 'new_decision', '192.168.20.241', 'Yangi buyruq qo\'shildi', '2024-02-29 10:34:46', '2024-02-29 10:34:46', '2024-02-29 10:34:46'),
-(577, 25, 141, NULL, 'new_tests', '192.168.20.241', 'Yangi sinov dasturi qo\'shildi', '2024-02-29 10:35:04', '2024-02-29 10:35:04', '2024-02-29 10:35:04'),
-(578, 25, 142, NULL, 'new_result', '192.168.20.241', 'Yakuniy natijalar qo\'shildi', '2024-02-29 10:42:31', '2024-02-29 10:42:31', '2024-02-29 10:42:31'),
-(579, 1, 142, NULL, 'from_agrocert_app_add', '192.168.20.241', 'Ariza qo\'shildi Urug\'dan', '2024-02-29 13:01:59', '2024-02-29 13:01:59', '2024-02-29 13:01:59'),
-(580, 1, 143, NULL, 'from_agrocert_app_add', '192.168.20.241', 'Ariza qo\'shildi Urug\'dan', '2024-02-29 13:02:26', '2024-02-29 13:02:26', '2024-02-29 13:02:26'),
-(581, 1, 144, NULL, 'from_agrocert_app_add', '192.168.20.241', 'Ariza qo\'shildi Urug\'dan', '2024-02-29 13:58:21', '2024-02-29 13:58:21', '2024-02-29 13:58:21'),
-(582, 1, 145, NULL, 'from_agrocert_app_add', '192.168.20.241', 'Ariza qo\'shildi Urug\'dan', '2024-02-29 14:00:11', '2024-02-29 14:00:11', '2024-02-29 14:00:11'),
-(583, 1, 146, NULL, 'from_agrocert_app_add', '192.168.20.241', 'Ariza qo\'shildi Urug\'dan', '2024-02-29 14:00:32', '2024-02-29 14:00:32', '2024-02-29 14:00:32'),
-(584, 1, 147, NULL, 'from_agrocert_app_add', '192.168.20.241', 'Ariza qo\'shildi Urug\'dan', '2024-02-29 14:01:22', '2024-02-29 14:01:22', '2024-02-29 14:01:22'),
-(585, 1, 148, NULL, 'from_agrocert_app_add', '192.168.20.241', 'Ariza qo\'shildi Urug\'dan', '2024-02-29 14:19:50', '2024-02-29 14:19:50', '2024-02-29 14:19:50');
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `tbl_cities`
@@ -5109,51 +4424,12 @@ ALTER TABLE `lab_bayonnoma`
 ALTER TABLE `lists`
   ADD PRIMARY KEY (`type_id`,`id`);
 
---
--- Indexes for table `migrations`
---
-ALTER TABLE `migrations`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `nds`
 --
 ALTER TABLE `nds`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `oauth_access_tokens`
---
-ALTER TABLE `oauth_access_tokens`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `oauth_access_tokens_user_id_index` (`user_id`);
-
---
--- Indexes for table `oauth_auth_codes`
---
-ALTER TABLE `oauth_auth_codes`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `oauth_auth_codes_user_id_index` (`user_id`);
-
---
--- Indexes for table `oauth_clients`
---
-ALTER TABLE `oauth_clients`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `oauth_clients_user_id_index` (`user_id`);
-
---
--- Indexes for table `oauth_personal_access_clients`
---
-ALTER TABLE `oauth_personal_access_clients`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `oauth_refresh_tokens`
---
-ALTER TABLE `oauth_refresh_tokens`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `oauth_refresh_tokens_access_token_id_index` (`access_token_id`);
 
 --
 -- Indexes for table `organization_companies`
@@ -5286,13 +4562,13 @@ ALTER TABLE `AKT`
 -- AUTO_INCREMENT for table `applications`
 --
 ALTER TABLE `applications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=149;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=154;
 
 --
 -- AUTO_INCREMENT for table `app_file_foreign`
 --
 ALTER TABLE `app_file_foreign`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `app_file_local`
@@ -5346,7 +4622,7 @@ ALTER TABLE `crops_type`
 -- AUTO_INCREMENT for table `crop_data`
 --
 ALTER TABLE `crop_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=149;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=154;
 
 --
 -- AUTO_INCREMENT for table `crop_production`
@@ -5397,28 +4673,10 @@ ALTER TABLE `lab_bayonnoma`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=140;
 
 --
--- AUTO_INCREMENT for table `migrations`
---
-ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
 -- AUTO_INCREMENT for table `nds`
 --
 ALTER TABLE `nds`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
-
---
--- AUTO_INCREMENT for table `oauth_clients`
---
-ALTER TABLE `oauth_clients`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `oauth_personal_access_clients`
---
-ALTER TABLE `oauth_personal_access_clients`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `organization_companies`
@@ -5430,7 +4688,7 @@ ALTER TABLE `organization_companies`
 -- AUTO_INCREMENT for table `prepared_companies`
 --
 ALTER TABLE `prepared_companies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 
 --
 -- AUTO_INCREMENT for table `quality_indacators`
@@ -5472,7 +4730,7 @@ ALTER TABLE `tbl_accessrights`
 -- AUTO_INCREMENT for table `tbl_activities`
 --
 ALTER TABLE `tbl_activities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=586;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=591;
 
 --
 -- AUTO_INCREMENT for table `tbl_cities`
