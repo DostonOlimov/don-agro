@@ -379,9 +379,7 @@ INSERT INTO `applications` (`id`, `app_number`, `crop_data_id`, `organization_id
 (138, 17, 138, 6, 92, 2, '2023-02-23', '2023-02-23', 25, NULL, 4, 25, '2024-02-26 12:37:39', '2024-02-26 12:37:39'),
 (139, 17, 139, 6, 92, 2, '2024-02-23', '2024-02-23', 25, NULL, 4, 25, '2024-02-26 12:38:47', '2024-02-26 12:38:47'),
 (140, 18, 140, 6, 93, 2, '2024-02-26', '2024-02-26', 25, NULL, 4, 25, '2024-02-27 17:07:51', '2024-02-27 17:07:51'),
-(141, 19, 141, 50, 69, 1, '2024-02-26', '2024-02-26', 25, NULL, 4, 25, '2024-02-28 16:17:04', '2024-02-28 16:17:04'),
-(152, 0, 152, 71, 95, 1, '2024-03-01', NULL, NULL, NULL, 1, 6, '2024-03-01 17:45:02', '2024-03-01 17:45:02'),
-(153, 0, 153, 71, 97, 1, '2024-03-01', NULL, NULL, NULL, 1, 6, '2024-03-01 18:06:38', '2024-03-01 18:06:38');
+(141, 19, 141, 50, 69, 1, '2024-02-26', '2024-02-26', 25, NULL, 4, 25, '2024-02-28 16:17:04', '2024-02-28 16:17:04');
 
 -- --------------------------------------------------------
 
@@ -798,6 +796,7 @@ CREATE TABLE `crops_name` (
   `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `kodtnved` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `parent_id` INT NULL,
   `measure_type` int(2) DEFAULT 1,
   `img` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'default.png',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1030,9 +1029,7 @@ INSERT INTO `crop_data` (`id`, `name_id`, `type_id`, `kodtnved`, `measure_type`,
 (138, 25, 189, '1001990000', 1, 991.5, 7, 2023, 112, '2024-02-26 12:37:38', '2024-02-26 12:37:38'),
 (139, 25, 189, '1001990000', 1, 991.5, 7, 2023, 112, '2024-02-26 12:38:46', '2024-02-26 12:38:46'),
 (140, 25, 189, '1001990000', 1, 699.65, 7, 2023, 112, '2024-02-27 17:07:51', '2024-02-27 17:07:51'),
-(141, 26, 187, '1101001509', NULL, NULL, 3, 2024, 234, '2024-02-28 16:17:04', '2024-02-28 16:17:04'),
-(152, 25, NULL, '1001990000', 2, 23, 3, 2018, NULL, '2024-03-01 17:45:02', '2024-03-01 17:45:02'),
-(153, 26, NULL, '1101001509', 1, 23, 7, 2018, NULL, '2024-03-01 18:06:38', '2024-03-01 18:06:38');
+(141, 26, 187, '1101001509', NULL, NULL, 3, 2024, 234, '2024-02-28 16:17:04', '2024-02-28 16:17:04');
 
 -- --------------------------------------------------------
 
@@ -1432,7 +1429,7 @@ INSERT INTO `laboratories` (`id`, `name`, `certificate`, `address`, `created_at`
 --
 
 CREATE TABLE `laboratory_numbers` (
-  `id` int(11) NOT NULL,
+    `id` int(11) NOT NULL,
   `test_program_id` int(11) NOT NULL,
   `number` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
@@ -2247,11 +2244,9 @@ INSERT INTO `tbl_accessrights` (`id`, `name`, `status`, `position`, `created_at`
 (54, 'Sertifikatlashtirish bo\'limi xodimi', 'active', 'country', '2019-09-23 01:50:14', '2019-09-27 08:08:44'),
 (55, 'Sertifikatlashtirish bo\'limi boshlig\'i', 'active', 'country', '2019-09-24 05:27:09', '2019-09-27 08:08:38'),
 (56, 'Nazoratchi', 'active', 'country', '2019-09-24 05:28:00', '2019-09-27 08:08:31'),
-(161, 'Lavozim nomini kiriting', 'inactive', NULL, '2022-10-07 04:05:12', '2022-10-07 04:05:12'),
-(162, 'Lavozim nomini kiriting', 'inactive', NULL, '2022-11-29 12:55:53', '2022-11-29 12:55:53'),
-(163, 'Lavozim nomini kiriting', 'inactive', NULL, '2022-12-15 04:54:18', '2022-12-15 04:54:18'),
-(164, 'Lavozim nomini kiriting', 'inactive', NULL, '2022-12-27 06:59:00', '2022-12-27 06:59:00'),
-(165, 'Lavozim nomini kiriting', 'inactive', NULL, '2023-01-07 16:34:43', '2023-01-07 16:34:43'),
+(60, 'Inspeksiya', 'active', 'country', '2022-11-29 12:55:53', '2022-11-29 12:55:53'),
+(90, 'Laboratoriya boshlig\'i', 'active', 'country', '2022-12-27 06:59:00', '2022-12-27 06:59:00'),
+(91, 'Laboratoriya muxanndisi', 'active', 'country', '2023-01-07 16:34:43', '2023-01-07 16:34:43'),
 (166, 'Lavozim nomini kiriting', 'inactive', NULL, '2023-02-03 04:51:44', '2023-02-03 04:51:44'),
 (167, 'Lavozim nomini kiriting', 'inactive', NULL, '2023-07-05 02:06:49', '2023-07-05 02:06:49'),
 (168, 'Lavozim nomini kiriting', 'inactive', NULL, '2023-07-05 02:07:16', '2023-07-05 02:07:16'),
