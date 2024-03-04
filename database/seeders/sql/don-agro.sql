@@ -1429,12 +1429,76 @@ INSERT INTO `laboratories` (`id`, `name`, `certificate`, `address`, `created_at`
 --
 
 CREATE TABLE `laboratory_numbers` (
-    `id` int(11) NOT NULL,
-  `test_program_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
+  `test_program_id` int(11) DEFAULT NULL,
   `number` int(11) NOT NULL,
+  `year` year(4) DEFAULT NULL,
+  `laboratory_category_type` int(4) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Table structure for table `laboratory_final_results`
+--
+
+CREATE TABLE `laboratory_final_results` (
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `test_program_id` int(11) NOT NULL,
+  `number` int(11) DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `start_date` date DEFAULT NULL,
+  `end_date` date DEFAULT NULL,
+  `namlik` int(11) DEFAULT NULL,
+  `harorat` int(11) DEFAULT NULL,
+  `quality` int(11) DEFAULT NULL,
+  `data` text DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Table structure for table `laboratory_indicators`
+--
+
+CREATE TABLE `laboratory_indicators` (
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `parent_id` int(11) DEFAULT NULL,
+  `indicator_id` int(11) NOT NULL,
+  `type` int(2) NOT NULL DEFAULT 0,
+  `status` int(2) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Table structure for table `laboratory_result_users`
+--
+
+CREATE TABLE `laboratory_result_users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `results_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Table structure for table `laboratory_results`
+--
+
+CREATE TABLE `laboratory_results` (
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `value` float DEFAULT NULL,
+  `laboratory_indicator_id` int(11) NOT NULL,
+  `number_id` int(11) NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
