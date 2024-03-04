@@ -76,6 +76,24 @@
                                                         value="{{ old('tnved') }}" />
                                                 </div>
                                             </div>
+                                            <div class="col-12 col-md-2">
+                                                <div class="form-group">
+                                                    <label class="form-label"
+                                                           for="first-name">{{trans('app.Mahsulot toifalar')}} <label
+                                                            class="text-danger">*</label>
+                                                    </label>
+                                                    <select name="parent_id" class="region">
+                                                        <option value=""></option>
+                                                        @if(!empty($cropnames))
+                                                            @foreach($cropnames as $cropname)
+                                                                <option
+                                                                    value="{{ $cropname->id }}">{{ $cropname->name }}</option>
+                                                            @endforeach
+                                                        @endif
+                                                    </select>
+                                                </div>
+                                            </div>
+
                                             <div class="col-6 col-md-4 {{ $errors->has('image') ? ' has-error' : '' }}">
                                                 <div class="row"
                                                     style="display: flex; justify-content: center; align-items: center; margin-top: 6.6%">

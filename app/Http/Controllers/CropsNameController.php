@@ -19,14 +19,16 @@ class CropsNameController extends Controller
     public function index()
     {
         $title = 'Mahsulot nomini qo\'shish';
-        return view('crops_name.add', compact('title'));
+        $cropnames=CropsName::where('parent_id',null)->orderBy('id')->get();
+        return view('crops_name.add', compact('title','cropnames'));
     }
 
     // vehiclebrand list
     public function list()
     {
         $title = 'Mahsulot nomlari';
-        $crops = CropsName::orderBy('id')->get();
+        $crops = CropsName::with('parent')->orderBy('id')->get();
+        
         return view('crops_name.list', compact('crops','title'));
     }
 
@@ -34,12 +36,14 @@ class CropsNameController extends Controller
     public function store(Request $request)
     {
         $name = $request->input('name');
+        $parent_id = $request->input('parent_id');
         $count = DB::table('crops_name')
             ->where('name', '=', $name)
             ->count();
         if ($count == 0) {
             $crop = new CropsName();
             $crop->name = $name;
+            $crop->parent_id = $parent_id;
             $crop->kodtnved = $request->input('tnved');
             if (!empty($request->hasFile('image'))) {
                 $file = $request->file('image');
@@ -87,8 +91,12 @@ class CropsNameController extends Controller
 
     public function edit($id)
     {
+        $crops=CropsName::query();
+        $crops=$crops->findOrFail($id);
+        $cropnames=$crops->where('parent_id',null)->orderBy('id')->get();
         return view('crops_name.edit', [
-            'crops' => CropsName::findOrFail($id),
+            'crops' => $crops,
+            'cropnames' => $cropnames,
             'editid' => $id,
         ]);
     }
@@ -98,6 +106,7 @@ class CropsNameController extends Controller
     {
         $crop = CropsName::findOrFail($id);
         $crop->name = $request->input('name');
+        $crop->parent_id = $request->input('parent_id');
         $crop->kodtnved = $request->input('tnved');
 
         if ($request->hasFile('image')) {

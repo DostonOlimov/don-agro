@@ -251,6 +251,8 @@ return [
     'Avvalgi sahifa' => 'Aввалги саҳифа',
     'Keyingi sahifa' => 'Кейинги саҳифа',
     'Yangi qo\'shish' => 'Янги қўшиш',
+    "Mahsulot toifalar"=>"Маҳсулот тоифалар",
+    "Mahsulot toifasi"=>"Маҳсулот тоифаси",
 
     //reports
     'Hudud nomi' => 'Ҳудуд номи',

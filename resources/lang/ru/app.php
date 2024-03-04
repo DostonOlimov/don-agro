@@ -274,6 +274,8 @@ return [
     'Avvalgi sahifa' => 'Предыдущий',
     'Keyingi sahifa' => 'Следующий',
     'Yangi qo\'shish' => 'Добавить новое',
+    "Mahsulot toifalar"=>"Категории продукта",
+    "Mahsulot toifasi"=>"Категория продукта",
 
     //NDS
     'Qaror shakllantirishdan oldin normativ hujjatni qo\'shish kerak' => 'Прежде чем сформировать решение, необходимо добавить нормативный документ',

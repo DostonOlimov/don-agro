@@ -275,6 +275,8 @@ return [
     'Avvalgi sahifa' => 'Prev',
     'Keyingi sahifa' => 'Next',
     'Yangi qo\'shish' => 'Add new',
+    "Mahsulot toifalar"=>"Product categories",
+    "Mahsulot toifasi"=>"Product category",
 
     //reports
     'Hudud nomi' => 'Area name',

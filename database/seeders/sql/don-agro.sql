@@ -798,7 +798,7 @@ CREATE TABLE `crops_name` (
   `kodtnved` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `parent_id` INT NULL,
   `measure_type` int(2) DEFAULT 1,
-  `img` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'default.png',
+  `img` varchar(255) COLLATE utf8mb4_unicode_ci NULL DEFAULT 'default.png',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

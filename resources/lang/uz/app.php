@@ -278,6 +278,8 @@ return [
     'Avvalgi sahifa' => 'Avvalgi sahifa',
     'Keyingi sahifa' => 'Keyingi sahifa',
     'Yangi qo\'shish' => 'Yangi qo\'shish',
+    "Mahsulot toifalar"=>"Mahsulot toifalar",
+    "Mahsulot toifasi"=>"Mahsulot toifasi",
 
     //reports
     'Hudud nomi' => 'Hudud nomi',
