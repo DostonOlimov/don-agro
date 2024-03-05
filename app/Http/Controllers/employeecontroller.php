@@ -26,9 +26,9 @@ class employeecontroller extends Controller
 
         $users = User::
         select(
-            'users.*',
-            'tbl_accessrights.name as position'
-        )->
+                'users.*',
+                'tbl_accessrights.name as position'
+            )->
         join('tbl_accessrights', 'tbl_accessrights.id', '=', 'users.role');
 
         $users = $users->where('users.id', '!=', $user->id)->orderBy('id', 'DESC')->get();
@@ -70,7 +70,7 @@ class employeecontroller extends Controller
             $dob = date('Y-m-d', strtotime($request->input('dob')));
         }
 
-        $user = new User;
+        $user = new User();
         $user->name = $firstname;
         $user->lastname = $request->input('lastname');
         $user->display_name = $request->input('displayname');
@@ -80,7 +80,7 @@ class employeecontroller extends Controller
         $user->password = bcrypt($password);
         $user->mobile_no = $request->input('mobile');
         $user->address = $request->input('address');
-        $user->api_token= auth()->user()->createToken('authToken')->accessToken;
+        $user->api_token = auth()->user()->createToken('authToken')->accessToken;
         if (!empty($request->hasFile('image'))) {
             $file = $request->file('image');
             $filename = $file->getClientOriginalName();
@@ -90,9 +90,9 @@ class employeecontroller extends Controller
             $user->image = 'avtar.png';
         }
         $user->role = $request->input('role');
-
+        
         if ( $request->input('role')>=90) {
-            $user->branch_id = User::BRANCH_LABORATORY;
+            $user->branch_id = \App\Models\User::BRANCH_LABORATORY;
         }
         $user->save();
         $last_id = DB::table('users')->orderBy('id', 'desc')->get()->first();
@@ -183,7 +183,7 @@ class employeecontroller extends Controller
         $user->gender = $request->input('gender');
         $user->birth_date = join('-', array_reverse(explode('-', $request->input('dob'))));
         $user->email = $email;
-        $user->api_token= auth()->user()->createToken('authToken')->accessToken;
+        $user->api_token = auth()->user()->createToken('authToken')->accessToken;
         if (!empty($password)) {
             $user->password = bcrypt($password);
         }
@@ -196,8 +196,8 @@ class employeecontroller extends Controller
             $user->image = $filename;
         }
         $user->role = $role;
-        if ( $request->input('role')>=90) {
-            $user->branch_id = 3;
+        if ($request->input('role') >= 90) {
+            $user->branch_id = \App\Models\User::BRANCH_LABORATORY;
         }
         $user->save();
 

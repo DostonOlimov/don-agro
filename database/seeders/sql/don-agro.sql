@@ -3082,6 +3082,8 @@ CREATE TABLE `test_program_indicators` (
   `id` int(11) NOT NULL,
   `test_program_id` int(11) NOT NULL,
   `indicator_id` int(11) NOT NULL,
+  `result` float DEFAULT NULL,
+  `type` int(2) NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

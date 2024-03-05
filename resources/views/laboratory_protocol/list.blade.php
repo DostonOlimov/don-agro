@@ -43,9 +43,8 @@
                                         <th class="border-bottom-0 border-top-0">№</th>
                                         <th class="border-bottom-0 border-top-0">Sinov dastur raqami</th>
                                         <th class="border-bottom-0 border-top-0">{{trans('app.Yuborilgan sana')}}</th>
-                                        <th class="border-bottom-0 border-top-0">{{trans('app.Ekin turi')}}</th>
-                                        <th class="border-bottom-0 border-top-0">{{trans('app.Ekin navi')}}</th>
-                                        <th class="border-bottom-0 border-top-0">{{trans('app.Ekin avlodi')}}</th>
+                                        <th class="border-bottom-0 border-top-0">{{trans('app.Mahsulot turi')}}</th>
+                                        <th class="border-bottom-0 border-top-0">{{trans('app.Mahsulot navi')}}</th>
                                         <th class="border-bottom-0 border-top-0">Na'munalar raqami</th>
                                         <th class="border-bottom-0 border-top-0">{{trans('app.Action')}}</th>
                                     </tr>
@@ -60,11 +59,10 @@
                                             <td>{{  $test->application->app_number }}</a></td>
                                             <td>{{ optional($test->status_change->where('status_type',\App\Models\TestPrograms::STATUS_SEND)->first())->created_at }}</td>
                                             <td>{{ $test->application->crops->pre_name }} {{ $test->application->crops->name->name }}</td>
-                                            <td>{{ optional($test->application)->crops->type->name }}</td>
-                                            <td>{{ optional($test->application)->crops->generation->name }}</td>
+                                            <td>{{ optional($test->application)->crops->type->name??'' }}</td>
                                             <td> @foreach($test->laboratory_numbers as $number) {{$number->number}}; @endforeach </td>
                                             <td>
-                                                @if($test->laboratory_results->number)
+                                                @if(isset($test->laboratory_results->number))
                                                     <a href="{!! url('laboratory-protocol/view/'.$test->id) !!}"><button type="button" class="btn btn-round btn-warning"> {{ trans('app.View')}}</button></a>
                                                     @if ($test->status==5)
                                                         <a href="{!! url('laboratory-protocol/change/'.$test->id) !!}"><button type="button" class="btn btn-round btn-success">{{ trans('app.Sertifikatsiyaga yuborish')}}</button></a> {{--  {!! url('laboratory-protocol/change/'.$test->id) !!} --}}

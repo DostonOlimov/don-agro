@@ -38,10 +38,10 @@
                                 <div class="row" >
                                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                                     <input type="hidden"  name="test_id" value="{{ $test->id}}" >
-                                    <input type="hidden"  name="type" value="{{ $test->laboratory_results->quality }}" >
+                                    <input type="hidden"  name="type" value="{{ $test->laboratory_results->quality??'' }}" >
 
                                     <div class="col-md-4 form-group has-feedback {{ $errors->has('number') ? ' has-error' : '' }}">
-                                        @if($test->laboratory_results->quality == 1)
+                                        @if(isset($test->laboratory_results->quality) && $test->laboratory_results->quality == 1)
                                             <label for="number" class="form-label certificate">Sinov bayonnoma raqami <label class="text-danger">*</label></label>
                                         @else
                                             <label for="number" class="form-label nocertificate">Taxlil natija raqami <label class="text-danger">*</label></label>
@@ -54,7 +54,7 @@
                                         @endif
                                     </div>
                                     <div class="col-md-4 form-group {{ $errors->has('date') ? ' has-error' : '' }}">
-                                        @if($test->laboratory_results->quality == 1)
+                                        @if(isset($test->laboratory_results->quality) && $test->laboratory_results->quality == 1)
                                             <label class="form-label certificate">Bayonnoma sanasi <label class="text-danger">*</label></label>
                                         @else
                                             <label class="form-label nocertificate"> Tahlil natija sanasi<label class="text-danger">*</label></label>

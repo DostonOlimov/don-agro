@@ -71,6 +71,10 @@ class TestPrograms  extends Model
     {
         return $this->belongsTo(FinalResult::class, 'id', 'test_program_id');
     }
+    public function laboratory_results(): BelongsTo
+    {
+        return $this->belongsTo(LaboratoryFinalResults::class, 'id', 'test_program_id');
+    }
     public function status_change(): BelongsTo
     {
         return $this->belongsTo(TestProgramStatusChanges::class, 'id', 'test_program_id');

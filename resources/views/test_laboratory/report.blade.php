@@ -43,9 +43,8 @@
                                         <th class="border-bottom-0 border-top-0">№</th>
                                         <th class="border-bottom-0 border-top-0">Sinov dastur raqami</th>
                                         <th class="border-bottom-0 border-top-0">{{trans('app.Yuborilgan sana')}}</th>
-                                        <th class="border-bottom-0 border-top-0">{{trans('app.Ekin turi')}}</th>
-                                        <th class="border-bottom-0 border-top-0">{{trans('app.Ekin navi')}}</th>
-                                        <th class="border-bottom-0 border-top-0">{{trans('app.Ekin avlodi')}}</th>
+                                        <th class="border-bottom-0 border-top-0">{{trans('app.Mahsulot turi')}}</th>
+                                        <th class="border-bottom-0 border-top-0">{{trans('app.Mahsulot navi')}}</th>
                                         <th class="border-bottom-0 border-top-0">Na'munalar raqami</th>
                                         <th class="border-bottom-0 border-top-0">{{trans('app.Action')}}</th>
                                     </tr>

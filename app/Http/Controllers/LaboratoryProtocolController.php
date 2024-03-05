@@ -35,7 +35,6 @@ class LaboratoryProtocolController extends Controller
             ->with('application.crops.type')
             ->with('application.organization')
             ->with('laboratory_results')
-            ->whereNotNull('code')
             ->where(function ($query) {
                 $query->where('status', TestPrograms::STATUS_FINISHED)
                     ->orWhere('status', TestPrograms::STATUS_DELETED);
