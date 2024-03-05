@@ -42,7 +42,7 @@
             Namuna ro'yxatga olingan raqam: {{ $test->laboratory_numbers->first()->number }}.</h2>
 
         <h1 style="text-align: center"> @if($test->application->crops->name->id == 21) G'o'zaning seleksiyon @else {{ $test->application->crops->name->id }} @endif navi:
-            <span style=" text-decoration: underline;font-weight: bold;">XXXXX</span>  , avlodi: {{ $test->application->crops->generation->name }}, nav
+            <span style=" text-decoration: underline;font-weight: bold;">XXXXX</span>  , nav
             tozaligi: <span style=" text-decoration: underline;font-weight: bold;">XXXXX</span>  %</h1>
         {{-- <h2 style="text-align: center">{{ $nds_type }} {{$test->application->crops->name->nds->number}} bo'yicha TAHLIL NATIJASI:</h2> --}}
         @php $t = 1; @endphp
@@ -89,7 +89,7 @@
         </table>
         {{-- start --}}
         <h2 style="padding-left: 50px;padding-top:20px;">Ushbu partiya bo'yicha 1
-            ({{ $test->count * $test->weight }}-{{ \App\Models\CropData::getMeasureType($test->measure_type) }})
+            ({{ $test->count * $test->weight }}-{{ \App\Models\CropData::getMeasureType($test->akt[0]->measure_type) }})
             o'rtacha namuna sinovdan o'tkazildi</h2>
         <h2 style="padding-left: 50px;"> Urug'chilik laboratoriyasining xulosasi: <span style="text-decoration: underline;"> <b>{{ $test->laboratory_results->data }}</b></span></h2>
         {{-- end --}}
@@ -98,14 +98,14 @@
         <h4 style="padding-left: 50px;">Natijalar sinovdan o'tkazilgan na'munalarga tegishli.</h4>
 
         <div style="display: flex; ">
-            <h2><b> Sinov muxandisi:  U.Quziyev</b> {!! QrCode::size(50)->generate(route('show.user', 55)) !!}</h2> {{-- {{ substr(optional($test->laboratory_results->users)->name, 0, 1) }}.  {{ optional($test->laboratory_results->users)->lastname }}--}}
-            <h2 style="margin-left: 2%"><b>Bosh mutaxassis</b>  {{(substr($test->laboratory_results->users->name, 1, 1)=='h')? substr(optional($test->laboratory_results->users)->name, 0, 2) : substr(optional($test->laboratory_results->users)->name, 0, 1)}}. {{optional($test->laboratory_results->users)->lastname}}</b> {!! QrCode::size(50)->generate(route('show.user', $test->laboratory_results->users->id)) !!}</h2>
+            <h2><b> Sinov muxandisi:  U.Quziyev</b> {{--{!! QrCode::size(50)->generate(route('show.user', 55)) !!} --}}</h2> {{-- {{ substr(optional($test->laboratory_results->users)->name, 0, 1) }}.  {{ optional($test->laboratory_results->users)->lastname }}--}}
+            <h2 style="margin-left: 2%"><b>Bosh mutaxassis</b>  {{(substr($test->laboratory_results->users->name, 1, 1)=='h')? substr(optional($test->laboratory_results->users)->name, 0, 2) : substr(optional($test->laboratory_results->users)->name, 0, 1)}}. {{optional($test->laboratory_results->users)->lastname}}</b> {{--{{!! QrCode::size(50)->generate(route('show.user', $test->laboratory_results->users->id)) !!}}--}}</h2>
         </div>
         <h2 style="font-weight: 700;">Sinov mutaxassislar: </h2>
         <div style="display: flex;">
             @foreach($test->laboratory_results->result_users as $key => $result_user)
 
-                <h2 style="margin-right: 2%"><b>{{ ++$key }}. {{ (substr($result_user->users->name, 1, 1)=='h')? substr($result_user->users->name, 0, 2):substr($result_user->users->name, 0, 1) }}. {{ optional($result_user->users)->lastname }}</b> {!! QrCode::size(50)->generate(route('show.user', $result_user->users->id)) !!}</h2>
+                <h2 style="margin-right: 2%"><b>{{ ++$key }}. {{ (substr($result_user->users->name, 1, 1)=='h')? substr($result_user->users->name, 0, 2):substr($result_user->users->name, 0, 1) }}. {{ optional($result_user->users)->lastname }}</b> {{--{{!! QrCode::size(50)->generate(route('show.user', $result_user->users->id)) !!}}--}}</h2>
             @endforeach
         </div>
 

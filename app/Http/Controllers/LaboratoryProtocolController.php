@@ -107,12 +107,13 @@ class LaboratoryProtocolController extends Controller
             ->with('laboratory_results.result_users.users')
             ->with('application.organization.city')
             ->with('application.crops')
+            ->with('akt')
             ->find($id);
 
         $start_date = Carbon::createFromFormat('Y-m-d', $test->laboratory_results->start_date)->format('d.m.Y');
         $end_date = Carbon::createFromFormat('Y-m-d', $test->laboratory_results->end_date)->format('d.m.Y');
 
-        $nds_type = \App\Models\Nds::getType($test->application->crops->name->nds->type_id);
+        $nds_type = $test->application->crops->name->nds;
         $indicators = TestProgramIndicators::where('test_program_id', '=', $id)
             ->with('tests')
             ->whereHas('indicator', function ($query) {

@@ -64,7 +64,7 @@
                     </div>
                 </div>
                 <div class="circle_persentages__statistics__texts">
-                    <h3 class="lineUp"><a href="{!! url('/application/list/') !!}" style="color: white"> {{ trans('message.Jami arizalar') }} </a></h3>
+                    <h3 class="lineUp"><a href="{!! url('/application/list/') !!}" style="color: white; text-transform: initial;"> {{trans('message.Jami arizalar') }} </a></h3>
                     <p class="lineUp">{{$all_app_count}} {{trans('message.ta')}}</p>
                 </div>
             </div>
@@ -106,7 +106,7 @@
                     </div>
                 </div>
                 <div class="circle_persentages__statistics__texts">
-                    <h3 class="lineUp"> <a href="{!! url('/application/list/' . '?ariza_turi=1') !!}" style="color: white"> {{ trans('message.Mahaliy mahsulotlar uchun arizalar') }} </a></h3>
+                    <h3 class="lineUp"> <a href="{!! url('/application/list/' . '?ariza_turi=1') !!}" style="color: white; text-transform: initial;"> {{ trans('message.Mahaliy mahsulotlar uchun arizalar') }} </a></h3>
                     <p class="lineUp">{{$local_app}} {{trans('message.ta')}}</p>
                 </div>
             </div>
@@ -148,7 +148,7 @@
                     </div>
                 </div>
                 <div class="circle_persentages__statistics__texts">
-                    <h3 class="lineUp"> <a href="{!! url('/application/list/' . '?ariza_turi=2') !!}" style="color: white"> {{ trans('message.Import qilingan mahsulotlar uchun') }} </a></h3>
+                    <h3 class="lineUp"> <a href="{!! url('/application/list/' . '?ariza_turi=2') !!}" style="color: white; text-transform: initial;"> {{ trans('message.Import qilingan mahsulotlar uchun') }} </a></h3>
                     <p class="lineUp">{{$global_app}} {{trans('message.ta')}}</p>
                 </div>
             </div>
@@ -192,7 +192,7 @@
                     </div>
                 </div>
                 <div class="circle_persentages__statistics__texts">
-                    <h3 class="lineUp"><a href="{!! url('/application/list/' . '?ariza_turi=3') !!}" style="color: white"> {{ trans('message.Eski hosil uchun') }} </a></h3>
+                    <h3 class="lineUp"><a href="{!! url('/application/list/' . '?ariza_turi=3') !!}" style="color: white; text-transform: initial;"> {{ trans('message.Eski hosil uchun') }} </a></h3>
                     <p class="lineUp">{{$old_app}} {{trans('message.ta')}}</p>
                 </div>
             </div>
@@ -305,7 +305,7 @@
                 </div>
                 <div class="workblocks__info__row__item-name">
                     <a href="{{ url('full-report?till='.$till.'&from='.$from.'&city='.$city.'&crop='.$item->id.'&app_type_selector='.$app_type_selector) }}" target="_blank" rel="noopener noreferrer"
-                    >{{$item->name}}</a
+                     style="text-transform: initial;">{{$item->name}}</a
                     >
                 </div>
                 <div class="workblocks__info__row__duration">
@@ -356,7 +356,7 @@
                     <a  href="{{ url('full-report?till='.$till.'&from='.$from.'&city='.$app_state->id.'&crop='.$crop.'&app_type_selector='.$app_type_selector) }}" target="_blank" rel="noopener noreferrer">{{round(100*$app_state->application_count / $app_states->sum('application_count'))}}%</a>
                 </div>
                 <div class="workblocks__info__row__theme" style="animation-delay: 0.75s">
-                    <a  href="{{ url('full-report?till='.$till.'&from='.$from.'&city='.$app_state->id.'&crop='.$crop.'&app_type_selector='.$app_type_selector) }}" target="_blank" rel="noopener noreferrer">{{$app_state->name}}</a>
+                    <a  href="{{ url('full-report?till='.$till.'&from='.$from.'&city='.$app_state->id.'&crop='.$crop.'&app_type_selector='.$app_type_selector) }}" target="_blank" rel="noopener noreferrer" style="text-transform: initial;">{{$app_state->name}}</a>
                 </div>
                 <div class="progress-bar" style="animation-delay: 1s">
                     <div class="progress fill-{{$loop->iteration}}"></div>
