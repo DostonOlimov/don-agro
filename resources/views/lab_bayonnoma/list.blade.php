@@ -59,6 +59,7 @@
                                         <thead>
                                             <tr>
                                                 <th>№</th>
+                                                <th class="border-bottom-0 border-top-0">{{ trans('app.Ariza raqami') }}</th>
                                                 <th>{{ trans('app.Laboratoriya') }}</th>
                                                 <th>{{ trans('app.Me\'yoriy hujjat') }}</th>
                                                 <th>{{ trans('app.Mahsulotni laboratoriyaga berish sanasi') }}</th>
@@ -77,7 +78,8 @@
                                             @foreach ($data as $key => $item)
                                                 <tr>
                                                     <td>{{ $offset + $loop->iteration}}</td>
-                                                    <td>{{ !empty($item->test->application->decision->laboratory->certificate) ?? '' }}
+                                                    <td><a href="{!! url('/application/view/' . $item->test->application->id) !!}">{{ $item->test->application->app_number }}</a></td>
+                                                    <td>{{ ($item->test->application->decision->laboratory->certificate) ?? '' }}
                                                     </td>
                                                     <td>
                                                         @php
@@ -115,10 +117,15 @@
                                                                         class="btn btn-round btn-danger dgr">{{ trans('app.Delete') }}</button></a>
                                                             @endif
                                                         @else
-                                                            <a href="{!! url('/lab_bayonnoma/add/' . $item->id) !!}"><button type="button"
-                                                                    class="btn btn-round btn-success">&nbsp;
-                                                                    {{ trans('app.Laboratoriya bayonnomasini yaratish') }}
-                                                                    &nbsp;</button></a>
+
+                                                            @if ($item->test->status < App\Models\TestPrograms::STATUS_DELETED)
+                                                                <button type="button" class="btn btn-round btn-danger ">{{ trans('app.Yuborilgan')}}</button></a>
+                                                            @else
+                                                                <a href="{!! url('/lab_bayonnoma/add/' . $item->id) !!}"><button type="button"
+                                                                        class="btn btn-round btn-success">&nbsp;
+                                                                        {{ trans('app.Laboratoriya bayonnomasini yaratish') }}
+                                                                        &nbsp;</button></a>
+                                                            @endif
                                                         @endif
                                                     </td>
                                                 </tr>

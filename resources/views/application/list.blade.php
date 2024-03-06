@@ -87,7 +87,7 @@
                                     <thead>
                                         <tr>
                                             <th class="border-bottom-0 border-top-0">№</th>
-                                            {{-- <th class="border-bottom-0 border-top-0">{{ trans('app.Ariza statusi') }}</th> --}}
+                                            <th class="border-bottom-0 border-top-0">{{ trans('app.Ariza statusi') }}</th>
                                             <th class="border-bottom-0 border-top-0">{{ trans('app.Ariza raqami') }}</th>
                                             <th class="border-bottom-0 border-top-0">{{ trans('app.Ariza sanasi') }}</th>
                                             <th class="border-bottom-0 border-top-0">{{ trans('app.Ishlab chiqargan davlat') }}
@@ -112,9 +112,9 @@
                                         @foreach ($apps as $app)
                                             <tr>
                                                 <td>{{ $offset + $loop->iteration }}</td>
-                                                {{-- <td><a href="{!! url('/application/view/' . $app->id) !!}"><button type="button"
+                                                <td><a href="{!! url('/application/view/' . $app->id) !!}"><button type="button"
                                                             class="btn btn-round btn-{{ $app->status_color }}">{{ $app->status_name }}</button></a>
-                                                </td> --}}
+                                                </td>
                                                 <td> <a
                                                         href="{!! url('/application/view/' . $app->id) !!}">{{ $app->app_number == 0 ? '-' : $app->app_number }}</a>
                                                 </td>
@@ -130,14 +130,12 @@
                                                 <td>{{ \app\models\Application::getType($app->type) }}</td>
                                                 <td>{{ optional($app->crops)->year }}</td>
                                                 <td>
-                                                    @if ($app->status == \App\Models\Application::STATUS_REJECTED)
+                                                    @if ($app->status == \App\Models\Application::STATUS_REJECTED && isset($app->comment->comment))
                                                         <button class="btn btn-secondary"
                                                             onclick="buttonClickHandler(`{{ $app->comment->comment }}`)">{{trans("app.Rad etildi")}}</button>
                                                     @else
-                                                        @if ($app->status == 1)
-                                                            <a href="{!! url('/application/view/' . $app->id) !!}"><button type="button"
-                                                                    class="btn btn-round btn-warning">{{trans("app.Yangi ariza")}}</button></a>
-                                                        @else
+                                                        @if ($app->status>=\App\Models\Application::STATUS_ACCEPTED)
+
                                                             <a href="{!! url('/application/view/' . $app->id) !!}"><button type="button"
                                                                     class="btn btn-round btn-info">{{ trans('app.View') }}</button></a>
                                                             @if (!isset($app->tests->result))

@@ -274,15 +274,11 @@ class TestProgramsController extends Controller
 
         $app = Application::find($test->app_id);
         $decision = Decision::where('app_id', $app->id)->first();
-        //code for test programs and decisions decesion start with 2 and test_program start with 3
-        $code1 = 30000000 + ($app->getYear() - 2000) * 100000 + $test->id;
-        $code2 = 20000000 + ($app->getYear() - 2000) * 100000 + $decision->id;
 
-        //desicion save
-        $decision->code = $code2;
+        $decision->status = Decision::STATUS_ACCEPTED;
         $decision->save();
 
-        $test->code = $code1;
+        $test->status = TestPrograms::STATUS_SEND;
         $test->save();
 
         $active = new tbl_activities;
@@ -295,7 +291,7 @@ class TestProgramsController extends Controller
         $active->save();
 
 
-        return redirect('tests/search')->with('message', 'Successfully Submitted');
+        return redirect('akt/list')->with('message', 'Successfully Submitted');
     }
 
     public function lab_view($id)

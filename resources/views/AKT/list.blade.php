@@ -59,6 +59,7 @@
                                         <thead>
                                             <tr>
                                                 <th>№</th>
+                                                <th class="border-bottom-0 border-top-0">{{ trans('app.Ariza raqami') }}</th>
                                                 <th>{{ trans('app.Ishlab chiqargan davlat') }}</th>
                                                 <th>{{ trans('app.Me\'yoriy hujjatlar') }}</th>
                                                 <th>{{ trans('app.Mahsulot nomi') }}</th>
@@ -66,7 +67,7 @@
                                                 <th>{{ trans('app.Yaroqliylik sanasi') }}</th>
                                                 <th>{{ trans('app.Namuna  olish miqdori') }}</th>
                                                 <th>{{ trans('app.Mahsulot birligi') }}</th>
-                                                <th>{{ trans('app.Qo\'shimcha ma\'lumotlar') }}</th>
+                                                {{-- <th>{{ trans('app.Qo\'shimcha ma\'lumotlar') }}</th> --}}
                                                 <th>{{ trans('app.Action') }}</th>
                                             </tr>
                                         </thead>
@@ -77,6 +78,7 @@
                                             @foreach ($data as $key => $item)
                                                 <tr>
                                                     <td>{{ $offset + $loop->iteration}}</td>
+                                                    <td><a href="{!! url('/application/view/' . $item->application->id) !!}">{{ $item->application->app_number }}</a></td>
                                                     <td>{{ optional($item->application->crops->country)->name }}</td>
                                                     <td>
                                                         @php
@@ -93,13 +95,13 @@
                                                         </td>
                                                         <td>{{ $item->akt[0]->simple_size }}</td>
                                                         <td>{{ $amount[$item->akt[0]->measure_type] }}</td>
-                                                        <td>{{ $item->akt[0]->description }}</td>
+                                                        {{-- <td>{{ $item->akt[0]->description }}</td> --}}
                                                     @else
                                                         <td></td>
                                                         <td></td>
                                                         <td></td>
                                                         <td></td>
-                                                        <td></td>
+                                                        {{-- <td></td> --}}
                                                     @endif
                                                     {{-- <td>
                                                         @if (!empty($item->akt[0]))
@@ -121,16 +123,13 @@
                                                     <td>
                                                         <?php $appid=Auth::User()->id; ?>
                                                             @if(!empty($item->akt[0]))
-                                                                @if(!empty($item->akt[0]))
                                                                     {{-- <a href="{!! url('/tests/view/'.$app->tests->id) !!}"><button type="button" class="btn btn-round btn-info">{{trans('app.Sinov dasturi fayli')}}</button></a> --}}
-                                                                        <a href="{!!  url('/akt/edit/' . $item->akt[0]->id) !!} !!}"><button type="button" class="btn btn-round btn-warning">{{ trans('app.Edit')}}</button></a>
-                                                                        {{-- <a url="{!! url('/tests/send/'.$item->id) !!}" class="sa-warning"> <button type="button" class="btn btn-round btn-success ">{{ trans('app.Yubor')}}</button></a>
-
-                                                                        <button type="button" class="btn btn-round btn-danger ">{{ trans('app.Yuborilgan')}}</button></a> --}}
-
-                                                                @else
-                                                                    <a href="{!! url('/tests/add/'.$item->id) !!}"><button type="button" class="btn btn-round btn-success">&nbsp; {{trans('app.Sinov dasturini shakllantirish')}} &nbsp;</button></a>
-                                                                @endif
+                                                                       @if ($item->status==\App\Models\TestPrograms::STATUS_NEW)
+                                                                       <a href="{!!  url('/akt/edit/' . $item->akt[0]->id) !!} !!}"><button type="button" class="btn btn-round btn-warning">{{ trans('app.Edit')}}</button></a>
+                                                                       <a url="{!! url('/tests/send/'.$item->id) !!}" class="lab-warning"> <button type="button" class="btn btn-round btn-success ">{{ trans('app.Yubor')}}</button></a>
+                                                                       @elseif ($item->status==\App\Models\TestPrograms::STATUS_SEND)
+                                                                       <button type="button" class="btn btn-round btn-danger ">{{ trans('app.Yuborilgan')}}</button></a>
+                                                                       @endif
                                                            @else
                                                                 <a href="{!! url('/akt/add/' . $item->id) !!}"><button type="button"
                                                                     class="btn btn-round btn-success">&nbsp;
@@ -173,6 +172,24 @@
     @endif
     <script src="{{ URL::asset('vendors/jquery/dist/jquery.min.js') }}"></script>
     <!-- delete vehicalbrand -->
+    <script>
+          $('body').on('click', '.lab-warning', function() {
+
+            var url =$(this).attr('url');
+            swal({
+                title: "{{trans('app.Laboratoriyaga yuborishni xoxlaysizmi?')}}",
+                html: "<span style='color: red;'>{{trans('app.Yuborilgandan so\'ng ma\'lumotlarni o\'zgartirib bo\'lmaydi!')}}</span>",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#297FCA",
+                confirmButtonText: "{{trans('app.Ha, yuborish!')}}",
+                cancelButtonText: "{{trans('app.Cancel')}}",
+                closeOnConfirm: false
+            }).then((result) => {
+                window.location.href = url;
+            });
+            });
+    </script>
     <script>
         $('body').on('click', '.sa-warning', function() {
 

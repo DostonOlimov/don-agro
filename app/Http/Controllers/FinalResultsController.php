@@ -157,6 +157,11 @@ class FinalResultsController extends Controller
             $cer->given_date = join('-', array_reverse(explode('.', $request->input('given_date'))));
             $cer->save();
         }
+        $testProgram=TestPrograms::with('application')->find($test_id);
+
+        if ($testProgram) {
+            $testProgram->application->update(['status' => Application::STATUS_FINISHED]);
+        }
         $active = new tbl_activities;
         $active->ip_adress = $_SERVER['REMOTE_ADDR'];
         $active->user_id = $userA->id;

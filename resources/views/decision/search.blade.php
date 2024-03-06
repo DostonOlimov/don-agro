@@ -80,8 +80,8 @@
                                                                     type="button"
                                                                     class="btn btn-round btn-danger dgr">{{ trans('app.Delete') }}</button></a>
                                                         @else
-                                                            {{-- <button type="button"
-                                                                class="btn btn-round btn-warning ">{{ trans('app.Yuborilgan') }}</button></a> --}}
+                                                            <button type="button"
+                                                                class="btn btn-round btn-warning ">{{ trans('app.Yuborilgan') }}</button></a>
                                                         @endif
                                                     @else
                                                         <a href="{!! url('/decision/add/' . $app->id) !!}"><button type="button"

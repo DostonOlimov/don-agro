@@ -57,7 +57,7 @@
                                         <tr>
                                             <td>{{$offset + $loop->iteration}}</td>
                                             <td>{{  $test->application->app_number }}</a></td>
-                                            <td>{{ optional($test->status_change->where('status_type',\App\Models\TestPrograms::STATUS_SEND)->first())->created_at }}</td>
+                                            <td>{{ optional($test)->created_at }}</td>
                                             <td>{{ $test->application->crops->pre_name }} {{ $test->application->crops->name->name }}</td>
                                             <td>{{ optional($test->application)->crops->type->name??'' }}</td>
                                             <td> @foreach($test->laboratory_numbers as $number) {{$number->number}}; @endforeach </td>

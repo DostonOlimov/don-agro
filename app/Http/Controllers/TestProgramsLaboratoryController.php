@@ -42,9 +42,10 @@ class TestProgramsLaboratoryController extends Controller
             ->with('application.crops.type')
             ->with('application.organization')
             ->with('final_result')
+            ->with('status_change')
             ->with('laboratory_numbers');
         // ->whereNotNull('code');
-
+        $apps->where('status','>=',TestPrograms::STATUS_SEND);
         if ($from && $till) {
             $fromTime = join('-', array_reverse(explode('-', $from)));
             $tillTime = join('-', array_reverse(explode('-', $till)));
@@ -160,6 +161,7 @@ class TestProgramsLaboratoryController extends Controller
             ->with('application.crops.type')
             ->with('application.organization')
             ->with('final_result')
+            ->with('status_change')
             ->where('status',TestPrograms::STATUS_ACCEPTED);
         if ($from && $till) {
             $fromTime = join('-', array_reverse(explode('-', $from)));

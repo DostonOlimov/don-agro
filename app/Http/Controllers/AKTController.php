@@ -15,21 +15,21 @@ use Illuminate\Support\Facades\Auth;
 
 class AKTController extends Controller
 {
-    function list()
+    public function list()
     {
         $data = TestPrograms::with('application.crops.country', 'application.crops.name.nds', 'akt', 'final_result')->orderBy('id', 'desc')->paginate(50);
         $amount = CropData::getMeasureType();
 
         return view('AKT.list', compact('data', 'amount'));
     }
-    function add($id)
+    public function add($id)
     {
         $data = TestPrograms::with('application.organization.city.region', 'application.crops.name.nds', 'application.crops.country', 'akt')->find($id);
         $amount = CropData::getMeasureType();
 
         return view('AKT.add', compact('data', 'amount'));
     }
-    function store(Request $request)
+    public function store(Request $request)
     {
         if ($request->input('expiry_date')) {
             $akt_date = Carbon::createFromFormat('d.m.Y', $request->input('akt_date'))->format('Y-m-d');
@@ -59,7 +59,7 @@ class AKTController extends Controller
         $akt->save();
         return redirect('/akt/list')->with('message', 'Successfully Submitted');
     }
-    function edit($id)
+    public function edit($id)
     {
         $data = AKT::with('test.application.organization.city.region', 'test.application.crops.name.nds', 'test.application.crops.country')->find($id);
         $amount = CropData::getMeasureType();
@@ -73,7 +73,7 @@ class AKTController extends Controller
 
         return view('AKT.edit', compact('data', 'amount', 'akt_date', 'make_date', 'expiry_date'));
     }
-    function update(Request $request, $id)
+    public function update(Request $request, $id)
     {
         if ($request->input('expiry_date')) {
             $akt_date = Carbon::createFromFormat('d.m.Y', $request->input('akt_date'))->format('Y-m-d');
@@ -104,7 +104,7 @@ class AKTController extends Controller
         $akt->save();
         return redirect('/akt/list')->with('message', 'Successfully Updated');
     }
-    function delete($id)
+    public function delete($id)
     {
         $this->authorize('setting_delete', User::class);
         $akt = AKT::find($id);

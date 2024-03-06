@@ -87,9 +87,14 @@
                                                             @endif
                                                         </span>
                                                     @else
-                                                        <a href="{!! url('/final_results/add/' . $test->id) !!}"><button type="button"
-                                                                class="btn btn-round btn-success">&nbsp;{{ trans('app.Yakuniy natijalarni kiritish') }}
-                                                                &nbsp;</button></a>
+
+                                                        @if ($test->status < App\Models\TestPrograms::STATUS_DELETED)
+                                                            <button type="button" class="btn btn-round btn-danger ">{{ trans('app.Yuborilgan')}}</button></a>
+                                                        @else
+                                                            <a href="{!! url('/final_results/add/' . $test->id) !!}"><button type="button"
+                                                                    class="btn btn-round btn-success">&nbsp;{{ trans('app.Yakuniy natijalarni kiritish') }}
+                                                                    &nbsp;</button></a>
+                                                        @endif
                                                     @endif
                                                 </td>
                                             </tr>
