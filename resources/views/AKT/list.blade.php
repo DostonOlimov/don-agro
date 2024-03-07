@@ -29,6 +29,11 @@
                         </div>
                     </div>
                 @endif
+
+            <!-- filter component -->
+                {{-- <x-filter :crop="$crop" :from="$from" :till="$till" /> --}}
+            <!--filter component -->
+
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
@@ -68,7 +73,17 @@
                                                 <th>{{ trans('app.Namuna  olish miqdori') }}</th>
                                                 <th>{{ trans('app.Mahsulot birligi') }}</th>
                                                 {{-- <th>{{ trans('app.Qo\'shimcha ma\'lumotlar') }}</th> --}}
-                                                <th>{{ trans('app.Action') }}</th>
+                                                <th class="border-bottom-0 border-top-0 bg-info w-25" style="width: 25%" >
+                                                    <select style="cursor: pointer; " class="w-100 form-control state_of_country custom-select" name="status" id="status">
+                                                        <option value="">{{trans('message.Barchasi')}}</option>
+                                                        {{-- start filter for akt --}}
+                                                        <option value="3" @if( (  $status == 3))  selected="selected" @endif>{{trans('app.Namuna olish dalolatnomasi shakillantirilmagan')}}</option>
+                                                        <option value="1" @if( (  $status == 1))  selected="selected" @endif>{{trans('app.Namuna olish dalolatnomasi shakllantirilgan')}}</option>
+                                                        {{-- <option value="4" @if( (  $status == 4))  selected="selected" @endif>{{trans('app. Jarayon yakunlangan')}}</option>  --}}
+                                                        {{-- end filter for akt --}}
+                                                        <option value="2" @if( ( $status == 2))  selected="selected" @endif>{{trans('app.Yuborilgan')}}</option>
+                                                    </select>
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -126,7 +141,7 @@
                                                                     {{-- <a href="{!! url('/tests/view/'.$app->tests->id) !!}"><button type="button" class="btn btn-round btn-info">{{trans('app.Sinov dasturi fayli')}}</button></a> --}}
                                                                        @if ($item->status==\App\Models\TestPrograms::STATUS_NEW)
                                                                        <a href="{!!  url('/akt/edit/' . $item->akt[0]->id) !!} !!}"><button type="button" class="btn btn-round btn-warning">{{ trans('app.Edit')}}</button></a>
-                                                                       <a url="{!! url('/tests/send/'.$item->id) !!}" class="lab-warning"> <button type="button" class="btn btn-round btn-success ">{{ trans('app.Yubor')}}</button></a>
+                                                                       <a url="{!! url('/tests/send/'.$item->id) !!}" class="lab-warning"> <button type="button" class="btn btn-round btn-info ">{{ trans('app.Yubor')}}</button></a>
                                                                        @elseif ($item->status==\App\Models\TestPrograms::STATUS_SEND)
                                                                        <button type="button" class="btn btn-round btn-danger ">{{ trans('app.Yuborilgan')}}</button></a>
                                                                        @endif
@@ -211,5 +226,26 @@
             });
         });
     </script>
+     <script>
+        $(document).ready(function(){
+            $('#status').change(function () {
+                var selectedRegion = $(this).val();
+                var currentUrl = window.location.href;
+                var url = new URL(currentUrl);
+
+                url.searchParams.set('status', selectedRegion);
+
+                var newUrl = url.toString();
+                window.history.pushState({ path: newUrl }, '', newUrl);
+                $.ajax({
+                    url:  newUrl,
+                    method: "GET",
+                    success: function (response) {
+                        window.location.reload(true);
+                    }
+                });
+            });
+        });
+     </script>
 
 @endsection

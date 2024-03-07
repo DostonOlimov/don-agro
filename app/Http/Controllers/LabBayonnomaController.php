@@ -11,16 +11,35 @@ use Illuminate\Http\Request;
 
 class LabBayonnomaController extends Controller
 {
-    function list()
+    function list(Request $request)
     {
         $data = AKT::with('test.application.organization.city.region',
         'test.application.decision.laboratory',
         'test.application.crops.name.nds','lab_bayonnoma',
         'test.final_result')
-        ->whereHas('test.application.decision.laboratory')
-        ->orderBy('id', 'desc')->paginate(50);
-// dd($data);
-        return view('lab_bayonnoma.list', compact('data'));
+        ->whereHas('test.application.decision.laboratory');
+
+        $status = $request->input('status');
+
+        if ($status) {
+            if($status == 3){
+                $data = $data->doesntHave('lab_bayonnoma');
+            }
+            elseif($status == 1){
+                $data = $data->has('lab_bayonnoma');
+            }
+            // elseif($status == 4){
+            //     $data = $data->has('test.final_result');
+            // }
+            else{
+                $status=null;
+            }
+
+        }
+
+        $data=$data->orderBy('id', 'desc')->paginate(50);
+
+        return view('lab_bayonnoma.list', compact('data', 'status'));
     }
     function add($id)
     {

@@ -15,12 +15,64 @@ use Illuminate\Support\Facades\Auth;
 
 class AKTController extends Controller
 {
-    public function list()
+    public function list(Request $request)
     {
-        $data = TestPrograms::with('application.crops.country', 'application.crops.name.nds', 'akt', 'final_result')->orderBy('id', 'desc')->paginate(50);
+        // $crop = $request->input('crop');
+        // $from = $request->input('from');
+        // $till = $request->input('till');
+        $status = $request->input('status');
+
+        $data = TestPrograms::with('application.crops.country', 'application.crops.name.nds', 'akt', 'final_result');
+
+        if ($status) {
+            if($status == 3){
+                $data = $data->doesntHave('akt');
+            }
+            elseif($status == 1){
+                $data = $data->has('akt');
+                $data =$data->where('status', $status);
+            }
+            // elseif($status == 4){
+            //     $data = $data->has('final_result');
+            // }
+            elseif($status==2){
+                $data =$data->where('status', $status);
+            }
+            else{
+                $status=null;
+            }
+
+        }
+
+        // if ($from && $till) {
+        //     $fromTime = join('-', array_reverse(explode('-', $from)));
+        //     $tillTime = join('-', array_reverse(explode('-', $till)));
+        //     $data->whereHas('akt', function ($query) use ($fromTime,$tillTime) {
+        //         $query->whereDate('make_date', '>=', $fromTime)
+        //         ->orWhereDate('expiry_date', '<=', $tillTime);
+        //     });
+
+        // }
+        // if ($crop) {
+        //     $data = $data->whereHas('application.crops', function ($query) use ($crop) {
+        //         $query->where('name_id', '=', $crop);
+        //     });
+        // }
+
+        $data=$data->orderBy('id', 'desc')->paginate(50);
+        // ->appends(['till' => $request->input('till')])
+        // ->appends(['from' => $request->input('from')])
+        // ->appends(['crop' => $request->input('crop')]);
         $amount = CropData::getMeasureType();
 
-        return view('AKT.list', compact('data', 'amount'));
+        return view('AKT.list', [
+            "data"=>$data,
+            "amount"=>$amount,
+            // "from"=>$from,
+            // "till"=>$till,
+            // "crop"=>$crop,
+            "status"=>$status,
+        ]);
     }
     public function add($id)
     {

@@ -50,7 +50,14 @@
                                             <th class="border-bottom-0 border-top-0">{{ trans('app.Mahsulot navi') }}</th>
                                             <th class="border-bottom-0 border-top-0">{{ trans('app.Mahsulot miqdori') }}</th>
                                             {{-- <th class="border-bottom-0 border-top-0">{{ trans('app.Ishlab chiqarilgan sana') }}</th> --}}
-                                            <th class="border-bottom-0 border-top-0">{{ trans('app.Action') }}</th>
+                                           <th class="border-bottom-0 border-top-0 bg-info" >
+                                                <select style="cursor: pointer; " class="w-100 form-control state_of_country custom-select" name="status" id="status">
+                                                    <option value="">{{trans('message.Barchasi')}}</option>
+                                                    <option value="3" @if( (  $status == 3))  selected="selected" @endif>{{trans('app.Qaror shakillantirilmagan')}}</option>
+                                                    <option value="1" @if( (  $status == 1))  selected="selected" @endif>{{trans('app.Qaror qabul qilingan')}}</option>
+                                                    <option value="2" @if( ( $status == 2))  selected="selected" @endif>{{trans('app.Yuborilgan')}}</option>
+                                                </select>
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -134,5 +141,25 @@
             });
         });
     </script>
+    <script>
+        $(document).ready(function(){
+            $('#status').change(function () {
+                var selectedRegion = $(this).val();
+                var currentUrl = window.location.href;
+                var url = new URL(currentUrl);
 
+                url.searchParams.set('status', selectedRegion);
+            
+                var newUrl = url.toString();
+                window.history.pushState({ path: newUrl }, '', newUrl);
+                $.ajax({
+                    url:  newUrl,
+                    method: "GET",
+                    success: function (response) {
+                        window.location.reload(true);
+                    }
+                });
+            });
+        });
+        </script>
 @endsection

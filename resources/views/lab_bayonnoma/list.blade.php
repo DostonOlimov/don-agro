@@ -68,7 +68,17 @@
                                                 <th>{{ trans('app.Sinov natijasi') }}</th>
                                                 <th>{{ trans('app.Sinov o\'tkazgan mutaxassis') }}</th>
                                                 <th>{{ trans('app.Qo\'shimcha ma\'lumotlar') }}</th>
-                                                <th>{{ trans('app.Action') }}</th>
+                                                {{-- <th>{{ trans('app.Action') }}</th> --}}
+                                                <th class="border-bottom-0 border-top-0 bg-info w-25" style="width: 25%" >
+                                                    <select style="cursor: pointer; " class="w-100 form-control state_of_country custom-select" name="status" id="status">
+                                                        <option value="">{{trans('message.Barchasi')}}</option>
+                                                        {{-- start filter for Laboratoriya bayonnomasi --}}
+                                                        <option value="3" @if( (  $status == 3))  selected="selected" @endif>{{trans('app.Laboratoriya bayonnomasi shakillantirilmagan')}}</option>
+                                                        <option value="1" @if( (  $status == 1))  selected="selected" @endif>{{trans('app.Laboratoriya bayonnomasi shakllantirilgan')}}</option>
+                                                        {{-- <option value="4" @if( (  $status == 4))  selected="selected" @endif>{{trans('app. Jarayon yakunlangan')}}</option>  --}}
+                                                        {{-- end filter for Laboratoriya bayonnomasi --}}
+                                                    </select>
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -168,7 +178,6 @@
 
             var url = $(this).attr('url');
 
-
             swal({
                 title: "{{ trans('app.O\'chirishni istaysizmi?') }}",
                 text: "{{ trans('app.O\'chirilgan ma\'lumotlar qayta tiklanmaydi!') }}",
@@ -184,5 +193,26 @@
             });
         });
     </script>
+     <script>
+        $(document).ready(function(){
+            $('#status').change(function () {
+                var selectedRegion = $(this).val();
+                var currentUrl = window.location.href;
+                var url = new URL(currentUrl);
+
+                url.searchParams.set('status', selectedRegion);
+
+                var newUrl = url.toString();
+                window.history.pushState({ path: newUrl }, '', newUrl);
+                $.ajax({
+                    url:  newUrl,
+                    method: "GET",
+                    success: function (response) {
+                        window.location.reload(true);
+                    }
+                });
+            });
+        });
+     </script>
 
 @endsection

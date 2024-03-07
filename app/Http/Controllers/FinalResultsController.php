@@ -37,6 +37,7 @@ class FinalResultsController extends Controller
         $crop = $request->input('crop');
         $from = $request->input('from');
         $till = $request->input('till');
+        $status = $request->input('status');
 
         $apps= TestPrograms::with('application')
             ->with('application.crops.name')
@@ -72,6 +73,15 @@ class FinalResultsController extends Controller
                 $query->where('name_id', '=', $crop);
             });
         }
+        if ($status) {
+            if($status == 2){
+                $apps = $apps->doesntHave('final_result');
+            }elseif($status == 1){
+                $apps = $apps->whereHas('final_result');
+            }
+
+        }
+
         $apps->when($request->input('s'), function ($query, $searchQuery) {
             $query->where(function ($query) use ($searchQuery) {
                 if (is_numeric($searchQuery)) {
@@ -98,7 +108,7 @@ class FinalResultsController extends Controller
             ->appends(['from' => $request->input('from')])
             ->appends(['city' => $request->input('city')])
             ->appends(['crop' => $request->input('crop')]);
-        return view('final_results.search', compact('tests','from','till','city','crop'));
+        return view('final_results.search', compact('tests','from','till','city','crop','status'));
     }
     //index
     public function add($id)

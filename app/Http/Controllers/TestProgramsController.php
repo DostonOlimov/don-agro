@@ -30,6 +30,7 @@ class TestProgramsController extends Controller
         $crop = $request->input('crop');
         $from = $request->input('from');
         $till = $request->input('till');
+        $status = $request->input('status');
 
         $apps = Application::with('crops')
             ->with('crops.name')
@@ -65,6 +66,16 @@ class TestProgramsController extends Controller
                 $query->where('name_id', '=', $crop);
             });
         }
+        if ($status) {
+            if($status == 3){
+                $apps = $apps->doesntHave('tests');
+            }else{
+                $apps = $apps->whereHas('tests', function ($query) use ($status) {
+                    $query->where('status', $status);
+                });
+            }
+
+        }
         $apps->when($request->input('s'), function ($query, $searchQuery) {
             $query->where(function ($query) use ($searchQuery) {
                 if (is_numeric($searchQuery)) {
@@ -88,7 +99,7 @@ class TestProgramsController extends Controller
             ->appends(['from' => $request->input('from')])
             ->appends(['city' => $request->input('city')])
             ->appends(['crop' => $request->input('crop')]);
-        return view('tests.search', compact('apps', 'from', 'till', 'city', 'crop'));
+        return view('tests.search', compact('apps', 'from', 'till', 'city', 'crop','status'));
     }
     //index
     public function add($id)
