@@ -2,6 +2,7 @@
 @section('content')
 <!-- page content -->
 <?php $userid = Auth::user()->id; ?>
+@can('add_number', \App\Models\LaboratoryResult::class)
 @if (CheckAdmin($userid)=='yes' || $userid == $user->id)
 	   <div class="section">
 			<div class="page-header">
@@ -228,6 +229,16 @@
 	</div>
 
 @endif
+@else
+            <div class="section" role="main">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <span class="titleup text-danger"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>&nbsp
+                            {{ trans('app.You Are Not Authorize This page.') }}</span>
+                    </div>
+                </div>
+            </div>
+        @endcan
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="{{ URL::asset('vendors/moment/min/moment.min.js') }}"></script>
     <script src="{{ URL::asset('vendors/bootstrap-daterangepicker/daterangepicker.js') }}"></script>

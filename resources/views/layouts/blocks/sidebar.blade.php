@@ -7,6 +7,7 @@
 
     </div>
     <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
+        @if (auth()->user()->role <= \App\Models\User::ROLE_INSPECTION_DIROCTOR)
         <li class="nav-item"><a class="nav-link" href="/home">
                 <svg class="nav-icon">
                     <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-home"></use>
@@ -67,6 +68,7 @@
                     <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-library"></use>
                 </svg><?php echo nl2br(trans('message.Yakuniy qarorlar')); ?></a></li>
 
+        @endif
                 {{-- start labratoyiy --}}
 
             @if(auth()->user()->branch_id == \App\Models\User::BRANCH_INSPECTION or auth()->user()->branch_id == \App\Models\User::BRANCH_LABORATORY)
@@ -86,7 +88,7 @@
             @endif
 
                 {{-- end labratoyiy --}}
-
+        @if (auth()->user()->role <= \App\Models\User::ROLE_INSPECTION_DIROCTOR)
 
         @if (auth()->user()->role != \App\Models\User::ROLE_INSPECTION_DIROCTOR)
             <li class="nav-title">{{ trans('message.Tizim sozlamalari') }}</li>
@@ -223,4 +225,5 @@
         <li class="nav-item"><a class="nav-link"></a></li>
     </ul>
     <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
+    @endif
 </div>

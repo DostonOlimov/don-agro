@@ -25,6 +25,9 @@ class HomeController extends Controller
         $crop = $request->input('crop');
         $from = $request->input('from');
         $till = $request->input('till');
+        if(auth()->user()->role > \App\Models\User::ROLE_INSPECTION_DIROCTOR){
+               return redirect('laboratory-protocol/list');
+        }
 
         $user = auth()->user();
         $timezone = $user->timezone;
