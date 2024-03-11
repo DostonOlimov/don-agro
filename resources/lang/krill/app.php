@@ -143,6 +143,9 @@ return [
     "Toʼda (partiya) soni" => "Тўда (партия) сони",
     "O'lchov birliklari" => "Ўлчов бирликлари ",
     "O'lchov birliklarni tanlang" => "Ўлчов бирликларни танланг",
+    "Namuna olish dalolatnomasi shakillantirilmagan"=>"Намуна олиш далолатномаси шакиллантирилмаган",
+    "Namuna olish dalolatnomasi shakllantirilgan"=>"Намуна олиш далолатномаси шакллантирилган",
+    "Jarayon yakunlangan"=>"Жараён якунланган",
 
     // lab_bayonnoma
     "Laboratoriya bayonnomasi" => "Лаборатория баённомаси",
@@ -156,6 +159,8 @@ return [
     "Laboratoriya bayonnoma sanasi noto'g'ri shaklda kiritilgan"=>"Лаборатория баённома санаси нотўғри шаклда киритилган",
     "Laboratoriya sinov natijasi"=>"Лаборатория синов натижаси",
     "Laboratoriya sinov natijasini tanlang"=>"Лаборатория синов натижасини танланг",
+    "Laboratoriya bayonnomasi shakillantirilmagan"=>"Лаборатория баённомаси шакиллантирилмаган",
+    "Laboratoriya bayonnomasi shakllantirilgan"=>"Лаборатория баённомаси шакллантирилган",
 
     //final results
     "Qaror raqami"=>"Қарор рақами",
@@ -184,12 +189,18 @@ return [
     "Sinov bayonnoma fayli"=>"Синов баённома файли",
     "Tahlil natija fayli"=>"Таҳлил натижа файли",
     "Tikilgan papka raqami"=>"Тикилган папка рақами",
+    "Yakuniy natija qo'shilgan"=>"Якуний натижа қўшилган",
+    "Yakuniy natija qo'shilmagan"=>"Якуний натижа қўшилмаган",
 
     // decision
     "Qaror"=>"Қарор",
     "Nomini kiriting"=>"Номини киритинг",
+    "Qaror shakillantirilmagan"=>"Қарор шакиллантирилмаган",
+    "Qaror qabul qilingan"=>"Қарор қабул қилинган",
 
-
+    // test
+    "Sinov dasturi shakillantirilmagan"=>"Синов дастури шакиллантирилмаган",
+    "Sinov dasturi shakllantirilgan"=>"Синов дастури шакллантирилган",
 
     //og'irlik dalolatnomalari
     "Sinov dasturi" => "Синов дастури",

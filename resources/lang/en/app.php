@@ -146,6 +146,9 @@ return [
     "Toʼda (partiya) soni"=>"Batch (batch) number",
     "O'lchov birliklari"=>"Units of measure",
     "O'lchov birliklarni tanlang"=>"Select the units of measure",
+    "Namuna olish dalolatnomasi shakillantirilmagan"=>"Sampling certificate has not been prepared",
+    "Namuna olish dalolatnomasi shakllantirilgan"=>"A sampling protocol has been created",
+    "Jarayon yakunlangan"=>"The process is complete",
 
     // lab_bayonnoma
     "Laboratoriya bayonnomasi"=>"Laboratory protocol",
@@ -159,6 +162,8 @@ return [
     "Laboratoriya bayonnoma sanasi noto'g'ri shaklda kiritilgan"=>"The date of the laboratory protocol is entered in the wrong format",
     "Laboratoriya sinov natijasi"=>"Laboratory test result",
     "Laboratoriya sinov natijasini tanlang"=>"Select the laboratory test result",
+    "Laboratoriya bayonnomasi shakillantirilmagan"=>"The laboratory report has not been prepared",
+    "Laboratoriya bayonnomasi shakllantirilgan"=>"A laboratory report has been prepared",
 
     //final results
     "Qaror raqami"=>"Decision number",
@@ -187,10 +192,18 @@ return [
     "Sinov bayonnoma fayli"=>"Test protocol file",
     "Tahlil natija fayli"=>"Analysis result file",
     "Tikilgan papka raqami"=>"Stitched folder number",
+    "Yakuniy natija qo'shilgan"=>"Added final result",
+    "Yakuniy natija qo'shilmagan"=>"Final result not included",
 
     // decision
     "Qaror"=>"Decision",
     "Nomini kiriting"=>"Enter the name",
+    "Qaror shakillantirilmagan"=>"The decision has not been made",
+    "Qaror qabul qilingan"=>"The decision has been made",
+
+    // test
+    "Sinov dasturi shakillantirilmagan"=>"The test program is not formed",
+    "Sinov dasturi shakllantirilgan"=>"The test program is formed",
 
 
     //og'irlik dalolatnomalari

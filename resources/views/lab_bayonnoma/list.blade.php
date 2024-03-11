@@ -85,7 +85,7 @@
                                                                 @if ($status == 1) selected="selected" @endif>
                                                                 {{ trans('app.Laboratoriya bayonnomasi shakllantirilgan') }}
                                                             </option>
-                                                            {{-- <option value="4" @if ($status == 4)  selected="selected" @endif>{{trans('app. Jarayon yakunlangan')}}</option>  --}}
+                                                            {{-- <option value="4" @if ($status == 4)  selected="selected" @endif>{{trans('app.Jarayon yakunlangan')}}</option>  --}}
                                                             {{-- end filter for Laboratoriya bayonnomasi --}}
                                                         </select>
                                                     </th>

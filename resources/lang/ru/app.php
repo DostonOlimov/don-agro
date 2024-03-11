@@ -145,6 +145,9 @@ return [
     "Toʼda (partiya) soni" => "Номер партии (партии)",
     "O'lchov birliklari" => "Единицы измерения",
     "O'lchov birliklarni tanlang" => "Выберите единицы измерения",
+    "Namuna olish dalolatnomasi shakillantirilmagan"=>"Сертификат выборки не подготовлен.",
+    "Namuna olish dalolatnomasi shakllantirilgan"=>"Составлен протокол отбора проб",
+    "Jarayon yakunlangan"=>"Процесс завершен",
 
     // lab_bayonnoma
     "Laboratoriya bayonnomasi" => "Лабораторный протокол",
@@ -158,6 +161,8 @@ return [
     "Laboratoriya bayonnoma sanasi noto'g'ri shaklda kiritilgan"=>"Дата лабораторного протокола введена в неправильном формате",
     "Laboratoriya sinov natijasi"=>"Результат лабораторного исследования",
     "Laboratoriya sinov natijasini tanlang"=>"Выберите результат лабораторного исследования",
+    "Laboratoriya bayonnomasi shakillantirilmagan"=>"Лабораторный отчет не составлен.",
+    "Laboratoriya bayonnomasi shakllantirilgan"=>"Подготовлен лабораторный отчет.",
 
     //final results
     "Qaror raqami"=>"Номер решения",
@@ -186,10 +191,18 @@ return [
     "Sinov bayonnoma fayli"=>"Файл протокола испытаний",
     "Tahlil natija fayli"=>"Файл результатов анализа",
     "Tikilgan papka raqami"=>"Номер прошитой папки",
+    "Yakuniy natija qo'shilgan"=>"Добавил окончательный результат",
+    "Yakuniy natija qo'shilmagan"=>"Окончательный результат не включен",
 
     // decision
     "Qaror"=>"Решение",
     "Nomini kiriting"=>"Введите имя",
+    "Qaror shakillantirilmagan"=>"Решение не принято",
+    "Qaror qabul qilingan"=>"Решение было принято",
+
+    // test
+    "Sinov dasturi shakillantirilmagan"=>"Программа испытаний не сформирована",
+    "Sinov dasturi shakllantirilgan"=>"Программа испытаний сформирована",
 
 
     //og'irlik dalolatnomalari

@@ -60,10 +60,10 @@
                                                         <option value="">{{ trans('message.Barchasi') }}</option>
                                                         <option value="1"
                                                             @if ($status == 1) selected="selected" @endif>
-                                                            {{ trans('app.Yakuniy natija qo\'shilgan') }}</option>
+                                                            {{ trans("app.Yakuniy natija qo'shilgan") }}</option>
                                                         <option value="2"
                                                             @if ($status == 2) selected="selected" @endif>
-                                                            {{ trans('app.Yakuniy natija qo\'shilmagan') }}</option>
+                                                            {{ trans("app.Yakuniy natija qo'shilmagan") }}</option>
                                                     </select>
                                                 </th>
                                             </tr>

@@ -88,7 +88,7 @@
                                                                 @if ($status == 1) selected="selected" @endif>
                                                                 {{ trans('app.Namuna olish dalolatnomasi shakllantirilgan') }}
                                                             </option>
-                                                            {{-- <option value="4" @if ($status == 4)  selected="selected" @endif>{{trans('app. Jarayon yakunlangan')}}</option>  --}}
+                                                            {{-- <option value="4" @if ($status == 4)  selected="selected" @endif>{{trans('app.Jarayon yakunlangan')}}</option>  --}}
                                                             {{-- end filter for akt --}}
                                                             <option value="2"
                                                                 @if ($status == 2) selected="selected" @endif>
