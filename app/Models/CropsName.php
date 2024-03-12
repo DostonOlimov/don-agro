@@ -22,10 +22,10 @@ class CropsName extends Model
     protected $fillable = [
         'id', 'name',
     ];
-    public function parent()
-    {
-        return $this->hasMany(CropsName::class, 'id', 'parent_id');
-    }
+    // public function parent()
+    // {
+    //     return $this->hasMany(CropsName::class, 'id', 'parent_id');
+    // }
     public function crop_data()
     {
         return $this->hasMany(CropData::class,'name_id','id');

@@ -19,7 +19,7 @@ class CropsNameController extends Controller
     public function index()
     {
         $title = 'Mahsulot nomini qo\'shish';
-        $cropnames=CropsName::where('parent_id',null)->orderBy('id')->get();
+        $cropnames=CropsName::orderBy('id')->get();
         return view('crops_name.add', compact('title','cropnames'));
     }
 
@@ -27,8 +27,8 @@ class CropsNameController extends Controller
     public function list()
     {
         $title = 'Mahsulot nomlari';
-        $crops = CropsName::with('parent')->orderBy('id')->get();
-        
+        $crops = CropsName::orderBy('id')->get();
+
         return view('crops_name.list', compact('crops','title'));
     }
 
@@ -36,7 +36,7 @@ class CropsNameController extends Controller
     public function store(Request $request)
     {
         $name = $request->input('name');
-        $parent_id = $request->input('parent_id');
+        $parent_id = $request->input('parent_id')??null;
         $count = DB::table('crops_name')
             ->where('name', '=', $name)
             ->count();
@@ -93,7 +93,7 @@ class CropsNameController extends Controller
     {
         $crops=CropsName::query();
         $crops=$crops->findOrFail($id);
-        $cropnames=$crops->where('parent_id',null)->orderBy('id')->get();
+        $cropnames=$crops->orderBy('id')->get();
         return view('crops_name.edit', [
             'crops' => $crops,
             'cropnames' => $cropnames,
@@ -106,7 +106,7 @@ class CropsNameController extends Controller
     {
         $crop = CropsName::findOrFail($id);
         $crop->name = $request->input('name');
-        $crop->parent_id = $request->input('parent_id');
+        $crop->parent_id = $request->input('parent_id')??null;
         $crop->kodtnved = $request->input('tnved');
 
         if ($request->hasFile('image')) {
