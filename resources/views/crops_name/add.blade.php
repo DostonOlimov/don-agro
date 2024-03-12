@@ -76,7 +76,7 @@
                                                         value="{{ old('tnved') }}" />
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-md-2">
+                                            {{-- <div class="col-12 col-md-2">
                                                 <div class="form-group">
                                                     <label class="form-label"
                                                            for="first-name">{{trans('app.Mahsulot toifalar')}} <label
@@ -92,7 +92,7 @@
                                                         @endif
                                                     </select>
                                                 </div>
-                                            </div>
+                                            </div> --}}
 
                                             <div class="col-6 col-md-4 {{ $errors->has('image') ? ' has-error' : '' }}">
                                                 <div class="row"

@@ -64,7 +64,7 @@
                                                 <th style="max-width: 2%">№</th>
                                                 <th style="width: 8%">{{ trans('app.Image') }}</th>
                                                 <th style="width: 45%">{{ trans('app.Nomlari') }}</th>
-                                                <th style="width: 20%">{{ trans('app.Mahsulot toifasi') }}</th>
+                                                {{-- <th style="width: 20%">{{ trans('app.Mahsulot toifasi') }}</th> --}}
                                                 <th style="width: 10%">{{ trans('app.Kod TN VED') }}</th>
                                                 <th style="width: 15%">{{ trans('app.Action') }}</th>
                                             </tr>
@@ -76,7 +76,7 @@
                                                     <td>{{ $i }}</td>
                                                     <td><img src="{{ URL::asset('crops/' . $crop->img) }}" width="50px" height="50px" class="img-circle"></td>
                                                     <td>{{ $crop->name }}</td>
-                                                    <td>{{ $crop->parent[0]->name??''}}</td>
+                                                    {{-- <td>{{ $crop->parent[0]->name??''}}</td> --}}
                                                     <td>{{ $crop->kodtnved }}</td>
                                                     <td>
                                                         <a href="{!! url('/crops_name/list/edit/' . $crop->id) !!}"> <button type="button"
