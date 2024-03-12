@@ -65,6 +65,7 @@
                                                 <th>{{ trans('app.Sifat ko\'rsatkich nomi') }}</th>
                                                 <th>{{ trans('app.Sifat ko\'rsatkich bo\'yicha me\'yoriy hujjat') }}</th>
                                                 <th>{{ trans('app.Mahsulot turi') }}</th>
+                                                <th>{{ trans('app.Mahsulot normativ hujjati') }}</th>
                                                 <th>{{ trans('app.Action') }}</th>
                                             </tr>
                                         </thead>
@@ -75,7 +76,8 @@
                                                     <td>{{ $i }}</td>
                                                     <td>{{ $type->name }}</td>
                                                     <td>{{ $type->nd_name }}</td>
-                                                    <td>{{ optional($type->crops)->name }}</td>
+                                                    <td>{{ $type->nds->crops->name??'' }}</td>
+                                                    <td>{{ ($type->nds)?\App\Models\Nds::getType(optional($type->nds)->type_id):"" }}</td>
                                                     <td style="display: flex; column-gap: 3px;">
                                                         <a href="{!! url('/indicator/list/edit/' . $type->id) !!}"> <button type="button"
                                                                 class="btn btn-round btn-success">{{ trans('app.Edit') }}</button></a>

@@ -95,6 +95,7 @@ Route::group(
         //Country City State ajax
         Route::get('/getstatefromcountry', '\App\Http\Controllers\CountryAjaxcontroller@getstate');
         Route::get('/getcityfromstate', '\App\Http\Controllers\CountryAjaxcontroller@getcity')->name('areas.list');
+        Route::get('/getnds', '\App\Http\Controllers\CountryAjaxcontroller@getnds')->name('nds.list');
         Route::get('/getcities', '\App\Http\Controllers\CountryAjaxcontroller@getcitiesjson');
         Route::post('/edit-city', '\App\Http\Controllers\CountryAjaxcontroller@edit_city');
         Route::post('/add-city', '\App\Http\Controllers\CountryAjaxcontroller@add_city');

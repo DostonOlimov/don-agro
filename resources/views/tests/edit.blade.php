@@ -115,23 +115,29 @@
                                     @php $i = 1; @endphp
                                     <h4 style="font-weight: bold">{{trans("app.Sifat ko'rsatgich bo'yicha me'yoriy hujjatlar")}}:</h4>
                                     <div class="col-md-12">
+                                        @foreach($indicators as  $key=>$box)
+                                        @php $i = 1; @endphp
                                         <table style="font-weight: bold" class="table table-bordered align-middle">
-                                            @foreach($indicators as $k => $indicator)
-                                                <tr>
-                                                    <td>@if(!$indicator->parent_id) {{$i}} @endif</td>
-                                                    <td>{{$indicator->name}}</td>
-                                                    <td>{!! nl2br($indicator->nd_name) !!}</td>
-                                                    <td>
-                                                        @if($indicator->nd_name)
-                                                            <input type="checkbox" checked name="checkbox[]" value="{{$indicator->id}}">
-                                                        @else
-                                                            <input type="checkbox" style="display:none" checked name="checkbox[]" value="{{$indicator->id}}">
-                                                        @endif
-                                                    </td>
-                                                </tr>
-                                                @if(!$indicator->parent_id) @php $i=$i+1; @endphp @endif
+                                            <br>
+                                            <tr>{{\App\Models\Nds::getType($key)??''}}</tr>
+                                            @foreach ($box as $k => $indicator)
+                                            <tr>
+                                                <td>@if(!$indicator->parent_id) {{$i}} @endif</td>
+                                                <td>{{$indicator->name}}</td>
+                                                <td>{!! nl2br($indicator->nd_name) !!}</td>
+                                                <td>
+                                                @if($indicator->nd_name)
+                                                        <input type="checkbox" checked name="checkbox[]" value="{{$indicator->id}}">
+                                                @else
+                                                        <input type="checkbox" style="display:none" checked name="checkbox[]" value="{{$indicator->id}}">
+                                                @endif
+                                                </td>
+                                            </tr>
+                                            @if(!$indicator->parent_id) @php $i=$i+1; @endphp @endif
+
                                             @endforeach
                                         </table>
+                                        @endforeach
                                     </div>
                                     <div class="col-md-12 form-group has-feedback">
                                         <label class="form-label" for="data">{{trans("app.Alohida yozuvlar:")}}<label class="text-danger">*</label></label>

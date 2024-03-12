@@ -8,6 +8,7 @@ use App\tbl_states;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Models\CropsName;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -16,7 +17,7 @@ class IndicatorController extends Controller
     public function index()
     {
         $title = 'Sifat ko\'rsatkichi qo\'shish';
-        $crops = DB::table('crops_name')->get()->toArray();
+        $crops = CropsName::get();
         return view('indicator.add', compact('title','crops'));
     }
 
@@ -24,7 +25,7 @@ class IndicatorController extends Controller
     public function list()
     {
         $title = 'Sifat ko\'rsatkichlari';
-        $types = Indicator::with('crops')->orderBy('id','desc')->get();
+        $types = Indicator::with('nds.crops')->orderBy('id','desc')->get();
         return view('indicator.list', compact('types','title'));
     }
 
@@ -33,16 +34,16 @@ class IndicatorController extends Controller
     {
         $name = $request->input('name');
         $nd_name = $request->input('nd_name');
-        $crop = $request->input('crop');
+        $nds = $request->input('nds_id');
         $count = DB::table('quality_indacators')
             ->where('name', '=', $name)
-            ->where('crop_id','=',$crop)
+            ->where('nds_id','=',$nds)
             ->count();
         if ($count == 0) {
             $type = new Indicator();
             $type->name = $name;
             $type->nd_name = $nd_name;
-            $type->crop_id = $crop;
+            $type->nds_id = $nds;
             $type->save();
             return redirect('indicator/list')->with('message', 'Successfully Submitted');
         } else {
@@ -62,7 +63,7 @@ class IndicatorController extends Controller
 
     public function edit($id)
     {
-        $crops = DB::table('crops_name')->get()->toArray();
+        $crops = CropsName::get();
         return view('indicator.edit', [
             'type' => Indicator::findOrFail($id),
             'editid' => $id,
@@ -76,7 +77,7 @@ class IndicatorController extends Controller
         $type = Indicator::findOrFail($id);
         $type->name = $request->input('name');
         $type->nd_name = $request->input('nd_name');
-        $type->crop_id = $request->input('crop');
+        $type->nds_id = $request->input('nds_id');
         $type->save();
 
         return redirect('indicator/list')->with('message', 'Successfully Updated');

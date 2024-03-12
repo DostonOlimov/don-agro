@@ -19,10 +19,9 @@ class Indicator extends Model
 {
     protected $table = 'quality_indacators';
 
-
-    public function crops()
+    public function nds()
     {
-        return $this->belongsTo(CropsName::class, 'crop_id');
+        return $this->belongsTo(Nds::class, 'nds_id');
     }
     public function child()
     {

@@ -57,7 +57,7 @@
                                     <form action="update/{{ $type->id }}" method="post" enctype="multipart/form-data"
                                         data-parsley-validate class="form-horizontal form-label-left">
                                         <div class="row">
-                                            
+
                                             {{--  --}}
                                             <div class="col-md-6 form-group has-feedback">
                                                 <label class="form-label"
@@ -76,18 +76,35 @@
                                                 </div>
                                             </div>
                                             {{--  --}}
-                                            <div class="col-12 col-md-4">
+                                            <div class="col-12 col-md-6">
                                                 <div class="form-group">
-                                                    <label class="form-label" for="first-name">{{ trans('app.Mahsulot turi') }}
-                                                        <label class="text-danger">*</label>
+                                                    <label class="form-label"
+                                                        for="first-name">{{ trans('app.Mahsulot turi') }}<label
+                                                            class="text-danger">*</label>
                                                     </label>
-                                                    <select name="crop" class="crop" required>
+                                                    <select name="crop_id" class="w-100 form-control custom-select name_of_crop"
+                                                        required data-url="{!! url('/getnds') !!}">
+                                                        <option value="">{{ trans('app.Mahsulot turini tanlang') }}
+                                                        </option>
                                                         @if (!empty($crops))
                                                             @foreach ($crops as $crop)
-                                                                <option @if ($type->state_id == $crop->id) selected @endif
-                                                                    value="{{ $crop->id }}">{{ $crop->name }}</option>
+                                                                <option value="{{ $crop->id }}"
+                                                                    @if ((!empty($ndsCrop) && $ndsCrop->crop_id == $crop->id) || count($crops) == 1) selected="selected" @endif>
+                                                                    {{ $crop->name }}
+                                                                </option>
                                                             @endforeach
                                                         @endif
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6 overflow-hidden">
+                                                <div class="form-group">
+                                                    <label class="form-label"
+                                                        for="first-name">{{ trans('app.Mahsulot normativ hujjati') }}<label
+                                                            class="text-danger">*</label>
+                                                    </label>
+                                                    <select name="nds_id"
+                                                        class="form-control w-100 custom-select nds_of_cropName">
                                                     </select>
                                                 </div>
                                             </div>
@@ -126,5 +143,38 @@
                     minimumResultsForSearch: Infinity
                 });
             })
+        </script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('.states').select2({
+                    minimumResultsForSearch: Infinity
+                });
+
+                $('select.name_of_crop').on('change', function() {
+                    getCitiesOfState($(this));
+                });
+
+                if ($('select.nds_of_cropName').attr('val')) {
+                    getCitiesOfState($('select.name_of_crop'));
+                }
+            });
+
+            function getCitiesOfState(th) {
+                var stateid = th.val();
+                var url = th.data('url');
+                var citiesMenu = $('select.nds_of_cropName');
+
+                $.ajax({
+                    type: 'GET',
+                    url: url,
+                    data: {
+                        crop_id: stateid,
+                    },
+                    success: function(response) {
+                        citiesMenu.html(response);
+                    }
+                });
+            }
         </script>
     @endsection

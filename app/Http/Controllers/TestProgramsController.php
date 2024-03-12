@@ -67,14 +67,13 @@ class TestProgramsController extends Controller
             });
         }
         if ($status) {
-            if($status == 3){
+            if ($status == 3) {
                 $apps = $apps->doesntHave('tests');
-            }else{
+            } else {
                 $apps = $apps->whereHas('tests', function ($query) use ($status) {
                     $query->where('status', $status);
                 });
             }
-
         }
         $apps->when($request->input('s'), function ($query, $searchQuery) {
             $query->where(function ($query) use ($searchQuery) {
@@ -99,7 +98,7 @@ class TestProgramsController extends Controller
             ->appends(['from' => $request->input('from')])
             ->appends(['city' => $request->input('city')])
             ->appends(['crop' => $request->input('crop')]);
-        return view('tests.search', compact('apps', 'from', 'till', 'city', 'crop','status'));
+        return view('tests.search', compact('apps', 'from', 'till', 'city', 'crop', 'status'));
     }
     //index
     public function add($id)
@@ -116,8 +115,11 @@ class TestProgramsController extends Controller
             $measure_types = CropData::getMeasureType();
             unset($measure_types[1]);
             $directors = User::where('role', '=', 55)->get();
-            $indicators = Indicator::where('crop_id', '=', $app->crops->name->id)
-                ->get();
+            $indicators = Indicator::whereHas('nds.crops', function ($query) use ($app) {
+                $query->where('id', $app->crops->name->id);
+            })->get()->groupBy(function ($indicator) {
+                return $indicator->nds->type_id;
+            });
             return view('tests.add', compact('app', 'nds', 'directors', 'measure_types', 'indicators'));
         } else {
             return redirect('nds/list')->with('message', 'nds not found');
@@ -175,15 +177,18 @@ class TestProgramsController extends Controller
 
         $measure_types = CropData::getMeasureType();
         $directors = User::where('role', '=', 55)->get();
-        $indicators = Indicator::where('crop_id', '=', $app->crops->name->id)
-            ->get();
+        $indicators = Indicator::whereHas('nds.crops', function ($query) use ($app) {
+            $query->where('id', $app->crops->name->id);
+        })->get()->groupBy(function ($indicator) {
+            return $indicator->nds->type_id;
+        });
         $nds = [];
         foreach (Nds::where('crop_id', Application::find($app->id)->crops->name_id)->get() as $item) {
             $nds[] = Nds::getType($item->type_id) . " " . $item->number . " " . $item->name;
         }
         $nds = implode(",", $nds);
 
-        return view('tests.edit', compact('app', 'test', 'directors', 'indicators', 'measure_types','nds'));
+        return view('tests.edit', compact('app', 'test', 'directors', 'indicators', 'measure_types', 'nds'));
     }
 
 
@@ -248,10 +253,9 @@ class TestProgramsController extends Controller
             // ->with('application.crops.generation')
             ->with('application')
             ->find($id);
-        $indicators = TestProgramIndicators::where('test_program_id', '=', $id)
-            ->with('indicator')
-            ->with('tests')
-            ->get();
+        $indicators = TestProgramIndicators::with('indicator.nds.crops')->with('tests')->where('test_program_id', '=', $id)->get()->groupBy(function ($indicator) {
+            return $indicator->indicator->nds->type_id;
+        });
         $url = route('tests.view', $id);
         $qrCode = null;
         if ($tests->code) {
@@ -265,7 +269,7 @@ class TestProgramsController extends Controller
         foreach (Nds::where('crop_id', Application::find($app_id->id)->crops->name_id)->get() as $item) {
             $nds[] = Nds::getType($item->type_id) . " " . $item->number . " " . $item->name;
         }
-        $nds=implode(",", $nds);
+        $nds = implode(",", $nds);
         return view('tests.show', [
             'decision' => $tests,
             // 'measure_type' => $measure_type,
@@ -315,10 +319,13 @@ class TestProgramsController extends Controller
             // ->with('application.crops.generation')
             ->with('application')
             ->find($id);
-        $indicators = TestProgramIndicators::where('test_program_id', '=', $id)
-            ->with('indicator')
-            ->with('tests')
-            ->get();
+        $indicators = TestProgramIndicators::with('indicator.nds.crops')->with('tests')->where('test_program_id', '=', $id)->get()
+            ->filter(function ($indicator) {
+                return $indicator->indicator->nds && $indicator->indicator->nds->type_id !== null;
+            })
+            ->groupBy(function ($indicator) {
+                return $indicator->indicator->nds->type_id;
+            });
         $url = route('tests.view', $id);
         $qrCode = null;
         if ($tests->code) {
@@ -332,7 +339,7 @@ class TestProgramsController extends Controller
             $nds[] = Nds::getType($item->type_id) . " " . $item->number . " " . $item->name;
         }
         $app_id = Application::find($tests->app_id);
-        $nds_type=implode(",", $nds);
+        $nds_type = implode(",", $nds);
         return view('tests.lab_view', [
             'decision' => $tests,
             'measure_type' => $measure_type,
@@ -340,7 +347,7 @@ class TestProgramsController extends Controller
             'indicators' => $indicators,
             'qrCode' => $qrCode,
             'max_number' => $max_number,
-            'app_id'=>$app_id
+            'app_id' => $app_id
         ]);
     }
 }

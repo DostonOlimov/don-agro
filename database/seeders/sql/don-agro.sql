@@ -2028,7 +2028,7 @@ INSERT INTO `prepared_companies` (`id`, `name`, `country_id`, `state_id`, `creat
 CREATE TABLE `quality_indacators` (
   `id` int(11) NOT NULL,
   `name` varchar(511) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `crop_id` int(11) NOT NULL,
+  `nds_id` int(11) NULL,
   `parent_id` int(11) DEFAULT NULL,
   `pre_name` int(2) NOT NULL DEFAULT 1,
   `nd_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -2040,7 +2040,7 @@ CREATE TABLE `quality_indacators` (
 -- Dumping data for table `quality_indacators`
 --
 
-INSERT INTO `quality_indacators` (`id`, `name`, `crop_id`, `parent_id`, `pre_name`, `nd_name`, `created_at`, `updated_at`) VALUES
+INSERT INTO `quality_indacators` (`id`, `name`, `nds_id`, `parent_id`, `pre_name`, `nd_name`, `created_at`, `updated_at`) VALUES
 (108, 'Зараженность вредителями', 25, NULL, 1, 'ГОСТ 13586.4-83', '2024-01-30 12:07:32', '2024-01-30 12:07:32'),
 (109, 'Загрязненность мертвыми насекомыми-вредителями', 25, NULL, 1, 'ГОСТ 34165-2017', '2024-01-30 12:09:19', '2024-01-30 12:09:19'),
 (110, 'Спорынья и головня (по совокупности)', 25, NULL, 1, 'ГОСТ 30483-97', '2024-01-30 12:09:46', '2024-01-30 12:09:46'),
