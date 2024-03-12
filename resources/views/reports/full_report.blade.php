@@ -312,7 +312,12 @@
                                                         }
                                                         $amounts = $app->crops;
                                                         if ($amounts) {
-                                                            $all_amount += $amounts->amount / 1000;
+                                                            if($amounts->measure_type==2){
+                                                                $all_amount += $amounts->amount * 0.001;
+                                                            }
+                                                            else {
+                                                                $all_amount += $amounts->amount;
+                                                            }
                                                         }
                                                         $count_app = $offset + $loop->iteration ?? 0;
                                                     @endphp
