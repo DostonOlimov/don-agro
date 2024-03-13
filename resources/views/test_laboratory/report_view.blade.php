@@ -108,7 +108,7 @@
 										   </span>
                                         @endif
                                     </div>
-                                    <div class="col-md-4 form-group has-feedback">
+                                    {{-- <div class="col-md-4 form-group has-feedback">
                                         <label class="form-label">Mahsulot sifati <label class="text-danger">*</label></label>
                                         <div class=" gender">
                                             <label class="custom-control custom-radio">
@@ -120,7 +120,7 @@
                                                 <span class="custom-control-label">Muvofiq </span>
                                             </label>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="col-md-4 form-group has-feedback">
                                         <label class="form-label">Sinov bo'yicha mutaxassislar <label class="text-danger">*</label></label>
                                         @foreach($users as $user)
@@ -147,7 +147,7 @@
                                     @php $sum = 0; @endphp
                                     <tr>
                                         <td>@if(!$indicator->indicator->parent_id) {{$tr}} @endif</td>
-                                        <td><a href="{!! url('/laboratory-results/indicator-view/'.$indicator->indicator_id.'/'.$crop_id.'?test_id='.$test->id) !!}">{{$indicator->indicator->name}}</a></td>
+                                        <td><a href="{!! url('/laboratory-results/indicator-view/'.$indicator->indicator_id.'/'.$crop_id.'?test_id='.$test->id) !!}">{{$indicator->indicator->name}}</a>  {{($indicator->indicator->nds->type_id)? '('.\App\Models\Nds::getType($indicator->indicator->nds->type_id).')':""}}</td>
                                         <td>{!! nl2br($indicator->indicator->nd_name) !!}</td>
                                         <td>{!! $indicator->indicator->default_value !!}</td>
 

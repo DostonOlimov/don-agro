@@ -24,11 +24,11 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card p-4">
-                            @if ($test->laboratory_results->quality == 1)
+                            {{-- @if ($test->laboratory_results->quality == 1) --}}
                                 @include('laboratory_protocol._cheque')
-                            @else
+                            {{-- @else
                                 @include('laboratory_protocol._cheque2')
-                            @endif
+                            @endif --}}
                         <div class="py-3">
                             <a href="{{ url()->previous() }}" class="btn btn-primary">ortga</a>
                             <button class="btn btn-primary" id="print-invoice-btn">Chop etish</button>

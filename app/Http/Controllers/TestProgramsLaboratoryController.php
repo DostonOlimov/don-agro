@@ -205,7 +205,7 @@ class TestProgramsLaboratoryController extends Controller
     // bilmadim lekin ishlatmadim
     public function report_view($test_id)
     {
-        $test = TestPrograms::with('indicators')
+        $test = TestPrograms::with('indicators.indicator.nds')
             ->with('laboratory_numbers')
             ->with('laboratory_numbers.results')
             ->with('laboratory_numbers.results.users')
@@ -257,7 +257,7 @@ class TestProgramsLaboratoryController extends Controller
         $namlik = $request->input('namlik');
         $checkbox = $request->input('checkbox');
         $data = $request->input('data');
-        $type = $request->input('type');
+        $type = $request->input('type')??1;
 
         $tests = new LaboratoryFinalResults();
         $tests->test_program_id = $id;

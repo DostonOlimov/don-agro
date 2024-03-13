@@ -253,7 +253,7 @@ class TestProgramsController extends Controller
             // ->with('application.crops.generation')
             ->with('application')
             ->find($id);
-        $indicators =  $indicators = TestProgramIndicators::with('indicator.nds.crops')->with('tests')->where('test_program_id', '=', $id)->get()
+        $indicators = TestProgramIndicators::with('indicator.nds.crops')->with('tests')->where('test_program_id', '=', $id)->get()
         ->filter(function ($indicator) {
             return $indicator->indicator->nds && $indicator->indicator->nds->type_id !== null;
         })

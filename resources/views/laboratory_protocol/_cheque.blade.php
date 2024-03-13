@@ -12,28 +12,25 @@
             <span style="display: block" class="text-center"><b>1/1</b></span>
             <h2 class="text-center">
                 <b> «T A S D I Q L A Y M A N»<br>
-                    “Qishloq xo‘jaligi ekinlari urug‘lari va
-                    ko‘chatlarining ekinbopligini, GMO va
-                    havfsizligini aniqlash markaziy
-                    laboratoriyasi” boshlig‘i
-                    <span style="padding: 5px;display: block"> D.Nizamov</span>
+                    “Don va don mahsulotlarining
+                    sifatini tekshirish markaziy
+                   laboratoriyasi” boshlig‘i
+                    <span style="padding: 5px;display: block">Nizamov D.B</span>
                     <span style="padding: 5px;" id="application-date"></span> yil
             </h2>
         </div>
     </div>
 
 
-        <h1 style="padding-top: 30px" class="text-center"><b>EKILADIGAN URUG‘LARINI SIFAT KO‘RSATKICHLARI TO‘G‘RISIDA</b><br></h1>
+        {{-- <h1 style="padding-top: 30px" class="text-center"><b>EKILADIGAN URUG‘LARINI SIFAT KO‘RSATKICHLARI TO‘G‘RISIDA</b><br></h1> --}}
     <h1 class="text-center"><b>SINOV BAYONNOMA – № {{optional($test->laboratory_results)->number}} .</b></h1>
     <div>
-        <h2 style="text-align: center;  text-decoration: underline;" ><b>
+        <h2 style="text-align: center;" ><b>
         Oʼzbekiston Respublikasi Qishloq xo'jaligi vazirligi huzuridagi Аgrosanoat majmui ustidan
             nazorat qilish Inspektsiya qoshidagi<br> “Qishloq xo'jaligi mahsulotlarini sifatini baholash markazi” davlat muassasi.<br>
-            "Qishloq xo‘jaligi ekinlari urug‘lari va
-            ko‘chatlarining ekinbopligini, GMO va
-            havfsizligini aniqlash markaziy
-            laboratoriyasi".<br>
-        Toshkent viloyati, Qibray tumani,Bobur MFY, Bobur koʼchasi 1-uy. tel:(91) 111-49-93. urugsert@agroxizmat.uz.<br>Akkreditatsiya guvohnomasi № O'ZAK.SL.0271.
+            “Don va don mahsulotlarining sifatini tekshirish”
+            markaziy laboratoriyasi<br>
+        <span style="text-decoration: underline;">Toshkent viloyati, Qibray tumani, Bobur MFY, Bobur koʼchasi 1-uy. tel:(91) 111-49-93. donsert@agroxizmat.uz.<br>Akkreditatsiya guvohnomasi № O'ZAK.SL.0168</span>
             </b>
         </h2>
         <h2> Na'munalar Markaziy laboratoriyaga Sertifikatlashtirish idorasi tomonidan {{$start_date}} yilda
