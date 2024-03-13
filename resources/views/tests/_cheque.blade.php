@@ -30,19 +30,21 @@
             xolda amalga oshirilsin.
         </h4>
     </div>
-    <h4>2.Namunaning identifikatsiya raqami: {{ $app_id->id }}</h4>
+    <h4>2.Namunaning identifikatsiya raqami: {{ $app_id}}</h4>
+    @if(auth()->user()->branch_id == \App\Models\User::BRANCH_INSPECTION or auth()->user()->branch_id == \App\Models\User::BRANCH_LABORATORY)
+
     @php
-        // $k = 1;
-        // $count = $decision->count;
+        $k = 1;
+        $count = $decision->count;
     @endphp
     <div>
         @php
-            // $number = $decision->count; // Replace with your actual number
-            // $columns = 5;
-            // $rows = ceil($number / $columns);
+            $number = $decision->akt[0]->party_number; // Replace with your actual number
+            $columns = 5;
+            $rows = ceil($number / $columns);
         @endphp
 
-        {{-- <table class="table table-bordered align-middle first-table">
+        <table class="table table-bordered align-middle first-table">
             @for ($row = 1; $row <= $rows; $row++)
                 <tr>
                     @for ($col = 1; $col <= $columns; $col++)
@@ -59,19 +61,21 @@
             @endfor
             <tr>
                 <td colspan="5"> Har bir sinov na'munasining vazni
-                    &nbsp;&nbsp;{{ $decision->weight }} -
-                    &nbsp;{{ $measure_type }}
+                    &nbsp;&nbsp;{{ $decision->akt[0]->simple_size }} -
+                    &nbsp;{{ \App\Models\CropData::getMeasureType($decision->akt[0]->measure_type) }}
+                    {{-- &nbsp;{{ $measure_type??'' }} --}}
                 </td>
             </tr>
-        </table> --}}
+        </table>
     </div>
 
+    @endif
     <h4>3.Sifat ko‘rsatkichlari bo‘yicha me’yoriy hujjatlar:</h4>
     @foreach ($indicators as $key => $box)
         @php $t = 1; @endphp
         <table style="font-weight: bold" class="table table-bordered align-middle">
             <br>
-            <tr>{{ $key ? \App\Models\Nds::getType($key) : '' }}</tr>
+            <tr><b>{{ $key ? \App\Models\Nds::getType($key) : '' }}</b></tr>
             @foreach ($box as $k => $indicator)
                 <tr>
                     <td>

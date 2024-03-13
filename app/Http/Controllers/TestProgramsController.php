@@ -253,7 +253,11 @@ class TestProgramsController extends Controller
             // ->with('application.crops.generation')
             ->with('application')
             ->find($id);
-        $indicators = TestProgramIndicators::with('indicator.nds.crops')->with('tests')->where('test_program_id', '=', $id)->get()->groupBy(function ($indicator) {
+        $indicators =  $indicators = TestProgramIndicators::with('indicator.nds.crops')->with('tests')->where('test_program_id', '=', $id)->get()
+        ->filter(function ($indicator) {
+            return $indicator->indicator->nds && $indicator->indicator->nds->type_id !== null;
+        })
+        ->groupBy(function ($indicator) {
             return $indicator->indicator->nds->type_id;
         });
         $url = route('tests.view', $id);
@@ -273,7 +277,7 @@ class TestProgramsController extends Controller
         return view('tests.show', [
             'decision' => $tests,
             // 'measure_type' => $measure_type,
-            'app_id' => $app_id,
+            'app_id' => $app_id->app_number,
             'nds' => $nds,
             'indicators' => $indicators,
             'qrCode' => $qrCode
@@ -316,7 +320,7 @@ class TestProgramsController extends Controller
             ->with('application.crops.name')
             ->with('application.crops.name.nds')
             ->with('application.crops.type')
-            // ->with('application.crops.generation')
+            ->with('akt')
             ->with('application')
             ->find($id);
         $indicators = TestProgramIndicators::with('indicator.nds.crops')->with('tests')->where('test_program_id', '=', $id)->get()
@@ -333,7 +337,7 @@ class TestProgramsController extends Controller
         }
         $max_number = LaboratoryNumbers::max('number');
 
-        $measure_type = (Application::find($tests->app_id)->crops->name->measure_type == 2) ? "dona" : "kg";
+        // $measure_type = (Application::find($tests->app_id)->crops->name->measure_type == 1) ? "kg" : "tonna";
         $nds = [];
         foreach (Nds::where('crop_id', Application::find($tests->app_id)->crops->name_id)->get() as $item) {
             $nds[] = Nds::getType($item->type_id) . " " . $item->number . " " . $item->name;
@@ -342,12 +346,12 @@ class TestProgramsController extends Controller
         $nds_type = implode(",", $nds);
         return view('tests.lab_view', [
             'decision' => $tests,
-            'measure_type' => $measure_type,
+            // 'measure_type' => $measure_type,
             'nds' => $nds_type,
             'indicators' => $indicators,
             'qrCode' => $qrCode,
             'max_number' => $max_number,
-            'app_id' => $app_id
+            'app_id' => $app_id->app_number
         ]);
     }
 }

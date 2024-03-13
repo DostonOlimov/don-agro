@@ -3,7 +3,6 @@
     <!-- page content -->
     <?php $userid = Auth::user()->id; ?>
     @can('viewAny', \App\Models\User::class)
-        @can('add_number', \App\Models\LaboratoryResult::class)
             <div class="section">
                 <!-- PAGE-HEADER -->
                 <div class="page-header">
@@ -96,13 +95,13 @@
                                                                     <a href="{!! url('/tests/view/' . $app->tests->id) !!}"><button type="button"
                                                                             class="btn btn-round btn-info">{{ trans('app.Sinov dasturi fayli') }}</button></a>
                                                                     @if (!$app->tests->code && !$app->tests->final_result)
-                                                                        <a href="{!! url('/tests/list/edit/' . $app->tests->id) !!}"><button type="button"
-                                                                                class="btn btn-round btn-warning">{{ trans('app.Edit') }}</button></a>
+                                                                        {{-- <a href="{!! url('/tests/list/edit/' . $app->tests->id) !!}"><button type="button" class="btn btn-round btn-warning">{{ trans('app.Edit') }}</button></a> --}} {{--- vaqtinchalikdan ochish ---}}
                                                                         {{-- <a url="{!! url('/tests/send/'.$app->tests->id) !!}" class="sa-warning"> <button type="button" class="btn btn-round btn-success ">{{ trans('app.Yubor')}}</button></a> --}}
                                                                     @else
                                                                         {{-- <button type="button"
                                                                         class="btn btn-round btn-danger ">{{ trans('app.Yuborilgan') }}</button></a> --}}
                                                                     @endif
+                                                                    <a href="{!! url('/tests/list/edit/' . $app->tests->id) !!}"><button type="button" class="btn btn-round btn-warning">{{ trans('app.Edit') }}</button></a> {{--- vaqtinchalik ---}}
                                                                 @else
                                                                     <a href="{!! url('/tests/add/' . $app->id) !!}"><button type="button"
                                                                             class="btn btn-round btn-success">&nbsp;
@@ -123,16 +122,6 @@
                     </div>
                 </div>
             </div>
-        @else
-            <div class="section" role="main">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <span class="titleup text-danger"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>&nbsp
-                            {{ trans('app.You Are Not Authorize This page.') }}</span>
-                    </div>
-                </div>
-            </div>
-        @endcan
     @else
         <div class="section" role="main">
             <div class="card">

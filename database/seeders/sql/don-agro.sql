@@ -2306,6 +2306,7 @@ CREATE TABLE `tbl_accessrights` (
 
 INSERT INTO `tbl_accessrights` (`id`, `name`, `status`, `position`, `created_at`, `updated_at`) VALUES
 (54, 'Sertifikatlashtirish bo\'limi xodimi', 'active', 'country', '2019-09-23 01:50:14', '2019-09-27 08:08:44'),
+(50, 'Setifikatlashtirish bo\'limi admini', 'active', 'country', '2019-09-23 01:50:14', '2019-09-27 08:08:44'),
 (55, 'Sertifikatlashtirish bo\'limi boshlig\'i', 'active', 'country', '2019-09-24 05:27:09', '2019-09-27 08:08:38'),
 (56, 'Nazoratchi', 'active', 'country', '2019-09-24 05:28:00', '2019-09-27 08:08:31'),
 (60, 'Inspeksiya', 'active', 'country', '2022-11-29 12:55:53', '2022-11-29 12:55:53'),
@@ -3083,7 +3084,7 @@ CREATE TABLE `test_program_indicators` (
   `test_program_id` int(11) NOT NULL,
   `indicator_id` int(11) NOT NULL,
   `result` float DEFAULT NULL,
-  `type` int(2) NULL DEFAULT 1,
+  `result` int(2) NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

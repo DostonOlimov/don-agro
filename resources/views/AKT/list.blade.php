@@ -2,7 +2,6 @@
 @section('content')
     <!-- page content -->
     <?php $userid = Auth::user()->id; ?>
-    @can('add_number', \App\Models\LaboratoryResult::class)
         @if (getAccessStatusUser('Vehicles', $userid) == 'yes')
             @if (getActiveCustomer($userid) == 'yes' || getActiveEmployee($userid) == 'yes')
                 <div class="section">
@@ -73,6 +72,7 @@
                                                     <th>{{ trans('app.Yaroqliylik sanasi') }}</th>
                                                     <th>{{ trans('app.Namuna  olish miqdori') }}</th>
                                                     <th>{{ trans('app.Mahsulot birligi') }}</th>
+                                                    <th>{{ trans('app.Toʼda (partiya) soni') }}</th>
                                                     {{-- <th>{{ trans('app.Qo\'shimcha ma\'lumotlar') }}</th> --}}
                                                     <th class="border-bottom-0 border-top-0 bg-info w-25" style="width: 25%">
                                                         <select style="cursor: pointer; "
@@ -131,8 +131,10 @@
                                                             </td>
                                                             <td>{{ $item->akt[0]->simple_size }}</td>
                                                             <td>{{ $amount[$item->akt[0]->measure_type] }}</td>
+                                                            <td>{{ $item->akt[0]->party_number }}</td>
                                                             {{-- <td>{{ $item->akt[0]->description }}</td> --}}
                                                         @else
+                                                            <td></td>
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
@@ -192,16 +194,6 @@
                         </div>
                     </div>
                 </div>
-            @else
-                <div class="section" role="main">
-                    <div class="card">
-                        <div class="card-body text-center">
-                            <span class="titleup text-danger"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>&nbsp
-                                {{ trans('app.You Are Not Authorize This page.') }}</span>
-                        </div>
-                    </div>
-                </div>
-            @endif
         @else
             <div class="section" role="main">
                 <div class="card">

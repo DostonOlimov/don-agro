@@ -10,7 +10,6 @@
     <!-- page content -->
     <?php $userid = Auth::user()->id; ?>
     @can('viewAny', \App\Models\Application::class)
-        @can('add_number', \App\Models\LaboratoryResult::class)
             <div class="section">
                 <!-- PAGE-HEADER -->
                 <div class="page-header">
@@ -115,16 +114,6 @@
                 <a href="{{ url()->previous() }}" class="btn btn-primary">{{ trans('app.Ortga') }}</a>
                 <button class="btn btn-primary" id="print-invoice-btn">{{ trans('app.Chop etish') }}</button>
             </div>
-        @else
-            <div class="section" role="main">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <span class="titleup text-danger"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>&nbsp
-                            {{ trans('app.You Are Not Authorize This page.') }}</span>
-                    </div>
-                </div>
-            </div>
-        @endcan
     @else
         <div class="section" role="main">
             <div class="card">
