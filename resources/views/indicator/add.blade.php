@@ -73,6 +73,37 @@
                                                     <textarea id="data" name="nd_name" class="form-control" maxlength="500">{{ old('nd_name') }}</textarea>
                                                 </div>
                                             </div>
+                                            {{-- start no'rma --}}
+                                            <div class="col-md-3 form-group has-feedback">
+                                                <label class="form-label"
+                                                    for="name">{{ trans("app.Me'yor") }} <label
+                                                        class="text-danger">*</label></label>
+                                                <div class="">
+                                                   <input type="text" name="value" class="form-control" value="{{old('value')}}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 form-group has-feedback">
+                                                <label class="form-label"
+                                                    for="nd_name">{{ trans("app.normadan ko'pi bilan(kamida)") }}
+                                                    <label class="text-danger">*</label></label>
+                                                <div class="">
+                                                    <select name="measure_type" class="w-100 form-control custom-select">
+                                                        <option value=""></option>
+                                                        <option value="1">{{trans("app.Kamida")}}</option>
+                                                        <option value="2">{{trans("app.Ko'pi bilan")}}</option>
+                                                        <option value="4">{{trans("app.bo'sh")}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 form-group has-feedback">
+                                                <label class="form-label"
+                                                    for="nd_name">{{ trans('app.norma izohi') }}
+                                                    <label class="text-danger">*</label></label>
+                                                <div class="">
+                                                    <textarea id="data" name="comment" class="form-control" maxlength="500">{{ old('comment') }}</textarea>
+                                                </div>
+                                            </div>
+                                             {{-- end no'rma --}}
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label"

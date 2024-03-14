@@ -58,14 +58,14 @@
                                                         class="w-100 form-control state_of_country custom-select" name="status"
                                                         id="status">
                                                         <option value="">{{ trans('message.Barchasi') }}</option>
-                                                        <option value="3"
-                                                            @if ($status == 3) selected="selected" @endif>
+                                                        <option value="2"
+                                                            @if ($status == 2) selected="selected" @endif>
                                                             {{ trans('app.Sinov dasturi shakillantirilmagan') }}</option>
                                                         <option value="1"
                                                             @if ($status == 1) selected="selected" @endif>
                                                             {{ trans('app.Sinov dasturi shakllantirilgan') }}</option>
-                                                        <option value="2"
-                                                            @if ($status == 2) selected="selected" @endif>
+                                                        <option value="3"
+                                                            @if ($status == 3) selected="selected" @endif>
                                                             {{ trans('app.Yuborilgan') }}</option>
                                                     </select>
                                                 </th>

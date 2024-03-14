@@ -67,9 +67,13 @@ class TestProgramsController extends Controller
             });
         }
         if ($status) {
-            if ($status == 3) {
+            if ($status == 2) {
                 $apps = $apps->doesntHave('tests');
-            } else {
+            }
+            elseif($status == 1){
+                $apps = $apps->has('tests');
+            }
+            else {
                 $apps = $apps->whereHas('tests', function ($query) use ($status) {
                     $query->where('status', $status);
                 });

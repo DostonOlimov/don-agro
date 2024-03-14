@@ -120,6 +120,18 @@ class LaboratoryProtocolController extends Controller
                 $query->where('pre_name', '!=', 0);
             })
             ->get();
+
+        // $indicators = TestProgramIndicators::with('indicator.nds.crops')->with('tests')
+        // ->where('test_program_id', '=', $id)
+        // ->whereHas('indicator', function ($query) {
+        //     $query->where('pre_name', '!=', 0);
+        // })->get()
+        // ->filter(function ($indicator) {
+        //     return $indicator->indicator->nds && $indicator->indicator->nds->type_id !== null;
+        // })
+        // ->groupBy(function ($indicator) {
+        //     return $indicator->indicator->nds->type_id;
+        // });
         $production_type = CropProduction::where('crop_id', $test->application->crop_data_id)->get();
         $qrCode = null;
         if ($test->status == 6) {

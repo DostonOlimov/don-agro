@@ -121,13 +121,13 @@
                                             </label>
                                         </div>
                                     </div> --}}
-                                    <div class="col-md-4 form-group has-feedback">
+                                    {{-- <div class="col-md-4 form-group has-feedback">
                                         <label class="form-label">Sinov bo'yicha mutaxassislar <label class="text-danger">*</label></label>
                                         @foreach($users as $user)
                                             <label>{{$user['fullname']}}</label>
                                             <input type="checkbox" checked name="checkbox[]" value="{{$user['id']}}"><br>
                                         @endforeach
-                                    </div>
+                                    </div> --}}
                                 </div>
                 <div class="table-responsive">
                     <table id="examples1" class="table table-striped table-bordered nowrap" style="margin-top:20px;" >
@@ -147,9 +147,25 @@
                                     @php $sum = 0; @endphp
                                     <tr>
                                         <td>@if(!$indicator->indicator->parent_id) {{$tr}} @endif</td>
-                                        <td><a href="{!! url('/laboratory-results/indicator-view/'.$indicator->indicator_id.'/'.$crop_id.'?test_id='.$test->id) !!}">{{$indicator->indicator->name}}</a>  {{($indicator->indicator->nds->type_id)? '('.\App\Models\Nds::getType($indicator->indicator->nds->type_id).')':""}}</td>
-                                        <td>{!! nl2br($indicator->indicator->nd_name) !!}</td>
-                                        <td>{!! $indicator->indicator->default_value !!}</td>
+                                        <td>
+                                            <a href="{!! url('/laboratory-results/indicator-view/'.$indicator->indicator_id.'/'.$crop_id.'?test_id='.$test->id) !!}">
+                                                {{$indicator->indicator->name}}
+                                                @if ($indicator->indicator->measure_type == 1)
+                                                    , kamida, %
+                                                @elseif ($indicator->indicator->measure_type == 2)
+                                                    , ko'pi bilan, %
+                                                @elseif ($indicator->indicator->measure_type == 4)
+                                                    , %
+                                                @endif
+                                            </a>
+                                            {{(isset($indicator->indicator->nds->type_id))? '('.\App\Models\Nds::getType($indicator->indicator->nds->type_id).'.'.$indicator->indicator->nds->number/*.' '.$indicator->indicator->nds->name*/.')':""}}
+                                        </td>
+                                        <td>{!! nl2br($indicator->indicator->nd_name) !!} </td>
+                                        <td>
+                                            @if($indicator->indicator->nd_name)
+                                                {{($indicator->indicator->value!=4)? $indicator->indicator->value : $indicator->indicator->comment}}
+                                            @endif
+                                        </td>
 
                                         @foreach($test->laboratory_numbers as $number)
                                             @php
@@ -199,6 +215,15 @@
                             </table>
                 </div>
                                 <div class="col-md-12 form-group has-feedback">
+                                    <label for="data" class="form-label">Qo'shimcha ma'lumotlar:<label class="text-danger">*</label></label>
+                                        <textarea id="data" name="data" class="form-control" rows="2" cols="50">{{ old('data')}} </textarea>
+                                    {{-- @if ($errors->has('data'))
+                                        <span class="help-block">
+											<strong style="color: red">Xulosa kiritilishi kerak</strong>
+										</span>
+                                    @endif --}}
+                                </div>
+                                {{-- <div class="col-md-12 form-group has-feedback">
                                     <label for="data" class="form-label">Xulosa:<label class="text-danger">*</label></label>
                                         <textarea id="data" name="data" class="form-control" rows="2" cols="50" required>{{ old('data')}} </textarea>
                                     @if ($errors->has('data'))
@@ -206,7 +231,7 @@
 											<strong style="color: red">Xulosa kiritilishi kerak</strong>
 										</span>
                                     @endif
-                                </div>
+                                </div> --}}
 
                                 <div class="form-group col-md-12 col-sm-12">
                                     <div class="col-md-12 col-sm-12 text-center">

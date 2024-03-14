@@ -44,6 +44,9 @@ class IndicatorController extends Controller
             $type->name = $name;
             $type->nd_name = $nd_name;
             $type->nds_id = $nds;
+            $type->value = $request->input('value');
+            $type->measure_type = $request->input('measure_type');
+            $type->comment = $request->input('comment');
             $type->save();
             return redirect('indicator/list')->with('message', 'Successfully Submitted');
         } else {
@@ -78,6 +81,9 @@ class IndicatorController extends Controller
         $type->name = $request->input('name');
         $type->nd_name = $request->input('nd_name');
         $type->nds_id = $request->input('nds_id');
+        $type->value = $request->input('value');
+        $type->measure_type = $request->input('measure_type');
+        $type->comment = $request->input('comment');
         $type->save();
 
         return redirect('indicator/list')->with('message', 'Successfully Updated');
