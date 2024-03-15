@@ -12,12 +12,24 @@
         cursor: pointer;
         display: none;
     }
+    .block-for-print {
+        display: none;
+    }
+
+    @media print {
+        .block-for-print {
+            display: block;
+            width: 100px;
+            height: 100px;
+        }
+    }
 </style>
 {{-- end down button style --}}
 <div id="invoice-cheque" class="py-4 col-12 {{ $classes ?? '' }}" style=" font-family: Times New Roman;">
     @for ($i = 0; $i < $test->akt[0]->party_number; $i++)
         @include('laboratory_protocol._cheque')
-    @endfor
+        <div class="block-for-print"></div>
+        @endfor
 </div>
 <button id="scrollToBottomBtn">Down</button>
 
