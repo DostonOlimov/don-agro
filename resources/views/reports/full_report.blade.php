@@ -337,6 +337,7 @@
                                                     </td>
                                                     <td>{{ optional(optional(optional($app->tests)->result)->certificate)->given_date }}
                                                     </td>
+                                                    {{-- start lab result --}}
                                                     <td>
                                                         @if ($type != 2)
                                                             {{ optional(optional($app->tests)->result)->number }}
@@ -355,6 +356,7 @@
                                                             {{ 'Nomuvofiq' }}
                                                         @endif
                                                     </td>
+                                                    {{-- end lab result --}}
                                                     <td>{{ optional(optional($app->tests)->result)->comment }}</td>
                                                     <td>
                                                         @if ($app->decision)

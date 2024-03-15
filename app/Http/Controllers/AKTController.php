@@ -36,7 +36,7 @@ class AKTController extends Controller
             //     $data = $data->has('final_result');
             // }
             elseif($status==2){
-                $data =$data->where('status', $status);
+                $data =$data->where('status','>=', $status);
             }
             else{
                 $status=null;

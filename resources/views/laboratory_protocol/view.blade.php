@@ -24,8 +24,10 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card p-4">
+
+                        @include('laboratory_protocol.__base')
                             {{-- @if ($test->laboratory_results->quality == 1) --}}
-                                @include('laboratory_protocol._cheque')
+                                {{-- @include('laboratory_protocol._cheque') --}}
                             {{-- @else
                                 @include('laboratory_protocol._cheque2')
                             @endif --}}

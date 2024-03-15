@@ -14,6 +14,7 @@ use App\Models\LaboratoryResult;
 use App\Models\Sertificate;
 use App\Models\TestProgramIndicators;
 use App\Models\TestPrograms;
+use App\Rules\CheckTestLaboratoryNumber;
 use App\tbl_activities;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -82,18 +83,28 @@ class LaboratoryProtocolController extends Controller
     {
         $test = TestPrograms::with('laboratory_results')
             ->find($id);
-        return view('laboratory_protocol.add', compact('test'));
+        $rejectData = LaboratoryFinalResults::with('test_program.akt')
+            ->whereRaw('number = (select max(number) from laboratory_final_results)')
+            ->first();
+        $max_number = $rejectData->number + $rejectData->test_program->akt[0]->party_number;
+        return view('laboratory_protocol.add', compact('test', 'max_number'));
     }
     public function store(Request $request)
     {
         $userA = Auth::user();
-        //  $this->authorize('create', Application::class);
         $test_id = $request->input('test_id');
         $number = $request->input('number');
         $type = $request->input('type');
-
-        $test = LaboratoryFinalResults::where('test_program_id', $test_id)
+        //  $this->authorize('create', Application::class);
+        $test = LaboratoryFinalResults::with('test_program.akt')->where('test_program_id', $test_id)
             ->first();
+
+        $validated = $request->validate([
+            'number' => [
+                'required', new CheckTestLaboratoryNumber($test),
+            ],
+        ]);
+
         $test->number = $number;
         $test->date = join('-', array_reverse(explode('-', $request->input('date'))));
         $test->save();
@@ -114,24 +125,24 @@ class LaboratoryProtocolController extends Controller
         $end_date = Carbon::createFromFormat('Y-m-d', $test->laboratory_results->end_date)->format('d.m.Y');
 
         $nds_type = $test->application->crops->name->nds;
-        $indicators = TestProgramIndicators::where('test_program_id', '=', $id)
-            ->with('tests')
+        // $indicators = TestProgramIndicators::where('test_program_id', '=', $id)
+        //     ->with('tests')
+        //     ->whereHas('indicator', function ($query) {
+        //         $query->where('pre_name', '!=', 0);
+        //     })
+        //     ->get();
+
+        $indicators = TestProgramIndicators::with('indicator.nds.crops')->with('tests')
+            ->where('test_program_id', '=', $id)
             ->whereHas('indicator', function ($query) {
                 $query->where('pre_name', '!=', 0);
+            })->get()
+            ->filter(function ($indicator) {
+                return $indicator->indicator->nds && $indicator->indicator->nds->type_id !== null;
             })
-            ->get();
-
-        // $indicators = TestProgramIndicators::with('indicator.nds.crops')->with('tests')
-        // ->where('test_program_id', '=', $id)
-        // ->whereHas('indicator', function ($query) {
-        //     $query->where('pre_name', '!=', 0);
-        // })->get()
-        // ->filter(function ($indicator) {
-        //     return $indicator->indicator->nds && $indicator->indicator->nds->type_id !== null;
-        // })
-        // ->groupBy(function ($indicator) {
-        //     return $indicator->indicator->nds->type_id;
-        // });
+            ->groupBy(function ($indicator) {
+                return $indicator->indicator->nds->type_id;
+            });
         $production_type = CropProduction::where('crop_id', $test->application->crop_data_id)->get();
         $qrCode = null;
         if ($test->status == 6) {

@@ -98,9 +98,9 @@ class TestProgramsLaboratoryController extends Controller
         $number = $request->input('number');
         $type = $request->input('type') ?? null;
         $test = TestPrograms::with('akt')->find($id);
-        $validated = $request->validate([
+                $validated = $request->validate([
             'number' => [
-                'required', new CheckLaboratoryNumber($test, $type),
+                'required', new CheckLaboratoryNumber($test),
             ],
         ]);
 
@@ -245,10 +245,10 @@ class TestProgramsLaboratoryController extends Controller
     }
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'data' =>['required'],
-        ]);
-     //   $this->authorize('create', User::class);
+        // $validated = $request->validate([
+        //     'data' =>['required'],
+        // ]);
+    //   $this->authorize('create', User::class);
         $userA = Auth::user();
         $id = $request->input('id');
         $start_date = $request->input('start_date');
