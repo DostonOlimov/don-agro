@@ -10,6 +10,7 @@
     <link rel="icon" type="image/png" sizes="192x192" href="{{ URL::asset('/assets/images/logoNEW.png') }}">
 
     <!-- Vendors styles-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
      <link rel="stylesheet" href="{{ URL::asset('/assets/vendors/simplebar/css/simplebar.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('/assets/css/vendors/simplebar.css') }}">
     <link href="{{ URL::asset('/assets/css/style.css') }}" rel="stylesheet">

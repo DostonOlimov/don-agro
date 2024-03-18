@@ -11,7 +11,7 @@
         border-radius: 5px;
         cursor: pointer;
         display: none;
-    }
+        }
     .block-for-print {
         display: none;
     }
@@ -20,7 +20,12 @@
         .block-for-print {
             display: block;
             width: 100px;
-            height: 100px;
+
+            @if (count($test->application->crops->name->nds) > 1)
+                height: 1400px;
+            @else
+                height: 100px;
+            @endif
         }
     }
 </style>
@@ -29,13 +34,13 @@
     @for ($i = 0; $i < $test->akt[0]->party_number; $i++)
         @include('laboratory_protocol._cheque')
         <div class="block-for-print"></div>
-        @endfor
+    @endfor
 </div>
-<button id="scrollToBottomBtn">Down</button>
+    <button id="scrollToBottomBtn"><i class="fas fa-chevron-down"></i></button>
 
 {{-- start down button script --}}
 <script>
-    function isPageBottom() {
+function isPageBottom() {
         return window.innerHeight + window.scrollY >= document.body.offsetHeight;
     }
 
@@ -44,7 +49,7 @@
             document.getElementById('scrollToBottomBtn').style.display = 'block';
         } else {
             document.getElementById('scrollToBottomBtn').style.display = 'none';
-        }
+            }
     }
 
     function scrollToBottom() {
@@ -56,6 +61,6 @@
 
     window.addEventListener('scroll', handleScroll);
 
-    document.getElementById('scrollToBottomBtn').addEventListener('click', scrollToBottom);
+        document.getElementById('scrollToBottomBtn').addEventListener('click', scrollToBottom);
 </script>
 {{-- end down button script --}}

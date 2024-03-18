@@ -100,7 +100,7 @@
             <h2> Sinov o’tkazish talablari : harorati - <span> {{ $test->laboratory_results->harorat }} °C </span> va
                 nisbiy namligi: <span style="text-decoration: underline">{{ $test->laboratory_results->namlik }}
                     %.</span> </h2>
-            <h2>Sinovning maqsadi va vazifasi: <span style="text-decoration: underline">Sertifikatlash.</span></h2>
+            <h2>Sinovning maqsadi va vazifasi: <span style="text-decoration: underline">{{($test->application->crops->sxeme_number!=3)?'Sertifikatlash.' : 'Inspeksiya nazorati uchun.'}}</span></h2>
             <h2>Subpudratchi tomonidan o’tkazilgan sinov: <span>-</span></h2>
             <h2>Sinov o’tkazdi: <span
                     style="text-decoration: underline">{{ $test->application->decision->laboratory->name }}.</span>
