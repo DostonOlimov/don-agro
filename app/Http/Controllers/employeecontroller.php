@@ -90,7 +90,7 @@ class employeecontroller extends Controller
             $user->image = 'avtar.png';
         }
         $user->role = $request->input('role');
-        
+
         if ( $request->input('role')>=90) {
             $user->branch_id = \App\Models\User::BRANCH_LABORATORY;
         }
@@ -189,11 +189,20 @@ class employeecontroller extends Controller
         }
         $user->mobile_no = $request->input('mobile');
         $user->address = $request->input('address');
-        if (!empty($request->hasFile('image'))) {
+        if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $filename = $file->getClientOriginalName();
-            $file->move(public_path() . '/employee/', $file->getClientOriginalName());
+            $filename = time() . '.' . $request->file('image')->extension();
+            $file->move(public_path() . '/employee/', $filename);
+            if (!is_null($user->image)) {
+                $oldImagePath = public_path() . '/employee/' . $user->image;
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
+            }
+
             $user->image = $filename;
+        } else {
+            $user->image = $user->image;
         }
         $user->role = $role;
         if ($request->input('role') >= 90) {
