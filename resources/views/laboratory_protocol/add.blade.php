@@ -49,7 +49,7 @@
                                             @if ($errors->has('number'))
                                                 <span style="color:black">
                                                     <strong> (Oxirgi ro'yxatga olingan raqami :
-                                                        <span style="color:red">{{ $max_number }}</span>)
+                                                        <span style="color:red">{{ $max_number ?? null }}</span>)
                                                     </strong>
                                                 </span>
                                             @endif

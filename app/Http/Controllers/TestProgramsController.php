@@ -69,11 +69,9 @@ class TestProgramsController extends Controller
         if ($status) {
             if ($status == 2) {
                 $apps = $apps->doesntHave('tests');
-            }
-            elseif($status == 1){
+            } elseif ($status == 1) {
                 $apps = $apps->has('tests');
-            }
-            else {
+            } else {
                 $apps = $apps->whereHas('tests', function ($query) use ($status) {
                     $query->where('status', $status);
                 });
@@ -258,12 +256,12 @@ class TestProgramsController extends Controller
             ->with('application')
             ->find($id);
         $indicators = TestProgramIndicators::with('indicator.nds.crops')->with('tests')->where('test_program_id', '=', $id)->get()
-        ->filter(function ($indicator) {
-            return $indicator->indicator->nds && $indicator->indicator->nds->type_id !== null;
-        })
-        ->groupBy(function ($indicator) {
-            return $indicator->indicator->nds->type_id;
-        });
+            ->filter(function ($indicator) {
+                return $indicator->indicator->nds && $indicator->indicator->nds->type_id !== null;
+            })
+            ->groupBy(function ($indicator) {
+                return $indicator->indicator->nds->type_id;
+            });
         $url = route('tests.view', $id);
         $qrCode = null;
         if ($tests->code) {
@@ -339,8 +337,14 @@ class TestProgramsController extends Controller
         if ($tests->code) {
             $qrCode = QrCode::size(100)->generate($url);
         }
-        $max_number = LaboratoryNumbers::max('number');
-
+        $year = null;
+        if (session('year')) {
+            $year = session('year');
+        } else {
+            $year = date('Y');
+        }
+        $max_number = DB::select('SELECT MAX(number) as max from laboratory_numbers WHERE year=' . $year . ' GROUP BY number ORDER BY number DESC;')[0]->max ?? null;
+        // $max_number = LaboratoryNumbers::where('year', $year)->max('number');
         // $measure_type = (Application::find($tests->app_id)->crops->name->measure_type == 1) ? "kg" : "tonna";
         $nds = [];
         foreach (Nds::where('crop_id', Application::find($tests->app_id)->crops->name_id)->get() as $item) {

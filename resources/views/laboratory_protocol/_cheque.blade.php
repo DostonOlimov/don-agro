@@ -22,9 +22,9 @@
         </div>
     </div>
 
-
     {{-- <h1 style="padding-top: 30px" class="text-center"><b>EKILADIGAN URUG‘LARINI SIFAT KO‘RSATKICHLARI TO‘G‘RISIDA</b><br></h1> --}}
-    <h1 class="text-center"><b>SINOV BAYONNOMA – № {{ optional($test->laboratory_results)->number + $y }} </b></h1>
+    <h1 class="text-center"><b>SINOV BAYONNOMA – № {{ optional($test->laboratory_results)->number + $i }}
+        </b></h1>
     <div>
         <h2 style="text-align: center;"><b>
                 Oʼzbekiston Respublikasi Qishloq xo'jaligi vazirligi huzuridagi Аgrosanoat majmui ustidan
@@ -100,7 +100,9 @@
             <h2> Sinov o’tkazish talablari : harorati - <span> {{ $test->laboratory_results->harorat }} °C </span> va
                 nisbiy namligi: <span style="text-decoration: underline">{{ $test->laboratory_results->namlik }}
                     %.</span> </h2>
-            <h2>Sinovning maqsadi va vazifasi: <span style="text-decoration: underline">{{($test->application->crops->sxeme_number!=3)?'Sertifikatlash.' : 'Inspeksiya nazorati uchun.'}}</span></h2>
+            <h2>Sinovning maqsadi va vazifasi: <span
+                    style="text-decoration: underline">{{ $test->application->crops->sxeme_number != 3 ? 'Sertifikatlash.' : 'Inspeksiya nazorati uchun.' }}</span>
+            </h2>
             <h2>Subpudratchi tomonidan o’tkazilgan sinov: <span>-</span></h2>
             <h2>Sinov o’tkazdi: <span
                     style="text-decoration: underline">{{ $test->application->decision->laboratory->name }}.</span>
@@ -268,7 +270,7 @@
             </span>
         </h2>
         <h2 style="padding-left: 50px">Olingan sinov natijasiga tegishli bayonnoma raqami : <span
-                style="text-decoration: underline">№ {{ optional($test->laboratory_results)->number + $y }}</span></h2>
+                style="text-decoration: underline">№ {{ optional($test->laboratory_results)->number + $i }}</span></h2>
         {{-- <h2 style="padding-left: 50px;">Xulosa : <span style="text-decoration: underline;"> <b>{{ $test->laboratory_results->data }}</b></span></h2> --}}
         {{-- <h4>Natijalar sinovdan o'tkazilgan na'munalarga tegishli.</h4> --}}
         <h2 style="padding-left: 50px"> Bajaruvchi:
@@ -289,4 +291,3 @@
         })
     }
 </script>
-

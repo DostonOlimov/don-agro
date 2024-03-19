@@ -16,11 +16,15 @@ class CheckLaboratoryNumber implements Rule
      *
      * @return void
      */
-    public function __construct($tests,$type=null)
+    public function __construct($tests, $type = null)
     {
         $this->count = $tests->akt[0]->party_number;
-        $this->type = $type;
-        $this->year = $tests->application->getYear();
+        // $this->type = $type;
+        if (session('year')) {
+            $this->year = session('year');
+        } else {
+            $this->year = date('Y');
+        }
     }
 
     /**
@@ -32,8 +36,11 @@ class CheckLaboratoryNumber implements Rule
      */
     public function passes($attribute, $value)
     {
-        for($i=$value;$i<$value+$this->count;$i++){
-            if(LaboratoryNumbers::where('number',$i)->where('year',$this->year)->where('laboratory_category_type',$this->type)->first()){
+        for ($i = $value; $i < $value + $this->count; $i++) {
+            if (LaboratoryNumbers::where('number', $i)->where('year', $this->year)
+                // ->where('laboratory_category_type',$this->type)
+                ->first()
+            ) {
                 return false;
             }
         }

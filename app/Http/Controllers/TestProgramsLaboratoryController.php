@@ -45,7 +45,7 @@ class TestProgramsLaboratoryController extends Controller
             ->with('status_change')
             ->with('laboratory_numbers');
         // ->whereNotNull('code');
-        $apps->where('status','>=',TestPrograms::STATUS_SEND);
+        $apps->where('status', '>=', TestPrograms::STATUS_SEND);
         if ($from && $till) {
             $fromTime = join('-', array_reverse(explode('-', $from)));
             $tillTime = join('-', array_reverse(explode('-', $till)));
@@ -98,19 +98,23 @@ class TestProgramsLaboratoryController extends Controller
         $number = $request->input('number');
         $type = $request->input('type') ?? null;
         $test = TestPrograms::with('akt')->find($id);
-                $validated = $request->validate([
+        $validated = $request->validate([
             'number' => [
                 'required', new CheckLaboratoryNumber($test),
             ],
         ]);
-
-
+        $year = null;
+        if (session('year')) {
+            $year = session('year');
+        } else {
+            $year = date('Y');
+        }
         for ($i = $number; $i < $number + $test->akt[0]->party_number; $i++) {
             $num = new LaboratoryNumbers();
             $num->number = $i;
             $num->test_program_id = $id;
             $num->laboratory_category_type = $type;
-            $num->year = $test->application->getYear();
+            $num->year = $year;
             $num->save();
         }
 
@@ -156,17 +160,17 @@ class TestProgramsLaboratoryController extends Controller
         $from = $request->input('from');
         $till = $request->input('till');
 
-        $apps= TestPrograms::with('application')
+        $apps = TestPrograms::with('application')
             ->with('application.crops.name')
             ->with('application.crops.type')
             ->with('application.organization')
             ->with('final_result')
             ->with('status_change')
-            ->where('status',TestPrograms::STATUS_ACCEPTED);
+            ->where('status', TestPrograms::STATUS_ACCEPTED);
         if ($from && $till) {
             $fromTime = join('-', array_reverse(explode('-', $from)));
             $tillTime = join('-', array_reverse(explode('-', $till)));
-            $apps->whereHas('application', function ($query) use ($fromTime,$tillTime) {
+            $apps->whereHas('application', function ($query) use ($fromTime, $tillTime) {
                 $apps = $query->whereDate('date', '>=', $fromTime)
                     ->whereDate('date', '<=', $tillTime);
             });
@@ -188,7 +192,6 @@ class TestProgramsLaboratoryController extends Controller
                     })->orWhereHas('application.crops.type', function ($query) use ($searchQuery) {
                         $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
                     });
-
                 }
             });
         });
@@ -199,7 +202,7 @@ class TestProgramsLaboratoryController extends Controller
             ->appends(['till' => $request->input('till')])
             ->appends(['from' => $request->input('from')])
             ->appends(['crop' => $request->input('crop')]);
-        return view('test_laboratory.report', compact('tests','from','till','crop'));
+        return view('test_laboratory.report', compact('tests', 'from', 'till', 'crop'));
     }
 
     // bilmadim lekin ishlatmadim
@@ -212,12 +215,11 @@ class TestProgramsLaboratoryController extends Controller
             ->find($test_id);
         $originusers = [];
 
-        foreach($test->laboratory_numbers as $mynumbers)
-        {
-            foreach($mynumbers->results as $myresult){
+        foreach ($test->laboratory_numbers as $mynumbers) {
+            foreach ($mynumbers->results as $myresult) {
                 $originusers[] = [
-                    'id'=>$myresult->users->id,
-                    'fullname'=>  $myresult->users->name . ' ' .$myresult->users->lastname,
+                    'id' => $myresult->users->id,
+                    'fullname' =>  $myresult->users->name . ' ' . $myresult->users->lastname,
                 ];
             }
         }
@@ -230,7 +232,7 @@ class TestProgramsLaboratoryController extends Controller
 
 
         $crop_id = optional(optional($test->application)->crops)->name->id;
-        return view('test_laboratory.report_view', compact('test','crop_id','users'));
+        return view('test_laboratory.report_view', compact('test', 'crop_id', 'users'));
     }
 
     //index
@@ -241,14 +243,14 @@ class TestProgramsLaboratoryController extends Controller
             ->find($test_id);
         $crop_id = optional(optional($test->application)->crops)->name->id;
 
-            return view('test_laboratory.add', compact('test','crop_id'));
+        return view('test_laboratory.add', compact('test', 'crop_id'));
     }
     public function store(Request $request)
     {
         // $validated = $request->validate([
         //     'data' =>['required'],
         // ]);
-    //   $this->authorize('create', User::class);
+        //   $this->authorize('create', User::class);
         $userA = Auth::user();
         $id = $request->input('id');
         $start_date = $request->input('start_date');
@@ -257,7 +259,7 @@ class TestProgramsLaboratoryController extends Controller
         $namlik = $request->input('namlik');
         $checkbox = $request->input('checkbox');
         $data = $request->input('data');
-        $type = $request->input('type')??1;
+        $type = $request->input('type') ?? 1;
 
         $tests = new LaboratoryFinalResults();
         $tests->test_program_id = $id;
@@ -271,7 +273,7 @@ class TestProgramsLaboratoryController extends Controller
         $tests->save();
 
         $amounts = [];
-        if(!empty($checkbox)) {
+        if (!empty($checkbox)) {
             foreach ($checkbox as $check) {
                 $amounts[] = [
                     'results_id' => $tests->id,
@@ -282,20 +284,17 @@ class TestProgramsLaboratoryController extends Controller
         DB::transaction(function () use ($amounts) {
             LaboratoryResultUsers::insert($amounts);
         });
-        $indicators = TestProgramIndicators::where('test_program_id',$id)
+        $indicators = TestProgramIndicators::where('test_program_id', $id)
             ->get();
-        foreach($indicators as $indicator){
-                $indicator->result = $request->input('value'.$indicator->id);
-                $indicator->type = $request->input('type'.$indicator->id) ?? 1;
-                $indicator->save();
+        foreach ($indicators as $indicator) {
+            $indicator->result = $request->input('value' . $indicator->id);
+            $indicator->type = $request->input('type' . $indicator->id) ?? 1;
+            $indicator->save();
         }
         $test_program = TestPrograms::find($id);
         $test_program->status = TestPrograms::STATUS_FINISHED;
         $test_program->save();
 
         return redirect('/tests-laboratory/report')->with('message', 'Successfully Submitted');
-
-
     }
-
 }

@@ -19,6 +19,7 @@ use App\tbl_activities;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class LaboratoryProtocolController extends Controller
@@ -81,12 +82,41 @@ class LaboratoryProtocolController extends Controller
     }
     public function add($id)
     {
-        $test = TestPrograms::with('laboratory_results')
+        $test = TestPrograms::with(['laboratory_results', 'application'])
             ->find($id);
-        $rejectData = LaboratoryFinalResults::with('test_program.akt')
-            ->whereRaw('number = (select max(number) from laboratory_final_results)')
-            ->first();
-        $max_number = $rejectData->number + $rejectData->test_program->akt[0]->party_number;
+        $year = null;
+        if (session('year')) {
+            $year = session('year');
+        } else {
+            $year = date('Y');
+        }
+        $rejectData = (DB::select('
+        SELECT
+            lfr.id,
+            lfr.number,
+            a.party_number,
+            MAX(lfr.number) as `max_number`
+        FROM
+            laboratory_final_results lfr
+        JOIN
+            laboratory_numbers ln ON lfr.test_program_id = ln.test_program_id
+        JOIN
+            AKT a ON lfr.test_program_id = a.test_program_id
+        WHERE
+            ln.year = ' . $year . '
+            AND lfr.number IS NOT NULL
+        GROUP BY
+            lfr.id, lfr.number, a.party_number
+        ORDER BY
+            `max_number` DESC;
+    '));
+        $max_number = null;
+        if ($rejectData) {
+            /*($rejectData[0]->number > 1) ? $checkOne = $rejectData[0]->number :*/
+            $checkOne = $rejectData[0]->number - 1;
+            $max_number = $rejectData[0]->party_number + $checkOne;
+        }
+        // dd($rejectData);
         return view('laboratory_protocol.add', compact('test', 'max_number'));
     }
     public function store(Request $request)
@@ -96,15 +126,13 @@ class LaboratoryProtocolController extends Controller
         $number = $request->input('number');
         $type = $request->input('type');
         //  $this->authorize('create', Application::class);
-        $test = LaboratoryFinalResults::with('test_program.akt')->where('test_program_id', $test_id)
+        $test = LaboratoryFinalResults::with(['test_program.akt', 'test_program.application'])->where('test_program_id', $test_id)
             ->first();
-
         $validated = $request->validate([
             'number' => [
                 'required', new CheckTestLaboratoryNumber($test),
             ],
         ]);
-
         $test->number = $number;
         $test->date = join('-', array_reverse(explode('-', $request->input('date'))));
         $test->save();
