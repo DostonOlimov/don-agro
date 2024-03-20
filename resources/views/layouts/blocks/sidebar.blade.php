@@ -85,6 +85,9 @@
                 <li class="nav-item"><a class="nav-link" href="{!! url('/laboratory-protocol/list') !!}"> <svg class="nav-icon">
                             <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-list"></use>
                         </svg>{{trans('message.Sinov bayonnomalari')}}</a></li>
+                <li class="nav-item"><a class="nav-link" href="{!! url('/indicator_norm/list') !!}"> <svg class="nav-icon">
+                            <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-book"></use>
+                        </svg>{{trans("message.Belgilangan me’yorlar")}}</a></li>
             @endif
 
                 {{-- end labratoyiy --}}

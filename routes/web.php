@@ -367,6 +367,12 @@ Route::group(
             Route::post('/store', '\App\Http\Controllers\LaboratoryProtocolController@store');
             Route::get('/change/{id}', '\App\Http\Controllers\LaboratoryProtocolController@change_status');
         });
+        //Laboratory indicator norm
+        Route::group(['prefix' => 'indicator_norm', 'middleware' => 'auth'], function () {
+            Route::get('/list', '\App\Http\Controllers\LaboratoryProtocolController@indicator_norm')->name('indicator_norm');
+            Route::get('/list/modify/{id}', '\App\Http\Controllers\LaboratoryProtocolController@indicator_norm_modify');
+            Route::put('/list/modify/update/{id}', '\App\Http\Controllers\LaboratoryProtocolController@indicator_norm_update');
+        });
         //Final results
         Route::group(['prefix' => 'final_results', 'middleware' => 'auth'], function () {
             Route::get('/search', '\App\Http\Controllers\FinalResultsController@search');

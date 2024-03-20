@@ -140,14 +140,14 @@
                                                 </div>
                                             </div>
                                             <hr>
-                                            <div class="table_row row">
+                                            {{-- <div class="table_row row">
                                                 <div class="col-md-5 col-sm-12 table_td">
                                                     <i class="fa fa-lock"></i> <b>API Token</b>
                                                 </div>
                                                 <div class="col-md-7 col-sm-12 table_td">
                                                     <span class="txt_color">{{ $user->api_token ?? '' }}</span>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                         </div>
 
 

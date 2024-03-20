@@ -78,7 +78,7 @@ class IndicatorController extends Controller
     public function update(Request $request, $id)
     {
         $type = Indicator::findOrFail($id);
-        $type->name = $request->input('name');
+        $type->name = $request->input('name')??$type->name;
         $type->nd_name = $request->input('nd_name');
         $type->nds_id = $request->input('nds_id');
         $type->value = $request->input('value');

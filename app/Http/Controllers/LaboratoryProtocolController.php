@@ -189,4 +189,37 @@ class LaboratoryProtocolController extends Controller
 
         return redirect('/laboratory-protocol/list');
     }
+
+    public function indicator_norm()
+    {
+        $indicators = Indicator::with('nds.crops')
+        // ->whereHas('nds.crops', function ($query) use ($id){
+        //     $query->where('id',$id);
+        // })
+        ->get();
+        return view('indicator_norm.list', compact('indicators'));
+    }
+    public function indicator_norm_modify($id)
+    {
+        $crops = CropsName::get();
+        return view('indicator_norm.modify', [
+            'type' => Indicator::findOrFail($id),
+            'editid' => $id,
+            'crops' => $crops
+        ]);
+    }
+
+    public function indicator_norm_update(Request $request, $id)
+    {
+        $type = Indicator::findOrFail($id);
+        $type->name = $request->input('name')??$type->name;
+        $type->nd_name = $request->input('nd_name')??$type->nd_name;
+        $type->nds_id = $request->input('nds_id')??$type->nds_id;
+        $type->value = $request->input('value');
+        $type->measure_type = $request->input('measure_type');
+        $type->comment = $request->input('comment');
+        $type->save();
+
+        return redirect('indicator_norm/list')->with('message', 'Successfully Updated');
+    }
 }
