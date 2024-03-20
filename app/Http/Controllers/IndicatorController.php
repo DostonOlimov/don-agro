@@ -44,9 +44,9 @@ class IndicatorController extends Controller
             $type->name = $name;
             $type->nd_name = $nd_name;
             $type->nds_id = $nds;
-            $type->value = $request->input('value');
-            $type->measure_type = $request->input('measure_type');
-            $type->comment = $request->input('comment');
+            $type->value = $request->input('value')??null;
+            $type->measure_type = $request->input('measure_type')??null;
+            $type->comment = $request->input('comment')??null;
             $type->save();
             return redirect('indicator/list')->with('message', 'Successfully Submitted');
         } else {
@@ -79,11 +79,11 @@ class IndicatorController extends Controller
     {
         $type = Indicator::findOrFail($id);
         $type->name = $request->input('name')??$type->name;
-        $type->nd_name = $request->input('nd_name');
-        $type->nds_id = $request->input('nds_id');
-        $type->value = $request->input('value');
-        $type->measure_type = $request->input('measure_type');
-        $type->comment = $request->input('comment');
+        $type->nd_name = $request->input('nd_name')??$type->nd_name;
+        $type->nds_id = $request->input('nds_id')??$type->nds_id;
+        $type->value = $request->input('value')??$type->value;
+        $type->measure_type = $request->input('measure_type')??$type->measure_type;
+        $type->comment = $request->input('comment')??$type->comment;
         $type->save();
 
         return redirect('indicator/list')->with('message', 'Successfully Updated');

@@ -83,9 +83,9 @@
                                                 <td>{{ $indicator->value }}</td>
                                                 <td>
                                                     @if ($indicator->measure_type == 1)
-                                                        Kamida
+                                                        Kamida %
                                                     @elseif ($indicator->measure_type == 2)
-                                                        Ko'pi bilan
+                                                        Ko'pi bilan %
                                                     @endif
                                                 </td>
                                                 <td style="display: flex; column-gap: 3px;">
