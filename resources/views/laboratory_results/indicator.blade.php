@@ -60,6 +60,7 @@
                                             <td>@if(!$indicator->parent_id) {{$t}} @endif</td>
                                             <td width="50%" > {{$indicator->name}}</td>
                                             <td width="30%">{!! nl2br($indicator->nd_name) !!}</td>
+                                            <td width="30%">{!! \App\Models\Nds::getType(optional($indicator->nds)->type_id).nl2br($indicator->nds->number) !!}</td>
                                             <td width="15%">
                                                 @if($indicator->nd_name)
                                                     <a href="{!! url('/laboratory-results/indicator-view/'.$indicator->id.'/'.$id) !!}"><button type="button" class="btn btn-round btn-primary" style="width: 200px;height:30px;">{{trans('app.View')}}</button></a>

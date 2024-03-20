@@ -311,7 +311,7 @@
                                                         }
                                                         $amounts = $app->crops;
                                                         if ($amounts) {
-                                                            if($amounts->measure_type==2){
+                                                            if($amounts->measure_type==1){
                                                                 $all_amount += $amounts->amount * 0.001;
                                                             }
                                                             else {
