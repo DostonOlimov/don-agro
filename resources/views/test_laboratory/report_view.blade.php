@@ -163,13 +163,19 @@
                                         <td>{!! nl2br($indicator->indicator->nd_name) !!} </td>
                                         <td>
                                             @if($indicator->indicator->nd_name)
-                                                {{($indicator->indicator->value!=4)? $indicator->indicator->value : $indicator->indicator->comment}}
+                                                {{-- {{($indicator->indicator->value!=4)? $indicator->indicator->value : $indicator->indicator->comment}} --}}
+                                                {{($indicator->indicator->value)? $indicator->indicator->value : $indicator->indicator->comment}}
                                             @endif
                                         </td>
 
                                         @foreach($test->laboratory_numbers as $number)
                                             @php
                                             $indicator_id = optional($indicator->indicator)->id;
+                                           $text=$number->results()->whereHas('indicator', function ($query) use($indicator_id) {
+                                                    $query->where('status', 4)
+                                                        ->where('indicator_id', $indicator_id);
+
+                                                })->first();
                                             $result = $number->results()->whereHas('indicator', function ($query) use($indicator_id) {
                                                     $query->where('status', 3)
                                                         ->where('indicator_id', $indicator_id);
@@ -185,7 +191,7 @@
                                             $sum += optional($result)->value;
                                             $k = $loop->count;
                                             @endphp
-                                            <td>{{optional($result)->value}}</td>
+                                            <td>{{(optional($result)->value)??optional($text)->value}}</td>
                                         @endforeach
                                         @php $k != 0 ? $final_result = $sum/$k : $final_result = 0; @endphp
                                         <td>

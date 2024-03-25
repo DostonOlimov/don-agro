@@ -106,7 +106,7 @@
                                         @foreach($indicators as $indicator)
                                             @if(!$indicator->parent_id)
                                                 <th @if(!$indicator->childs->count() != 0) rowspan="4" @endif
-                                                        colspan="{{countColspan($indicator->childs)}}"
+                                                        colspan="{{$indicator->childs->count()}}"
                                                 >{{$indicator->name}}</th>
                                             @endif
                                         @endforeach
