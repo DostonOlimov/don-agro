@@ -441,4 +441,17 @@ return [
     "Sinov dastur raqami"=>"Test program number",
     "Na'munalar raqami"=>"Sample number",
     "Yuborilgan sana"=>"Date sent",
+
+    "Laboratoriya yakuniy natijalari"=>"Final laboratory results",
+    "Sinov boshlangan sana"=>"Test start date",
+    "Sinov tugatilgan sana"=>"The date the test was completed",
+    "Sertifikatlashtirish bo'yicha sinov ko'rsatkichlar ro'yxati"=>"List of test indicators for certification",
+    "Sinov bayonnomalari"=>"Test reports",
+    "Sinov bayonnomasi"=>"Test report",
+    "Sertifikatsiyaga yuborish"=>"Submit for certification",
+    "Me’yor"=>"Norm",
+    "Me’yordan ko'pi bilan(kamida)"=>"At most (at least)",
+    "Me’yor izohi"=>"Explanation of the norm",
+    "Mahsulot normativ hujjati"=>"Product regulatory document",
+    "Belgilangan me’yorlar"=>"Established standards",
 ];

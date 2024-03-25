@@ -115,7 +115,7 @@
                                         @foreach($indicators as $indicator)
                                             @if($indicator->parent_id and !optional($indicator->parent)->parent_id)
                                                 <th @if($indicator->childs->count() == 0) rowspan="3" @endif
-                                                @if(countColspan($indicator->childs) !=0 )colspan="{{countColspan($indicator->childs)}}"@endif
+                                                @if(!$indicator->childs->count() !=0 )colspan="{{$indicator->childs->count()}}"@endif
                                                     >{{$indicator->name}} </th>
 
                                             @endif
@@ -125,7 +125,7 @@
                                         @foreach($indicators as $indicator)
                                             @if(!optional(optional($indicator->parent)->parent)->parent_id  and optional($indicator->parent)->parent_id and $indicator->parent_id)
                                                 <th @if(!$indicator->childs->count() != 0) rowspan="2" @endif
-                                                    @if(countColspan($indicator->childs) !=0 ) colspan="{{countColspan($indicator->childs)}}"@endif
+                                                    @if(!$indicator->childs->count() !=0 ) colspan="{{$indicator->childs->count()}}"@endif
                                                 >{{$indicator->name}}</th>
                                             @endif
                                         @endforeach

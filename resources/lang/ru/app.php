@@ -443,4 +443,20 @@ return [
     "Sinov dastur raqami"=>"Номер тестовой программы",
     "Na'munalar raqami"=>"Номер образца",
     "Yuborilgan sana"=>"Дата отправки",
+
+
+    "Laboratoriya yakuniy natijalari"=>"Окончательные результаты лабораторных исследований",
+    "Sinov boshlangan sana"=>"Дата начала теста",
+    "Sinov tugatilgan sana"=>"Дата завершения теста",
+    "Sertifikatlashtirish bo'yicha sinov ko'rsatkichlar ro'yxati"=>"Перечень показателей испытаний для сертификации",
+    "Sinov bayonnomalari"=>"Протоколы испытаний",
+    "Sinov bayonnomasi"=>"Отчет об испытаниях",
+    "Sertifikatsiyaga yuborish"=>"Отправить на сертификацию",
+    "Belgilangan me’yorlar"=>"Установленные стандарты",
+    "Me’yor"=>"Норма",
+    "Me’yordan ko'pi bilan(kamida)"=>"Максимум (по крайней мере)",
+    "Me’yor izohi"=>"Пояснение к норме",
+    "Mahsulot normativ hujjati"=>"Нормативный документ на продукцию",
+    "Sinov bayonnomalari"=>"Протоколы испытаний",
+    "Belgilangan me’yorlar"=>"Установленные стандарты",
 ];

@@ -12,7 +12,7 @@
             <div class="page-header">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="/"><i class="fe fe-life-buoy mr-1"></i>&nbsp {{ trans('app.Update') }}
+                        <a href="/"><i class="fe fe-life-buoy mr-1"></i>&nbsp {{ trans('app.Tahrirlash') }}
                         </a>
                     </li>
                 </ol>

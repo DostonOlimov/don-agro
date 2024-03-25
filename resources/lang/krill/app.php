@@ -438,4 +438,18 @@ return [
     "Sinov dastur raqami"=>"Синов дастур рақами",
     "Na'munalar raqami"=>"Наъмуналар рақами",
     "Yuborilgan sana"=>"Юборилган сана",
+
+    "Laboratoriya yakuniy natijalari"=>"Лаборатория якуний натижалари",
+    "Sinov boshlangan sana"=>"Синов бошланган сана",
+    "Sinov tugatilgan sana"=>"Синов тугатилган сана",
+    "Sertifikatlashtirish bo'yicha sinov ko'rsatkichlar ro'yxati"=>"Сертификатлаштириш бўйича синов кўрсаткичлар рўйхати",
+
+    "Sinov bayonnomasi"=>"Синов баённомаси",
+    "Sertifikatsiyaga yuborish"=>"Сертификацияга юбориш",
+    "Me’yor"=>"Ме’ёр",
+    "Me’yordan ko'pi bilan(kamida)"=>"Ме’ёрдан кўпи билан(камида)",
+    "Me’yor izohi"=>"Ме’ёр изоҳи",
+    "Mahsulot normativ hujjati"=>"Маҳсулот норматив ҳужжати",
+    "Sinov bayonnomalari"=>"Синов баённомалари",
+    "Belgilangan me’yorlar"=>"Белгиланган ме’ёрлар",
 ];
