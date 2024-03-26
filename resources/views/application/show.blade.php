@@ -55,6 +55,7 @@
                                 <div class="panel panel-primary">
                                     <div class="tab_wrapper page-tab">
                                         <ul class="tab_list">
+                                            @if ($user->status < \App\Models\Application::STATUS_FINISHED)
                                             <li class="btn-warning">
                                                 <a class="text-light" href="{{ URL::previous() }}">
                                                     <span class="visible-xs"></span>
@@ -67,6 +68,7 @@
                                                     <i class="fa fa-edit fa-lg">&nbsp;</i> {{ trans('app.Edit') }}
                                                 </a>
                                             </li>
+                                            @endif
                                             @if ($user->status == \App\Models\Application::STATUS_NEW)
                                                 <li class="btn-success">
                                                     <a class="text-light sa-warning" url="{!! url('/application/accept/' . $user->id) !!}">
@@ -261,6 +263,7 @@
                                                         <ul class="tab_list">
                                                             <h5><b>{{ trans("app.Buyurtmachi korxona yoki tashkilot ma'lumotlari") }}</b>
                                                             </h5>
+                                                            @if ($user->status < \App\Models\Application::STATUS_FINISHED)
                                                             <li class="btn-primary">
                                                                 <a class="text-light" href="{!! url('/organization/list/edit/' . $company->id) !!}">
                                                                     <span class="visible-xs"></span>
@@ -268,6 +271,7 @@
                                                                     <b>{{ trans('app.Update') }}</b>
                                                                 </a>
                                                             </li>
+                                                            @endif
                                                         </ul>
                                                     </div>
                                                 </div>

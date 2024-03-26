@@ -196,7 +196,7 @@ class ApplicationController extends Controller
         $countries = DB::table('tbl_countries')->get()->toArray();
         $measure_types = CropData::getMeasureType();
         $requirements = Requirement::get();
-        if($app->user->role == \App\Models\User::ROLE_CUSTOMER){
+        if($app->is_online==1 && $app->user->role == \App\Models\User::ROLE_CUSTOMER){
             return view('application.myedit', compact('app', 'type', 'names', 'countries', 'measure_types', 'title','requirements'));
         }
         $year = CropData::getYear();
