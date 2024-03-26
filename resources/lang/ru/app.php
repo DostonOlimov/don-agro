@@ -463,4 +463,6 @@ return [
 
     "Kamida, %"=>"По меньшей мере %",
     "Ko'pi bilan, %"=>"В большинстве, %",
+
+    "Sertifikatsiyaga yuboriligan"=>"Отправлено на сертификацию",
 ];

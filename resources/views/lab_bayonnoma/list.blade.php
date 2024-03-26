@@ -161,6 +161,7 @@
                                                                             class="btn btn-round btn-success">&nbsp;
                                                                             {{ trans('app.Laboratoriya bayonnomasini yaratish') }}
                                                                             &nbsp;</button></a>
+                                                                    <a href="{!! url('laboratory-protocol/view/'.$item->test->id) !!}"><button type="button" class="btn btn-round btn-warning"> {{ trans('app.View')}}</button></a>
                                                                 @endif
                                                             @endif
                                                         </td>

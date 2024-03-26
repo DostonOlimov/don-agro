@@ -457,4 +457,6 @@ return [
 
     "Kamida, %"=>"At least %",
     "Ko'pi bilan, %"=>"At most, %",
+
+    "Sertifikatsiyaga yuboriligan"=>"Sent for certification",
 ];

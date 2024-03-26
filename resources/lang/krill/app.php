@@ -455,4 +455,6 @@ return [
 
     "Kamida, %"=>"Камида, %",
     "Ko'pi bilan, %"=>"Кўпи билан, %",
+
+    "Sertifikatsiyaga yuboriligan"=>"Сертификацияга юборилиган",
 ];

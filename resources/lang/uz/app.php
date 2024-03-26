@@ -493,4 +493,7 @@ return [
 
     "Kamida, %"=>"Kamida, %",
     "Ko'pi bilan, %"=>"Ko'pi bilan, %",
+
+
+    "Sertifikatsiyaga yuboriligan"=>"Sertifikatsiyaga yuboriligan",
 ];
