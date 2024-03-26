@@ -459,4 +459,8 @@ return [
     "Mahsulot normativ hujjati"=>"Нормативный документ на продукцию",
     "Sinov bayonnomalari"=>"Протоколы испытаний",
     "Belgilangan me’yorlar"=>"Установленные стандарты",
+
+
+    "Kamida, %"=>"По меньшей мере %",
+    "Ko'pi bilan, %"=>"В большинстве, %",
 ];

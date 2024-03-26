@@ -34,26 +34,6 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <div class="panel panel-primary">
-                                <div class="tab_wrapper page-tab">
-                                    <ul class="tab_list">
-                                        <li class="active">
-                                            <a href="{!! url('/indicator/list') !!}">
-                                                <span class="visible-xs"></span>
-                                                <i class="fa fa-list fa-lg">&nbsp;</i>
-                                                {{ trans('app.Ro\'yxat') }}
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="{!! url('/indicator/add') !!}">
-                                                <span class="visible-xs"></span>
-                                                <i class="fa fa-plus-circle fa-lg">&nbsp;</i> <b>
-                                                    {{ trans('app.Qo\'shish') }}</b>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
                             <div class="table-responsive">
                                 <table id="datatable" class="table table-striped table-bordered nowrap"
                                     style="margin-top:20px; width:100%;">

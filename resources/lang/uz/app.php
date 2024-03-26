@@ -490,4 +490,7 @@ return [
     "Mahsulot normativ hujjati" => "Mahsulot normativ hujjati",
     "Sinov bayonnomalari" => "Sinov bayonnomalari",
     "Belgilangan me’yorlar" => "Belgilangan me’yorlar",
+
+    "Kamida, %"=>"Kamida, %",
+    "Ko'pi bilan, %"=>"Ko'pi bilan, %",
 ];

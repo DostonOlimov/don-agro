@@ -12,7 +12,7 @@
             <div class="page-header">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="/"><i class="fe fe-life-buoy mr-1"></i>&nbsp {{ trans('app.Tahrirlash') }}
+                        <a href="/" style="color:white"><i class="fe fe-life-buoy mr-1"></i>&nbsp {{ trans('app.Tahrirlash') }}
                         </a>
                     </li>
                 </ol>
@@ -35,14 +35,14 @@
                                 <div class="tab_wrapper page-tab">
                                     <ul class="tab_list">
                                         <li>
-                                            <a href="{!! url('/crops_type/list') !!}">
+                                            <a {{--- href="{!! url('/crops_type/list') !!}"---}} href="#">
                                                 <span class="visible-xs"></span>
                                                 <i class="fa fa-list fa-lg">&nbsp;</i>
                                                 {{ trans('app.Ro\'yxat') }}
                                             </a>
                                         </li>
                                         <li class="active">
-                                            <a href="{!! url('/crops_type/list/edit/' . $editid) !!}">
+                                            <a {{--- href="{!! url('/crops_type/list/edit/' . $editid) !!}" ---}} href="#">
                                                 <span class="visible-xs"></span>
                                                 <i class="fa fa-plus-circle fa-lg">&nbsp;</i> <b>
                                                     {{ trans('app.Tahrirlash') }}</b>
@@ -77,13 +77,15 @@
                                                         <option value=""></option>
                                                         <option value="1"
                                                             @if ($type->measure_type == 1) selected @endif>
-                                                            {{ trans('app.Kamida') }}</option>
+                                                            {{ trans('app.Kamida, %') }}</option>
                                                         <option value="2"
                                                             @if ($type->measure_type == 2) selected @endif>
-                                                            {{ trans("app.Ko'pi bilan") }}</option>
+                                                            {{ trans("app.Ko'pi bilan, %") }}</option>
                                                         <option value="4"
                                                             @if ($type->measure_type == 4) selected @endif>
-                                                            {{ trans("app.bo'sh") }}</option>
+                                                            %
+                                                            {{-- {{ trans("app.bo'sh") }} --}}
+                                                        </option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -101,7 +103,7 @@
                                                 <a class="btn btn-primary"
                                                     href="{{ URL::previous() }}">{{ trans('app.Cancel') }}</a>
                                                 <button type="submit"
-                                                    class="btn btn-success">{{ trans('app.Update') }}</button>
+                                                    class="btn btn-success">{{ trans('app.Tahrirlash') }}</button>
                                             </div>
                                         </div>
                                     </form>

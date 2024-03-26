@@ -150,13 +150,15 @@
                                         <td>
                                             <a href="{!! url('/laboratory-results/indicator-view/'.$indicator->indicator_id.'/'.$crop_id.'?test_id='.$test->id) !!}">
                                                 {{$indicator->indicator->name}}
+                                                <span style="text-transform: lowercase;">
                                                 @if ($indicator->indicator->measure_type == 1)
-                                                    , kamida, %
+                                                , {{trans("app.Kamida, %")}}
                                                 @elseif ($indicator->indicator->measure_type == 2)
-                                                    , ko'pi bilan, %
+                                                , {{trans("app.Ko'pi bilan, %")}}
                                                 @elseif ($indicator->indicator->measure_type == 4)
-                                                    , %
+                                                , %
                                                 @endif
+                                                </span>
                                             </a>
                                             {{(isset($indicator->indicator->nds->type_id))? '('.\App\Models\Nds::getType($indicator->indicator->nds->type_id).'.'.$indicator->indicator->nds->number/*.' '.$indicator->indicator->nds->name*/.')':""}}
                                         </td>

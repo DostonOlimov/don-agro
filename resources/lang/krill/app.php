@@ -452,4 +452,7 @@ return [
     "Mahsulot normativ hujjati"=>"Маҳсулот норматив ҳужжати",
     "Sinov bayonnomalari"=>"Синов баённомалари",
     "Belgilangan me’yorlar"=>"Белгиланган ме’ёрлар",
+
+    "Kamida, %"=>"Камида, %",
+    "Ko'pi bilan, %"=>"Кўпи билан, %",
 ];

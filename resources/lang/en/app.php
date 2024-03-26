@@ -454,4 +454,7 @@ return [
     "Me’yor izohi"=>"Explanation of the norm",
     "Mahsulot normativ hujjati"=>"Product regulatory document",
     "Belgilangan me’yorlar"=>"Established standards",
+
+    "Kamida, %"=>"At least %",
+    "Ko'pi bilan, %"=>"At most, %",
 ];
