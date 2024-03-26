@@ -157,6 +157,7 @@ class ApplicationController extends Controller
         $app->date = join('-', array_reverse(explode('.', $request->input('dob'))));
         $app->accepted_date =  join('-', array_reverse(explode('.', $request->input('dob'))));
         $app->accepted_id = $userA->id;
+        $app->is_online = 0;
         $app->status = Application::STATUS_FINISHED;
         $app->data = $request->input('data');
         $app->created_by = $userA->id;
@@ -227,6 +228,7 @@ class ApplicationController extends Controller
         $app->type = $request->input('app_type');
         $app->date = join('-', array_reverse(explode('-', $request->input('dob'))));
         $app->data = $request->input('data');
+        $app->is_online = 0;
         $app->save();
 
         $crop =CropData::find($app->crop_data_id);

@@ -202,6 +202,7 @@
                                             <div class="">
                                                 <select class="role_search" style="width: 100% !important;" name="role">
                                                     @if (!empty($roles))
+                                                    <option value="admin">Admin</option>
                                                         @foreach ($roles as $role)
                                                             <option value="{{ $role->id }}">{{ $role->name }}</option>
                                                         @endforeach

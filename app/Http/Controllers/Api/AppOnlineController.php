@@ -73,6 +73,7 @@ class AppOnlineController extends Controller
             // 'accepted_id' => , //null qabul qiluvchi id si
             // 'data',
             'status' => Application::STATUS_NEW,
+            'is_online' => 1,
             'created_by' => $request->input('user_id'),
         ]);
 
@@ -99,7 +100,7 @@ class AppOnlineController extends Controller
         $year =  $request->input('year');
         $user = Application::withoutGlobalScopes()->with(['organization', 'prepared', 'crops.name', 'crops.type'])->whereYear('date', $year)
             ->where('created_by', $id)
-            ->where('status','!=', Application::STATUS_DELETED)
+            ->where('status', '!=', Application::STATUS_DELETED)
             ->paginate($rows, ['*'], 'page', $page);
 
         if (!isset($user)) {
@@ -122,7 +123,7 @@ class AppOnlineController extends Controller
         $user_id = $request->input('user_id');
         $app_id = $request->input('app_id');
 
-        $user = Application::with(['organization', 'prepared', 'crops.name','foreign_file','crops.type','comment'])->where('created_by', $user_id)->where('id', $app_id)->first();
+        $user = Application::with(['organization', 'prepared', 'crops.name', 'foreign_file', 'crops.type', 'comment'])->where('created_by', $user_id)->where('id', $app_id)->first();
         if (!$user) {
             return response()->errorJson(false, 404, 'Not found');
         }
@@ -160,6 +161,7 @@ class AppOnlineController extends Controller
                 // 'accepted_id' => , //null qabul qiluvchi id si
                 // 'data'=>,   //
                 'status' => Application::STATUS_FINISHED,
+                'is_online' => 1,
                 'created_by' => $request->input('user_id'),
             ]);
 
@@ -180,7 +182,7 @@ class AppOnlineController extends Controller
     {
         $id = $request->id;
 
-        $application = Application::where('id',$id)->first();
+        $application = Application::where('id', $id)->first();
         if (!$application) {
             return response()->errorJson([], 404, 'Application not found');
         }
