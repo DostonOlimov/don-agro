@@ -39,12 +39,15 @@
                             <div class="panel panel-primary">
                                 <div class="tab_wrapper page-tab">
                                     <ul class="tab_list">
+                                        @if ($user->role=="admin")
                                         <li>
                                             <a href="{!! url('/employee/list') !!}">
                                                 <span class="visible-xs"></span>
                                                 <i class="fa fa-list fa-lg">&nbsp;</i> {{ trans('app.Ro\'yxat') }}
                                             </a>
                                         </li>
+
+                                        @endif
                                         <li class="active">
                                             <span class="visible-xs"></span>
                                             <i class="fa fa-edit fa-lg">&nbsp;</i>
@@ -140,14 +143,16 @@
                                                 </div>
                                             </div>
                                             <hr>
-                                            {{-- <div class="table_row row">
+                                            @if (auth()->user()->role=="admin")
+                                            <div class="table_row row">
                                                 <div class="col-md-5 col-sm-12 table_td">
                                                     <i class="fa fa-lock"></i> <b>API Token</b>
                                                 </div>
                                                 <div class="col-md-7 col-sm-12 table_td">
                                                     <span class="txt_color">{{ $user->api_token ?? '' }}</span>
                                                 </div>
-                                            </div> --}}
+                                            </div>
+                                            @endif
                                         </div>
 
 
