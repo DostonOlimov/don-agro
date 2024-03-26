@@ -149,7 +149,7 @@
                                     <div class="col-md-4 form-group has-feedback">
                                         <label class="form-label">{{ trans('app.Ishlab chiqargan davlat') }} <label
                                                 class="text-danger">*</label></label>
-                                        <input type="text" readonly value="{{ $data->application->crops->country->name }}"
+                                        <input type="text" readonly value="{{ $data->application->crops->country->name??'' }}"
                                             class="form-control">
                                     </div>
                                     @if ($data->application->crops->amount)

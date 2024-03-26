@@ -149,7 +149,7 @@
                                         <label class="form-label">{{ trans('app.Ishlab chiqargan davlat') }} <label
                                                 class="text-danger">*</label></label>
                                         <input type="text" readonly
-                                            value="{{ $data->test->application->crops->country->name }}"
+                                            value="{{ $data->test->application->crops->country->name??'' }}"
                                             class="form-control">
                                     </div>
                                     @if ($data->test->application->crops->amount)
