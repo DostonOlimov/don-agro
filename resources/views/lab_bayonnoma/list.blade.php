@@ -84,6 +84,14 @@
                                                                 @if ($status == 1) selected="selected" @endif>
                                                                 {{ trans('app.Laboratoriya bayonnomasi shakllantirilgan') }}
                                                             </option>
+                                                            <option value="Muvofiq"
+                                                                @if ($status == "Muvofiq") selected="selected" @endif>
+                                                                {{ trans('app.Muvofiq') }}
+                                                            </option>
+                                                            <option value="Nomuvofiq"
+                                                                @if ($status == "Nomuvofiq") selected="selected" @endif>
+                                                                {{ trans('app.Nomuvofiq') }}
+                                                            </option>
                                                             {{-- <option value="4" @if ($status == 4)  selected="selected" @endif>{{trans('app.Jarayon yakunlangan')}}</option>  --}}
                                                             {{-- end filter for Laboratoriya bayonnomasi --}}
                                                         </select>
@@ -132,7 +140,11 @@
                                                             <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $item->lab_bayonnoma[0]->date)->format('d.m.Y') }}
                                                             </td>
                                                             <td>{{ $item->lab_bayonnoma[0]->number }}</td>
-                                                            <td>{{ $item->lab_bayonnoma[0]->test_result }}</td>
+                                                            @if($item->lab_bayonnoma[0]->test_result=="Muvofiq" )
+                                                            <td class="btn btn-success" style="color: white; font-weight: 700;">{{ $item->lab_bayonnoma[0]->test_result }}</td>
+                                                            @else
+                                                            <td class="btn btn-danger" style="color: white; font-weight: 700;">{{ $item->lab_bayonnoma[0]->test_result }}</td>
+                                                            @endif
                                                             <td>{{ $item->lab_bayonnoma[0]->test_employee }}</td>
                                                             <td>{{ $item->lab_bayonnoma[0]->description }}</td>
                                                         @else

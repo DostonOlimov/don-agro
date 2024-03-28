@@ -95,8 +95,8 @@
                                                                 <a url="{!! url('/decision/list/delete/' . $descion->id) !!}" class="sa-warning"> <button
                                                                         type="button"
                                                                         class="btn btn-round btn-danger dgr">{{ trans('app.Delete') }}</button></a>
-                                                            @endif
-                                                            @if($app->tests->status >= \App\Models\TestPrograms::STATUS_ACCEPTED)
+                                                            @endif 
+                                                            @if(optional($app->tests)->status >= \App\Models\TestPrograms::STATUS_ACCEPTED)
                                                                 <button type="button"
                                                                     class="btn btn-round btn-warning ">{{ trans('app.Yuborilgan') }}</button></a>
                                                             @endif

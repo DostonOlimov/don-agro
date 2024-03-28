@@ -66,8 +66,8 @@
                                                 </div>
                                             </div>
                                             <input type="text" class="form-control" placeholder="dd.mm.yyyy"
-                                                name="lab_start_date" data-mask="00.00.0000"
-                                                value="{{ old('lab_start_date') }}" required />
+                                                name="lab_start_date" data-mask="00.00.0000" @if($data->test->laboratory_results->start_date) readonly  @endif
+                                                value="{{ ($data->test->laboratory_results->start_date)?\Carbon\Carbon::createFromFormat('Y-m-d',$data->test->laboratory_results->start_date)->format('d.m.Y'):old('lab_start_date') }}" />
 
                                         </div>
                                         @if ($errors->has('lab_start_date'))
@@ -87,7 +87,8 @@
                                                 </div>
                                             </div>
                                             <input type="text" class="form-control" placeholder="dd.mm.yyyy" name="date"
-                                                data-mask="00.00.0000" value="{{ old('date') }}" required />
+                                                data-mask="00.00.0000"  @if($data->test->laboratory_results->end_date) readonly  @endif
+                                                value="{{ ($data->test->laboratory_results->end_date)?\Carbon\Carbon::createFromFormat('Y-m-d',$data->test->laboratory_results->end_date)->format('d.m.Y'):old('date') }}"/>
 
                                         </div>
                                         @if ($errors->has('date'))
@@ -103,11 +104,24 @@
                                             <label class="form-label">{{ trans('app.Sinov Bayonnoma raqami') }}<label
                                                     class="text-danger">*</label></label>
                                             <input class="form-control" type="text" name="number"
-                                                value="{{ old('number') }}" />
+                                            @if($data->test->laboratory_results->number) readonly  @endif
+                                            value="{{ ($data->test->laboratory_results->number)?$data->test->laboratory_results->number.' - '.($data->test->laboratory_results->number+$data->party_number-1):old('number')}}" />
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6 form-group has-feedback">
+                                    <div id="tin-container" class="col-md-4 legal-fields">
+                                        <div class="form-group">
+                                            <label class="form-label">{{ trans('app.Sinov o\'tkazgan mutaxassis') }}<label
+                                                    class="text-danger">*</label></label>
+                                            <input class="form-control" type="text" name="test_employee"
+                                            @if($data->test->laboratory_results->users) readonly  @endif
+                                                value="{{($data->test->laboratory_results->users)?
+                                              substr(optional($data->test->laboratory_results->users)->name, 0, 1).'. '.optional($data->test->laboratory_results->users)->lastname:
+                                                old('test_employee') }}" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 form-group has-feedback">
                                         <label class="form-label">{{ trans('app.Laboratoriya sinov natijasi') }}<label
                                                 class="text-danger">*</label></label>
                                         <select class="w-100 form-control" name="test_result" required>
@@ -116,15 +130,6 @@
                                             <option value="Muvofiq">Muvofiq</option>
                                             <option value="Nomuvofiq">Nomuvofiq</option>
                                         </select>
-                                    </div>
-
-                                    <div id="tin-container" class="col-md-4 legal-fields">
-                                        <div class="form-group">
-                                            <label class="form-label">{{ trans('app.Sinov o\'tkazgan mutaxassis') }}<label
-                                                    class="text-danger">*</label></label>
-                                            <input class="form-control" type="text" name="test_employee"
-                                                value="{{ old('test_employee') }}" />
-                                        </div>
                                     </div>
 
                                     <div class="col-md-8 form-group has-feedback">

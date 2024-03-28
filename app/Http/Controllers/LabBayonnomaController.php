@@ -13,37 +13,46 @@ class LabBayonnomaController extends Controller
 {
     function list(Request $request)
     {
-        $data = AKT::with('test.application.organization.city.region',
-        'test.application.decision.laboratory',
-        'test.application.crops.name.nds','lab_bayonnoma',
-        'test.final_result')
-        ->whereHas('test.application.decision.laboratory');
+        $data = AKT::with(
+            'test.application.organization.city.region',
+            'test.application.decision.laboratory',
+            'test.application.crops.name.nds',
+            'lab_bayonnoma',
+            'test.final_result'
+        )
+            ->whereHas('test.application.decision.laboratory');
 
         $status = $request->input('status');
 
         if ($status) {
-            if($status == 3){
+            if ($status == 3) {
                 $data = $data->doesntHave('lab_bayonnoma');
-            }
-            elseif($status == 1){
+            } elseif ($status == 1) {
                 $data = $data->has('lab_bayonnoma');
+            } elseif ($status == "Muvofiq") {
+                $data = $data->whereHas('lab_bayonnoma', function ($query) {
+                    $query->where('test_result', 'Muvofiq');
+                });
+            }elseif ($status == "Nomuvofiq") {
+                $data = $data->whereHas('lab_bayonnoma', function ($query) {
+                    $query->where('test_result', 'Nomuvofiq');
+                });
             }
             // elseif($status == 4){
             //     $data = $data->has('test.final_result');
             // }
-            else{
-                $status=null;
+            else {
+                $status = null;
             }
-
         }
 
-        $data=$data->orderBy('id', 'desc')->paginate(50);
+        $data = $data->orderBy('id', 'desc')->paginate(50);
 
         return view('lab_bayonnoma.list', compact('data', 'status'));
     }
     function add($id)
     {
-        $data = AKT::with('test.application.organization.city.region', 'test.application.decision.laboratory', 'test.application.crops.name.nds')->find($id);
+        $data = AKT::with('test.application.organization.city.region', 'test.application.decision.laboratory', 'test.application.crops.name.nds', 'test.laboratory_results.users')->find($id);
 
         return view('lab_bayonnoma.add', compact('data'));
     }
@@ -60,7 +69,7 @@ class LabBayonnomaController extends Controller
         $lab_bayonnoma->test_result =  $request->input('test_result');
         $lab_bayonnoma->test_employee =  $request->input('test_employee');
         $lab_bayonnoma->akt_id =  $request->input('akt_id');
-        $lab_bayonnoma->description =  $request->input('description')??'';
+        $lab_bayonnoma->description =  $request->input('description') ?? '';
         $lab_bayonnoma->created_by = $userA->id;
         $lab_bayonnoma->save();
 
@@ -69,10 +78,10 @@ class LabBayonnomaController extends Controller
     function edit($id)
     {
         $data = LabBayonnoma::with('akt.test.application.organization.city.region', 'akt.test.application.decision.laboratory', 'akt.test.application.crops.name.nds')->find($id);
-        $lab_start_date=Carbon::createFromFormat('Y-m-d', $data->lab_start_date)->format('d.m.Y');
-        $date=Carbon::createFromFormat('Y-m-d', $data->date)->format('d.m.Y');
+        $lab_start_date = Carbon::createFromFormat('Y-m-d', $data->lab_start_date)->format('d.m.Y');
+        $date = Carbon::createFromFormat('Y-m-d', $data->date)->format('d.m.Y');
 
-        return view('lab_bayonnoma.edit', compact('data','lab_start_date','date'));
+        return view('lab_bayonnoma.edit', compact('data', 'lab_start_date', 'date'));
     }
     function update(Request $request, $id)
     {
@@ -87,7 +96,7 @@ class LabBayonnomaController extends Controller
         $lab_bayonnoma->test_result =  $request->input('test_result');
         $lab_bayonnoma->test_employee =  $request->input('test_employee');
         $lab_bayonnoma->akt_id =  $request->input('akt_id');
-        $lab_bayonnoma->description =  $request->input('description')??'';
+        $lab_bayonnoma->description =  $request->input('description') ?? '';
         $lab_bayonnoma->created_by = $userA->id;
         $lab_bayonnoma->save();
 
