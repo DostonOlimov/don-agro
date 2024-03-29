@@ -349,7 +349,14 @@
                                                         {{-- @if ($type != 2)
                                                             {{ optional(optional($app->tests)->result)->number }}
                                                         @endif --}} 
+                                                        <a 
+                                                            @if(isset($app->tests->laboratory_results->number))
+                                                                href="{!! url('laboratory-protocol/view/'.$app->tests->id) !!}"
+                                                                style="font-weight: 500;"
+                                                            @endif
+                                                        >
                                                         {{(isset($app->tests->akt[0]->lab_bayonnoma[0]->number))?$app->tests->akt[0]->lab_bayonnoma[0]->number:''}}
+                                                    </a>
                                                     </td>
                                                     <td>
                                                         {{-- @if ($type != 2)

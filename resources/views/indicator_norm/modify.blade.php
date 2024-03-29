@@ -64,7 +64,7 @@
                                                 <label class="form-label" for="name">{{ trans("app.Me’yor") }} <label
                                                         class="text-danger">*</label></label>
                                                 <div class="">
-                                                    <input type="text" name="value" class="form-control"
+                                                    <input type="number" step="any" name="value" class="form-control"
                                                         value="{{ $type->value }}">
                                                 </div>
                                             </div>

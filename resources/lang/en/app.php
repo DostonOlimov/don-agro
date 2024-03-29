@@ -306,7 +306,7 @@ return [
     'Jami:' => 'Total:',
     'date' => 'As of :date',
     'Viloyatni tanlang' => 'Select a region',
-    "Arizalar soni:"=>"Number of applications",
+    "Arizalar soni:"=>"Number of applications:",
 
     //NDS
     'Qaror shakllantirishdan oldin normativ hujjatni qo\'shish kerak' => 'Please, add a normative document before forming a decision',

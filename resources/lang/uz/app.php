@@ -473,7 +473,7 @@ return [
     "Sinov dastur raqami" => "Sinov dastur raqami",
     "Na'munalar raqami" => "Na'munalar raqami",
     "Yuborilgan sana" => "Yuborilgan sana",
-    "Arizalar soni:" => "Arizalar soni",
+    "Arizalar soni:" => "Arizalar soni:",
 
 
     "Laboratoriya yakuniy natijalari" => "Laboratoriya yakuniy natijalari",
