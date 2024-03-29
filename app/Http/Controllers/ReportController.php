@@ -66,6 +66,7 @@ class ReportController extends Controller{
         $prepared = $request->input('prepared');
         $country = $request->input('country');
         $year = $request->input('year');
+        $lab_result = $request->input('lab_result');
 
         if($organization or $prepared){
             $organization = OrganizationCompanies::find($organization);
@@ -88,7 +89,8 @@ class ReportController extends Controller{
             ->appends(['crop' => $crop])
             ->appends(['type' => $type])
             // ->appends(['generation' => $generation])
-            ->appends(['year' => $year]);
+            ->appends(['year' => $year])
+            ->appends(['lab_result' => $lab_result]);
 
         $states = DB::table('tbl_states')->where('country_id',  234)->get()->toArray();
         $crop_names = DB::table('crops_name')->get()->toArray();
@@ -106,6 +108,21 @@ class ReportController extends Controller{
         $names = DB::table('crops_name')->get();
         $countries = DB::table('tbl_countries')->get();
         $years = CropData::getYear();
+        $year=session('year') ?  session('year') : date('Y');
+        $total = DB::table('Applications as A')
+        ->join('Crop_data as CD', 'A.crop_data_id', '=', 'CD.id')
+        ->join('test_programs as T', 'A.id', '=', 'T.app_id')
+        ->leftJoin('akt', 'akt.test_program_id', '=', 'T.id')
+        ->select(
+            DB::raw('SUM(CASE WHEN CD.measure_type = 1 THEN CD.amount * 0.001 ELSE CD.amount END) AS total_amount'),
+            DB::raw('SUM(akt.party_number) AS party_count')
+        )
+        ->whereYear('A.date', '=', $year)
+        ->first();
+
+        
+        $totalAmount= $total->total_amount;
+        $partyCount = $total->party_count;
 
         return view('reports.full_report', compact(
             'apps',
@@ -125,7 +142,10 @@ class ReportController extends Controller{
             'names',
             'years',
             'year',
-            'countries'
+            'countries',
+            'totalAmount',
+            'partyCount',
+            'lab_result',
         ));
     }
     public function region_report(Request $request)
@@ -234,6 +254,7 @@ class ReportController extends Controller{
         $prepared= $request->input('prepared');
         $country= $request->input('country');
         $year= $request->input('year');
+        $lab_result = $request->input('lab_result');
         if($organization or $prepared)
         {
             $city = $region = null;
@@ -276,7 +297,13 @@ class ReportController extends Controller{
                 });
             }
         }
-
+        if ($lab_result) {
+            $apps = $apps->whereHas('tests', function ($query) use ($lab_result) {
+                $query->whereHas('akt.lab_bayonnoma', function ($query) use ($lab_result) {
+                    $query->where('test_result', $lab_result);
+                });
+            });
+        }
         if ($organization) {
             $apps = $apps->whereHas('organization', function ($query) use ($organization) {
                 $query->where('id', '=', $organization);

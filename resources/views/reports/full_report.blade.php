@@ -48,6 +48,7 @@
                                 'region' => $region,
                                 'country' => $country,
                                 'year' => $year,
+                                'lab_result'=>$lab_result,
                             ]) }}">
                             <i class="fa fa-file-excel-o" style="margin-right: 6px"></i>{{ trans('app.Excel fayl') }}</a>
                     </div>
@@ -275,7 +276,13 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
-                                                <td></td>
+                                                <td>
+                                                    <select name="lab_result" class="w-100 form-control" id="lab_result">
+                                                        <option value="" @if($lab_result==null) selected @endif>{{trans('message.Barchasi')}}</option>
+                                                        <option value="Muvofiq" @if($lab_result=="Muvofiq") selected @endif>Muvofiq</option>
+                                                        <option value="Nomuvofiq" @if($lab_result=="Nomuvofiq") selected @endif>Nomuvofiq</option>
+                                                    </select>
+                                                </td>
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
@@ -283,9 +290,9 @@
                                             </tr>
                                             @php
                                                 $offset = (request()->get('page', 1) - 1) * 50;
-                                                $partiya = 0;
-                                                $all_amount = 0;
-                                                $count_app = 0;
+                                                // $partiya = 0;
+                                                // $all_amount = 0;
+                                                // $count_app = 0;
                                             @endphp
                                             @foreach ($apps as $key => $app)
                                                 <tr>
@@ -305,20 +312,20 @@
                                                     <td>{{ optional($app->crops->type)->name }}</td>
                                                     {{-- <td>{{ optional($app->crops->generation)->name }}</td> --}}
                                                     @php
-                                                        $akt = optional(optional($app->tests)->akt)[0];
-                                                        if ($akt && $akt->party_number) {
-                                                            $partiya += $akt->party_number;
-                                                        }
-                                                        $amounts = $app->crops;
-                                                        if ($amounts) {
-                                                            if($amounts->measure_type==1){
-                                                                $all_amount += $amounts->amount * 0.001;
-                                                            }
-                                                            else {
-                                                                $all_amount += $amounts->amount;
-                                                            }
-                                                        }
-                                                        $count_app = $offset + $loop->iteration ?? 0;
+                                                        // $akt = optional(optional($app->tests)->akt)[0];
+                                                        // if ($akt && $akt->party_number) {
+                                                        //     $partiya += $akt->party_number;
+                                                        // }
+                                                        // $amounts = $app->crops;
+                                                        // if ($amounts) {
+                                                        //     if($amounts->measure_type==1){
+                                                        //         $all_amount += $amounts->amount * 0.001;
+                                                        //     }
+                                                        //     else {
+                                                        //         $all_amount += $amounts->amount;
+                                                        //     }
+                                                        // }
+                                                        // $count_app = $offset + $loop->iteration ?? 0;
                                                     @endphp
                                                     <td>{{ optional($app->tests)->akt[0]->party_number ?? '' }}</td>
                                                     <td>{{ optional($app->crops)->amount_name }}</td>
@@ -339,25 +346,31 @@
                                                     </td>
                                                     {{-- start lab result --}}
                                                     <td>
-                                                        @if ($type != 2)
+                                                        {{-- @if ($type != 2)
                                                             {{ optional(optional($app->tests)->result)->number }}
-                                                        @endif
+                                                        @endif --}} 
+                                                        {{(isset($app->tests->akt[0]->lab_bayonnoma[0]->number))?$app->tests->akt[0]->lab_bayonnoma[0]->number:''}}
                                                     </td>
                                                     <td>
-                                                        @if ($type != 2)
+                                                        {{-- @if ($type != 2)
                                                             {{ optional(optional($app->tests)->result)->date }}
-                                                        @endif
+                                                        @endif --}}
+                                                        {{(isset($app->tests->akt[0]->lab_bayonnoma[0]->date))?$app->tests->akt[0]->lab_bayonnoma[0]->date:''}}
                                                     </td>
                                                     <td>
-                                                        @if ($type === 1)
+                                                        {{-- @if ($type === 1)
                                                             {{ 'Muvofiq' }}
                                                         @endif
                                                         @if ($type === 0)
                                                             {{ 'Nomuvofiq' }}
-                                                        @endif
+                                                        @endif --}}
+                                                        {{(isset($app->tests->akt[0]->lab_bayonnoma[0]->test_result))?$app->tests->akt[0]->lab_bayonnoma[0]->test_result:''}}
                                                     </td>
                                                     {{-- end lab result --}}
-                                                    <td>{{ optional(optional($app->tests)->result)->comment }}</td>
+                                                    <td>
+                                                        {{-- {{ optional(optional($app->tests)->result)->comment }} --}}
+                                                        {{(isset($app->tests->akt[0]->lab_bayonnoma[0]->description))?$app->tests->akt[0]->lab_bayonnoma[0]->description:''}}
+                                                    </td>
                                                     <td>
                                                         @if ($app->decision)
                                                             <a href="{!! url('/decision/view/' . optional($app->decision)->id) !!}"><button type="button"
@@ -385,12 +398,18 @@
                                 {{ $apps->links() }}
                             </div>
                             <h4
-                                style="position: sticky; bottom: 0; padding: 1%; color: #0052cc; width: 100%; display: flex; justify-content: space-between; background-color: white">
-                                <span>{{ trans("app.Jami og'irligi:") . ' ' . number_format($all_amount, 2, ',', ' ') . ' ' . trans('app.tonna') }}</span>
-                                <span style="color: #197da5;">{{ trans('app.Arizalar soni:') }} {{ $count_app }}
+                            style="position: sticky; bottom: 0; padding: 1%; color: #0052cc; width: 100%; display: flex; justify-content: space-between; background-color: white">
+                            {{-- <span>{{ trans("app.Jami og'irligi:") . ' ' . number_format($all_amount, 2, ',', ' ') . ' ' . trans('app.tonna') }}</span> --}}
+                            {{-- <span style="color: #097a22;">
+                                {{ trans('app.Jami partiyalar sonni:') . ' ' . number_format($partiya, 0, '', ' ') . ' ' . trans('app.ta') }}
+                            </span> --}}
+                            {{-- <span style="color: #197da5;">{{ trans('app.Arizalar soni:') }} {{ $count_app }}
+                                {{ trans('app.ta') }}</span> --}}
+                                <span>{{ trans("app.Jami og'irligi:") . ' ' . number_format($totalAmount, 2, ',', ' ') . ' ' . trans('app.tonna') }}</span>
+                                <span style="color: #197da5;">{{ trans('app.Arizalar soni:') }} {{ $apps->total() }}
                                     {{ trans('app.ta') }}</span>
                                 <span style="color: #097a22;">
-                                    {{ trans('app.Jami partiyalar sonni:') . ' ' . number_format($partiya, 0, '', ' ') . ' ' . trans('app.ta') }}
+                                    {{ trans('app.Jami partiyalar sonni:') . ' ' . number_format($partyCount, 0, '', ' ') . ' ' . trans('app.ta') }}
                                 </span>
                             </h4>
                         </div>
@@ -582,6 +601,22 @@
                     }
                 });
             });
+            $('#lab_result').change(function() {
+                var selected_lab_result = $(this).val();
+
+                var currentUrl = window.location.href;
+                var url = new URL(currentUrl);
+
+                // Set the new query parameter
+                url.searchParams.set('lab_result', selected_lab_result);
+
+                // Modify the URL
+                var newUrl = url.toString();
+
+                // Redirect to the new URL
+                window.location.href = newUrl;
+            });
+
             //crop generation change
             // $('#generation').change(function () {
             //     var selectedRegion = $(this).val();
