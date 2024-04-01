@@ -36,14 +36,10 @@ class ReportExport implements FromCollection,WithHeadings,WithStyles
             'Ishlab chiqargan davlat',
             'Mahsulot turi',
             'Mahsulot navi',
-            // 'Ekin avlodi',
             'Toʼda raqami',
             'Mahsulot  miqdori',
             'Ishlab chiqarilgan sana',
             'Sinov bayonnoma raqami',
-                'Sertifikat' ,
-            'Tahlil natija',
-            'Izoh',
 
             ],
 
@@ -57,7 +53,6 @@ class ReportExport implements FromCollection,WithHeadings,WithStyles
         $firstRow = [
             'Ariza raqami' => '', // Set the desired value to 1
             'Sanasi' => '', // Adjust as needed
-            // Fill in other fields for the first row as required
         ];
         return collect([$firstRow])->concat($apps->map(function ($app) {
             return [
@@ -70,18 +65,16 @@ class ReportExport implements FromCollection,WithHeadings,WithStyles
                 'Country name' => optional($app->crops->country)->name  ?? 'N/A',
                 'Crop name' => optional($app->crops->name)->name  ?? 'N/A',
                 'Type name' => optional($app->crops->type)->name  ?? '-',
-                // 'Generation name' => optional($app->crops->generation)->name  ?? 'N/A',
                 'Party name' => optional($app->tests)->akt[0]->party_number  ?? 'N/A',
                 'Amount' => optional($app->crops)->amount_name  ?? '-',
                 'Year' => optional($app->crops)->year  ?? '-',
                 'test_number' => optional(optional($app->tests)->result)->test_program->akt[0]->lab_bayonnoma[0]->number  ?? '',
                 'reestr number' => optional(optional($app->tests)->result)->type == 2 ? optional(optional(optional($app->tests)->result)->certificate)->reestr_number : '',
                 'date' => optional(optional($app->tests)->result)->type == 2 ? optional(optional(optional($app->tests)->result)->certificate)->given_date  : '',
-                'sf1' => optional(optional($app->tests)->result)->type != 2 ? optional(optional($app->tests)->result)->number  : '',
-                'sf2' => optional(optional($app->tests)->result)->type != 2 ? optional(optional($app->tests)->result)->date  : '',
-                'sf3' =>  optional(optional($app->tests)->result)->type != 2 ? (optional(optional($app->tests)->result)->type == 1 and optional(optional($app->tests)->result)->type != 2 ? 'Muvofiq' : 'Nomuvofiq') : '',
-                'folder number' => optional(optional($app->tests)->result)->type != 2 ? (optional(optional($app->tests)->result)->folder_number  ?? '') : '',
-                'comment' => optional(optional($app->tests)->result)->type != 2 ? (optional(optional($app->tests)->result)->comment  ?? '') : '',
+                'sf1' => (isset($app->tests->akt[0]->lab_bayonnoma[0]->number))?$app->tests->akt[0]->lab_bayonnoma[0]->number:'',
+                'sf2' => (isset($app->tests->akt[0]->lab_bayonnoma[0]->date))?$app->tests->akt[0]->lab_bayonnoma[0]->date:'',
+                'sf3' =>  (isset($app->tests->akt[0]->lab_bayonnoma[0]->test_result))?$app->tests->akt[0]->lab_bayonnoma[0]->test_result:'',
+                'comment' => (isset($app->tests->akt[0]->lab_bayonnoma[0]->description))?$app->tests->akt[0]->lab_bayonnoma[0]->description:'',
             ];
         })
     );
@@ -102,34 +95,32 @@ class ReportExport implements FromCollection,WithHeadings,WithStyles
         $sheet->mergeCells('K2:K3');
         $sheet->mergeCells('L2:L3');
         $sheet->mergeCells('M2:M3');
-        $sheet->mergeCells('N2:N3');
-        $sheet->mergeCells('T2:T3');
-        $sheet->mergeCells('U2:U3');
+        $sheet->mergeCells('S2:S3');
 
-        $sheet->mergeCells('A1:U1');
+        $sheet->mergeCells('A1:S1');
 
-        $sheet->mergeCells('O2:P2');
-        $sheet->setCellValue('O2', 'Sertifikat');
-        $sheet->getStyle('O2')->getAlignment()->setHorizontal('center');
+        $sheet->mergeCells('N2:O2');
+        $sheet->setCellValue('N2', 'Sertifikat');
+        $sheet->getStyle('N2')->getAlignment()->setHorizontal('center');
 
-        $sheet->getCell('O3')->setValue('Reestr raqam');
-        $sheet->getCell('P3')->setValue('Berilgan sana');
+        $sheet->getCell('N3')->setValue('Reestr raqam');
+        $sheet->getCell('O3')->setValue('Berilgan sana');
 
-        $sheet->mergeCells('Q2:S2');
-        $sheet->setCellValue('Q2', 'Tahlil natija');
-        $sheet->getStyle('Q2')->getAlignment()->setHorizontal('center');
+        $sheet->mergeCells('P2:R2');
+        $sheet->setCellValue('P2', 'Tahlil natija');
+        $sheet->getStyle('P2')->getAlignment()->setHorizontal('center');
 
-        $sheet->getCell('Q3')->setValue('Raqami');
-        $sheet->getCell('R3')->setValue('Berilgan sana');
-        $sheet->getCell('S3')->setValue('Yaroqliligi');
+        $sheet->getCell('P3')->setValue('Raqami');
+        $sheet->getCell('Q3')->setValue('Berilgan sana');
+        $sheet->getCell('R3')->setValue('Yaroqliligi');
 
-        $sheet->getCell('T2')->setValue('Papka raqami');
-        $sheet->getCell('U2')->setValue('Izoh');
+        $sheet->getCell('S2')->setValue('Izoh');
+        $sheet->getStyle('S2:S3')->getAlignment()->setHorizontal('center');
 
-        $sheet->getStyle('A1:U3')->getFont()->setBold(true);
-        $sheet->getStyle('A1:S1000')->getAlignment()->setHorizontal('center');
-        $sheet->getStyle('A1:U1')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID);
-        $sheet->getStyle('A1:U1')->getFill()->getStartColor()->setARGB('fcc203'); // You can replace 'FFA07A' with your desired color code
+        $sheet->getStyle('A1:S3')->getFont()->setBold(true);
+        $sheet->getStyle('A1:R1000')->getAlignment()->setHorizontal('center');
+        $sheet->getStyle('A1:S1')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID);
+        $sheet->getStyle('A1:S1')->getFill()->getStartColor()->setARGB('fcc203'); // You can replace 'FFA07A' with your desired color code
 
         $sheet->getRowDimension(1)->setRowHeight(50);
         $sheet->getRowDimension(2)->setRowHeight(30);
@@ -143,21 +134,19 @@ class ReportExport implements FromCollection,WithHeadings,WithStyles
         $sheet->getColumnDimension('D')->setWidth(40);
         $sheet->getColumnDimension('E')->setWidth(60);
         $sheet->getColumnDimension('F')->setWidth(60);
-        $sheet->getColumnDimension('G')->setWidth(20);
-        $sheet->getColumnDimension('H')->setWidth(15);
-        $sheet->getColumnDimension('I')->setWidth(15);
+        $sheet->getColumnDimension('G')->setWidth(40);
+        $sheet->getColumnDimension('H')->setWidth(20);
+        $sheet->getColumnDimension('I')->setWidth(20);
         $sheet->getColumnDimension('J')->setWidth(15);
-        $sheet->getColumnDimension('K')->setWidth(15);
-        $sheet->getColumnDimension('L')->setWidth(20);
-        $sheet->getColumnDimension('M')->setWidth(10);
-        $sheet->getColumnDimension('N')->setWidth(10);
+        $sheet->getColumnDimension('K')->setWidth(25);
+        $sheet->getColumnDimension('L')->setWidth(25);
+        $sheet->getColumnDimension('M')->setWidth(30);
+        $sheet->getColumnDimension('N')->setWidth(20);
         $sheet->getColumnDimension('O')->setWidth(20);
         $sheet->getColumnDimension('P')->setWidth(20);
         $sheet->getColumnDimension('Q')->setWidth(20);
         $sheet->getColumnDimension('R')->setWidth(20);
-        $sheet->getColumnDimension('S')->setWidth(20);
-        $sheet->getColumnDimension('T')->setWidth(15);
-        $sheet->getColumnDimension('U')->setWidth(30);
+        $sheet->getColumnDimension('S')->setWidth(30);
         $sheet->getDefaultColumnDimension()->setAutoSize(false);
     }
 }
