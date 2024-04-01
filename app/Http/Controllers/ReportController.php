@@ -108,7 +108,7 @@ class ReportController extends Controller{
         $names = DB::table('crops_name')->get();
         $countries = DB::table('tbl_countries')->get();
         $years = CropData::getYear();
-        $year=session('year') ?  session('year') : date('Y');
+        $yil=session('year') ?  session('year') : date('Y');
         $total = DB::table('Applications as A')
         ->join('Crop_data as CD', 'A.crop_data_id', '=', 'CD.id')
         ->join('test_programs as T', 'A.id', '=', 'T.app_id')
@@ -117,10 +117,10 @@ class ReportController extends Controller{
             DB::raw('SUM(CASE WHEN CD.measure_type = 1 THEN CD.amount * 0.001 ELSE CD.amount END) AS total_amount'),
             DB::raw('SUM(akt.party_number) AS party_count')
         )
-        ->whereYear('A.date', '=', $year)
+        ->whereYear('A.date', '=', $yil)
         ->first();
 
-        
+
         $totalAmount= $total->total_amount;
         $partyCount = $total->party_count;
 
