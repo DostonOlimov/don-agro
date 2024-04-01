@@ -46,13 +46,13 @@
                                             <label for="number" class="form-label certificate"
                                                 style="display: inline-block">Sinov bayonnoma raqami <label
                                                     class="text-danger">*</label></label>
-                                            @if ($errors->has('number'))
+                                            {{-- @if ($errors->has('number')) --}}
                                                 <span style="color:black">
                                                     <strong> (Oxirgi ro'yxatga olingan raqami :
                                                         <span style="color:red">{{ $max_number ?? null }}</span>)
                                                     </strong>
                                                 </span>
-                                            @endif
+                                            {{-- @endif --}}
                                         @else
                                             <label for="number" class="form-label nocertificate">Taxlil natija raqami <label
                                                     class="text-danger">*</label></label>
