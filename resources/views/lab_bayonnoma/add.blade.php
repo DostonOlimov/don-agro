@@ -66,8 +66,8 @@
                                                 </div>
                                             </div>
                                             <input type="text" class="form-control" placeholder="dd.mm.yyyy"
-                                                name="lab_start_date" data-mask="00.00.0000" @if($data->test->laboratory_results->start_date) readonly  @endif
-                                                value="{{ ($data->test->laboratory_results->start_date)?\Carbon\Carbon::createFromFormat('Y-m-d',$data->test->laboratory_results->start_date)->format('d.m.Y'):old('lab_start_date') }}" />
+                                                name="lab_start_date" data-mask="00.00.0000" @if($data->akt_date) readonly  @endif
+                                                value="{{ ($data->akt_date)?\Carbon\Carbon::createFromFormat('Y-m-d',$data->akt_date)->format('d.m.Y'):old('lab_start_date') }}" />
 
                                         </div>
                                         @if ($errors->has('lab_start_date'))
