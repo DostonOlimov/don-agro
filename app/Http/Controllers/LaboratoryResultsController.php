@@ -31,21 +31,22 @@ class LaboratoryResultsController extends Controller
     public function indicator_view($indicator_id, $number_id, Request $request)
     {
         $test_id = $request->input('test_id');
-        $numbers = LaboratoryNumbers::with('test_program')
-            ->with('test_program.application')
-            ->with('results')
-            ->whereHas('test_program.application.crops', function ($query) use ($number_id) {
-                $query->where('name_id', '=', $number_id);
-            })
-            ->whereHas('test_program.indicators', function ($query) use ($indicator_id) {
-                $query->where('indicator_id', '=', $indicator_id);
-            });
-        if ($test_id) {
-            $numbers = $numbers->whereHas('test_program', function ($query) use ($test_id) {
-                $query->where('id', $test_id);
-            });
-        }
-        $numbers = $numbers->orderBy('number', 'desc')->paginate(50);
+        // $numbers = LaboratoryNumbers::with('test_program')
+        //     ->with('test_program.application')
+        //     ->with('results')
+        //     ->whereHas('test_program.application.crops', function ($query) use ($number_id) {
+        //         $query->where('name_id', '=', $number_id);
+        //     })                                                                                                    
+        //     ->whereHas('test_program.indicators', function ($query) use ($indicator_id) {
+        //         $query->where('indicator_id', '=', $indicator_id);
+        //     });                                                                                                       ///labaratoriya number
+        // if ($test_id) {
+        //     $numbers = $numbers->whereHas('test_program', function ($query) use ($test_id) {
+        //         $query->where('id', $test_id);
+        //     });
+        // }
+        // $numbers = $numbers->orderBy('number', 'desc')->paginate(50);
+        $numbers=null;
         $indicators = LaboratoryIndicators::with('childs')
             ->with('parent')
             ->with('indicators')

@@ -45,7 +45,7 @@
                                             <th class="border-bottom-0 border-top-0">{{trans('app.Yuborilgan sana')}}</th>
                                             <th class="border-bottom-0 border-top-0">{{trans('app.Mahsulot turi')}}</th>
                                             <th class="border-bottom-0 border-top-0">{{trans('app.Mahsulot navi')}}</th>
-                                            <th class="border-bottom-0 border-top-0">{{trans("app.Na'munalar raqami")}}</th>
+                                            {{-- <th class="border-bottom-0 border-top-0">{{trans("app.Na'munalar raqami")}}</th> --}}                                       {{-- - labaratoriya number - --}}
                                             <th class="border-bottom-0 border-top-0">{{trans('app.Action')}}</th>
                                         </tr>
                                         </thead>
@@ -60,7 +60,7 @@
                                                 <td>{{ optional($test)->created_at }}</td>
                                                 <td>{{ $test->application->crops->pre_name }} {{ $test->application->crops->name->name }}</td>
                                                 <td>{{ optional($test->application->crops->type)->name }}</td>
-                                                <td>@if($test->status == \App\Models\TestPrograms::STATUS_ACCEPTED) @foreach($test->laboratory_numbers as $number) {{$number->number}}; @endforeach @endif</td>
+                                                {{-- <td>@if($test->status == \App\Models\TestPrograms::STATUS_ACCEPTED) @foreach($test->laboratory_numbers as $number) {{$number->number}}; @endforeach @endif</td> --}}                           {{-- - labaratoriya number - --}}
                                                 <td><a href="{!! url('/tests/laboratory-view/'.$test->id) !!}"><button type="button" class="btn btn-round btn-{{$test->status_color}}">{{ $test->status_name}}</button></a></td>
 
                                             </tr>

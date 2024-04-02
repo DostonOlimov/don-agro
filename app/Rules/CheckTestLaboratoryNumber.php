@@ -36,24 +36,22 @@ class CheckTestLaboratoryNumber implements Rule
     {
 
         $rejectData = DB::select('
-                SELECT
-                    lfr.id,
-                    lfr.number,
-                    a.party_number,
-                    MAX(lfr.number) as `max_number`
-                FROM
-                    laboratory_final_results lfr
-                JOIN
-                    laboratory_numbers ln ON lfr.test_program_id = ln.test_program_id
-                JOIN
-                    AKT a ON lfr.test_program_id = a.test_program_id
-                WHERE
-                    ln.year = ' . $this->year . '
-                    AND lfr.number IS NOT NULL
-                GROUP BY
-                    lfr.id, lfr.number, a.party_number
-                ORDER BY
-                    `max_number` DESC;
+        SELECT
+        lfr.id,
+        lfr.number,
+        a.party_number,
+            MAX(lfr.number) as `max_number`
+        FROM
+            laboratory_final_results lfr
+        JOIN
+            AKT a ON lfr.test_program_id = a.test_program_id
+        WHERE
+            YEAR(lfr.end_date) = ' . $this->year . '    
+            AND lfr.number IS NOT NULL
+        GROUP BY
+            lfr.id, lfr.number, a.party_number
+        ORDER BY
+            `max_number` DESC;
             ');
         if ($rejectData) {
             /* ($rejectData[0]->number > 1) ? $checkOne = 0 :*/

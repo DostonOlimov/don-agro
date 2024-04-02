@@ -36,6 +36,7 @@ class LaboratoryProtocolController extends Controller
             ->with('application.crops.name')
             ->with('application.crops.type')
             ->with('application.organization')
+            ->with('akt')                                    ///labaratoriya number
             ->with('laboratory_results')
             ->where(function ($query) {
                 $query->where('status', TestPrograms::STATUS_FINISHED)
@@ -99,11 +100,9 @@ class LaboratoryProtocolController extends Controller
         FROM
             laboratory_final_results lfr
         JOIN
-            laboratory_numbers ln ON lfr.test_program_id = ln.test_program_id
-        JOIN
             AKT a ON lfr.test_program_id = a.test_program_id
         WHERE
-            ln.year = ' . $year . '
+            YEAR(lfr.end_date) = ' . $year . '
             AND lfr.number IS NOT NULL
         GROUP BY
             lfr.id, lfr.number, a.party_number
@@ -142,7 +141,7 @@ class LaboratoryProtocolController extends Controller
     public function view($id)
     {
         $test = TestPrograms::with('laboratory_results')
-            ->with('laboratory_numbers')
+            // ->with('laboratory_numbers')                            ///  laboratory_numbers
             ->with('laboratory_results.result_users.users')
             ->with('application.organization.city')
             ->with('application.crops')

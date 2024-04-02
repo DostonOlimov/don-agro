@@ -2,7 +2,7 @@
 @section('content')
     <!-- page content -->
     <?php $userid = Auth::user()->id; ?>
-    @can('add_number',\App\Models\LaboratoryResult::class)
+    @can('viewAny',\App\Models\LaboratoryResult::class)
         <div class="section">
             <!-- PAGE-HEADER -->
             <div class="page-header">
@@ -198,7 +198,8 @@
                                         @php $k != 0 ? $final_result = $sum/$k : $final_result = 0; @endphp
                                         <td>
                                             @if($indicator->indicator->nd_name)
-                                                <input type="number" class="form-control" step="0.01" value="{{$final_result}}"  name="value{{$indicator->id}}" required>
+                                                {{-- <input type="number" class="form-control" step="0.01" value="{{$final_result}}"  name="value{{$indicator->id}}" required> --}}               {{-- - labaratoriya number - --}}
+                                                <input type="test" class="form-control" value="{{$final_result}}"  name="value{{$indicator->id}}" required>
                                             @endif
                                         </td>
                                         <td>
@@ -211,8 +212,10 @@
                                                     }
                                                 @endphp
                                                 <select class="w-100 form-control" name="type{{$indicator->id}}" required >
-                                                    <option value="1" @if($t) selected @endif>Muvofiq</option>
-                                                    <option value="0"  @if(!$t) selected @endif>Nomuvofiq</option>
+                                                    {{-- <option value="1" @if($t) selected @endif>Muvofiq</option> --}}
+                                                    {{-- <option value="0"  @if(!$t) selected @endif>Nomuvofiq</option> --}}
+                                                    <option value="1" selected>Muvofiq</option>
+                                                    <option value="0">Nomuvofiq</option>
                                                 </select>
                                             @endif
                                         </td>

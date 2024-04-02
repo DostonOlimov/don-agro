@@ -42,7 +42,7 @@ class TestProgramsPolicy
      * @param  TestPrograms  $test
      * @return Response|bool
      */
-    public function accept(User $user,TestPrograms $test)
+    public function accept(User $user)
     {
         return ($user->role == User::ROLE_LABORATORY_ADMIN or $user->role == User::ROLE_LABORATORY_DIRECTOR)
             ? Response::allow()

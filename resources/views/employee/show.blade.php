@@ -53,6 +53,12 @@
                                             <i class="fa fa-edit fa-lg">&nbsp;</i>
                                             <b>{{ trans('app.View Employee') }}</b>
                                         </li>
+                                        <li>
+                                            <a href="{!! url('/employee/edit/' . $user->id) !!}">
+                                                <span class="visible-xs"></span>
+                                                <i class="fa fa-list fa-lg">&nbsp;</i> {{ trans('app.Update') }}
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>

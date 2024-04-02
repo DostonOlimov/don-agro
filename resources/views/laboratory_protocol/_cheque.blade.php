@@ -72,7 +72,7 @@
             <h2>Namuna olish vaqtida atrof-muhit holati: <span style="text-decoration: underline"> - ºС ,</span> nisbiy
                 namlik: <span style="text-decoration: underline"> - %. </span></h2>
             <h2>Namuna kelib tushgan sana: <span
-                    style="text-decoration: underline">{{ $test->laboratory_numbers[0]->created_at->format('d-m-Y') }}
+                    style="text-decoration: underline">{{ $test->updated_at->format('d-m-Y') }}
                     yil</span>. Mahsulot turi: <span
                     style="text-decoration: underline">{{ $test->application->crops->name->name }}.</span></h2>
             <h2>Mahsulotning me’yoriy xujjati:
@@ -214,7 +214,7 @@
                         <td>{!! nl2br($indicator->indicator->nd_name) !!}</td>
                         <td>
                             @if ($indicator->indicator->nd_name)
-                                {{ $indicator->indicator->value != 4 ? $indicator->indicator->value : $indicator->indicator->comment }}
+                                {{ ($indicator->indicator->value )? $indicator->indicator->value : $indicator->indicator->comment }}
                             @endif
                         </td>
                         <td>
@@ -222,11 +222,13 @@
                                 @if ($indicator->result != 0)
                                     {{ $indicator->result }}
                                 @else
-                                    @if ($indicator->indicator->measure_type == 1 || $indicator->indicator->measure_type == 2)
+                                    {{-- @if ($indicator->indicator->measure_type == 1 || $indicator->indicator->measure_type == 2)
                                         {{ 'aniqlanmadi' }}
                                     @else
                                         {{ 'uchramadi' }}
-                                    @endif
+                                    @endif --}}
+
+                                    {{ $indicator->result }}
                                 @endif
                             @endif
                         </td>

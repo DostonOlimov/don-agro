@@ -20,10 +20,18 @@
                     <ul class="tab_list">
                         @if($decision->status == \App\Models\TestPrograms::STATUS_NEW or $decision->status == \App\Models\TestPrograms::STATUS_SEND)
                             <li class="btn-success">
-                                <a class="text-light" onclick="Accept()">
+                                {{--- <a class="text-light" onclick="Accept()">
                                     <span class="visible-xs"></span>
                                     <i class="fa fa-check fa-lg">&nbsp;</i> Qabul qilish
-                                </a>
+                                </a> ---}}                                                                                       {{--- labaratoriya number ---}}
+                                <form id="acceptForm" action="{{ route('tests.acceptstore') }}" method="post">
+                                    @csrf
+                                     <button type="submit" class="btn-success" style="border: 0px">
+                                    <span class="visible-xs"></span>
+                                    <i class="fa fa-check fa-lg">&nbsp;</i> Qabul qilish
+                                    <input type="hidden" name="id" value="{{$decision->id}}">
+                                </button>
+                                </form>
                             </li>
                             <li class="btn-danger">
                                 <a class="text-light" id="cancelButton" onclick="Reject()">
@@ -63,7 +71,7 @@
                 </div>
                 </div>
             </form>
-            <form id="acceptForm" action="{{ route('tests.acceptstore') }}" method="post">
+            {{-- <form id="acceptForm" action="{{ route('tests.acceptstore') }}" method="post">
                 @csrf
                 <div id="acceptSection" @if(!old('number')) style="display: none" @endif>
                     <input type="hidden" name="id" value="{{$decision->id}}">
@@ -84,7 +92,7 @@
                         </div>
                     </div>
                 </div>
-            </form>
+            </form> --}}                                                                                                                                                          {{-- - labaratoriya number - --}}
             <div class="row">
                 <div class="col-12">
                     <div class="card p-4">
@@ -147,11 +155,11 @@
         function CancelReject(){
             document.getElementById('cancelSection').style.display = 'none';
         }
-        function Accept(){
-            document.getElementById('acceptSection').style.display = 'block';
-            document.getElementById('cancelSection').style.display = 'none';
+        // function Accept(){
+        //     document.getElementById('acceptSection').style.display = 'block';
+        //     document.getElementById('cancelSection').style.display = 'none';
 
-        }
+        // }                                                                                {{-- - labaratoriya number - --}}
         function CancelAccept(){
             document.getElementById('acceptSection').style.display = 'none';
         }

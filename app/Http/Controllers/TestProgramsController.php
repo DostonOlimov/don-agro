@@ -8,7 +8,6 @@ use App\Models\CropProductionType;
 use App\Models\Decision;
 use App\Models\Indicator;
 use App\Models\Laboratories;
-use App\Models\LaboratoryNumbers;
 use App\Models\Nds;
 use App\Models\ProductionType;
 use App\Models\TestProgramIndicators;
@@ -344,8 +343,6 @@ class TestProgramsController extends Controller
             $year = date('Y');
         }
         $max_number = DB::select('SELECT MAX(number) as max from laboratory_numbers WHERE year=' . $year . ' GROUP BY number ORDER BY number DESC;')[0]->max ?? null;
-        // $max_number = LaboratoryNumbers::where('year', $year)->max('number');
-        // $measure_type = (Application::find($tests->app_id)->crops->name->measure_type == 1) ? "kg" : "tonna";
         $nds = [];
         foreach (Nds::where('crop_id', Application::find($tests->app_id)->crops->name_id)->get() as $item) {
             $nds[] = Nds::getType($item->type_id) . " " . $item->number . " " . $item->name;

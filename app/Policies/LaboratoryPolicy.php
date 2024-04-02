@@ -26,7 +26,7 @@ class LaboratoryPolicy
      */
     public function viewAny(User $user)
     {
-        return ( $user->branch_id != 2)
+        return ( $user->branch_id != 2 or $user->role >= 90)
 
             ? Response::allow()
             : Response::deny('Sizga ushbu sahifadan foydalanishga ruxsat berilmagan.');

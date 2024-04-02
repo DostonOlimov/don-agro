@@ -127,7 +127,9 @@ class employeecontroller extends Controller
         $title = "Xodimni o'zgartirish";
         $user = User::find($editid);
 
-        $this->authorize('edit', User::class);
+        // $this->authorize('edit', User::class);
+        $this->authorize('viewAny', User::class);
+
         if ($user->role != 'admin') {
             $position = DB::table('tbl_accessrights')->where('id', '=', intval($user->role))->get()->first();
             if (!empty($position)) {
@@ -159,7 +161,8 @@ class employeecontroller extends Controller
 
     public function update($id, Request $request)
     {
-        $this->authorize('edit', User::class);
+        // $this->authorize('edit', User::class);
+        $this->authorize('viewAny', User::class);
 
         $firstname = $request->input('firstname');
         $email = $request->input('email');
@@ -219,7 +222,10 @@ class employeecontroller extends Controller
         $active->action = "Foydalanuvchi O'zgartrildi";
         $active->time = date('Y-m-d H:i:s');
         $active->save();
-        return redirect('/employee/list')->with('message', 'Successfully Updated');
+        if(auth()->user()->role=="admin"){
+            return redirect('/employee/list')->with('message', 'Successfully Updated');
+        }
+        return $this->showemployer($user->id??null)->with('message', 'Successfully Updated');
 
     }
 

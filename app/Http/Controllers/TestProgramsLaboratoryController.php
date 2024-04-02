@@ -95,28 +95,28 @@ class TestProgramsLaboratoryController extends Controller
         $this->authorize('accept', TestPrograms::class);
 
         $id = $request->input('id');
-        $number = $request->input('number');
-        $type = $request->input('type') ?? null;
+        // $number = $request->input('number');                                                           ///labaratoriya number
+        // $type = $request->input('type') ?? null;
         $test = TestPrograms::with('akt')->find($id);
-        $validated = $request->validate([
-            'number' => [
-                'required', new CheckLaboratoryNumber($test),
-            ],
-        ]);
+        // $validated = $request->validate([
+        //     'number' => [
+        //         'required', new CheckLaboratoryNumber($test),                                         ///labaratoriya number
+        //     ],
+        // ]);
         $year = null;
         if (session('year')) {
             $year = session('year');
         } else {
             $year = date('Y');
         }
-        for ($i = $number; $i < $number + $test->akt[0]->party_number; $i++) {
-            $num = new LaboratoryNumbers();
-            $num->number = $i;
-            $num->test_program_id = $id;
-            $num->laboratory_category_type = $type;
-            $num->year = $year;
-            $num->save();
-        }
+        // for ($i = $number; $i < $number + $test->akt[0]->party_number; $i++) {
+        //     $num = new LaboratoryNumbers();                                                                 ///labaratoriya number
+        //     $num->number = $i;
+        //     $num->test_program_id = $id;
+        //     $num->laboratory_category_type = $type;
+        //     $num->year = $year;
+        //     $num->save();
+        // }
 
         $test->status = TestPrograms::STATUS_ACCEPTED;
         $test->save();
