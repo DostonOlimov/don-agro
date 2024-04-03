@@ -496,4 +496,5 @@ return [
 
 
     "Sertifikatsiyaga yuboriligan"=>"Sertifikatsiyaga yuboriligan",
+    "Sinov bayonnoma"=>"Sinov bayonnoma",
 ];

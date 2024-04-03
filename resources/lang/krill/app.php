@@ -457,4 +457,5 @@ return [
     "Ko'pi bilan, %"=>"Кўпи билан, %",
 
     "Sertifikatsiyaga yuboriligan"=>"Сертификацияга юборилиган",
+    "Sinov bayonnoma"=>"Синов баённома",
 ];

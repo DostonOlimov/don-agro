@@ -459,4 +459,5 @@ return [
     "Ko'pi bilan, %"=>"At most, %",
 
     "Sertifikatsiyaga yuboriligan"=>"Sent for certification",
+    "Sinov bayonnoma"=>"Test report",
 ];

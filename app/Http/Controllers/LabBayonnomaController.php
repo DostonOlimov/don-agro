@@ -69,7 +69,7 @@ class LabBayonnomaController extends Controller
         $lab_bayonnoma->test_result =  $request->input('test_result');
         $lab_bayonnoma->test_employee =  $request->input('test_employee');
         $lab_bayonnoma->akt_id =  $request->input('akt_id');
-        $lab_bayonnoma->description =  $request->input('description') ?? '';
+        // $lab_bayonnoma->description =  $request->input('description') ?? '';
         $lab_bayonnoma->created_by = $userA->id;
         $lab_bayonnoma->save();
 
@@ -96,7 +96,7 @@ class LabBayonnomaController extends Controller
         $lab_bayonnoma->test_result =  $request->input('test_result');
         $lab_bayonnoma->test_employee =  $request->input('test_employee');
         $lab_bayonnoma->akt_id =  $request->input('akt_id');
-        $lab_bayonnoma->description =  $request->input('description') ?? '';
+        // $lab_bayonnoma->description =  $request->input('description') ?? '';
         $lab_bayonnoma->created_by = $userA->id;
         $lab_bayonnoma->save();
 

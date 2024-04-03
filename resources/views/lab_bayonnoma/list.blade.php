@@ -68,8 +68,7 @@
                                                     <th>{{ trans('app.Sinov Bayonnoma raqami') }}</th>
                                                     <th>{{ trans('app.Sinov natijasi') }}</th>
                                                     <th>{{ trans('app.Sinov o\'tkazgan mutaxassis') }}</th>
-                                                    <th>{{ trans('app.Qo\'shimcha ma\'lumotlar') }}</th>
-                                                    {{-- <th>{{ trans('app.Action') }}</th> --}}
+                                                    {{-- <th>{{ trans('app.Qo\'shimcha ma\'lumotlar') }}</th> --}}
                                                     <th class="border-bottom-0 border-top-0 bg-info w-25" style="width: 25%">
                                                         <select style="cursor: pointer; "
                                                             class="w-100 form-control state_of_country custom-select"
@@ -146,14 +145,14 @@
                                                             <td class="btn btn-danger" style="color: white; font-weight: 700;">{{ $item->lab_bayonnoma[0]->test_result }}</td>
                                                             @endif
                                                             <td>{{ $item->lab_bayonnoma[0]->test_employee }}</td>
-                                                            <td>{{ $item->lab_bayonnoma[0]->description }}</td>
+                                                            {{-- <td>{{ $item->lab_bayonnoma[0]->description }}</td> --}}
                                                         @else
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
-                                                            <td></td>
+                                                            {{-- <td></td> --}}
                                                         @endif
                                                         <td>
                                                             @if (!empty($item->lab_bayonnoma[0]))

@@ -110,9 +110,9 @@
                                                 <th rowspan="2">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
                                                     {{ trans('app.Ishlab chiqarilgan sana') }} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
                                                     &nbsp</th>
-                                                <th rowspan="2">{{ trans('app.Sinov bayonnoma raqami') }}</th>
+                                                {{-- <th rowspan="2">{{ trans('app.Sinov bayonnoma raqami') }}</th> --}}
                                                 <th colspan="2">{{ trans('app.Sertifikat') }}</th>
-                                                <th colspan="3">{{ trans('app.Tahlil natija') }}</th>
+                                                <th colspan="3">{{ trans('app.Sinov bayonnoma') }}</th>
                                                 <th rowspan="2">{{ trans('app.Izoh') }}</th>
                                                 <th rowspan="2">{{ trans('app.Qaror fayllari') }}</th>
                                                 <th rowspan="2">{{ trans('app.Sinov bayonnoma fayllari') }}</th>
@@ -271,7 +271,7 @@
                                                         @endforeach
                                                     </select>
                                                 </td>
-                                                <td></td>
+                                                {{-- <td></td> --}}
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
@@ -330,7 +330,7 @@
                                                     <td>{{ optional($app->tests)->akt[0]->party_number ?? '' }}</td>
                                                     <td>{{ optional($app->crops)->amount_name }}</td>
                                                     <td>{{ optional($app->crops)->year }}</td>
-                                                    <td>
+                                                    {{-- <td>
                                                         @if ($type == 2)
                                                             {{ $app->tests->akt[0]->lab_bayonnoma[0]->number ?? '' }}
                                                         @else
@@ -339,7 +339,7 @@
                                                                     class="btn btn-warning">{{ trans('app.Jarayonda') }}</button>
                                                             @endif
                                                         @endif
-                                                    </td>
+                                                    </td> --}}
                                                     <td>{{ optional(optional(optional($app->tests)->result)->certificate)->reestr_number }}
                                                     </td>
                                                     <td>{{ optional(optional(optional($app->tests)->result)->certificate)->given_date }}
@@ -348,14 +348,23 @@
                                                     <td>
                                                         {{-- @if ($type != 2)
                                                             {{ optional(optional($app->tests)->result)->number }}
-                                                        @endif --}} 
-                                                        <a 
+                                                        @endif --}}
+                                                        <a
                                                             @if(isset($app->tests->laboratory_results->number))
                                                                 href="{!! url('laboratory-protocol/view/'.$app->tests->id) !!}"
                                                                 style="font-weight: 500;"
                                                             @endif
                                                         >
-                                                        {{(isset($app->tests->akt[0]->lab_bayonnoma[0]->number))?$app->tests->akt[0]->lab_bayonnoma[0]->number:''}}
+
+                                                        @if ($type == 2)
+                                                            {{(isset($app->tests->laboratory_results))?($app->tests->laboratory_results->number).' - '.($app->tests->laboratory_results->number + optional($app->tests->akt)[0]->party_number-1):optional($app->tests->akt)[0]->lab_bayonnoma[0]->number}}
+                                                        @else
+                                                            @if (is_null($type))
+                                                                <button
+                                                                    class="btn btn-warning">{{ trans('app.Jarayonda') }}</button>
+                                                            @endif
+                                                        @endif
+
                                                     </a>
                                                     </td>
                                                     <td>
@@ -376,7 +385,7 @@
                                                     {{-- end lab result --}}
                                                     <td>
                                                         {{-- {{ optional(optional($app->tests)->result)->comment }} --}}
-                                                        {{(isset($app->tests->akt[0]->lab_bayonnoma[0]->description))?$app->tests->akt[0]->lab_bayonnoma[0]->description:''}}
+                                                        {{(isset($app->tests->laboratory_results->data))?$app->tests->laboratory_results->data:''}}
                                                     </td>
                                                     <td>
                                                         @if ($app->decision)

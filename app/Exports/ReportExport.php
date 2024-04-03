@@ -39,7 +39,7 @@ class ReportExport implements FromCollection,WithHeadings,WithStyles
             'Toʼda raqami',
             'Mahsulot  miqdori',
             'Ishlab chiqarilgan sana',
-            'Sinov bayonnoma raqami',
+            // 'Sinov bayonnoma raqami',
 
             ],
 
@@ -68,13 +68,13 @@ class ReportExport implements FromCollection,WithHeadings,WithStyles
                 'Party name' => optional($app->tests)->akt[0]->party_number  ?? 'N/A',
                 'Amount' => optional($app->crops)->amount_name  ?? '-',
                 'Year' => optional($app->crops)->year  ?? '-',
-                'test_number' => optional(optional($app->tests)->result)->test_program->akt[0]->lab_bayonnoma[0]->number  ?? '',
+                // 'test_number' => optional(optional($app->tests)->result)->test_program->akt[0]->lab_bayonnoma[0]->number  ?? '',
                 'reestr number' => optional(optional($app->tests)->result)->type == 2 ? optional(optional(optional($app->tests)->result)->certificate)->reestr_number : '',
                 'date' => optional(optional($app->tests)->result)->type == 2 ? optional(optional(optional($app->tests)->result)->certificate)->given_date  : '',
-                'sf1' => (isset($app->tests->akt[0]->lab_bayonnoma[0]->number))?$app->tests->akt[0]->lab_bayonnoma[0]->number:'',
+                'sf1' =>(isset($app->tests->laboratory_results))?($app->tests->laboratory_results->number).' - '.($app->tests->laboratory_results->number + ($app->tests->akt[0]['party_number']-1)):((isset($app->tests->akt[0]->lab_bayonnoma[0]))?$app->tests->akt[0]->lab_bayonnoma[0]['number']:'Jarayonda'),
                 'sf2' => (isset($app->tests->akt[0]->lab_bayonnoma[0]->date))?$app->tests->akt[0]->lab_bayonnoma[0]->date:'',
                 'sf3' =>  (isset($app->tests->akt[0]->lab_bayonnoma[0]->test_result))?$app->tests->akt[0]->lab_bayonnoma[0]->test_result:'',
-                'comment' => (isset($app->tests->akt[0]->lab_bayonnoma[0]->description))?$app->tests->akt[0]->lab_bayonnoma[0]->description:'',
+                'comment' => (isset($app->tests->laboratory_results->data))?$app->tests->laboratory_results->data:'',
             ];
         })
     );
@@ -94,33 +94,32 @@ class ReportExport implements FromCollection,WithHeadings,WithStyles
         $sheet->mergeCells('J2:J3');
         $sheet->mergeCells('K2:K3');
         $sheet->mergeCells('L2:L3');
-        $sheet->mergeCells('M2:M3');
-        $sheet->mergeCells('S2:S3');
+        $sheet->mergeCells('R2:R3');
 
-        $sheet->mergeCells('A1:S1');
+        $sheet->mergeCells('A1:R1');
 
-        $sheet->mergeCells('N2:O2');
-        $sheet->setCellValue('N2', 'Sertifikat');
-        $sheet->getStyle('N2')->getAlignment()->setHorizontal('center');
+        $sheet->mergeCells('M2:N2');
+        $sheet->setCellValue('M2', 'Sertifikat');
+        $sheet->getStyle('M2')->getAlignment()->setHorizontal('center');
 
-        $sheet->getCell('N3')->setValue('Reestr raqam');
-        $sheet->getCell('O3')->setValue('Berilgan sana');
+        $sheet->getCell('M3')->setValue('Reestr raqam');
+        $sheet->getCell('N3')->setValue('Berilgan sana');
 
-        $sheet->mergeCells('P2:R2');
-        $sheet->setCellValue('P2', 'Tahlil natija');
-        $sheet->getStyle('P2')->getAlignment()->setHorizontal('center');
+        $sheet->mergeCells('O2:Q2');
+        $sheet->setCellValue('O2', 'Sinov bayonnoma');
+        $sheet->getStyle('O2')->getAlignment()->setHorizontal('center');
 
-        $sheet->getCell('P3')->setValue('Raqami');
-        $sheet->getCell('Q3')->setValue('Berilgan sana');
-        $sheet->getCell('R3')->setValue('Yaroqliligi');
+        $sheet->getCell('O3')->setValue('Raqami');
+        $sheet->getCell('P3')->setValue('Berilgan sana');
+        $sheet->getCell('Q3')->setValue('Yaroqliligi');
 
-        $sheet->getCell('S2')->setValue('Izoh');
-        $sheet->getStyle('S2:S3')->getAlignment()->setHorizontal('center');
+        $sheet->getCell('R2')->setValue('Izoh');
+        $sheet->getStyle('R2:R3')->getAlignment()->setHorizontal('center');
 
-        $sheet->getStyle('A1:S3')->getFont()->setBold(true);
-        $sheet->getStyle('A1:R1000')->getAlignment()->setHorizontal('center');
-        $sheet->getStyle('A1:S1')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID);
-        $sheet->getStyle('A1:S1')->getFill()->getStartColor()->setARGB('fcc203'); // You can replace 'FFA07A' with your desired color code
+        $sheet->getStyle('A1:R3')->getFont()->setBold(true);
+        $sheet->getStyle('A1:Q1000')->getAlignment()->setHorizontal('center');
+        $sheet->getStyle('A1:R1')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID);
+        $sheet->getStyle('A1:R1')->getFill()->getStartColor()->setARGB('fcc203'); // You can replace 'FFA07A' with your desired color code
 
         $sheet->getRowDimension(1)->setRowHeight(50);
         $sheet->getRowDimension(2)->setRowHeight(30);
@@ -140,13 +139,12 @@ class ReportExport implements FromCollection,WithHeadings,WithStyles
         $sheet->getColumnDimension('J')->setWidth(15);
         $sheet->getColumnDimension('K')->setWidth(25);
         $sheet->getColumnDimension('L')->setWidth(25);
-        $sheet->getColumnDimension('M')->setWidth(30);
+        $sheet->getColumnDimension('M')->setWidth(20);
         $sheet->getColumnDimension('N')->setWidth(20);
         $sheet->getColumnDimension('O')->setWidth(20);
         $sheet->getColumnDimension('P')->setWidth(20);
         $sheet->getColumnDimension('Q')->setWidth(20);
-        $sheet->getColumnDimension('R')->setWidth(20);
-        $sheet->getColumnDimension('S')->setWidth(30);
+        $sheet->getColumnDimension('R')->setWidth(30);
         $sheet->getDefaultColumnDimension()->setAutoSize(false);
     }
 }

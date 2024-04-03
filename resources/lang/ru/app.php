@@ -465,4 +465,5 @@ return [
     "Ko'pi bilan, %"=>"В большинстве, %",
 
     "Sertifikatsiyaga yuboriligan"=>"Отправлено на сертификацию",
+    "Sinov bayonnoma"=>"Отчет об испытаниях",
 ];

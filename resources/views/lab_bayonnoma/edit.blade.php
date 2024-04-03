@@ -125,14 +125,14 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-8 form-group has-feedback">
+                                    {{-- <div class="col-md-8 form-group has-feedback">
                                         <label class="form-label"
                                             for="description">{{ trans('app.Qo\'shimcha ma\'lumotlar') }}<label
                                                 class="text-danger">*</label></label>
                                         <div class="">
                                             <textarea id="description" name="description" class="form-control" maxlength="100">{{ $data->description }}</textarea>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="form-group col-md-12 col-sm-12">
                                         <div class="col-md-12 col-sm-12 text-center">
                                             <a class="btn btn-primary"
