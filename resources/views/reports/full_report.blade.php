@@ -97,7 +97,7 @@
                                                 <th rowspan="2">&nbsp{{ trans('app.Na\'muna olingan viloyat') }}&nbsp</th>
                                                 <th rowspan="2">{{ trans('app.Na\'muna olingan shahar yoki tuman') }}</th>
                                                 <th rowspan="2">{{ trans('app.Buyurtmachi korxona yoki tashkilot nomi') }}</th>
-                                                <th rowspan="2">
+                                                <th rowspan="2"  style="text-align: center;">
                                                     {{ trans('app.Mahsulot tayorlangan shaxobcha yoki sexning nomi') }}</th>
                                                 <th rowspan="2">{{ trans('app.Ishlab chiqargan davlat') }}</th>
                                                 <th rowspan="2">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
@@ -111,9 +111,9 @@
                                                     {{ trans('app.Ishlab chiqarilgan sana') }} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
                                                     &nbsp</th>
                                                 {{-- <th rowspan="2">{{ trans('app.Sinov bayonnoma raqami') }}</th> --}}
-                                                <th colspan="2">{{ trans('app.Sertifikat') }}</th>
-                                                <th colspan="3">{{ trans('app.Sinov bayonnoma') }}</th>
-                                                <th rowspan="2">{{ trans('app.Izoh') }}</th>
+                                                <th colspan="2" style="text-align: center;">{{ trans('app.Sertifikat') }}</th>
+                                                <th colspan="3" style="text-align: center;">{{ trans('app.Sinov bayonnoma') }}</th>
+                                                <th rowspan="2" style="text-align: center;">{{ trans('app.Izoh') }}</th>
                                                 <th rowspan="2">{{ trans('app.Qaror fayllari') }}</th>
                                                 <th rowspan="2">{{ trans('app.Sinov bayonnoma fayllari') }}</th>
                                                 <th rowspan="2">{{ trans('app.Yakuniy natija fayli') }}</th>
@@ -121,7 +121,7 @@
                                             <tr>
                                                 <th>{{ trans('app.Sertifikat raqami') }}</th>
                                                 <th>{{ trans('app.Berilgan sanasi') }}</th>
-                                                <th>{{ trans('app.Raqami') }}</th>
+                                                <th  style="text-align: center;">{{ trans('app.Raqami') }}</th>
                                                 <th>{{ trans('app.Berilgan sanasi') }}</th>
                                                 <th style="border-right-width: 1px;">{{ trans('app.Yaroqliligi') }}</th>
                                             </tr>
@@ -277,7 +277,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td>
-                                                    <select name="lab_result" class="w-100 form-control" id="lab_result">
+                                                    <select name="lab_result" class="w-100 form-control" id="lab_result" style="width: 100px !important;">
                                                         <option value="" @if($lab_result==null) selected @endif>{{trans('message.Barchasi')}}</option>
                                                         <option value="Muvofiq" @if($lab_result=="Muvofiq") selected @endif>Muvofiq</option>
                                                         <option value="Nomuvofiq" @if($lab_result=="Nomuvofiq") selected @endif>Nomuvofiq</option>
