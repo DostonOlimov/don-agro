@@ -59,11 +59,11 @@
 
                                             <tr>
                                                 <th>#</th>
+                                                <th></th>
                                                 <th>{{ trans('app.Image') }}</th>
                                                 <th>{{ trans('app.Name') }}</th>
                                                 <th>{{ trans('app.Last Name') }}</th>
                                                 <th>{{ trans('app.Lavozim') }}</th>
-                                                <th>Api token</th>
                                                 <th>{{ trans('app.Email') }}</th>
                                                 <th>{{ trans('app.Mobile Number') }}</th>
                                                 <th>{{ trans('app.Action') }}</th>
@@ -75,12 +75,19 @@
                                             @foreach ($users as $user)
                                                 <tr>
                                                     <td>{{ $i }}</td>
+                                                    <td>
+                                                        @if ($user->api_token)
+                                                            <button onclick="copyText()" class="btn btn-success">
+                                                                Copy to API
+                                                            </button>
+                                                        @endif
+                                                    </td>
                                                     <td><img src="{{ URL::asset('employee/' . $user->image) }}" width="50px"
                                                             height="50px" class="img-circle"></td>
                                                     <td>{{ $user->name }}</td>
                                                     <td>{{ $user->lastname }}</td>
                                                     <td>{{ $user->position }}</td>
-                                                    <td>{{ $user->api_token }}</td>
+                                                    <p hidden id="textToCopy">{{ $user->api_token }}</p>
                                                     <td>{{ $user->email }}</td>
                                                     <td>{{ $user->mobile_no }}</td>
                                                     <td>
@@ -122,6 +129,27 @@
     @endcan
     <!-- /page content -->
     <script src="{{ URL::asset('vendors/jquery/dist/jquery.min.js') }}"></script>
+
+    {{-- start --}}
+        <script>
+            function copyText() {
+                var textToCopy = document.getElementById('textToCopy');
+                var text = textToCopy.innerText.trim();
+
+                if (text.length > 0) {
+                    var tempInput = document.createElement('input');
+                    tempInput.value = text;
+                    document.body.appendChild(tempInput);
+                    tempInput.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(tempInput);
+                }
+                // else {
+                //     textToCopy.classList.add('btn btn-danger');
+                // }
+            }
+        </script>
+    {{-- end --}}
 
     <script>
         $('body').on('click', '.sa-warning', function() {
