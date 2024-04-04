@@ -40,13 +40,13 @@
                                     <thead>
                                         <tr>
                                             <th>№</th>
-                                            <th>{{ trans('app.Sifat ko\'rsatkich nomi') }}</th>
-                                            <th>{{ trans('app.Sifat ko\'rsatkich bo\'yicha me\'yoriy hujjat') }}</th>
-                                            <th>{{ trans('app.Mahsulot turi') }}</th>
-                                            <th>{{ trans('app.Mahsulot normativ hujjati') }}</th>
-                                            <th>{{ trans('app.Me’yor') }}</th>
-                                            <th>{{ trans("app.Me’yordan ko'pi bilan(kamida)") }}</th>
-                                            <th>{{ trans('app.Action') }}</th>
+                                            <th style="text-align: center">{{ trans('app.Sifat ko\'rsatkich nomi') }}</th>
+                                            <th style="text-align: center">{{ trans('app.Sifat ko\'rsatkich bo\'yicha me\'yoriy hujjat') }}</th>
+                                            <th style="text-align: center">{{ trans('app.Mahsulot turi') }}</th>
+                                            <th style="text-align: center">{{ trans('app.Mahsulot normativ hujjati') }}</th>
+                                            <th style="text-align: center">{{ trans('app.Me’yor') }}</th>
+                                            <th style="text-align: center">{{ trans("app.Me’yordan ko'pi bilan(kamida)") }}</th>
+                                            <th style="text-align: center">{{ trans('app.Action') }}</th>
                                         </tr>
                                     </thead>
                                     <tbody>

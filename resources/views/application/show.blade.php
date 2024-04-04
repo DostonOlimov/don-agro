@@ -92,37 +92,38 @@
                                             <div class="col-md-6 col-sm-12 right_side">
                                                 @if ($user->status != \App\Models\Application::STATUS_NEW)
                                                     <h4><b>{{ trans("app.Arizachi ma'lumotlari") }}</b></h4>
-                                                    <div class="table_row row">
-                                                        <div class="col-md-5 col-sm-12 table_td">
-                                                            <b>{{ trans('app.Ariza beruvchi') }}</b>
+                                                    @if ($user->is_online==1)
+                                                        <div class="table_row row">
+                                                            <div class="col-md-5 col-sm-12 table_td">
+                                                                <b>{{ trans('app.Ariza beruvchi') }}</b>
+                                                            </div>
+                                                            <div class="col-md-7 col-sm-12 table_td">
+                                                                <span class="txt_color">
+                                                                    {{ optional($user->user)->role == \App\Models\User::ROLE_CUSTOMER ? 'Fuqaro' : 'Xodim' }}
+                                                                </span>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-md-7 col-sm-12 table_td">
-                                                            <span class="txt_color">
-                                                                {{ optional($user->user)->role == \App\Models\User::ROLE_CUSTOMER ? 'Fuqaro' : 'Xodim' }}
-                                                            </span>
+                                                        <div class="table_row row">
+                                                            <div class="col-md-5 col-sm-12 table_td">
+                                                                <b>{{ trans('app.Arizachi ismi-sharifi') }}</b>
+                                                            </div>
+                                                            <div class="col-md-7 col-sm-12 table_td">
+                                                                <span class="txt_color">
+                                                                    {{ optional($user->user)->name . ' ' . optional($user->user)->lastname }}
+                                                                </span>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="table_row row">
-                                                        <div class="col-md-5 col-sm-12 table_td">
-                                                            <b>{{ trans('app.Arizachi ismi-sharifi') }}</b>
+                                                        <div class="table_row row">
+                                                            <div class="col-md-5 col-sm-12 table_td">
+                                                                <b>{{ trans('app.Arizachi elektron pochta manzili') }}</b>
+                                                            </div>
+                                                            <div class="col-md-7 col-sm-12 table_td">
+                                                                <span class="txt_color">
+                                                                    {{ optional($user->user)->email }}
+                                                                </span>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-md-7 col-sm-12 table_td">
-                                                            <span class="txt_color">
-                                                                {{ optional($user->user)->name . ' ' . optional($user->user)->lastname }}
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="table_row row">
-                                                        <div class="col-md-5 col-sm-12 table_td">
-                                                            <b>{{ trans('app.Arizachi elektron pochta manzili') }}</b>
-                                                        </div>
-                                                        <div class="col-md-7 col-sm-12 table_td">
-                                                            <span class="txt_color">
-                                                                {{ optional($user->user)->email }}
-                                                            </span>
-                                                        </div>
-                                                    </div>
-
+                                                    @endif
                                                     <div class="table_row row">
                                                         <div class="col-md-5 col-sm-12 table_td">
                                                             <b>{{ trans('app.Ariza berilgan sanasi') }}</b>

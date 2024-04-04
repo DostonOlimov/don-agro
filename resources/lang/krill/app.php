@@ -458,4 +458,8 @@ return [
 
     "Sertifikatsiyaga yuboriligan"=>"Сертификацияга юборилиган",
     "Sinov bayonnoma"=>"Синов баённома",
+
+    "Umumiy og'irligi:"=>"Умумий оғирлиги:",
+    "Umumiy arizalar soni:"=>"Умумий аризалар сони:",
+    "Umumiy partiyalar sonni:"=>"Умумий партиялар сонни:",
 ];

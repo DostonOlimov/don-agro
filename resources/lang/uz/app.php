@@ -497,4 +497,8 @@ return [
 
     "Sertifikatsiyaga yuboriligan"=>"Sertifikatsiyaga yuboriligan",
     "Sinov bayonnoma"=>"Sinov bayonnoma",
+
+    "Umumiy og'irligi:"=>"Umumiy og'irligi:",
+    "Umumiy arizalar soni:"=>"Umumiy arizalar soni:",
+    "Umumiy partiyalar sonni:"=>"Umumiy partiyalar sonni:",
 ];

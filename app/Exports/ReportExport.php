@@ -147,4 +147,46 @@ class ReportExport implements FromCollection,WithHeadings,WithStyles
         $sheet->getColumnDimension('R')->setWidth(30);
         $sheet->getDefaultColumnDimension()->setAutoSize(false);
     }
+
+    // public function collection()
+    // {
+
+    //     $apps = $this->data;
+    //     $startingDataRow = 4;
+    //     $firstRow = [
+    //         'Ariza raqami' => '', // Set the desired value to 1
+    //         'Sanasi' => '', // Adjust as needed
+    //     ];
+    //     $data = $apps->map(function ($app) {
+    //         return [
+    //             'Ariza raqami' => $app->app_number,
+    //             'Sanasi' => $app->date,
+    //             'City name' => optional($app->organization)->city->region->name ?? 'N/A',
+    //             'Region name' => optional($app->organization)->city->name ?? 'N/A',
+    //             'Organization name' => optional($app->organization)->name ?? 'N/A',
+    //             'Prepared name' => optional($app->prepared)->name ?? 'N/A',
+    //             'Country name' => optional($app->crops->country)->name  ?? 'N/A',
+    //             'Crop name' => optional($app->crops->name)->name  ?? 'N/A',
+    //             'Type name' => optional($app->crops->type)->name  ?? '-',
+    //             'Party name' => optional($app->tests)->akt[0]->party_number  ?? 'N/A',
+    //             'Amount' => optional($app->crops)->amount_name  ?? '-',
+    //             'Year' => optional($app->crops)->year  ?? '-',
+    //             // 'test_number' => optional(optional($app->tests)->result)->test_program->akt[0]->lab_bayonnoma[0]->number  ?? '',
+    //             'reestr number' => optional(optional($app->tests)->result)->type == 2 ? optional(optional(optional($app->tests)->result)->certificate)->reestr_number : '',
+    //             'date' => optional(optional($app->tests)->result)->type == 2 ? optional(optional(optional($app->tests)->result)->certificate)->given_date  : '',
+    //             'sf1' =>(isset($app->tests->laboratory_results))?($app->tests->laboratory_results->number).' - '.($app->tests->laboratory_results->number + ($app->tests->akt[0]['party_number']-1)):((isset($app->tests->akt[0]->lab_bayonnoma[0]))?$app->tests->akt[0]->lab_bayonnoma[0]['number']:'Jarayonda'),
+    //             'sf2' => (isset($app->tests->akt[0]->lab_bayonnoma[0]->date))?$app->tests->akt[0]->lab_bayonnoma[0]->date:'',
+    //             'sf3' =>  (isset($app->tests->akt[0]->lab_bayonnoma[0]->test_result))?$app->tests->akt[0]->lab_bayonnoma[0]->test_result:'',
+    //             'comment' => (isset($app->tests->laboratory_results->data))?$app->tests->laboratory_results->data:'',
+    //         ];
+    //     });
+    //     $totalAmount = 123;
+    //     $totalRow = [
+    //         'Amount' => ' Total Amount: ' . $totalAmount,
+    //         'Amount2' => ' Total Wer: ' . $totalAmount
+    // ];
+
+    //     return collect([$firstRow])->concat($data)->push($totalRow);
+
+    // }
 }

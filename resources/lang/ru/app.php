@@ -466,4 +466,8 @@ return [
 
     "Sertifikatsiyaga yuboriligan"=>"Отправлено на сертификацию",
     "Sinov bayonnoma"=>"Отчет об испытаниях",
+
+    "Umumiy og'irligi:"=>"Общий вес:",
+    "Umumiy arizalar soni:"=>"Общее количество заявок:",
+    "Umumiy partiyalar sonni:"=>"Общее количество партий:",
 ];

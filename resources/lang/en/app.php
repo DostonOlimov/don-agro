@@ -460,4 +460,8 @@ return [
 
     "Sertifikatsiyaga yuboriligan"=>"Sent for certification",
     "Sinov bayonnoma"=>"Test report",
+
+    "Umumiy og'irligi:"=>"Total weight:",
+    "Umumiy arizalar soni:"=>"Total number of applications:",
+    "Umumiy partiyalar sonni:"=>"Total number of parties:",
 ];

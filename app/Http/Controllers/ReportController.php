@@ -108,18 +108,23 @@ class ReportController extends Controller{
         $names = DB::table('crops_name')->get();
         $countries = DB::table('tbl_countries')->get();
         $years = CropData::getYear();
+        
         $yil=session('year') ?  session('year') : date('Y');
         $total = DB::table('applications as A')
         ->join('crop_data as CD', 'A.crop_data_id', '=', 'CD.id')
         ->join('test_programs as T', 'A.id', '=', 'T.app_id')
         ->join('AKT', 'AKT.test_program_id', '=', 'T.id')
         ->select(
-            DB::raw('SUM(CASE WHEN CD.measure_type = 1 THEN CD.amount * 0.001 ELSE CD.amount END) AS total_amount'),
+            DB::raw('SUM(CASE WHEN CD.measure_type = 2 THEN CD.amount * 0.001 ELSE CD.amount END) AS total_amount'),
             DB::raw('SUM(AKT.party_number) AS party_count')
         )
         ->whereYear('A.date', '=', $yil)
         ->first();
 
+        $totalApp = DB::table('applications')
+        ->whereYear('date', '=', $yil)
+        ->where('app_number','>',0)
+        ->get()->count();
 
         $totalAmount= $total->total_amount;
         $partyCount = $total->party_count;
@@ -146,6 +151,7 @@ class ReportController extends Controller{
             'totalAmount',
             'partyCount',
             'lab_result',
+            'totalApp',
         ));
     }
     public function region_report(Request $request)

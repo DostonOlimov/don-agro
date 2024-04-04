@@ -290,8 +290,8 @@
                                             </tr>
                                             @php
                                                 $offset = (request()->get('page', 1) - 1) * 50;
-                                                // $partiya = 0;
-                                                // $all_amount = 0;
+                                                $partiya = 0;
+                                                $all_amount = 0;
                                                 // $count_app = 0;
                                             @endphp
                                             @foreach ($apps as $key => $app)
@@ -312,19 +312,19 @@
                                                     <td>{{ optional($app->crops->type)->name }}</td>
                                                     {{-- <td>{{ optional($app->crops->generation)->name }}</td> --}}
                                                     @php
-                                                        // $akt = optional(optional($app->tests)->akt)[0];
-                                                        // if ($akt && $akt->party_number) {
-                                                        //     $partiya += $akt->party_number;
-                                                        // }
-                                                        // $amounts = $app->crops;
-                                                        // if ($amounts) {
-                                                        //     if($amounts->measure_type==1){
-                                                        //         $all_amount += $amounts->amount * 0.001;
-                                                        //     }
-                                                        //     else {
-                                                        //         $all_amount += $amounts->amount;
-                                                        //     }
-                                                        // }
+                                                        $akt = optional(optional($app->tests)->akt)[0];
+                                                        if ($akt && $akt->party_number) {
+                                                            $partiya += $akt->party_number;
+                                                        }
+                                                        $amounts = $app->crops;
+                                                        if ($amounts) {
+                                                            if($amounts->measure_type==2){
+                                                                $all_amount += $amounts->amount * 0.001;
+                                                            }
+                                                            else {
+                                                                $all_amount += $amounts->amount;
+                                                            }
+                                                        }
                                                         // $count_app = $offset + $loop->iteration ?? 0;
                                                     @endphp
                                                     <td>{{ optional($app->tests)->akt[0]->party_number ?? '' }}</td>
@@ -408,24 +408,32 @@
                                                         @endif
                                                     </td>
                                                 </tr>
-                                            @endforeach
+                                                @endforeach
+                                                    <tr>
+                                                        <td colspan="10"></td>
+                                                        <td colspan="1" style="text-align: start; font-weight: 700;"><span>
+                                                            {{ trans('app.Jami:') . ' ' . number_format($partiya, 0, '', ' ') . ' ' . trans('app.ta') }}
+                                                        </span> </td>
+                                                        <td colspan="1" style="text-align: start; font-weight: 700;"><span>{{ trans("app.Jami:") . ' ' . number_format($all_amount, 2, ',', ' ') . ' ' . trans('app.tonna') }}</span></td>
+                                                        <td colspan="10"></td>
+                                                    </tr>
                                     </table>
                                 </div>
                                 {{ $apps->links() }}
                             </div>
                             <h4
-                            style="position: sticky; bottom: 0; padding: 1%; color: #0052cc; width: 100%; display: flex; justify-content: space-between; background-color: white">
-                            {{-- <span>{{ trans("app.Jami og'irligi:") . ' ' . number_format($all_amount, 2, ',', ' ') . ' ' . trans('app.tonna') }}</span> --}}
-                            {{-- <span style="color: #097a22;">
-                                {{ trans('app.Jami partiyalar sonni:') . ' ' . number_format($partiya, 0, '', ' ') . ' ' . trans('app.ta') }}
-                            </span> --}}
+                            style="position: sticky; bottom: 0; padding: 1%; color: #0052cc; width: 100%; display: flex; justify-content: space-between; background-color: white"
+                            {{-- id="hiddenDiv" --}}   {{-- divni qator oxirga kelganda yashirish  --}}
+                            >
                             {{-- <span style="color: #197da5;">{{ trans('app.Arizalar soni:') }} {{ $count_app }}
                                 {{ trans('app.ta') }}</span> --}}
-                                <span>{{ trans("app.Jami og'irligi:") . ' ' . number_format($totalAmount, 2, ',', ' ') . ' ' . trans('app.tonna') }}</span>
-                                <span style="color: #197da5;">{{ trans('app.Arizalar soni:') }} {{ $apps->total() }}
+                            {{-- <span style="color: #197da5;">{{ trans('app.Arizalar soni:') }} {{ $apps->total() }}
+                                {{ trans('app.ta') }}</span> --}}
+                                <span>{{ trans("app.Umumiy og'irligi:") . ' ' . number_format($totalAmount, 2, ',', ' ') . ' ' . trans('app.tonna') }}</span>
+                                <span style="color: #197da5;">{{ trans('app.Umumiy arizalar soni:') }} {{ ($totalApp)??''}}
                                     {{ trans('app.ta') }}</span>
                                 <span style="color: #097a22;">
-                                    {{ trans('app.Jami partiyalar sonni:') . ' ' . number_format($partyCount, 0, '', ' ') . ' ' . trans('app.ta') }}
+                                    {{ trans('app.Umumiy partiyalar sonni:') . ' ' . number_format($partyCount, 0, '', ' ') . ' ' . trans('app.ta') }}
                                 </span>
                             </h4>
                         </div>
@@ -444,6 +452,27 @@
     @endcan
     <!-- /page content -->
     <script src="{{ URL::asset('vendors/jquery/dist/jquery.min.js') }}"></script>
+    {{-- Scrip start divni qator oxirga kelganda yashirish  --}}
+    {{-- <script>
+        $(document).ready(function(){
+            function isBottom() {
+                return $(window).scrollTop() + $(window).height() == $(document).height();
+            }
+
+            if (isBottom()) {
+                $('#hiddenDiv').hide();
+            }
+
+            $(window).scroll(function(){
+                if (isBottom()) {
+                    $('#hiddenDiv').hide();
+                } else {
+                    $('#hiddenDiv').show();
+                }
+            });
+        });
+    </script> --}}
+    {{-- Scrip end divni qator oxirga kelganda yashirish  --}}
     <script>
         function changeDisplay(name) {
             //organization companies change
