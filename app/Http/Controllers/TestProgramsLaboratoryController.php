@@ -75,7 +75,7 @@ class TestProgramsLaboratoryController extends Controller
             });
         });
 
-        $tests = $apps->latest('id')
+        $tests = $apps->orderBy('status')
             ->paginate(50)
             ->appends(['s' => $request->input('s')])
             ->appends(['till' => $request->input('till')])
