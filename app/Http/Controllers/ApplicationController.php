@@ -39,7 +39,7 @@ class ApplicationController extends Controller
         $crop = $request->input('crop');
         $from = $request->input('from');
         $till = $request->input('till');
-        $ariza_turi=$request->input('ariza_turi');
+        $ariza_turi = $request->input('ariza_turi');
 
         $apps = Application::with('organization')
             ->with('crops')
@@ -48,7 +48,7 @@ class ApplicationController extends Controller
             ->with('tests.result')
             ->with('comment')
             ->with('crops.type');
-        if($user->role == \App\Models\User::STATE_EMPLOYEE){
+        if ($user->role == \App\Models\User::STATE_EMPLOYEE) {
             $user_city = $user->state_id;
             $apps = $apps->whereHas('organization', function ($query) use ($user_city) {
                 $query->whereHas('city', function ($query) use ($user_city) {
@@ -71,10 +71,10 @@ class ApplicationController extends Controller
         }
         if ($crop) {
             $apps = $apps->whereHas('crops', function ($query) use ($crop) {
-                    $query->where('name_id', '=', $crop);
+                $query->where('name_id', '=', $crop);
             });
         }
-        if($ariza_turi){
+        if ($ariza_turi) {
             $apps = $apps->where('type', '=', $ariza_turi);
         }
         $apps->when($request->input('s'), function ($query, $searchQuery) {
@@ -83,13 +83,12 @@ class ApplicationController extends Controller
                     $query->orWhere('app_number', $searchQuery);
                 } else {
                     $query->whereHas('crops.name', function ($query) use ($searchQuery) {
-                            $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
+                        $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
                     })->orWhereHas('crops.type', function ($query) use ($searchQuery) {
                         $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
-                    // })->orWhereHas('crops.generation', function ($query) use ($searchQuery) {
-                    //     $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
+                        // })->orWhereHas('crops.generation', function ($query) use ($searchQuery) {
+                        //     $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
                     });
-
                 }
             });
         });
@@ -102,7 +101,7 @@ class ApplicationController extends Controller
             ->appends(['city' => $request->input('city')])
             ->appends(['crop' => $request->input('crop')]);
 
-        return view('application.list', compact('apps','from','till','city','crop','ariza_turi'));
+        return view('application.list', compact('apps', 'from', 'till', 'city', 'crop', 'ariza_turi'));
     }
 
 
@@ -118,8 +117,7 @@ class ApplicationController extends Controller
         $year = CropData::getYear();
 
 
-        return view('application.add',compact('names', 'countries','measure_types','type','requirements','year'));
-
+        return view('application.add', compact('names', 'countries', 'measure_types', 'type', 'requirements', 'year'));
     }
 
 
@@ -135,7 +133,7 @@ class ApplicationController extends Controller
         $userA = Auth::user();
         $crop = new CropData();
         $crop->name_id = $request->input('name');
-        $crop->type_id = $request->input('type')??null;
+        $crop->type_id = $request->input('type') ?? null;
         // $crop->generation_id = $request->input('generation');
         $crop->country_id = $request->input('country');
         $crop->kodtnved = $request->input('tnved');
@@ -163,7 +161,7 @@ class ApplicationController extends Controller
         $app->created_by = $userA->id;
         $app->save();
 
-        foreach ($requirements as $value){
+        foreach ($requirements as $value) {
             $pro = new AppRequirement();
             $pro->app_id = $app->id;
             $pro->requirement_id = $value;
@@ -179,7 +177,6 @@ class ApplicationController extends Controller
         $active->save();
 
         return redirect('/application/list')->with('message', 'Successfully Submitted');
-
     }
 
     // application edit
@@ -196,12 +193,12 @@ class ApplicationController extends Controller
         $countries = DB::table('tbl_countries')->get()->toArray();
         $measure_types = CropData::getMeasureType();
         $requirements = Requirement::get();
-        if($app->is_online==1 && $app->user &&$app->user->role == \App\Models\User::ROLE_CUSTOMER){
-            return view('application.myedit', compact('app', 'type', 'names', 'countries', 'measure_types', 'title','requirements'));
+        if ($app->is_online == 1 && $app->user && $app->user->role == \App\Models\User::ROLE_CUSTOMER) {
+            return view('application.myedit', compact('app', 'type', 'names', 'countries', 'measure_types', 'title', 'requirements'));
         }
         $year = CropData::getYear();
 
-        return view('application.edit', compact('app', 'type', 'names', 'countries', 'measure_types', 'title','requirements','year'));
+        return view('application.edit', compact('app', 'type', 'names', 'countries', 'measure_types', 'title', 'requirements', 'year'));
     }
 
 
@@ -231,7 +228,7 @@ class ApplicationController extends Controller
         $app->is_online = 0;
         $app->save();
 
-        $crop =CropData::find($app->crop_data_id);
+        $crop = CropData::find($app->crop_data_id);
         $crop->name_id = $request->input('name');
         $crop->type_id = $request->input('type');
         // $crop->generation_id = $request->input('generation');
@@ -243,11 +240,11 @@ class ApplicationController extends Controller
         $crop->sxeme_number = $request->input('sxeme_number');
         $crop->save();
 
-        CropProductionType::where('crop_id','=',$app->crop_data_id)->delete();
+        CropProductionType::where('crop_id', '=', $app->crop_data_id)->delete();
 
-        AppRequirement::where('app_id',$id)->delete();
+        AppRequirement::where('app_id', $id)->delete();
         $requirements = $request->input('requirements');
-        if($requirements) {
+        if ($requirements) {
             foreach ($requirements as $value) {
                 $pro = new AppRequirement();
                 $pro->app_id = $id;
@@ -264,18 +261,17 @@ class ApplicationController extends Controller
         $active->time = date('Y-m-d H:i:s');
         $active->save();
         return redirect('/application/list')->with('message', 'Successfully Updated');
-
     }
 
     public function showapplication($id)
     {
         $user = Application::with(['tests.akt', 'organization'])->findOrFail($id);
-        $requirements = AppRequirement::where('app_id',$id)->get();
+        $requirements = AppRequirement::where('app_id', $id)->get();
         $company = OrganizationCompanies::with('city')->findOrFail($user->organization_id);
         $country = DB::table('tbl_countries')->find($user->crops->country_id);
-        $country=$country->name??'';
+        $country = $country->name ?? '';
 
-        return view('application.show', compact('user','company','requirements','country'));
+        return view('application.show', compact('user', 'company', 'requirements', 'country'));
     }
 
     public function myapplications(Request $request)
@@ -283,7 +279,7 @@ class ApplicationController extends Controller
         $user = Auth::User();
 
 
-        $apps = Application::where('created_by',$user->id)
+        $apps = Application::where('created_by', $user->id)
             ->with('organization')
             ->with('crops')
             ->with('crops.name')
@@ -299,10 +295,9 @@ class ApplicationController extends Controller
                         $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
                     })->orWhereHas('crops.type', function ($query) use ($searchQuery) {
                         $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
-                    // })->orWhereHas('crops.generation', function ($query) use ($searchQuery) {
-                    //     $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
+                        // })->orWhereHas('crops.generation', function ($query) use ($searchQuery) {
+                        //     $query->where('name', 'like', '%' . addslashes($searchQuery) . '%');
                     });
-
                 }
             });
         });
@@ -324,11 +319,10 @@ class ApplicationController extends Controller
         $measure_types = CropData::getMeasureType();
         $year = CropData::getYear();
 
-        return view('front.application.add',compact('organization','prepared','names', 'countries','measure_types','year','type'));
-
+        return view('front.application.add', compact('organization', 'prepared', 'names', 'countries', 'measure_types', 'year', 'type'));
     }
 
-    public function myapplicationstore (Request $request)
+    public function myapplicationstore(Request $request)
     {
         $userA = Auth::user();
         $type = $request->input('app_type');
@@ -369,27 +363,26 @@ class ApplicationController extends Controller
         $active->action = "Ariza qo'shildi";
         $active->time = date('Y-m-d H:i:s');
         $active->save();
-        if($type == 1){
-            return redirect('/application/my-file-local?app_id='.$app->id)->with('message', 'Successfully Submitted');
-        }elseif($type == 2){
-            return redirect('/application/my-file-foreign?app_id='.$app->id)->with('message', 'Successfully Submitted');
-        }else{
-            return redirect('/application/my-file-old?app_id='.$app->id)->with('message', 'Successfully Submitted');
-
+        if ($type == 1) {
+            return redirect('/application/my-file-local?app_id=' . $app->id)->with('message', 'Successfully Submitted');
+        } elseif ($type == 2) {
+            return redirect('/application/my-file-foreign?app_id=' . $app->id)->with('message', 'Successfully Submitted');
+        } else {
+            return redirect('/application/my-file-old?app_id=' . $app->id)->with('message', 'Successfully Submitted');
         }
     }
 
-    public function myapplicationshow ($id)
+    public function myapplicationshow($id)
     {
         $user = Application::findOrFail($id);
-        $requirements = AppRequirement::where('app_id',$id)->get();
+        $requirements = AppRequirement::where('app_id', $id)->get();
         $company = OrganizationCompanies::with('city')->findOrFail($user->organization_id);
 
-        return view('front.application.show', compact('user','company','requirements'));
+        return view('front.application.show', compact('user', 'company', 'requirements'));
     }
     // application edit
 
-    public function myapplicationedit ($id)
+    public function myapplicationedit($id)
     {
         $editid = $id;
         $title = "Arizani o'zgartirish";
@@ -403,7 +396,7 @@ class ApplicationController extends Controller
         $year = CropData::getYear();
         $requirements = Requirement::get();
 
-        return view('front.application.edit', compact('app', 'type', 'names', 'countries', 'measure_types', 'year',  'title','requirements'));
+        return view('front.application.edit', compact('app', 'type', 'names', 'countries', 'measure_types', 'year',  'title', 'requirements'));
     }
     // application update
 
@@ -414,7 +407,7 @@ class ApplicationController extends Controller
         $app = Application::find($id);
         $this->authorize('update', $app);
 
-        $crop =CropData::find($app->crop_data_id);
+        $crop = CropData::find($app->crop_data_id);
         $crop->name_id = $request->input('name');
         $crop->type_id = $request->input('type');
         // $crop->generation_id = $request->input('generation');
@@ -424,7 +417,7 @@ class ApplicationController extends Controller
         $crop->amount = $request->input('amount');
         $crop->year = $request->input('year');
         $crop->save();
-        CropProductionType::where('crop_id','=',$app->crop_data_id)->delete();
+        CropProductionType::where('crop_id', '=', $app->crop_data_id)->delete();
         $active = new tbl_activities;
         $active->ip_adress = $_SERVER['REMOTE_ADDR'];
         $active->user_id = $userA->id;
@@ -434,16 +427,14 @@ class ApplicationController extends Controller
         $active->time = date('Y-m-d H:i:s');
         $active->save();
         return redirect('/application/my-applications')->with('message', 'Successfully Updated');
-
     }
-    public function addfilelocal (Request $request)
+    public function addfilelocal(Request $request)
     {
         $app_id = $request->input('app_id');
 
-        return view('front.application.add_file_local',compact('app_id'));
-
+        return view('front.application.add_file_local', compact('app_id'));
     }
-    public function addfilelocal_store (Request $request)
+    public function addfilelocal_store(Request $request)
     {
         $validated = $request->validate([
             'a_dalolatnoma' => 'required',
@@ -460,26 +451,26 @@ class ApplicationController extends Controller
         $file2 = $request->file('a_xulosa');
         $file3 = $request->file('d_xulosa');
         $file4 = $request->file('markirovka');
-        if ($file1){
+        if ($file1) {
             $fileName1 = time() . '.' . $file1->extension();
             $destination1 = implode(DIRECTORY_SEPARATOR, [AppLocalFile::PATH_A_DALOLATNOMA, $fileName1]);
             Storage::disk('local')->put($destination1, $file1->getContent());
             $app->a_dalolatnoma = $fileName1;
         }
-        if ($file2){
-            $fileName2 = time() . '.' .$file2->extension();
+        if ($file2) {
+            $fileName2 = time() . '.' . $file2->extension();
             $destination2 = implode(DIRECTORY_SEPARATOR, [AppLocalFile::PATH_A_XULOSA, $fileName2]);
             Storage::disk('local')->put($destination2, $file2->getContent());
             $app->a_xulosa = $fileName2;
         }
-        if ($file3){
-            $fileName3 = time() . '.' .$file3->extension();
+        if ($file3) {
+            $fileName3 = time() . '.' . $file3->extension();
             $destination3 = implode(DIRECTORY_SEPARATOR, [AppLocalFile::PATH_D_XULOSA, $fileName3]);
             Storage::disk('local')->put($destination3, $file3->getContent());
             $app->d_xulosa = $fileName3;
         }
-        if ($file4){
-            $fileName4 = time() . '.' .$file4->extension();
+        if ($file4) {
+            $fileName4 = time() . '.' . $file4->extension();
             $destination4 = implode(DIRECTORY_SEPARATOR, [AppLocalFile::PATH_MAKIROVKA, $fileName4]);
             Storage::disk('local')->put($destination4, $file4->getContent());
             $app->markirovka = $fileName4;
@@ -496,20 +487,18 @@ class ApplicationController extends Controller
         $active->save();
 
         return redirect('/application/my-applications')->with('message', 'Successfully Submitted');
-
     }
-    public function filelocaledit (Request $request,$app_id)
+    public function filelocaledit(Request $request, $app_id)
     {
         $app = Application::find($app_id);
-        $files = AppLocalFile::where('app_id','=',$app_id)
+        $files = AppLocalFile::where('app_id', '=', $app_id)
             ->first();
-        if(!$files){
-            return view('front.application.add_file_local',compact('app_id','app'));
+        if (!$files) {
+            return view('front.application.add_file_local', compact('app_id', 'app'));
         }
-        return view('front.application.file_local_edit',compact('files','app'));
-
+        return view('front.application.file_local_edit', compact('files', 'app'));
     }
-    public function filelocal_update (Request $request)
+    public function filelocal_update(Request $request)
     {
         $userA = Auth::user();
         $file_id = $request->input('file_id');
@@ -520,10 +509,10 @@ class ApplicationController extends Controller
 
         $files = AppLocalFile::find($file_id);
 
-        if ($file1){
-            if($files->a_dalolatnoma){
-                if(Storage::exists(AppLocalFile::PATH_A_DALOLATNOMA.'/'.$files->a_dalolatnoma)){
-                    Storage::delete(AppLocalFile::PATH_A_DALOLATNOMA.'/'.$files->a_dalolatnoma);
+        if ($file1) {
+            if ($files->a_dalolatnoma) {
+                if (Storage::exists(AppLocalFile::PATH_A_DALOLATNOMA . '/' . $files->a_dalolatnoma)) {
+                    Storage::delete(AppLocalFile::PATH_A_DALOLATNOMA . '/' . $files->a_dalolatnoma);
                 }
             }
             $fileName1 = time() . '.' . $file1->extension();
@@ -532,35 +521,35 @@ class ApplicationController extends Controller
             $files->a_dalolatnoma = $fileName1;
         }
 
-        if ($file2){
-            if($files->a_xulosa){
-                if(Storage::exists(AppLocalFile::PATH_A_XULOSA.'/'.$files->a_xulosa)){
-                    Storage::delete(AppLocalFile::PATH_A_XULOSA.'/'.$files->a_xulosa);
+        if ($file2) {
+            if ($files->a_xulosa) {
+                if (Storage::exists(AppLocalFile::PATH_A_XULOSA . '/' . $files->a_xulosa)) {
+                    Storage::delete(AppLocalFile::PATH_A_XULOSA . '/' . $files->a_xulosa);
                 }
             }
-            $fileName2 = time() . '.' .$file2->extension();
+            $fileName2 = time() . '.' . $file2->extension();
             $destination2 = implode(DIRECTORY_SEPARATOR, [AppLocalFile::PATH_A_XULOSA, $fileName2]);
             Storage::disk('local')->put($destination2, $file2->getContent());
             $files->a_xulosa = $fileName2;
         }
-        if ($file3){
-            if($files->d_xulosa){
-                if(Storage::exists(AppLocalFile::PATH_D_XULOSA.'/'.$files->d_xulosa)){
-                    Storage::delete(AppLocalFile::PATH_D_XULOSA.'/'.$files->d_xulosa);
+        if ($file3) {
+            if ($files->d_xulosa) {
+                if (Storage::exists(AppLocalFile::PATH_D_XULOSA . '/' . $files->d_xulosa)) {
+                    Storage::delete(AppLocalFile::PATH_D_XULOSA . '/' . $files->d_xulosa);
                 }
             }
-            $fileName3 = time() . '.' .$file3->extension();
+            $fileName3 = time() . '.' . $file3->extension();
             $destination3 = implode(DIRECTORY_SEPARATOR, [AppLocalFile::PATH_D_XULOSA, $fileName3]);
             Storage::disk('local')->put($destination3, $file3->getContent());
             $files->d_xulosa = $fileName3;
         }
-        if ($file4){
-            if($files->markirovka){
-                if(Storage::exists(AppLocalFile::PATH_MAKIROVKA.'/'.$files->markirovka)){
-                    Storage::delete(AppLocalFile::PATH_MAKIROVKA.'/'.$files->markirovka);
+        if ($file4) {
+            if ($files->markirovka) {
+                if (Storage::exists(AppLocalFile::PATH_MAKIROVKA . '/' . $files->markirovka)) {
+                    Storage::delete(AppLocalFile::PATH_MAKIROVKA . '/' . $files->markirovka);
                 }
             }
-            $fileName4 = time() . '.' .$file4->extension();
+            $fileName4 = time() . '.' . $file4->extension();
             $destination4 = implode(DIRECTORY_SEPARATOR, [AppLocalFile::PATH_MAKIROVKA, $fileName4]);
             Storage::disk('local')->put($destination4, $file4->getContent());
             $files->markirovka = $fileName4;
@@ -577,14 +566,12 @@ class ApplicationController extends Controller
         $active->save();
 
         return redirect('/application/my-applications')->with('message', 'Successfully Submitted');
-
     }
-    public function addfileforeign (Request $request)
+    public function addfileforeign(Request $request)
     {
         $app_id = $request->input('app_id');
 
-        return view('front.application.add_file_foreign',compact('app_id'));
-
+        return view('front.application.add_file_foreign', compact('app_id'));
     }
     public function addfileforeign_store(Request $request)
     {
@@ -606,44 +593,44 @@ class ApplicationController extends Controller
         $file5 = $request->file('invoys');
         $file6 = $request->file('yuk_xati');
         $file7 = $request->file('smr');
-        if ($file1){
+        if ($file1) {
             $fileName1 = time() . '.' . $file1->extension();
             $destination1 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_KARANTIN, $fileName1]);
             Storage::disk('local')->put($destination1, $file1->getContent());
             $app->karantin = $fileName1;
         }
-        if ($file2){
-            $fileName2 = time() . '.' .$file2->extension();
+        if ($file2) {
+            $fileName2 = time() . '.' . $file2->extension();
             $destination2 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_FITOSANITAR, $fileName2]);
             Storage::disk('local')->put($destination2, $file2->getContent());
             $app->fitosanitar = $fileName2;
         }
-        if ($file3){
-            $fileName3 = time() . '.' .$file3->extension();
+        if ($file3) {
+            $fileName3 = time() . '.' . $file3->extension();
             $destination3 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_M_SERTIFICAT, $fileName3]);
             Storage::disk('local')->put($destination3, $file3->getContent());
             $app->sertifikat = $fileName3;
         }
-        if ($file4){
-            $fileName4 = time() . '.' .$file4->extension();
+        if ($file4) {
+            $fileName4 = time() . '.' . $file4->extension();
             $destination4 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_MAKIROVKA, $fileName4]);
             Storage::disk('local')->put($destination4, $file4->getContent());
             $app->markirovka = $fileName4;
         }
-        if ($file5){
-            $fileName5 = time() . '.' .$file5->extension();
+        if ($file5) {
+            $fileName5 = time() . '.' . $file5->extension();
             $destination5 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_INVOYS, $fileName5]);
             Storage::disk('local')->put($destination5, $file5->getContent());
             $app->invoys = $fileName5;
         }
-        if ($file6){
-            $fileName6 = time() . '.' .$file6->extension();
+        if ($file6) {
+            $fileName6 = time() . '.' . $file6->extension();
             $destination6 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_YUK_XATI, $fileName6]);
             Storage::disk('local')->put($destination6, $file6->getContent());
             $app->yuk_xati = $fileName6;
         }
-        if ($file7){
-            $fileName7 = time() . '.' .$file7->extension();
+        if ($file7) {
+            $fileName7 = time() . '.' . $file7->extension();
             $destination7 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_SMR, $fileName7]);
             Storage::disk('local')->put($destination7, $file7->getContent());
             $app->smr = $fileName7;
@@ -660,20 +647,18 @@ class ApplicationController extends Controller
         $active->save();
 
         return redirect('/application/my-applications')->with('message', 'Successfully Submitted');
-
     }
-    public function fileforeignedit (Request $request,$app_id)
+    public function fileforeignedit(Request $request, $app_id)
     {
         $app = Application::find($app_id);
-        $files = AppForeignFile::where('app_id','=',$app_id)
+        $files = AppForeignFile::where('app_id', '=', $app_id)
             ->first();
-        if(!$files){
-            return view('front.application.add_file_foreign',compact('app_id','app'));
+        if (!$files) {
+            return view('front.application.add_file_foreign', compact('app_id', 'app'));
         }
-        return view('front.application.file_foreign_edit',compact('files','app'));
-
+        return view('front.application.file_foreign_edit', compact('files', 'app'));
     }
-    public function fileforeign_update (Request $request)
+    public function fileforeign_update(Request $request)
     {
         $userA = Auth::user();
         $file_id = $request->input('file_id');
@@ -687,10 +672,10 @@ class ApplicationController extends Controller
 
         $files = AppForeignFile::find($file_id);
 
-        if ($file1){
-            if($files->a_dalolatnoma){
-                if(Storage::exists(AppForeignFile::PATH_KARANTIN.'/'.$files->karantin)){
-                    Storage::delete(AppForeignFile::PATH_KARANTIN.'/'.$files->karantin);
+        if ($file1) {
+            if ($files->a_dalolatnoma) {
+                if (Storage::exists(AppForeignFile::PATH_KARANTIN . '/' . $files->karantin)) {
+                    Storage::delete(AppForeignFile::PATH_KARANTIN . '/' . $files->karantin);
                 }
             }
             $fileName1 = time() . '.' . $file1->extension();
@@ -699,68 +684,68 @@ class ApplicationController extends Controller
             $files->karantin = $fileName1;
         }
 
-        if ($file2){
-            if($files->fitosanitar){
-                if(Storage::exists(AppForeignFile::PATH_FITOSANITAR.'/'.$files->fitosanitar)){
-                    Storage::delete(AppForeignFile::PATH_FITOSANITAR.'/'.$files->fitosanitar);
+        if ($file2) {
+            if ($files->fitosanitar) {
+                if (Storage::exists(AppForeignFile::PATH_FITOSANITAR . '/' . $files->fitosanitar)) {
+                    Storage::delete(AppForeignFile::PATH_FITOSANITAR . '/' . $files->fitosanitar);
                 }
             }
-            $fileName2 = time() . '.' .$file2->extension();
+            $fileName2 = time() . '.' . $file2->extension();
             $destination2 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_FITOSANITAR, $fileName2]);
             Storage::disk('local')->put($destination2, $file2->getContent());
             $files->fitosanitar = $fileName2;
         }
-        if ($file3){
-            if($files->sertifikat){
-                if(Storage::exists(AppForeignFile::PATH_M_SERTIFICAT.'/'.$files->sertifikat)){
-                    Storage::delete(AppForeignFile::PATH_M_SERTIFICAT.'/'.$files->sertifikat);
+        if ($file3) {
+            if ($files->sertifikat) {
+                if (Storage::exists(AppForeignFile::PATH_M_SERTIFICAT . '/' . $files->sertifikat)) {
+                    Storage::delete(AppForeignFile::PATH_M_SERTIFICAT . '/' . $files->sertifikat);
                 }
             }
-            $fileName3 = time() . '.' .$file3->extension();
+            $fileName3 = time() . '.' . $file3->extension();
             $destination3 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_M_SERTIFICAT, $fileName3]);
             Storage::disk('local')->put($destination3, $file3->getContent());
             $files->sertifikat = $fileName3;
         }
-        if ($file4){
-            if($files->markirovka){
-                if(Storage::exists(AppForeignFile::PATH_MAKIROVKA.'/'.$files->markirovka)){
-                    Storage::delete(AppForeignFile::PATH_MAKIROVKA.'/'.$files->markirovka);
+        if ($file4) {
+            if ($files->markirovka) {
+                if (Storage::exists(AppForeignFile::PATH_MAKIROVKA . '/' . $files->markirovka)) {
+                    Storage::delete(AppForeignFile::PATH_MAKIROVKA . '/' . $files->markirovka);
                 }
             }
-            $fileName4 = time() . '.' .$file4->extension();
+            $fileName4 = time() . '.' . $file4->extension();
             $destination4 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_MAKIROVKA, $fileName4]);
             Storage::disk('local')->put($destination4, $file4->getContent());
             $files->markirovka = $fileName4;
         }
-        if ($file5){
-            if($files->invoys){
-                if(Storage::exists(AppForeignFile::PATH_INVOYS.'/'.$files->invoys)){
-                    Storage::delete(AppForeignFile::PATH_INVOYS.'/'.$files->invoys);
+        if ($file5) {
+            if ($files->invoys) {
+                if (Storage::exists(AppForeignFile::PATH_INVOYS . '/' . $files->invoys)) {
+                    Storage::delete(AppForeignFile::PATH_INVOYS . '/' . $files->invoys);
                 }
             }
-            $fileName5 = time() . '.' .$file5->extension();
+            $fileName5 = time() . '.' . $file5->extension();
             $destination5 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_INVOYS, $fileName5]);
             Storage::disk('local')->put($destination5, $file5->getContent());
             $files->invoys = $fileName5;
         }
-        if ($file6){
-            if($files->yuk_xati){
-                if(Storage::exists(AppForeignFile::PATH_YUK_XATI.'/'.$files->yuk_xati)){
-                    Storage::delete(AppForeignFile::PATH_YUK_XATI.'/'.$files->yuk_xati);
+        if ($file6) {
+            if ($files->yuk_xati) {
+                if (Storage::exists(AppForeignFile::PATH_YUK_XATI . '/' . $files->yuk_xati)) {
+                    Storage::delete(AppForeignFile::PATH_YUK_XATI . '/' . $files->yuk_xati);
                 }
             }
-            $fileName6 = time() . '.' .$file6->extension();
+            $fileName6 = time() . '.' . $file6->extension();
             $destination6 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_YUK_XATI, $fileName6]);
             Storage::disk('local')->put($destination6, $file6->getContent());
             $files->yuk_xati = $fileName6;
         }
-        if ($file7){
-            if($files->smr){
-                if(Storage::exists(AppForeignFile::PATH_SMR.'/'.$files->smr)){
-                    Storage::delete(AppForeignFile::PATH_SMR.'/'.$files->smr);
+        if ($file7) {
+            if ($files->smr) {
+                if (Storage::exists(AppForeignFile::PATH_SMR . '/' . $files->smr)) {
+                    Storage::delete(AppForeignFile::PATH_SMR . '/' . $files->smr);
                 }
             }
-            $fileName7 = time() . '.' .$file7->extension();
+            $fileName7 = time() . '.' . $file7->extension();
             $destination7 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_SMR, $fileName7]);
             Storage::disk('local')->put($destination7, $file7->getContent());
             $files->smr = $fileName7;
@@ -777,16 +762,14 @@ class ApplicationController extends Controller
         $active->save();
 
         return redirect('/application/my-applications')->with('message', 'Successfully Submitted');
-
     }
-    public function addfileold (Request $request)
+    public function addfileold(Request $request)
     {
         $app_id = $request->input('app_id');
 
-        return view('front.application.add_file_old',compact('app_id'));
-
+        return view('front.application.add_file_old', compact('app_id'));
     }
-    public function addfileold_store (Request $request)
+    public function addfileold_store(Request $request)
     {
         $validated = $request->validate([
             'old_certificate' => 'required',
@@ -798,7 +781,7 @@ class ApplicationController extends Controller
 
         $file1 = $request->file('old_certificate');
 
-        if ($file1){
+        if ($file1) {
             $fileName1 = time() . '.' . $file1->extension();
             $destination1 = implode(DIRECTORY_SEPARATOR, [AppLocalFile::PATH_OLD_CERTIFICATE, $fileName1]);
             Storage::disk('local')->put($destination1, $file1->getContent());
@@ -816,20 +799,18 @@ class ApplicationController extends Controller
         $active->save();
 
         return redirect('/application/my-applications')->with('message', 'Successfully Submitted');
-
     }
-    public function fileoldedit (Request $request,$app_id)
+    public function fileoldedit(Request $request, $app_id)
     {
         $app = Application::find($app_id);
-        $files = AppLocalFile::where('app_id','=',$app_id)
+        $files = AppLocalFile::where('app_id', '=', $app_id)
             ->first();
-        if(!$files){
-            return view('front.application.add_file_old',compact('app_id','app'));
+        if (!$files) {
+            return view('front.application.add_file_old', compact('app_id', 'app'));
         }
-        return view('front.application.file_old_edit',compact('files','app'));
-
+        return view('front.application.file_old_edit', compact('files', 'app'));
     }
-    public function fileold_update (Request $request)
+    public function fileold_update(Request $request)
     {
         $userA = Auth::user();
         $file_id = $request->input('file_id');
@@ -837,10 +818,10 @@ class ApplicationController extends Controller
 
         $files = AppLocalFile::find($file_id);
 
-        if ($file1){
-            if($files->certificate){
-                if(Storage::exists(AppLocalFile::PATH_OLD_CERTIFICATE.'/'.$files->certificate)){
-                    Storage::delete(AppLocalFile::PATH_OLD_CERTIFICATE.'/'.$files->certificate);
+        if ($file1) {
+            if ($files->certificate) {
+                if (Storage::exists(AppLocalFile::PATH_OLD_CERTIFICATE . '/' . $files->certificate)) {
+                    Storage::delete(AppLocalFile::PATH_OLD_CERTIFICATE . '/' . $files->certificate);
                 }
             }
             $fileName1 = time() . '.' . $file1->extension();
@@ -860,10 +841,16 @@ class ApplicationController extends Controller
         $active->save();
 
         return redirect('/application/my-applications')->with('message', 'Successfully Submitted');
-
     }
-    public function myapplications_delete ($id)
+    public function myapplications_delete($id)
     {
+        if (auth()->user()->role == "admin") {
+            $app = Application::find($id);
+            $app->status = Application::STATUS_DELETED;
+            $app->save();
+            return redirect('application/list')->with('message', 'Successfully Deleted');
+        }
+
         $app = Application::find($id);
         $this->authorize('myupdate', $app);
         $this->authorize('delete', $app);
@@ -887,7 +874,7 @@ class ApplicationController extends Controller
     {
         $app = Application::find($id);
 
-        return view('application.reject',compact('app'));
+        return view('application.reject', compact('app'));
     }
     public function reject_store(Request $request)
     {
@@ -906,6 +893,4 @@ class ApplicationController extends Controller
 
         return redirect('application/list')->with('message', 'Successfully Submitted');
     }
-
 }
-
