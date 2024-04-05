@@ -24,12 +24,10 @@ class employeecontroller extends Controller
     {
         $user = Auth::User();
 
-        $users = User::
-        select(
+        $users = User::select(
                 'users.*',
                 'tbl_accessrights.name as position'
-            )->
-        join('tbl_accessrights', 'tbl_accessrights.id', '=', 'users.role');
+            )->join('tbl_accessrights', 'tbl_accessrights.id', '=', 'users.role');
 
         $users = $users->where('users.id', '!=', $user->id)->orderBy('id', 'DESC')->get();
 
@@ -46,7 +44,6 @@ class employeecontroller extends Controller
         $roles = DB::table('tbl_accessrights')->where('status', '=', 'active')->get()->toArray();
 
         return view('employee.add', compact('country', 'roles', 'states'));
-
     }
 
 
@@ -91,7 +88,7 @@ class employeecontroller extends Controller
         }
         $user->role = $request->input('role');
 
-        if ( $request->input('role')>=90) {
+        if ($request->input('role') >= 90) {
             $user->branch_id = \App\Models\User::BRANCH_LABORATORY;
         }
         $user->save();
@@ -107,7 +104,6 @@ class employeecontroller extends Controller
         $active->save();
 
         return redirect('/employee/list')->with('message', 'Successfully Submitted');
-
     }
 
 
@@ -129,7 +125,8 @@ class employeecontroller extends Controller
 
         // $this->authorize('edit', User::class);
         $this->authorize('viewAny', User::class);
-
+        $state = null;
+        $cities = null;
         if ($user->role != 'admin') {
             $position = DB::table('tbl_accessrights')->where('id', '=', intval($user->role))->get()->first();
             if (!empty($position)) {
@@ -222,11 +219,10 @@ class employeecontroller extends Controller
         $active->action = "Foydalanuvchi O'zgartrildi";
         $active->time = date('Y-m-d H:i:s');
         $active->save();
-        if(auth()->user()->role=="admin"){
+        if (auth()->user()->role == "admin") {
             return redirect('/employee/list')->with('message', 'Successfully Updated');
         }
-        return $this->showemployer($user->id??null)->with('message', 'Successfully Updated');
-
+        return $this->showemployer($user->id ?? null)->with('message', 'Successfully Updated');
     }
 
     public function showemployer($id)
@@ -261,6 +257,4 @@ class employeecontroller extends Controller
 
         return redirect('employee/list')->with('message', 'Successfully Deleted');
     }
-
 }
-
