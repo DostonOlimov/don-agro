@@ -2,7 +2,7 @@
 @section('content')
 <!-- page content -->
 <?php $userid = Auth::user()->id; ?>
-@can('add_number', \App\Models\LaboratoryResult::class)
+@can('viewAny', \App\Models\LaboratoryResult::class)
 @if (CheckAdmin($userid)=='yes' || $userid == $user->id)
 	   <div class="section">
 			<div class="page-header">
