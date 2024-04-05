@@ -46,8 +46,23 @@
                                             <th class="border-bottom-0 border-top-0">{{ trans('app.Yuborilgan sana') }}</th>
                                             <th class="border-bottom-0 border-top-0">{{ trans('app.Mahsulot turi') }}</th>
                                             <th class="border-bottom-0 border-top-0">{{ trans('app.Mahsulot navi') }}</th>
-                                            <th class="border-bottom-0 border-top-0">Na'munalar raqami</th>
-                                            <th class="border-bottom-0 border-top-0">{{ trans('app.Action') }}</th>
+                                            <th class="border-bottom-0 border-top-0">{{ trans("app.Na'munalar raqami") }}</th>
+                                            <th class="border-bottom-0 border-top-0 bg-info w-25" style="width: 25%">
+                                                <select style="cursor: pointer; "
+                                                    class="w-100 form-control state_of_country custom-select" name="status"
+                                                    id="status">
+                                                    <option value="">{{ trans('message.Barchasi') }}</option>
+                                                    <option value="1"
+                                                        @if ($status == 1) selected="selected" @endif>
+                                                        {{ trans("app.Yangi qo'shluvchilar") }}</option>
+                                                    <option value="5"
+                                                        @if ($status == 5) selected="selected" @endif>
+                                                        {{ trans("app.Sertifikatsiyaga yubormoqchi bo'lganlar") }}</option>
+                                                    <option value="6"
+                                                        @if ($status == 6) selected="selected" @endif>
+                                                        {{ trans('app.Sertifikatsiyaga yuborilganlar') }}</option>
+                                                </select>
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -117,6 +132,29 @@
     @endcan
     <!-- /page content -->
     <script src="{{ URL::asset('vendors/jquery/dist/jquery.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#status').change(function() {
+                var selectedRegion = $(this).val();
+                var currentUrl = window.location.href;
+                var url = new URL(currentUrl);
+
+                url.searchParams.set('status', selectedRegion);
+
+                var newUrl = url.toString();
+                window.history.pushState({
+                    path: newUrl
+                }, '', newUrl);
+                $.ajax({
+                    url: newUrl,
+                    method: "GET",
+                    success: function(response) {
+                        window.location.reload(true);
+                    }
+                });
+            });
+        });
+    </script>
 
     <script>
         $('body').on('click', '.sa-warning', function() {

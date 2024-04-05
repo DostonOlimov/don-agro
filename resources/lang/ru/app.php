@@ -470,4 +470,9 @@ return [
     "Umumiy og'irligi:"=>"Общий вес:",
     "Umumiy arizalar soni:"=>"Общее количество заявок:",
     "Umumiy partiyalar sonni:"=>"Общее количество партий:",
+
+    "Na'munalar raqami"=>"Номер образца",
+    "Yangi qo'shluvchilar"=>"Новые столяры",
+    "Sertifikatsiyaga yubormoqchi bo'lganlar"=>"Желающие отправить на сертификацию",
+    "Sertifikatsiyaga yuborilganlar"=>"Отправлено на сертификацию",
 ];

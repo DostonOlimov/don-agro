@@ -462,4 +462,9 @@ return [
     "Umumiy og'irligi:"=>"Умумий оғирлиги:",
     "Umumiy arizalar soni:"=>"Умумий аризалар сони:",
     "Umumiy partiyalar sonni:"=>"Умумий партиялар сонни:",
+
+    "Na'munalar raqami"=>"Наъмуналар рақами",
+    "Yangi qo'shluvchilar"=>"Янги қўшлувчилар",
+    "Sertifikatsiyaga yubormoqchi bo'lganlar"=>"Сертификацияга юбормоқчи бўлганлар",
+    "Sertifikatsiyaga yuborilganlar"=>"Сертификацияга юборилганлар",
 ];

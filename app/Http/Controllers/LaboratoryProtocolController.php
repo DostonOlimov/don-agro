@@ -31,6 +31,7 @@ class LaboratoryProtocolController extends Controller
         $crop = $request->input('crop');
         $from = $request->input('from');
         $till = $request->input('till');
+        $status = $request->input('status');
 
         $apps = TestPrograms::with('application')
             ->with('application.crops.name')
@@ -55,6 +56,24 @@ class LaboratoryProtocolController extends Controller
                 $query->where('name_id', '=', $crop);
             });
         }
+        if ($status) {
+            if ($status == 6) {
+                $apps = $apps->where('status', $status);
+            } elseif ($status == 5) {
+                $check = $apps->whereHas('laboratory_results', function ($query) {
+                    $query->whereNotNull('number');
+                })->exists();
+
+                if ($check) {
+                    $apps = $apps->where('status', $status);
+                }
+            } elseif ($status == 1) {
+                $apps = $apps->whereHas('laboratory_results', function ($query) {
+                    $query->where('number', '=', null);
+                });
+            }
+        }
+
         $apps->when($request->input('s'), function ($query, $searchQuery) {
             $query->where(function ($query) use ($searchQuery) {
                 if (is_numeric($searchQuery)) {
@@ -79,7 +98,7 @@ class LaboratoryProtocolController extends Controller
             ->appends(['till' => $request->input('till')])
             ->appends(['from' => $request->input('from')])
             ->appends(['crop' => $request->input('crop')]);
-        return view('laboratory_protocol.list', compact('tests', 'from', 'till', 'crop'));
+        return view('laboratory_protocol.list', compact('tests', 'from', 'till', 'crop', 'status'));
     }
     public function add($id)
     {
@@ -192,10 +211,10 @@ class LaboratoryProtocolController extends Controller
     public function indicator_norm()
     {
         $indicators = Indicator::with('nds.crops')
-        // ->whereHas('nds.crops', function ($query) use ($id){
-        //     $query->where('id',$id);
-        // })
-        ->get();
+            // ->whereHas('nds.crops', function ($query) use ($id){
+            //     $query->where('id',$id);
+            // })
+            ->get();
         return view('indicator_norm.list', compact('indicators'));
     }
     public function indicator_norm_modify($id)

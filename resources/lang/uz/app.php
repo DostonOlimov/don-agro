@@ -501,4 +501,9 @@ return [
     "Umumiy og'irligi:"=>"Umumiy og'irligi:",
     "Umumiy arizalar soni:"=>"Umumiy arizalar soni:",
     "Umumiy partiyalar sonni:"=>"Umumiy partiyalar sonni:",
+
+    "Na'munalar raqami"=>"Na'munalar raqami",
+    "Yangi qo'shluvchilar"=>"Yangi qo'shluvchilar",
+    "Sertifikatsiyaga yubormoqchi bo'lganlar"=>"Sertifikatsiyaga yubormoqchi bo'lganlar",
+    "Sertifikatsiyaga yuborilganlar"=>"Sertifikatsiyaga yuborilganlar",
 ];

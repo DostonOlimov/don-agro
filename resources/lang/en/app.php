@@ -464,4 +464,9 @@ return [
     "Umumiy og'irligi:"=>"Total weight:",
     "Umumiy arizalar soni:"=>"Total number of applications:",
     "Umumiy partiyalar sonni:"=>"Total number of parties:",
+
+    "Na'munalar raqami"=>"Sample number",
+    "Yangi qo'shluvchilar"=>"New joiners",
+    "Sertifikatsiyaga yubormoqchi bo'lganlar"=>"Those who want to send for certification",
+    "Sertifikatsiyaga yuborilganlar"=>"Sent for certification",
 ];
