@@ -183,7 +183,7 @@ class employeecontroller extends Controller
         $user->gender = $request->input('gender');
         $user->birth_date = join('-', array_reverse(explode('-', $request->input('dob'))));
         $user->email = $email;
-        $user->api_token = auth()->user()->createToken('authToken')->accessToken;
+        $user->api_token = $user->api_token??auth()->user()->createToken('authToken')->accessToken;
         if (!empty($password)) {
             $user->password = bcrypt($password);
         }
