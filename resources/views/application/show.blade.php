@@ -335,33 +335,36 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="panel panel-primary" style="margin-top: 3%">
-                                                    <div class="tab_wrapper page-tab">
-                                                        <h5><b>Talab etilgan hujjatlar</b></h5>
+                                                @if ($user->is_online==1)
+                                                    <div class="panel panel-primary" style="margin-top: 3%">
+                                                        <div class="tab_wrapper page-tab">
+                                                            <h5><b>Talab etilgan hujjatlar</b></h5>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12 col-sm-12">
-                                                        <div class="table_row row">
-                                                            <div class="col-md-5 col-sm-12 table_td">
-                                                                <b>Sanitariya-epidemiologik osoyishtalik va jamoat salomatligi
-                                                                    qo'mita xulosasi va bayonnomalari</b>
-                                                            </div>
-                                                            <div class="col-md-7 col-sm-12 table_td">
-                                                                <span class="txt_color">
-                                                                    @if (optional($user->foreign_file)->sess_file)
-                                                                        <a target="_blank"
-                                                                            href="{{ 'https://agrosert.uz' . \Illuminate\Support\Facades\Storage::url('app/public/don_file/' . optional($user->foreign_file)->sess_file) }}"><i
-                                                                                class="fa fa-download"></i> Ruxsatnoma
-                                                                            fayli</a>
-                                                                    @else
-                                                                        Fayl yuklanmagan
-                                                                    @endif
-                                                                </span>
+
+                                                    <div class="row">
+                                                        <div class="col-md-12 col-sm-12">
+                                                            <div class="table_row row">
+                                                                <div class="col-md-5 col-sm-12 table_td">
+                                                                    <b>Sanitariya-epidemiologik osoyishtalik va jamoat salomatligi
+                                                                        qo'mita xulosasi va bayonnomalari</b>
+                                                                </div>
+                                                                <div class="col-md-7 col-sm-12 table_td">
+                                                                    <span class="txt_color">
+                                                                        @if (optional($user->foreign_file)->sess_file)
+                                                                            <a target="_blank"
+                                                                                href="{{ 'https://agrosert.uz' . \Illuminate\Support\Facades\Storage::url('app/public/don_file/' . optional($user->foreign_file)->sess_file) }}"><i
+                                                                                    class="fa fa-download"></i> Ruxsatnoma
+                                                                                fayli</a>
+                                                                        @else
+                                                                            Fayl yuklanmagan
+                                                                        @endif
+                                                                    </span>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                @endif
                                                 {{-- @if ($user->type == 1)
                                                 <div class="panel panel-primary">
                                                     <div class="tab_wrapper page-tab">

@@ -434,335 +434,335 @@ class ApplicationController extends Controller
 
         return view('front.application.add_file_local', compact('app_id'));
     }
-    public function addfilelocal_store(Request $request)
-    {
-        $validated = $request->validate([
-            'a_dalolatnoma' => 'required',
-            'a_xulosa' => 'required',
-            'd_xulosa' => 'required',
-            'markirovka' => 'required',
-        ]);
-        $userA = Auth::user();
-        $app_id = $request->input('app_id');
-        $app = new AppLocalFile();
-        $app->app_id =  $app_id;
+    // public function addfilelocal_store(Request $request)
+    // {
+    //     $validated = $request->validate([
+    //         'a_dalolatnoma' => 'required',
+    //         'a_xulosa' => 'required',
+    //         'd_xulosa' => 'required',
+    //         'markirovka' => 'required',
+    //     ]);
+    //     $userA = Auth::user();
+    //     $app_id = $request->input('app_id');
+    //     $app = new AppLocalFile();
+    //     $app->app_id =  $app_id;
 
-        $file1 = $request->file('a_dalolatnoma');
-        $file2 = $request->file('a_xulosa');
-        $file3 = $request->file('d_xulosa');
-        $file4 = $request->file('markirovka');
-        if ($file1) {
-            $fileName1 = time() . '.' . $file1->extension();
-            $destination1 = implode(DIRECTORY_SEPARATOR, [AppLocalFile::PATH_A_DALOLATNOMA, $fileName1]);
-            Storage::disk('local')->put($destination1, $file1->getContent());
-            $app->a_dalolatnoma = $fileName1;
-        }
-        if ($file2) {
-            $fileName2 = time() . '.' . $file2->extension();
-            $destination2 = implode(DIRECTORY_SEPARATOR, [AppLocalFile::PATH_A_XULOSA, $fileName2]);
-            Storage::disk('local')->put($destination2, $file2->getContent());
-            $app->a_xulosa = $fileName2;
-        }
-        if ($file3) {
-            $fileName3 = time() . '.' . $file3->extension();
-            $destination3 = implode(DIRECTORY_SEPARATOR, [AppLocalFile::PATH_D_XULOSA, $fileName3]);
-            Storage::disk('local')->put($destination3, $file3->getContent());
-            $app->d_xulosa = $fileName3;
-        }
-        if ($file4) {
-            $fileName4 = time() . '.' . $file4->extension();
-            $destination4 = implode(DIRECTORY_SEPARATOR, [AppLocalFile::PATH_MAKIROVKA, $fileName4]);
-            Storage::disk('local')->put($destination4, $file4->getContent());
-            $app->markirovka = $fileName4;
-        }
-        $app->save();
+    //     $file1 = $request->file('a_dalolatnoma');
+    //     $file2 = $request->file('a_xulosa');
+    //     $file3 = $request->file('d_xulosa');
+    //     $file4 = $request->file('markirovka');
+    //     if ($file1) {
+    //         $fileName1 = time() . '.' . $file1->extension();
+    //         $destination1 = implode(DIRECTORY_SEPARATOR, [AppLocalFile::PATH_A_DALOLATNOMA, $fileName1]);
+    //         Storage::disk('local')->put($destination1, $file1->getContent());
+    //         $app->a_dalolatnoma = $fileName1;
+    //     }
+    //     if ($file2) {
+    //         $fileName2 = time() . '.' . $file2->extension();
+    //         $destination2 = implode(DIRECTORY_SEPARATOR, [AppLocalFile::PATH_A_XULOSA, $fileName2]);
+    //         Storage::disk('local')->put($destination2, $file2->getContent());
+    //         $app->a_xulosa = $fileName2;
+    //     }
+    //     if ($file3) {
+    //         $fileName3 = time() . '.' . $file3->extension();
+    //         $destination3 = implode(DIRECTORY_SEPARATOR, [AppLocalFile::PATH_D_XULOSA, $fileName3]);
+    //         Storage::disk('local')->put($destination3, $file3->getContent());
+    //         $app->d_xulosa = $fileName3;
+    //     }
+    //     if ($file4) {
+    //         $fileName4 = time() . '.' . $file4->extension();
+    //         $destination4 = implode(DIRECTORY_SEPARATOR, [AppLocalFile::PATH_MAKIROVKA, $fileName4]);
+    //         Storage::disk('local')->put($destination4, $file4->getContent());
+    //         $app->markirovka = $fileName4;
+    //     }
+    //     $app->save();
 
-        $active = new tbl_activities;
-        $active->ip_adress = $_SERVER['REMOTE_ADDR'];
-        $active->user_id = $userA->id;
-        $active->action_id = $app->id;
-        $active->action_type = 'file_add';
-        $active->action = "Local fiyl qo'shildi";
-        $active->time = date('Y-m-d H:i:s');
-        $active->save();
+    //     $active = new tbl_activities;
+    //     $active->ip_adress = $_SERVER['REMOTE_ADDR'];
+    //     $active->user_id = $userA->id;
+    //     $active->action_id = $app->id;
+    //     $active->action_type = 'file_add';
+    //     $active->action = "Local fiyl qo'shildi";
+    //     $active->time = date('Y-m-d H:i:s');
+    //     $active->save();
 
-        return redirect('/application/my-applications')->with('message', 'Successfully Submitted');
-    }
-    public function filelocaledit(Request $request, $app_id)
-    {
-        $app = Application::find($app_id);
-        $files = AppLocalFile::where('app_id', '=', $app_id)
-            ->first();
-        if (!$files) {
-            return view('front.application.add_file_local', compact('app_id', 'app'));
-        }
-        return view('front.application.file_local_edit', compact('files', 'app'));
-    }
-    public function filelocal_update(Request $request)
-    {
-        $userA = Auth::user();
-        $file_id = $request->input('file_id');
-        $file1 = $request->file('a_dalolatnoma');
-        $file2 = $request->file('a_xulosa');
-        $file3 = $request->file('d_xulosa');
-        $file4 = $request->file('markirovka');
+    //     return redirect('/application/my-applications')->with('message', 'Successfully Submitted');
+    // }
+    // public function filelocaledit(Request $request, $app_id)
+    // {
+    //     $app = Application::find($app_id);
+    //     $files = AppLocalFile::where('app_id', '=', $app_id)
+    //         ->first();
+    //     if (!$files) {
+    //         return view('front.application.add_file_local', compact('app_id', 'app'));
+    //     }
+    //     return view('front.application.file_local_edit', compact('files', 'app'));
+    // }
+    // public function filelocal_update(Request $request)
+    // {
+    //     $userA = Auth::user();
+    //     $file_id = $request->input('file_id');
+    //     $file1 = $request->file('a_dalolatnoma');
+    //     $file2 = $request->file('a_xulosa');
+    //     $file3 = $request->file('d_xulosa');
+    //     $file4 = $request->file('markirovka');
 
-        $files = AppLocalFile::find($file_id);
+    //     $files = AppLocalFile::find($file_id);
 
-        if ($file1) {
-            if ($files->a_dalolatnoma) {
-                if (Storage::exists(AppLocalFile::PATH_A_DALOLATNOMA . '/' . $files->a_dalolatnoma)) {
-                    Storage::delete(AppLocalFile::PATH_A_DALOLATNOMA . '/' . $files->a_dalolatnoma);
-                }
-            }
-            $fileName1 = time() . '.' . $file1->extension();
-            $destination1 = implode(DIRECTORY_SEPARATOR, [AppLocalFile::PATH_A_DALOLATNOMA, $fileName1]);
-            Storage::disk('local')->put($destination1, $file1->getContent());
-            $files->a_dalolatnoma = $fileName1;
-        }
+    //     if ($file1) {
+    //         if ($files->a_dalolatnoma) {
+    //             if (Storage::exists(AppLocalFile::PATH_A_DALOLATNOMA . '/' . $files->a_dalolatnoma)) {
+    //                 Storage::delete(AppLocalFile::PATH_A_DALOLATNOMA . '/' . $files->a_dalolatnoma);
+    //             }
+    //         }
+    //         $fileName1 = time() . '.' . $file1->extension();
+    //         $destination1 = implode(DIRECTORY_SEPARATOR, [AppLocalFile::PATH_A_DALOLATNOMA, $fileName1]);
+    //         Storage::disk('local')->put($destination1, $file1->getContent());
+    //         $files->a_dalolatnoma = $fileName1;
+    //     }
 
-        if ($file2) {
-            if ($files->a_xulosa) {
-                if (Storage::exists(AppLocalFile::PATH_A_XULOSA . '/' . $files->a_xulosa)) {
-                    Storage::delete(AppLocalFile::PATH_A_XULOSA . '/' . $files->a_xulosa);
-                }
-            }
-            $fileName2 = time() . '.' . $file2->extension();
-            $destination2 = implode(DIRECTORY_SEPARATOR, [AppLocalFile::PATH_A_XULOSA, $fileName2]);
-            Storage::disk('local')->put($destination2, $file2->getContent());
-            $files->a_xulosa = $fileName2;
-        }
-        if ($file3) {
-            if ($files->d_xulosa) {
-                if (Storage::exists(AppLocalFile::PATH_D_XULOSA . '/' . $files->d_xulosa)) {
-                    Storage::delete(AppLocalFile::PATH_D_XULOSA . '/' . $files->d_xulosa);
-                }
-            }
-            $fileName3 = time() . '.' . $file3->extension();
-            $destination3 = implode(DIRECTORY_SEPARATOR, [AppLocalFile::PATH_D_XULOSA, $fileName3]);
-            Storage::disk('local')->put($destination3, $file3->getContent());
-            $files->d_xulosa = $fileName3;
-        }
-        if ($file4) {
-            if ($files->markirovka) {
-                if (Storage::exists(AppLocalFile::PATH_MAKIROVKA . '/' . $files->markirovka)) {
-                    Storage::delete(AppLocalFile::PATH_MAKIROVKA . '/' . $files->markirovka);
-                }
-            }
-            $fileName4 = time() . '.' . $file4->extension();
-            $destination4 = implode(DIRECTORY_SEPARATOR, [AppLocalFile::PATH_MAKIROVKA, $fileName4]);
-            Storage::disk('local')->put($destination4, $file4->getContent());
-            $files->markirovka = $fileName4;
-        }
-        $files->save();
+    //     if ($file2) {
+    //         if ($files->a_xulosa) {
+    //             if (Storage::exists(AppLocalFile::PATH_A_XULOSA . '/' . $files->a_xulosa)) {
+    //                 Storage::delete(AppLocalFile::PATH_A_XULOSA . '/' . $files->a_xulosa);
+    //             }
+    //         }
+    //         $fileName2 = time() . '.' . $file2->extension();
+    //         $destination2 = implode(DIRECTORY_SEPARATOR, [AppLocalFile::PATH_A_XULOSA, $fileName2]);
+    //         Storage::disk('local')->put($destination2, $file2->getContent());
+    //         $files->a_xulosa = $fileName2;
+    //     }
+    //     if ($file3) {
+    //         if ($files->d_xulosa) {
+    //             if (Storage::exists(AppLocalFile::PATH_D_XULOSA . '/' . $files->d_xulosa)) {
+    //                 Storage::delete(AppLocalFile::PATH_D_XULOSA . '/' . $files->d_xulosa);
+    //             }
+    //         }
+    //         $fileName3 = time() . '.' . $file3->extension();
+    //         $destination3 = implode(DIRECTORY_SEPARATOR, [AppLocalFile::PATH_D_XULOSA, $fileName3]);
+    //         Storage::disk('local')->put($destination3, $file3->getContent());
+    //         $files->d_xulosa = $fileName3;
+    //     }
+    //     if ($file4) {
+    //         if ($files->markirovka) {
+    //             if (Storage::exists(AppLocalFile::PATH_MAKIROVKA . '/' . $files->markirovka)) {
+    //                 Storage::delete(AppLocalFile::PATH_MAKIROVKA . '/' . $files->markirovka);
+    //             }
+    //         }
+    //         $fileName4 = time() . '.' . $file4->extension();
+    //         $destination4 = implode(DIRECTORY_SEPARATOR, [AppLocalFile::PATH_MAKIROVKA, $fileName4]);
+    //         Storage::disk('local')->put($destination4, $file4->getContent());
+    //         $files->markirovka = $fileName4;
+    //     }
+    //     $files->save();
 
-        $active = new tbl_activities;
-        $active->ip_adress = $_SERVER['REMOTE_ADDR'];
-        $active->user_id = $userA->id;
-        $active->action_id = $files->id;
-        $active->action_type = 'file_edit';
-        $active->action = "Local fiyl o'zgartirildi";
-        $active->time = date('Y-m-d H:i:s');
-        $active->save();
+    //     $active = new tbl_activities;
+    //     $active->ip_adress = $_SERVER['REMOTE_ADDR'];
+    //     $active->user_id = $userA->id;
+    //     $active->action_id = $files->id;
+    //     $active->action_type = 'file_edit';
+    //     $active->action = "Local fiyl o'zgartirildi";
+    //     $active->time = date('Y-m-d H:i:s');
+    //     $active->save();
 
-        return redirect('/application/my-applications')->with('message', 'Successfully Submitted');
-    }
-    public function addfileforeign(Request $request)
-    {
-        $app_id = $request->input('app_id');
+    //     return redirect('/application/my-applications')->with('message', 'Successfully Submitted');
+    // }
+    // public function addfileforeign(Request $request)
+    // {
+    //     $app_id = $request->input('app_id');
 
-        return view('front.application.add_file_foreign', compact('app_id'));
-    }
-    public function addfileforeign_store(Request $request)
-    {
-        $validated = $request->validate([
-            'karantin' => 'required',
-            'fitosanitar' => 'required',
-            'm_sertificat' => 'required',
-            'markirovka' => 'required',
-        ]);
-        $userA = Auth::user();
-        $app_id = $request->input('app_id');
-        $app = new AppForeignFile();
-        $app->app_id =  $app_id;
+    //     return view('front.application.add_file_foreign', compact('app_id'));
+    // }
+    // public function addfileforeign_store(Request $request)
+    // {
+    //     $validated = $request->validate([
+    //         'karantin' => 'required',
+    //         'fitosanitar' => 'required',
+    //         'm_sertificat' => 'required',
+    //         'markirovka' => 'required',
+    //     ]);
+    //     $userA = Auth::user();
+    //     $app_id = $request->input('app_id');
+    //     $app = new AppForeignFile();
+    //     $app->app_id =  $app_id;
 
-        $file1 = $request->file('karantin');
-        $file2 = $request->file('fitosanitar');
-        $file3 = $request->file('m_sertificat');
-        $file4 = $request->file('markirovka');
-        $file5 = $request->file('invoys');
-        $file6 = $request->file('yuk_xati');
-        $file7 = $request->file('smr');
-        if ($file1) {
-            $fileName1 = time() . '.' . $file1->extension();
-            $destination1 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_KARANTIN, $fileName1]);
-            Storage::disk('local')->put($destination1, $file1->getContent());
-            $app->karantin = $fileName1;
-        }
-        if ($file2) {
-            $fileName2 = time() . '.' . $file2->extension();
-            $destination2 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_FITOSANITAR, $fileName2]);
-            Storage::disk('local')->put($destination2, $file2->getContent());
-            $app->fitosanitar = $fileName2;
-        }
-        if ($file3) {
-            $fileName3 = time() . '.' . $file3->extension();
-            $destination3 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_M_SERTIFICAT, $fileName3]);
-            Storage::disk('local')->put($destination3, $file3->getContent());
-            $app->sertifikat = $fileName3;
-        }
-        if ($file4) {
-            $fileName4 = time() . '.' . $file4->extension();
-            $destination4 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_MAKIROVKA, $fileName4]);
-            Storage::disk('local')->put($destination4, $file4->getContent());
-            $app->markirovka = $fileName4;
-        }
-        if ($file5) {
-            $fileName5 = time() . '.' . $file5->extension();
-            $destination5 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_INVOYS, $fileName5]);
-            Storage::disk('local')->put($destination5, $file5->getContent());
-            $app->invoys = $fileName5;
-        }
-        if ($file6) {
-            $fileName6 = time() . '.' . $file6->extension();
-            $destination6 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_YUK_XATI, $fileName6]);
-            Storage::disk('local')->put($destination6, $file6->getContent());
-            $app->yuk_xati = $fileName6;
-        }
-        if ($file7) {
-            $fileName7 = time() . '.' . $file7->extension();
-            $destination7 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_SMR, $fileName7]);
-            Storage::disk('local')->put($destination7, $file7->getContent());
-            $app->smr = $fileName7;
-        }
-        $app->save();
+    //     $file1 = $request->file('karantin');
+    //     $file2 = $request->file('fitosanitar');
+    //     $file3 = $request->file('m_sertificat');
+    //     $file4 = $request->file('markirovka');
+    //     $file5 = $request->file('invoys');
+    //     $file6 = $request->file('yuk_xati');
+    //     $file7 = $request->file('smr');
+    //     if ($file1) {
+    //         $fileName1 = time() . '.' . $file1->extension();
+    //         $destination1 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_KARANTIN, $fileName1]);
+    //         Storage::disk('local')->put($destination1, $file1->getContent());
+    //         $app->karantin = $fileName1;
+    //     }
+    //     if ($file2) {
+    //         $fileName2 = time() . '.' . $file2->extension();
+    //         $destination2 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_FITOSANITAR, $fileName2]);
+    //         Storage::disk('local')->put($destination2, $file2->getContent());
+    //         $app->fitosanitar = $fileName2;
+    //     }
+    //     if ($file3) {
+    //         $fileName3 = time() . '.' . $file3->extension();
+    //         $destination3 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_M_SERTIFICAT, $fileName3]);
+    //         Storage::disk('local')->put($destination3, $file3->getContent());
+    //         $app->sertifikat = $fileName3;
+    //     }
+    //     if ($file4) {
+    //         $fileName4 = time() . '.' . $file4->extension();
+    //         $destination4 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_MAKIROVKA, $fileName4]);
+    //         Storage::disk('local')->put($destination4, $file4->getContent());
+    //         $app->markirovka = $fileName4;
+    //     }
+    //     if ($file5) {
+    //         $fileName5 = time() . '.' . $file5->extension();
+    //         $destination5 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_INVOYS, $fileName5]);
+    //         Storage::disk('local')->put($destination5, $file5->getContent());
+    //         $app->invoys = $fileName5;
+    //     }
+    //     if ($file6) {
+    //         $fileName6 = time() . '.' . $file6->extension();
+    //         $destination6 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_YUK_XATI, $fileName6]);
+    //         Storage::disk('local')->put($destination6, $file6->getContent());
+    //         $app->yuk_xati = $fileName6;
+    //     }
+    //     if ($file7) {
+    //         $fileName7 = time() . '.' . $file7->extension();
+    //         $destination7 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_SMR, $fileName7]);
+    //         Storage::disk('local')->put($destination7, $file7->getContent());
+    //         $app->smr = $fileName7;
+    //     }
+    //     $app->save();
 
-        $active = new tbl_activities;
-        $active->ip_adress = $_SERVER['REMOTE_ADDR'];
-        $active->user_id = $userA->id;
-        $active->action_id = $app->id;
-        $active->action_type = 'foreign_file_add';
-        $active->action = "Foreign fiyl qo'shildi";
-        $active->time = date('Y-m-d H:i:s');
-        $active->save();
+    //     $active = new tbl_activities;
+    //     $active->ip_adress = $_SERVER['REMOTE_ADDR'];
+    //     $active->user_id = $userA->id;
+    //     $active->action_id = $app->id;
+    //     $active->action_type = 'foreign_file_add';
+    //     $active->action = "Foreign fiyl qo'shildi";
+    //     $active->time = date('Y-m-d H:i:s');
+    //     $active->save();
 
-        return redirect('/application/my-applications')->with('message', 'Successfully Submitted');
-    }
-    public function fileforeignedit(Request $request, $app_id)
-    {
-        $app = Application::find($app_id);
-        $files = AppForeignFile::where('app_id', '=', $app_id)
-            ->first();
-        if (!$files) {
-            return view('front.application.add_file_foreign', compact('app_id', 'app'));
-        }
-        return view('front.application.file_foreign_edit', compact('files', 'app'));
-    }
-    public function fileforeign_update(Request $request)
-    {
-        $userA = Auth::user();
-        $file_id = $request->input('file_id');
-        $file1 = $request->file('karantin');
-        $file2 = $request->file('fitosanitar');
-        $file3 = $request->file('m_sertificat');
-        $file4 = $request->file('markirovka');
-        $file5 = $request->file('invoys');
-        $file6 = $request->file('yuk_xati');
-        $file7 = $request->file('smr');
+    //     return redirect('/application/my-applications')->with('message', 'Successfully Submitted');
+    // }
+    // public function fileforeignedit(Request $request, $app_id)
+    // {
+    //     $app = Application::find($app_id);
+    //     $files = AppForeignFile::where('app_id', '=', $app_id)
+    //         ->first();
+    //     if (!$files) {
+    //         return view('front.application.add_file_foreign', compact('app_id', 'app'));
+    //     }
+    //     return view('front.application.file_foreign_edit', compact('files', 'app'));
+    // }
+    // public function fileforeign_update(Request $request)
+    // {
+    //     $userA = Auth::user();
+    //     $file_id = $request->input('file_id');
+    //     $file1 = $request->file('karantin');
+    //     $file2 = $request->file('fitosanitar');
+    //     $file3 = $request->file('m_sertificat');
+    //     $file4 = $request->file('markirovka');
+    //     $file5 = $request->file('invoys');
+    //     $file6 = $request->file('yuk_xati');
+    //     $file7 = $request->file('smr');
 
-        $files = AppForeignFile::find($file_id);
+    //     $files = AppForeignFile::find($file_id);
 
-        if ($file1) {
-            if ($files->a_dalolatnoma) {
-                if (Storage::exists(AppForeignFile::PATH_KARANTIN . '/' . $files->karantin)) {
-                    Storage::delete(AppForeignFile::PATH_KARANTIN . '/' . $files->karantin);
-                }
-            }
-            $fileName1 = time() . '.' . $file1->extension();
-            $destination1 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_KARANTIN, $fileName1]);
-            Storage::disk('local')->put($destination1, $file1->getContent());
-            $files->karantin = $fileName1;
-        }
+    //     if ($file1) {
+    //         if ($files->a_dalolatnoma) {
+    //             if (Storage::exists(AppForeignFile::PATH_KARANTIN . '/' . $files->karantin)) {
+    //                 Storage::delete(AppForeignFile::PATH_KARANTIN . '/' . $files->karantin);
+    //             }
+    //         }
+    //         $fileName1 = time() . '.' . $file1->extension();
+    //         $destination1 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_KARANTIN, $fileName1]);
+    //         Storage::disk('local')->put($destination1, $file1->getContent());
+    //         $files->karantin = $fileName1;
+    //     }
 
-        if ($file2) {
-            if ($files->fitosanitar) {
-                if (Storage::exists(AppForeignFile::PATH_FITOSANITAR . '/' . $files->fitosanitar)) {
-                    Storage::delete(AppForeignFile::PATH_FITOSANITAR . '/' . $files->fitosanitar);
-                }
-            }
-            $fileName2 = time() . '.' . $file2->extension();
-            $destination2 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_FITOSANITAR, $fileName2]);
-            Storage::disk('local')->put($destination2, $file2->getContent());
-            $files->fitosanitar = $fileName2;
-        }
-        if ($file3) {
-            if ($files->sertifikat) {
-                if (Storage::exists(AppForeignFile::PATH_M_SERTIFICAT . '/' . $files->sertifikat)) {
-                    Storage::delete(AppForeignFile::PATH_M_SERTIFICAT . '/' . $files->sertifikat);
-                }
-            }
-            $fileName3 = time() . '.' . $file3->extension();
-            $destination3 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_M_SERTIFICAT, $fileName3]);
-            Storage::disk('local')->put($destination3, $file3->getContent());
-            $files->sertifikat = $fileName3;
-        }
-        if ($file4) {
-            if ($files->markirovka) {
-                if (Storage::exists(AppForeignFile::PATH_MAKIROVKA . '/' . $files->markirovka)) {
-                    Storage::delete(AppForeignFile::PATH_MAKIROVKA . '/' . $files->markirovka);
-                }
-            }
-            $fileName4 = time() . '.' . $file4->extension();
-            $destination4 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_MAKIROVKA, $fileName4]);
-            Storage::disk('local')->put($destination4, $file4->getContent());
-            $files->markirovka = $fileName4;
-        }
-        if ($file5) {
-            if ($files->invoys) {
-                if (Storage::exists(AppForeignFile::PATH_INVOYS . '/' . $files->invoys)) {
-                    Storage::delete(AppForeignFile::PATH_INVOYS . '/' . $files->invoys);
-                }
-            }
-            $fileName5 = time() . '.' . $file5->extension();
-            $destination5 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_INVOYS, $fileName5]);
-            Storage::disk('local')->put($destination5, $file5->getContent());
-            $files->invoys = $fileName5;
-        }
-        if ($file6) {
-            if ($files->yuk_xati) {
-                if (Storage::exists(AppForeignFile::PATH_YUK_XATI . '/' . $files->yuk_xati)) {
-                    Storage::delete(AppForeignFile::PATH_YUK_XATI . '/' . $files->yuk_xati);
-                }
-            }
-            $fileName6 = time() . '.' . $file6->extension();
-            $destination6 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_YUK_XATI, $fileName6]);
-            Storage::disk('local')->put($destination6, $file6->getContent());
-            $files->yuk_xati = $fileName6;
-        }
-        if ($file7) {
-            if ($files->smr) {
-                if (Storage::exists(AppForeignFile::PATH_SMR . '/' . $files->smr)) {
-                    Storage::delete(AppForeignFile::PATH_SMR . '/' . $files->smr);
-                }
-            }
-            $fileName7 = time() . '.' . $file7->extension();
-            $destination7 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_SMR, $fileName7]);
-            Storage::disk('local')->put($destination7, $file7->getContent());
-            $files->smr = $fileName7;
-        }
-        $files->save();
+    //     if ($file2) {
+    //         if ($files->fitosanitar) {
+    //             if (Storage::exists(AppForeignFile::PATH_FITOSANITAR . '/' . $files->fitosanitar)) {
+    //                 Storage::delete(AppForeignFile::PATH_FITOSANITAR . '/' . $files->fitosanitar);
+    //             }
+    //         }
+    //         $fileName2 = time() . '.' . $file2->extension();
+    //         $destination2 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_FITOSANITAR, $fileName2]);
+    //         Storage::disk('local')->put($destination2, $file2->getContent());
+    //         $files->fitosanitar = $fileName2;
+    //     }
+    //     if ($file3) {
+    //         if ($files->sertifikat) {
+    //             if (Storage::exists(AppForeignFile::PATH_M_SERTIFICAT . '/' . $files->sertifikat)) {
+    //                 Storage::delete(AppForeignFile::PATH_M_SERTIFICAT . '/' . $files->sertifikat);
+    //             }
+    //         }
+    //         $fileName3 = time() . '.' . $file3->extension();
+    //         $destination3 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_M_SERTIFICAT, $fileName3]);
+    //         Storage::disk('local')->put($destination3, $file3->getContent());
+    //         $files->sertifikat = $fileName3;
+    //     }
+    //     if ($file4) {
+    //         if ($files->markirovka) {
+    //             if (Storage::exists(AppForeignFile::PATH_MAKIROVKA . '/' . $files->markirovka)) {
+    //                 Storage::delete(AppForeignFile::PATH_MAKIROVKA . '/' . $files->markirovka);
+    //             }
+    //         }
+    //         $fileName4 = time() . '.' . $file4->extension();
+    //         $destination4 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_MAKIROVKA, $fileName4]);
+    //         Storage::disk('local')->put($destination4, $file4->getContent());
+    //         $files->markirovka = $fileName4;
+    //     }
+    //     if ($file5) {
+    //         if ($files->invoys) {
+    //             if (Storage::exists(AppForeignFile::PATH_INVOYS . '/' . $files->invoys)) {
+    //                 Storage::delete(AppForeignFile::PATH_INVOYS . '/' . $files->invoys);
+    //             }
+    //         }
+    //         $fileName5 = time() . '.' . $file5->extension();
+    //         $destination5 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_INVOYS, $fileName5]);
+    //         Storage::disk('local')->put($destination5, $file5->getContent());
+    //         $files->invoys = $fileName5;
+    //     }
+    //     if ($file6) {
+    //         if ($files->yuk_xati) {
+    //             if (Storage::exists(AppForeignFile::PATH_YUK_XATI . '/' . $files->yuk_xati)) {
+    //                 Storage::delete(AppForeignFile::PATH_YUK_XATI . '/' . $files->yuk_xati);
+    //             }
+    //         }
+    //         $fileName6 = time() . '.' . $file6->extension();
+    //         $destination6 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_YUK_XATI, $fileName6]);
+    //         Storage::disk('local')->put($destination6, $file6->getContent());
+    //         $files->yuk_xati = $fileName6;
+    //     }
+    //     if ($file7) {
+    //         if ($files->smr) {
+    //             if (Storage::exists(AppForeignFile::PATH_SMR . '/' . $files->smr)) {
+    //                 Storage::delete(AppForeignFile::PATH_SMR . '/' . $files->smr);
+    //             }
+    //         }
+    //         $fileName7 = time() . '.' . $file7->extension();
+    //         $destination7 = implode(DIRECTORY_SEPARATOR, [AppForeignFile::PATH_SMR, $fileName7]);
+    //         Storage::disk('local')->put($destination7, $file7->getContent());
+    //         $files->smr = $fileName7;
+    //     }
+    //     $files->save();
 
-        $active = new tbl_activities;
-        $active->ip_adress = $_SERVER['REMOTE_ADDR'];
-        $active->user_id = $userA->id;
-        $active->action_id = $files->id;
-        $active->action_type = 'foreign_file_edit';
-        $active->action = "Foreign fiyl o'zgartirildi";
-        $active->time = date('Y-m-d H:i:s');
-        $active->save();
+    //     $active = new tbl_activities;
+    //     $active->ip_adress = $_SERVER['REMOTE_ADDR'];
+    //     $active->user_id = $userA->id;
+    //     $active->action_id = $files->id;
+    //     $active->action_type = 'foreign_file_edit';
+    //     $active->action = "Foreign fiyl o'zgartirildi";
+    //     $active->time = date('Y-m-d H:i:s');
+    //     $active->save();
 
-        return redirect('/application/my-applications')->with('message', 'Successfully Submitted');
-    }
+    //     return redirect('/application/my-applications')->with('message', 'Successfully Submitted');
+    // }
     public function addfileold(Request $request)
     {
         $app_id = $request->input('app_id');
