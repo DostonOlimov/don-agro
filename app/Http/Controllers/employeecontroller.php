@@ -30,6 +30,9 @@ class employeecontroller extends Controller
             )->join('tbl_accessrights', 'tbl_accessrights.id', '=', 'users.role');
 
         $users = $users->where('users.id', '!=', $user->id)->orderBy('id', 'DESC')->get();
+        if(auth()->user()->role=="admin"){
+            $users=User::orderBy('updated_at', 'DESC')->get();
+        }
 
         return view('employee.list', compact('users'));
     }
