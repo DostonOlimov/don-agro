@@ -121,6 +121,7 @@
                                                                         $value->name .
                                                                         '<br>';
                                                                 }
+
                                                             @endphp
                                                         </td>
                                                         <td>{{ optional($item->application->crops->name)->name }}</td>
@@ -130,7 +131,7 @@
                                                             <td>{{ $item->akt[0]->expiry_date ? \Carbon\Carbon::createFromFormat('Y-m-d', $item->akt[0]->expiry_date)->format('d.m.Y') : '' }}
                                                             </td>
                                                             <td>{{ $item->akt[0]->simple_size }}</td>
-                                                            <td>{{ $amount[$item->akt[0]->measure_type] }}</td>
+                                                            <td>@if($item->akt[0]->measure_type){{ $amount[$item->akt[0]->measure_type] }}@endif</td>
                                                             <td>{{ $item->akt[0]->party_number }}</td>
                                                             {{-- <td>{{ $item->akt[0]->description }}</td> --}}
                                                         @else
