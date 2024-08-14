@@ -140,6 +140,7 @@
                                     </thead>
 
                                     <tbody>
+                                    @if($numbers)
                                     @foreach($numbers as $number)
                                         <tr>
                                             <td>{{$number->number}}</td>
@@ -159,10 +160,11 @@
                                             @endforeach
                                         </tr>
                                     @endforeach
+                                        @endif
                                     </tbody>
                                 </table>
                                 <div style="padding: 10px;">
-                                    {{ $numbers->links() }}
+{{--                                    {{ $numbers->links() }}--}}
                                 </div>
                             </div>
                         </div>
