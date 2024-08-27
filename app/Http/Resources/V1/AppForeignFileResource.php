@@ -16,15 +16,8 @@ class AppForeignFileResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'fileCategory' => $this->file_category,
-            'karantin' => $this->karantin_file,
-            'fitosanitar' => $this->fitosanitar_file,
-            'sertifikat' => $this->sertificat_file,
-            'markirovka' => $this->markirovka_file,
-            'invoys' => $this->invoys_file,
-            'smr' => $this->smr_file,
-            'yukXati' => $this->yuk_xati_file,
-
+            'appId' => $this->app_id,
+            'filePath' => $this->sess_file,
         ];
     }
 }

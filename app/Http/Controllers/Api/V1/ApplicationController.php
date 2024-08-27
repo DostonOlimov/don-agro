@@ -54,11 +54,9 @@ class ApplicationController extends Controller
     {
         try {
             $data = Application::with('crops')
-                ->with('crops.productions')
                 ->with('organization')
                 ->with('prepared')
                 ->with('comment')
-                ->with('local_file')
                 ->with('foreign_file')
                 ->find($id);
 
@@ -72,7 +70,7 @@ class ApplicationController extends Controller
             );
 
         } catch (\Exception $e) {
-            return $this->errorResponse('Anf unexpected error occurred', [], Response::HTTP_INTERNAL_SERVER_ERROR);
+            return $this->errorResponse('An unexpected error occurred', [], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -184,6 +182,24 @@ class ApplicationController extends Controller
             return $this->errorResponse('An unexpected error occurred', [], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+
+    public function destroy($id)
+    {
+        // Find the resource by ID
+        $app = Application::find($id);
+
+        try {
+            if($app->status === Application::STATUS_NEW){
+                $app->status = Application::STATUS_DELETED;
+                $app->save();
+            }
+            return response()->json(['result' => 'true','message' => 'Resource deleted successfully'], 200);
+        } catch (\Exception $e) {
+            // Handle any errors that may occur
+            return response()->json(['result' => 'false','error' => 'Failed to delete resource'], 500);
+        }
+    }
+
     private function getFilters(Request $request, ApplicationFilter $filter): array
     {
         return $request->only(array_keys($filter->safeParams));

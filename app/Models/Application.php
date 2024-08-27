@@ -64,10 +64,6 @@ class Application extends Model
     {
         return $this->belongsTo(Decision::class, 'id','app_id');
     }
-    public function local_file()
-    {
-        return $this->belongsTo(AppLocalFile::class, 'id','app_id');
-    }
     public function foreign_file()
     {
         return $this->belongsTo(AppForeignFile::class, 'id','app_id');

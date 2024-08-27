@@ -72,12 +72,12 @@ class CropDataController extends Controller
         // Define validation rules with camelCase attribute names
         $rules = [
             'nameId' => 'required|exists:crops_name,id',
+            'typeId' => 'nullable|integer',
             'kodtnved' => 'required|digits:10',
-            'partyNumber' => 'required|string|max:255',
             'measureType' => 'required|integer',
             'amount' => 'required|numeric',
             'year' => 'required|integer',
-            'toyCount' => 'required|integer',
+            'sxemaNumber' => 'required|integer',
             'countryId' => 'required|integer',
         ];
 
@@ -107,12 +107,12 @@ class CropDataController extends Controller
         // Create a new CropData record
         $cropData = CropData::create([
             'name_id' => $validatedData['nameId'],
+            'type_id' => $validatedData['typeId'],
             'kodtnved' => $validatedData['kodtnved'],
-            'party_number' => $validatedData['partyNumber'],
             'measure_type' => $validatedData['measureType'],
             'amount' => $validatedData['amount'],
             'year' => $validatedData['year'],
-            'toy_count' => $validatedData['toyCount'],
+            'sxeme_number' => $validatedData['sxemaNumber'],
             'country_id' => $validatedData['countryId'],
         ]);
 
@@ -131,13 +131,13 @@ class CropDataController extends Controller
             // Define validation rules with camelCase attribute names
             $rules = [
                 'nameId' => 'required|exists:crops_name,id',
-                'kodtnved' => 'required|int|digits:10',
-                'partyNumber' => 'required|string|max:255',
-                'measureType' => 'required|int',
-                'amount' => 'required',
-                'year' => 'required|int',
-                'toyCount' => 'required|int',
-                'countryId' => 'required|int',
+                'typeId' => 'nullable|integer',
+                'kodtnved' => 'required|digits:10',
+                'measureType' => 'required|integer',
+                'amount' => 'required|numeric',
+                'year' => 'required|integer',
+                'sxemaNumber' => 'required|integer',
+                'countryId' => 'required|integer',
             ];
 
             // Define custom validation messages
@@ -168,13 +168,13 @@ class CropDataController extends Controller
             // Update the company record
             $company->update([
                 'name_id' => $validatedData['nameId'],
+                'type_id' => $validatedData['typeId'],
                 'kodtnved' => $validatedData['kodtnved'],
-                'party_number' => $validatedData['partyNumber'],  // Map camelCase to snake_case
                 'measure_type' => $validatedData['measureType'],
                 'amount' => $validatedData['amount'],
                 'year' => $validatedData['year'],
-                'toy_count' => $validatedData['toyCount'],
-                'country_id' => $validatedData['countryId']
+                'sxeme_number' => $validatedData['sxemaNumber'],
+                'country_id' => $validatedData['countryId'],
             ]);
 
             // Return the updated company as a resource
@@ -185,7 +185,8 @@ class CropDataController extends Controller
 
         } catch (ValidationException $e) {
             return $this->validationErrorResponse($e);
-        } catch (\Exception $e) {
+        }
+        catch (\Exception $e) {
             return $this->errorResponse('An unexpected error occurred', [], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }

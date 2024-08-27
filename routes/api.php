@@ -15,6 +15,7 @@ Route::group([
     'middleware' => 'auth:sanctum' // Apply the auth:sanctum middleware to the group
 ], function () {
     Route::apiResource('applications', ApplicationController::class);
+    Route::apiResource('files', ApplicationFileController::class);
     Route::apiResource('states', StateController::class);
     Route::apiResource('cities', CityController::class);
     Route::apiResource('factories', FactoryController::class);

@@ -28,7 +28,6 @@ class ApplicationResource extends JsonResource
             'companyData' => new CompanyResource($this->whenLoaded('organization')),
             'factoryData' => new FactoryResource($this->whenLoaded('prepared')),
             'comment' => new ApplicationCommentResource($this->whenLoaded('comment')),
-            'localFile' => new AppLocalFileResource($this->whenLoaded('local_file')),
             'foreignFile' => new AppForeignFileResource($this->whenLoaded('foreign_file')),
         ];
     }

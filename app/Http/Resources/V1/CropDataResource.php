@@ -17,19 +17,15 @@ class CropDataResource extends JsonResource
         return [
             'id' => $this->id,
             'cropName' => optional($this->name)->name,
-            'preName' => $this->pre_name,
             'nameId' => optional($this->name)->id,
             'cropType' => optional($this->type)->name,
             'typeId' => optional($this->type)->id,
-            'cropGeneration' => optional($this->generation)->name,
-            'generationId' => optional($this->generation)->id,
             'kodtnved' => $this->kodtnved,
-            'partyNumber' => $this->party_number,
+            'sxemeNumber' => $this->sxeme_number,
             'measureType' => $this->measure_type,
             'amount' => $this->amount,
             'year' => $this->year,
             'countryName' => optional($this->country)->name,
-            'productionType' => new CropProductionCollection($this->whenLoaded('productions')),
 
         ];
     }
