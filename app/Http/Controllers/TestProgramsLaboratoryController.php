@@ -245,6 +245,8 @@ class TestProgramsLaboratoryController extends Controller
 
         return view('test_laboratory.add', compact('test', 'crop_id'));
     }
+
+
     public function store(Request $request)
     {
         // $validated = $request->validate([

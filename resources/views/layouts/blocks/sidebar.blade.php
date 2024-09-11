@@ -82,9 +82,9 @@
             <li class="nav-item"><a class="nav-link" href="{!! url('/tests-laboratory/list') !!}"> <svg class="nav-icon">
                         <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-equalizer"></use>
                     </svg>{{ trans('app.Sinov dasturlari') }}</a></li>
-            {{-- <li class="nav-item"><a class="nav-link" href="{!! url('/laboratory-results/list') !!}"> <svg class="nav-icon">
+             <li class="nav-item"><a class="nav-link" href="{!! url('/laboratory-results/list') !!}"> <svg class="nav-icon">
                             <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-beaker"></use>
-                        </svg>{{trans('message.Sinov natijalari')}}</a></li> --}} {{-- - labaratoriya number - --}}
+                        </svg>{{trans('message.Sinov natijalari')}}</a></li>
             <li class="nav-item"><a class="nav-link" href="{!! url('/tests-laboratory/report') !!}"> <svg class="nav-icon">
                         <use xlink:href="/assets/vendors/@coreui/icons/svg/free.svg#cil-bar-chart"></use>
                     </svg>{{ trans('message.Yakuniy natijalar') }}</a></li>

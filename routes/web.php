@@ -355,6 +355,11 @@ Route::group(
         Route::group(['prefix' => 'laboratory-results', 'middleware' => 'auth'], function () {
             Route::get('/list', '\App\Http\Controllers\LaboratoryResultsController@list');
             Route::get('/indicator/{id}', '\App\Http\Controllers\LaboratoryResultsController@indicator');
+            Route::get('/view/{id}', '\App\Http\Controllers\LaboratoryResultsController@show');
+            Route::get('/add/{id}', '\App\Http\Controllers\LaboratoryResultsController@add');
+            Route::post('/store', '\App\Http\Controllers\LaboratoryResultsController@store');
+            Route::get('/edit/{id}', '\App\Http\Controllers\LaboratoryResultsController@edit');
+            Route::post('/update', '\App\Http\Controllers\LaboratoryResultsController@update');
             Route::get('/indicator-view/{indicator_id}/{crop_id}', '\App\Http\Controllers\LaboratoryResultsController@indicator_view');
             Route::post('/save-result', [\App\Http\Controllers\LaboratoryResultsController::class, 'save_result'])->name('save.laboratory_result');
         });

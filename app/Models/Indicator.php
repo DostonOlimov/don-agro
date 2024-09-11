@@ -19,6 +19,8 @@ class Indicator extends Model
 {
     protected $table = 'quality_indacators';
 
+    const STATUS_VALUE='yo\'l qo\'yilmaydi';
+
     public function nds()
     {
         return $this->belongsTo(Nds::class, 'nds_id');
@@ -27,7 +29,20 @@ class Indicator extends Model
     {
         return $this->belongsTo(Indicator::class, 'parent_id','id');
     }
+    public function default_value()
+    {
+        return $this->hasMany(IndicatorDefaultValue::class,'indicator_id','id');
+    }
 
+    public function getDefaultValueAttribute(){
+        if($this->nd_name){
+            if($this->value ==0){
+                return self::STATUS_VALUE;
+            }
+            return $this->value;
+        }
+        return null;
 
+    }
 
 }
