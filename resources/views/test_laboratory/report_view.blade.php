@@ -128,104 +128,9 @@
                                             <input type="checkbox" checked name="checkbox[]" value="{{$user['id']}}"><br>
                                         @endforeach
                                     </div> --}}
-                                </div>
-                <div class="table-responsive">
-                    <table id="examples1" class="table table-striped table-bordered nowrap" style="margin-top:20px;" >
-                        <thead style="text-align: center">
-                        <tr>
-                            <th colspan="4">Na'munalar raqami</th>
-                            @foreach($test->laboratory_numbers as $number)
-                                <th style="width: 5%">{{$number->number}}</th>
-                            @endforeach
-                            <th>Natijalar</th>
-                            <th>Muvofiqligi</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            @php $tr = 1; @endphp
-                                @foreach($test->indicators as $k => $indicator)
-                                    @php $sum = 0; @endphp
-                                    <tr>
-                                        <td>@if(!$indicator->indicator->parent_id) {{$tr}} @endif</td>
-                                        <td>
-                                            <a href="{!! url('/laboratory-results/indicator-view/'.$indicator->indicator_id.'/'.$crop_id.'?test_id='.$test->id) !!}">
-                                                {{$indicator->indicator->name}}
-                                                <span style="text-transform: lowercase;">
-                                                @if ($indicator->indicator->measure_type == 1)
-                                                , {{trans("app.Kamida, %")}}
-                                                @elseif ($indicator->indicator->measure_type == 2)
-                                                , {{trans("app.Ko'pi bilan, %")}}
-                                                @elseif ($indicator->indicator->measure_type == 4)
-                                                , %
-                                                @endif
-                                                </span>
-                                            </a>
-                                            {{(isset($indicator->indicator->nds->type_id))? '('.\App\Models\Nds::getType($indicator->indicator->nds->type_id).'.'.$indicator->indicator->nds->number/*.' '.$indicator->indicator->nds->name*/.')':""}}
-                                        </td>
-                                        <td>{!! nl2br($indicator->indicator->nd_name) !!} </td>
-                                        <td>
-                                            @if($indicator->indicator->nd_name)
-                                                {{-- {{($indicator->indicator->value!=4)? $indicator->indicator->value : $indicator->indicator->comment}} --}}
-                                                {{($indicator->indicator->value)? $indicator->indicator->value : $indicator->indicator->comment}}
-                                            @endif
-                                        </td>
 
-                                        @foreach($test->laboratory_numbers as $number)
-                                            @php
-                                            $indicator_id = optional($indicator->indicator)->id;
-                                           $text=$number->results()->whereHas('indicator', function ($query) use($indicator_id) {
-                                                    $query->where('status', 4)
-                                                        ->where('indicator_id', $indicator_id);
 
-                                                })->first();
-                                            $result = $number->results()->whereHas('indicator', function ($query) use($indicator_id) {
-                                                    $query->where('status', 3)
-                                                        ->where('indicator_id', $indicator_id);
-
-                                                })->first();
-                                            if(!$result){
-                                                 $result = $number->results()->whereHas('indicator', function ($query) use($indicator_id) {
-                                                    $query->where('status', 2)
-                                                        ->where('indicator_id', $indicator_id);
-
-                                                })->first();
-                                            }
-                                            $sum += optional($result)->value;
-                                            $k = $loop->count;
-                                            @endphp
-                                            <td>{{(optional($result)->value)??optional($text)->value}}</td>
-                                        @endforeach
-                                        @php $k != 0 ? $final_result = $sum/$k : $final_result = 0; @endphp
-                                        <td>
-                                            @if($indicator->indicator->nd_name)
-                                                {{-- <input type="number" class="form-control" step="0.01" value="{{$final_result}}"  name="value{{$indicator->id}}" required> --}}               {{-- - labaratoriya number - --}}
-                                                <input type="test" class="form-control" value="{{$final_result}}"  name="value{{$indicator->id}}" required>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if($indicator->indicator->nd_name)
-                                                @php
-                                                  if(optional($indicator->indicator)->measure_type == 1){
-                                                        $t = (optional($indicator->indicator)->value <= $final_result);
-                                                    }else{
-                                                        $t = (optional($indicator->indicator)->value >= $final_result);
-                                                    }
-                                                @endphp
-                                                <select class="w-100 form-control" name="type{{$indicator->id}}" required >
-                                                    {{-- <option value="1" @if($t) selected @endif>Muvofiq</option> --}}
-                                                    {{-- <option value="0"  @if(!$t) selected @endif>Nomuvofiq</option> --}}
-                                                    <option value="1" selected>Muvofiq</option>
-                                                    <option value="0">Nomuvofiq</option>
-                                                </select>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    @if(!$indicator->indicator->parent_id) @php $tr=$tr+1; @endphp @endif
-                                @endforeach
-                                    </tbody>
-                            </table>
-                </div>
-                                <div class="col-md-12 form-group has-feedback">
+                                <div class="col-md-6 form-group has-feedback">
                                     <label for="data" class="form-label">Qo'shimcha ma'lumotlar:<label class="text-danger">*</label></label>
                                         <textarea id="data" name="data" class="form-control" rows="2" cols="50">{{ old('data')}} </textarea>
                                     {{-- @if ($errors->has('data'))
@@ -233,6 +138,7 @@
 											<strong style="color: red">Xulosa kiritilishi kerak</strong>
 										</span>
                                     @endif --}}
+                                </div>
                                 </div>
                                 {{-- <div class="col-md-12 form-group has-feedback">
                                     <label for="data" class="form-label">Xulosa:<label class="text-danger">*</label></label>

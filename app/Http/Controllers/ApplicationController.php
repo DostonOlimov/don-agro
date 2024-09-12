@@ -41,6 +41,7 @@ class ApplicationController extends Controller
         $till = $request->input('till');
         $ariza_turi = $request->input('ariza_turi');
 
+
         $apps = Application::with('organization')
             ->with('crops')
             ->with('crops.name')
@@ -48,6 +49,7 @@ class ApplicationController extends Controller
             ->with('tests.result')
             ->with('comment')
             ->with('crops.type');
+
         if ($user->role == \App\Models\User::STATE_EMPLOYEE) {
             $user_city = $user->state_id;
             $apps = $apps->whereHas('organization', function ($query) use ($user_city) {

@@ -16,7 +16,7 @@
                     “Don va don mahsulotlarining
                     sifatini tekshirish markaziy
                     laboratoriyasi” boshlig‘i
-                    <span style="padding: 5px;display: block">Nizamov D.B</span>
+                    <span style="padding: 5px;display: block">Usmonov A.A</span>
                     <span style="padding: 5px;" id="application-date"></span> yil
             </h2>
         </div>
@@ -214,7 +214,7 @@
                         <td>{!! nl2br($indicator->indicator->nd_name) !!}</td>
                         <td>
                             @if ($indicator->indicator->nd_name)
-                                {{ ($indicator->indicator->value )? $indicator->indicator->value : $indicator->indicator->comment }}
+                                {{ ($indicator->indicator->value != 0 )? $indicator->indicator->value : 'yo\'l qo\'yilmaydi'}}
                             @endif
                         </td>
                         <td>
@@ -222,25 +222,19 @@
                                 @if ($indicator->result != 0)
                                     {{ $indicator->result }}
                                 @else
-                                    {{-- @if ($indicator->indicator->measure_type == 1 || $indicator->indicator->measure_type == 2)
-                                        {{ 'aniqlanmadi' }}
-                                    @else
-                                        {{ 'uchramadi' }}
-                                    @endif --}}
-
-                                    {{ $indicator->result }}
+                                    uchramadi
                                 @endif
                             @endif
                         </td>
                         <td>
-                            @if (
-                                ($indicator->result == 0 and $indicator->indicator->measure_type == 1) ||
-                                    ($indicator->result == 0 and $indicator->indicator->measure_type == 2))
-                            @else
+{{--                            @if (--}}
+{{--                                ($indicator->result == 0 and $indicator->indicator->measure_type == 1) ||--}}
+{{--                                    ($indicator->result == 0 and $indicator->indicator->measure_type == 2))--}}
+{{--                            @else--}}
                                 @if ($indicator->indicator->nd_name)
                                     {{ $indicator->type == 1 ? 'Muvofiq' : 'Nomuvofiq' }}
                                 @endif
-                            @endif
+{{--                            @endif--}}
                         </td>
                     </tr>
                     @if (!$indicator->indicator->parent_id)

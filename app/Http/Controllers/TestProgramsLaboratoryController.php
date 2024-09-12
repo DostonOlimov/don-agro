@@ -249,10 +249,6 @@ class TestProgramsLaboratoryController extends Controller
 
     public function store(Request $request)
     {
-        // $validated = $request->validate([
-        //     'data' =>['required'],
-        // ]);
-        //   $this->authorize('create', User::class);
         $userA = Auth::user();
         $id = $request->input('id');
         $start_date = $request->input('start_date');
@@ -286,13 +282,7 @@ class TestProgramsLaboratoryController extends Controller
         DB::transaction(function () use ($amounts) {
             LaboratoryResultUsers::insert($amounts);
         });
-        $indicators = TestProgramIndicators::where('test_program_id', $id)
-            ->get();
-        foreach ($indicators as $indicator) {
-            $indicator->result = $request->input('value' . $indicator->id);
-            $indicator->type = $request->input('type' . $indicator->id) ?? 1;
-            $indicator->save();
-        }
+
         $test_program = TestPrograms::find($id);
         $test_program->status = TestPrograms::STATUS_FINISHED;
         $test_program->save();

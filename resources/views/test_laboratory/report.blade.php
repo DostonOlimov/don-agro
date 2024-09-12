@@ -62,7 +62,9 @@
                                             <td>{{ optional($test->application)->crops->type->name??'' }}</td>
                                             {{-- <td>@if($test->status == \App\Models\TestPrograms::STATUS_ACCEPTED) @foreach($test->laboratory_numbers as $number) {{$number->number}}; @endforeach @endif</td> --}}              {{-- - labaratoriya number - --}}
                                             <td>
-                                                <a href="{!! url('/tests-laboratory/report-view/'.$test->id) !!}"><button type="button" class="btn btn-round btn-primary"><i class="fa fa-eye"></i> {{trans('app.View')}}</button></a>
+                                                @if(isset($test->indicators()->first()->type))
+                                                    <a href="{!! url('/tests-laboratory/report-view/'.$test->id) !!}"><button type="button" class="btn btn-round btn-success"><i class="fa fa-plus-circle"></i> {{trans('app.Qo\'shish')}}</button></a>
+                                                @endif
                                             </td>
 
                                         </tr>

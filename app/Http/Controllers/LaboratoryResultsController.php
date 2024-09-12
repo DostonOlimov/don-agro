@@ -32,7 +32,8 @@ class LaboratoryResultsController extends Controller
             ->with('application.organization')
             ->with('final_result')
             ->with('status_change')
-            ->with('laboratory_numbers');
+            ->with('laboratory_numbers')
+            ->where('status', TestPrograms::STATUS_ACCEPTED);
         // ->whereNotNull('code');
         $apps->where('status', '>=', TestPrograms::STATUS_SEND);
         if ($from && $till) {
@@ -213,7 +214,6 @@ class LaboratoryResultsController extends Controller
 
     public function update(Request $request)
     {
-        $userA = Auth::user();
         $id = $request->input('id');
         $test = TestPrograms::find($id);
         $indicators = TestProgramIndicators::where('test_program_id', $id)
@@ -224,6 +224,7 @@ class LaboratoryResultsController extends Controller
             $value =  $request->input('value' . $indicator->id);
             $default = 0;
             $addition_value = $indicator->indicator->default_value()->where('generation_id',$test->application->crops->type_id)->first();
+
             if($addition_value){
                 $default = $addition_value->value;
             }else{
@@ -235,7 +236,6 @@ class LaboratoryResultsController extends Controller
             }else{
                 $t = $default >= $value;
             }
-
             $indicator->result = $value;
             $indicator->type = $t ? 1 : 0;
             $indicator->save();

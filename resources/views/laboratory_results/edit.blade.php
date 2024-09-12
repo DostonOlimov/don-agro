@@ -84,7 +84,7 @@
                                                 </span>
                                                     {{(isset($indicator->indicator->nds->type_id)) ? '('.\App\Models\Nds::getType($indicator->indicator->nds->type_id).'.'.$indicator->indicator->nds->number/*.' '.$indicator->indicator->nds->name*/.')':""}}
                                                 </td>
-                                                <td>{{ $indicator->indicator->value }}</td>
+                                                <td>@if($indicator->indicator->value != 0) {{ $indicator->indicator->value }} @else yo'l qo'yilmaydi @endif</td>
 
                                                 <td>
                                                     @if($indicator->indicator->nd_name)
