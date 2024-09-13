@@ -93,7 +93,7 @@
                                                 <label class="form-label" for="nd_name">{{ trans('app.Me’yor izohi') }}
                                                     <label class="text-danger">*</label></label>
                                                 <div class="">
-                                                    <textarea id="data" name="comment" class="form-control" maxlength="500">{{ $type->value }}</textarea>
+                                                    <textarea id="data" name="comment" class="form-control" maxlength="500">{{ $type->comment }}</textarea>
                                                 </div>
                                             </div>
                                             {{-- end no'rma --}}

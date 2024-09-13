@@ -81,14 +81,24 @@
 
                                                     {{(isset($indicator->indicator->nds->type_id)) ? '('.\App\Models\Nds::getType($indicator->indicator->nds->type_id).'.'.$indicator->indicator->nds->number/*.' '.$indicator->indicator->nds->name*/.')':""}}
                                                 </td>
-                                                <td>@if($indicator->indicator->value != 0) {{ $indicator->indicator->value }} @else yo'l qo'yilmaydi @endif</td>
+                                                <td>
+                                                    @if($indicator->indicator->comment)
+                                                        {{ $indicator->indicator->comment }}
+                                                    @else
+                                                        @if($indicator->indicator->value != 0)
+                                                            {{ $indicator->indicator->value }}
+                                                        @else
+                                                            ruxsat etilmaydi
+                                                        @endif
+                                                    @endif
+                                                </td>
 
                                                 <td>
                                                     @if($indicator->indicator->nd_name)
-                                                        @if($indicator->result != 0)
+                                                        @if($indicator->result != 0 || $indicator->indicator->value != 0)
                                                             {{ $indicator->result }}
                                                         @else
-                                                            uchramadi
+                                                            aniqlanmadi
                                                         @endif
                                                     @endif
                                                 </td>

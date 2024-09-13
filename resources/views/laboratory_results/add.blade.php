@@ -61,6 +61,7 @@
                         <thead style="text-align: center">
                         <tr>
                             <th colspan="2">Normativ hujjat ko'rsatkichalari</th>
+                            <th>Me'yoriy qiymati</th>
                             <th>Natijalar</th>
                         </tr>
                         </thead>
@@ -83,7 +84,27 @@
                                                 </span>
                                             {{(isset($indicator->indicator->nds->type_id)) ? '('.\App\Models\Nds::getType($indicator->indicator->nds->type_id).'.'.$indicator->indicator->nds->number/*.' '.$indicator->indicator->nds->name*/.')':""}}
                                         </td>
+                                        <td>
+                                            @if($indicator->indicator->comment)
+                                                {{ $indicator->indicator->comment }}
+                                            @else
+                                                @if($indicator->indicator->value != 0)
+                                                    {{ $indicator->indicator->value }}
+                                                @else
+                                                    ruxsat etilmaydi
+                                                @endif
+                                            @endif
+                                        </td>
 
+                                        <td>
+                                            @if($indicator->indicator->nd_name)
+                                                @if($indicator->result != 0 || $indicator->indicator->value != 0)
+                                                    {{ $indicator->result }}
+                                                @else
+                                                    aniqlanmadi
+                                                @endif
+                                            @endif
+                                        </td>
                                         <td>
                                             @if($indicator->indicator->nd_name)
                                                 {{-- <input type="number" class="form-control" step="0.01" value="{{$final_result}}"  name="value{{$indicator->id}}" required> --}}               {{-- - labaratoriya number - --}}
