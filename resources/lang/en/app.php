@@ -6,6 +6,8 @@ return [
     'Barcha arizalar bo\'yicha umumiy ro\'yxat' => 'General list of all applications',
     'Ariza sanasi' => 'Date of application',
     'Mahsulot turi' => 'Product type',
+    'copyright_text' => 'All rights reserved by the Agricultural Crop Seed Certification System',
+
     // 'Mahsulot navi' => 'Product variety',
     'Mahsulot turini tanlang' => 'Select the type of product',
     // 'Ekin avlodini tanlang'=>'Select the crop generation',

@@ -5,6 +5,8 @@ return [
     'Welcome' => 'Xush kelibsiz',
     'Inventory' => 'Inventarizatsiya',
     'Home' => 'Home',
+    'copyright_text' => 'Qishloq xo‘jalik ekinlari urug‘larini sertifikatlashtirish tizimi tomonidan barcha huquqlar himoyalangan',
+
 
     //Umumiy ro'yxat
     'Barcha arizalar bo\'yicha umumiy ro\'yxat' => 'Barcha arizalar bo\'yicha umumiy ro\'yxat',

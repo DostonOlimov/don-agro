@@ -5,6 +5,8 @@ return [
     'Barcha arizalar bo\'yicha umumiy ro\'yxat' => 'Барча аризалар бўйича умумий рўйхат',
     'Ariza sanasi' => 'Ариза санаси',
     'Mahsulot turi' => 'Маҳсулот тури',
+    'copyright_text' => 'Қишлоқ хўжалик екинлари уруғларини сертификатлаштириш тизими томонидан барча ҳуқуқлар ҳимояланган',
+
     // 'Mahsulot navi' => 'Маҳсулот нави',
     'Mahsulot turini tanlang' => 'Маҳсулот турини танланг',
     // 'Ekin avlodini tanlang'=>'Экин авлодини танланг',

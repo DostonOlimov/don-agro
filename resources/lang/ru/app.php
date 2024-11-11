@@ -5,6 +5,8 @@ return [
     'Barcha arizalar bo\'yicha umumiy ro\'yxat' => 'Общий список всех приложений',
     'Ariza sanasi' => 'Дата подачи заявки',
     'Mahsulot turi' => 'Тип Продукт',
+    'copyright_text' => 'Все права защищены Системой сертификации семян сельскохозяйственных культур.',
+
     // 'Mahsulot navi' => 'Сорт Продукт',
     'Mahsulot turini tanlang' => 'Выберите тип урожая',
     // 'Ekin avlodini tanlang'=>'Выберите поколение урожая',
