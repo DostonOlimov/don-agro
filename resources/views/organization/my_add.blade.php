@@ -1,10 +1,6 @@
 @extends('layouts.front')
 @section('style')
     <style>
-           body {
-            display: none !important;
-            background-color: black;
-        }
         @media screen and (max-width: 768px) {
             main {
                 margin: 100px 0 !important;
