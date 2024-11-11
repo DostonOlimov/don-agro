@@ -29,6 +29,7 @@ class Application extends Model
         'organization_id',
         'prepared_id',
         'type',
+        'app_type',
         'date',
         'accepted_date',
         'accepted_id',

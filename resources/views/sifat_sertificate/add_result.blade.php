@@ -169,24 +169,24 @@
                                         </div>
                                         <div class="row" style="column-gap:0" id="dynamicForm">
                                             <div class="col-md-6 form-group has-feedback">
-                                                <input type="text"   class="form-control" name="jami1" readonly value="JAMI">
+                                                <input type="text"   class="form-control" name="jamwqei1" readonly value="JAMI">
                                             </div>
                                             <div class="col-md-6 form-group has-feedback">
-                                                <input type="number" step="0.01"  class="form-control" name="JAMI" required
+                                                <input type="number" step="0.01"  class="form-control" name="jami1" required
                                                        value="{{ old('JAMI') }}">
                                             </div>
                                             <div class="col-md-6 form-group has-feedback">
                                                 <input type="text"   class="form-control" name="asdf" readonly value="MA'DANLI">
                                             </div>
                                             <div class="col-md-6 form-group has-feedback">
-                                                <input type="number" step="0.01"  class="form-control" name="MA'DANLI" required
+                                                <input type="number" step="0.01"  class="form-control" name="madan" required
                                                        value="{{ old('MA\'DANLI') }}">
                                             </div>
                                             <div class="col-md-6 form-group has-feedback">
                                                 <input type="text"   class="form-control" name="jasdfmi1" readonly value="ZARARLI">
                                             </div>
                                             <div class="col-md-6 form-group has-feedback">
-                                                <input type="number" step="0.01"  class="form-control" name="ZARARLI" required
+                                                <input type="number" step="0.01"  class="form-control" name="zarar" required
                                                        value="{{ old('ZARARLI') }}">
                                             </div>
                                         </div>
@@ -199,10 +199,10 @@
                                         </div>
                                         <div class="row" style="column-gap:0" id="dynamicForm2">
                                             <div class="col-md-6 form-group has-feedback">
-                                                <input type="text"   class="form-control" name="jami1" readonly value="JAMI">
+                                                <input type="text"   class="form-control" name="jamierwe2" readonly value="JAMI">
                                             </div>
                                             <div class="col-md-6 form-group has-feedback">
-                                                <input type="number" step="0.01"  class="form-control" name="JAMI" required
+                                                <input type="number" step="0.01"  class="form-control" name="jami2" required
                                                        value="{{ old('JAMI') }}">
                                             </div>
                                         </div>
@@ -248,7 +248,7 @@
             const removeButton = document.getElementById('removeButton');
             const dynamicForm = document.getElementById('dynamicForm');
             let inputCounter = 1; // Counter to keep track of input naming
-            const maxInputs = 3; // Maximum number of input pairs
+            const maxInputs = 2; // Maximum number of input pairs
 
             addButton.addEventListener('click', function () {
                 if (inputCounter >= maxInputs) {
@@ -299,7 +299,7 @@
             const removeButton = document.getElementById('removeButton2');
             const dynamicForm = document.getElementById('dynamicForm2');
             let inputCounter = 1; // Counter to keep track of input naming
-            const maxInputs = 5; // Maximum number of input pairs
+            const maxInputs = 4; // Maximum number of input pairs
 
             addButton.addEventListener('click', function () {
                 if (inputCounter >= maxInputs) {
