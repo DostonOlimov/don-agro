@@ -11,20 +11,19 @@ class LaboratoryResult extends Model
 
     protected $table = 'laboratory_results';
 
-    protected $fillable = ['number_id', 'laboratory_indicator_id', 'value'];
+    protected $fillable = [
+        'app_id',
+        'class',
+        'type',
+        'subtype',
+        'nature',
+        'humidity',
+        'falls_number',
+        'kleykovina',
+        'quality',
+        'elak_number',
+        'elak_result',
+    ];
 
-    public function number()
-    {
-        return $this->belongsTo(LaboratoryNumbers::class,'id','number_id');
-    }
-
-    public function indicator()
-    {
-        return $this->belongsTo(LaboratoryIndicators::class,'laboratory_indicator_id','id');
-    }
-    public function users()
-    {
-        return $this->belongsTo(User::class,'created_by','id');
-    }
 
 }

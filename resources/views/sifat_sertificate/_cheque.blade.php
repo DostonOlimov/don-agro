@@ -36,59 +36,9 @@
     </div>
 
     <h3 class="text-center"> ISHLAB CHIQARUVCHI (ETKAZIB BERUVCHI) NING MA’LUMOTLARI</h3>
-    <table class="table table-bordered" >
-        <thead>
-            <tr>
-                <th>Texnik chigit turi (jinlangan/linterlangan)</th>
-                <th>Seleksiya navi</th>
-                <th>Netto massasi (kg)</th>
-                <th>Konditsion massasi (kg)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{ $test->crops->name->name }}</td>
-                <td>{{ optional($test->crops->selection)->name }}</td>
-                <td>{{ $test->crops->amount }}</td>
-                <td>{{ round ($test->crops->amount * (100 - $namlik - $zararkunanda) / (100 - 10 - 0.5)) }}</td>
-            </tr>
-        </tbody>
-    </table>
+
     <h3 class="text-center"> IJROCHINING MA’LUMOTLARI</h3>
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th rowspan="2">Navi/ sinfi</th>
-            <th colspan="2">O’zDSt 597 Nuqsonli chigitning massaviy ulushi (%)</th>
-            <th colspan="2">O’zDSt 599 Mineral va organik aralashmalarning massaviy ulushi (%)</th>
-            <th colspan="2">O’zDSt 601 Tukdorlikning massaviy  ulushi (%)</th>
-            <th colspan="2">O’zDSt 600 Namlikning massaviy  ulushi (%)</th>
-        </tr>
-        <tr>
-            <th>Me'yorda</th>
-            <th>Amalda</th>
-            <th>Me'yor</th>
-            <th>Amalda</th>
-            <th>Me'yor</th>
-            <th>Amalda</th>
-            <th>Me'yor</th>
-            <th>Amalda</th>
-        </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{ optional($tip)->nav }} / {{ optional($tip)->sinf ?? '-' }}</td>
-                <td>{{ number_format( optional($tip)->nuqsondorlik, 1, '.', '.') }}</td>
-                <td @if($nuqsondorlik > optional($tip)->nuqsondorlik) style="color:red" @endif>{{ number_format( $nuqsondorlik, 1, '.', '.') }}</td>
-                <td> - </td>
-                <td>{{ number_format( $zararkunanda, 1, '.', '.') }}</td>
-                <td>@if(optional($tip)->tukdorlik_min)  {{ number_format( optional($tip)->tukdorlik_min, 1, '.', '.')}} - @endif{{ number_format( optional($tip)->tukdorlik, 1, '.', '.') }}</td>
-                <td @if(optional($tip)->tukdorlik_min  > $tukdorlik or $tukdorlik > optional($tip)->tukdorlik) style="color:red" @endif>{{ number_format( $tukdorlik, 1, '.', '.') }}</td>
-                <td>{{ number_format( optional($tip)->namlik, 1, '.', '.') }}</td>
-                <td @if($namlik > optional($tip)->namlik) style="color:red" @endif>{{ number_format( $namlik, 1, '.', '.') }}</td>
-            </tr>
-        </tbody>
-    </table>
+
         @if($quality)
             <h3 class="main__intro"> To‘da yuqoridagi ko‘rsatkichlari bo‘yicha O’z DSt 596 standartining 4.1, 4.2 bandlariga muvofiq.</h3>
         @else
@@ -98,9 +48,6 @@
             <div class="row">
         <div class="col-sm-6">
             <span style="padding: 5px; display: block;"><b>Ijrochi :</b>
-            {{ optional($test->user->zavod)->region->name }} filialining<br>
-            {{ optional(optional($test->user->zavod)->chigit_laboratory)->name }}<br>
-            mudiri-guruh rahbari :
             {{ $test->user->lastname . ' ' . ($test->user->name) }}
 
         </span>

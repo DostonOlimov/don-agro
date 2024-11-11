@@ -12,6 +12,8 @@ use App\Models\Clients;
 use App\Models\CropData;
 use App\Models\CropsSelection;
 use App\Models\Indicator;
+use App\Models\LaboratoryResult;
+use App\Models\LaboratoryResultData;
 use App\Models\OrganizationCompanies;
 use App\Models\SifatSertificates;
 use App\Services\SearchService;
@@ -157,23 +159,54 @@ class SifatSertificateController extends Controller
     public function ResultStore(Request $request)
     {
         $appId = $request->input('id');
-        $nds =Application::with('crops.name.nds')->find($appId)->crops->name->nds;
-        foreach ($nds as $nd){
-            $indicators = Indicator::where('nds_id',$nd->id)->pluck('id');
+        $app =Application::findOrFail($appId);
+
+        $crop = LaboratoryResult::create([
+            'app_id'   => $appId,
+            'class'    => $request->input('class'),
+            'type'      => $request->input('type'),
+            'subtype'  => $request->input('subtype'),
+            'nature'  => $request->input('nature'),
+            'humidity'  => $request->input('humidity'),
+            'falls_number'  => $request->input('falls_number'),
+            'kleykovina'  => $request->input('kleykovina'),
+            'quality'  => $request->input('quality'),
+            'elak_number'  => $request->input('elak_number'),
+            'elak_result'  => $request->input('elak_result'),
+        ]);
+        $data = [];
+
+// Static data entries
+        $dataEntries = [
+            ['name' => "JAMI", 'value' => $request->input('jami1'), 'type' => 1],
+            ['name' => "JAMI", 'value' => $request->input('jami2'), 'type' => 2],
+            ['name' => 'MA\'DANLI', 'value' => $request->input('madan'), 'type' => 1],
+            ['name' => "ZARARLI", 'value' => $request->input('zarar'), 'type' => 1],
+            ['name' => $request->input('name1'), 'value' => $request->input('value1'), 'type' => 1]
+        ];
+
+        // Add static entries to $data with app_id
+        foreach ($dataEntries as $entry) {
+            $data[] = array_merge($entry, ['app_id' => $appId]);
         }
 
-        $results = $indicators->map(function ($indicatorId) use ($appId, $request) {
-            return [
-                'app_id' => $appId,
-                'indicator_id' => $indicatorId,
-                'value' => $request->input('value' . $indicatorId),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ];
-        });
+        // Dynamic data entries using a loop
+        for ($i = 1; $i < 3; $i++) {
+            $name = $request->input('name' . $i);
+            if ($name) {
+                $data[] = [
+                    'app_id' => $appId,
+                    'name'   => $request->input('z_name' . $i),
+                    'value'  => $request->input('z_value' . $i),
+                    'type'   => 2
+                ];
+            }
+        }
 
-        ChigitResult::insert($results->toArray());
-
+        // Insert data if not empty
+        if (!empty($data)) {
+            LaboratoryResultData::insert($data);
+        }
         return redirect()->route('/sifat-sertificates/list')
             ->with('message', 'Successfully Submitted');
     }
@@ -187,11 +220,10 @@ class SifatSertificateController extends Controller
         // Generate QR code
         $url = route('sifat_sertificate.view', $id);
         $qrCode = QrCode::size(100)->generate($url);
+        $quality = 1;
 
-        // Fetch values and tip
-        $chigitValues = $this->getChigitValuesAndTip($test);
 
-        return view('sifat_sertificate.show', compact('test', 'formattedDate','company', 'qrCode') + $chigitValues);
+        return view('sifat_sertificate.show', compact('test', 'formattedDate','company', 'qrCode','quality'));
     }
 
     public function edit($id)
@@ -296,42 +328,41 @@ class SifatSertificateController extends Controller
     {
         $test = Application::findOrFail($id);
         $company = OrganizationCompanies::with('city')->findOrFail($test->organization_id);
-        // Fetch values and tip
-        $chigitValues = $this->getChigitValuesAndTip($test);
+        $quality = 1;
 
         // date format
         $formattedDate = formatUzbekDateInLatin($test->date);
         $currentYear = date('Y');
-        $zavod_id = $test->user->zavod_id;
-        $number = 0;
-        if($chigitValues['quality']){
-            $number = SifatSertificates::where('zavod_id', $zavod_id)
-                ->where('year', $currentYear)
-                ->max('number');
-        }
-        $number = $number ? $number + 1 : 1;
+//        $zavod_id = $test->user->zavod_id;
+//        $number = 0;
+//        if($chigitValues['quality']){
+//            $number = SifatSertificates::where('zavod_id', $zavod_id)
+//                ->where('year', $currentYear)
+//                ->max('number');
+//        }
+//        $number = $number ? $number + 1 : 1;
+//
+//        // create sifat certificate
+//        if (!$test->sifat_sertificate) {
+//
+//            $sertificate = new SifatSertificates();
+//            $sertificate->app_id = $id;
+//            $sertificate->number = $number;
+//            $sertificate->zavod_id = $zavod_id;
+//            $sertificate->year = $currentYear;
+//            $sertificate->created_by = \auth()->user()->id;
+//            $sertificate->save();
+//        }
 
-        // create sifat certificate
-        if (!$test->sifat_sertificate) {
-
-            $sertificate = new SifatSertificates();
-            $sertificate->app_id = $id;
-            $sertificate->number = $number;
-            $sertificate->zavod_id = $zavod_id;
-            $sertificate->year = $currentYear;
-            $sertificate->created_by = \auth()->user()->id;
-            $sertificate->save();
-        }
-
-        $sert_number = ($currentYear - 2000) * 1000000 + ($test->prepared->kod)*1000 + $number;
+        $sert_number = 001001;
 
         // Generate QR code
         $qrCode = base64_encode(QrCode::format('png')->size(100)->generate(route('sifat_sertificate.download', $id)));
 
         // Load the view and pass data to it
-        $pdf = Pdf::loadView('sifat_sertificate.pdf', compact('test','sert_number','formattedDate', 'company', 'qrCode') + $chigitValues);
+        $pdf = Pdf::loadView('sifat_sertificate.pdf', compact('test','quality','sert_number','formattedDate', 'company', 'qrCode'));
 
-//        return $pdf->stream('sdf');
+        return $pdf->stream('sdf');
         // Save the PDF file
         $filePath = storage_path('app/public/sifat_sertificates/certificate_' . $id . '.pdf');
         $pdf->save($filePath);
