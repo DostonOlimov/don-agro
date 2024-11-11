@@ -1,223 +1,138 @@
-/*  ---------------------------------------------------
-    Template Name: Ogani
-    Description:  Ogani eCommerce  HTML Template
-    Author: Colorlib
-    Author URI: https://colorlib.com
-    Version: 1.0
-    Created: Colorlib
----------------------------------------------------------  */
+const hamburger = document.querySelector(".hamburger");
+const navMenu = document.querySelector(".nav-menu");
+const body = document.querySelector("body");
+hamburger.addEventListener("click", mobileMenu);
+function mobileMenu() {
+    hamburger.classList.toggle("active");
+    navMenu.classList.toggle("active");
+}
+const navLink = document.querySelectorAll(".nav-link");
+navLink.forEach((n) => n.addEventListener("click", closeMenu));
+function closeMenu() {
+    hamburger.classList.remove("active");
+    navMenu.classList.remove("active");
+}
+hamburger.addEventListener("click", function () {
+    if (body.classList.contains("no-scroll")) {
+        // Remove the class to enable scrolling
+        body.classList.remove("no-scroll");
+    } else {
+        // Add the class to disable scrolling
+        body.classList.add("no-scroll");
+    }
+});
+// ---------------------------------------------------------------------------------- //
+let navbar = document.querySelector(".nav-bg");
+let navLinks = document.querySelectorAll(".nav-link");
+let lastScrollTop = 0;
 
-'use strict';
+window.addEventListener("scroll", function () {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop > lastScrollTop) {
+        navbar.style.top = "-96px";
+    } else {
+        navbar.style.top = "0";
+    }
+    if (scrollTop > 200) {
+        navbar.style.backgroundColor = "#204e51";
+        navbar.style.borderTopColor = "#204e51";
+        navbar.style.borderBottomColor = "#204e51";
+    } else {
+        navbar.style.backgroundColor = "transparent";
+        navbar.style.borderTopColor = "white";
+        navbar.style.borderBottomColor = "white";
+    }
+    lastScrollTop = scrollTop;
+});
 
-(function ($) {
+// ---------------------------------------------------------------------------------- //
+function changeLanguage(language) {
+    document.cookie = "language=" + language + "; path=/";
+    location.reload();
+}
 
-    /*------------------
-        Preloader
-    --------------------*/
-    $(window).on('load', function () {
-        $(".loader").fadeOut();
-        $("#preloder").delay(200).fadeOut("slow");
+function toggleDropdown(event, dropdownId) {
+    event.stopPropagation();
+    let dropdown = document.getElementById(dropdownId);
+    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+}
 
-        /*------------------
-            Gallery filter
-        --------------------*/
-        $('.featured__controls li').on('click', function () {
-            $('.featured__controls li').removeClass('active');
-            $(this).addClass('active');
-        });
-        if ($('.featured__filter').length > 0) {
-            var containerEl = document.querySelector('.featured__filter');
-            var mixer = mixitup(containerEl);
+document.addEventListener("click", function (event) {
+    let dropdowns = document.querySelectorAll('.dropdown-for-language-picker-content');
+    dropdowns.forEach(function(dropdown) {
+        if (event.target.closest('.dropdown-for-language-picker') === null && dropdown.style.display === 'block') {
+            dropdown.style.display = 'none';
         }
     });
+});
 
-    /*------------------
-        Background Set
-    --------------------*/
-    $('.set-bg').each(function () {
-        var bg = $(this).data('setbg');
-        $(this).css('background-image', 'url(' + bg + ')');
-    });
+document.addEventListener("touchstart", function () {}, true);
 
-    //Humberger Menu
-    $(".humberger__open").on('click', function () {
-        $(".humberger__menu__wrapper").addClass("show__humberger__menu__wrapper");
-        $(".humberger__menu__overlay").addClass("active");
-        $("body").addClass("over_hid");
-    });
+// function changeLanguage(language) {
+//     document.cookie = "language=" + language + "; path=/";
+//     location.reload();
+// }
+// function changeFlag(path) {
+//     document.getElementById("activeFlag").src = path;
+//     localStorage.setItem("activeFlag", path);
+//     document.getElementById("dropdown-for-language-picker").style.display =
+//         "none";
+// }
+// function toggleDropdown(event) {
+//     event.stopPropagation();
+//     let dropdownForLanguage = document.getElementById(
+//         "dropdown-for-language-picker"
+//     );
+//     dropdownForLanguage.style.display =
+//         dropdownForLanguage.style.display === "block" ? "none" : "block";
+// }
+// document.addEventListener("click", function () {
+//     document.getElementById("dropdown-for-language-picker").style.display =
+//         "none";
+// });
+// document.addEventListener("touchstart", function() {}, true);
+// ---------------------------------------------------------------------------------- //
+document.addEventListener('click', function(event) {
+    var phoneCallCircle = document.querySelector('.phoneCall-circle-for-mobile');
+    var isClickInside = phoneCallCircle.contains(event.target);
+    var phoneCallMenu = document.querySelector('.phoneCall-circle-for-mobile .phoneCall-menu-wrap');
+    
+    if (!isClickInside) {
+        phoneCallMenu.style.display = "none";
+    }
+});
 
-    $(".humberger__menu__overlay").on('click', function () {
-        $(".humberger__menu__wrapper").removeClass("show__humberger__menu__wrapper");
-        $(".humberger__menu__overlay").removeClass("active");
-        $("body").removeClass("over_hid");
-    });
+function showPhoneCallMenu(event) {
+    event.stopPropagation();
+    let phoneCallMenu = document.querySelector('.phoneCall-circle-for-mobile .phoneCall-menu-wrap');
+    phoneCallMenu.style.display = "block";
+}
 
-    /*------------------
-		Navigation
-	--------------------*/
-    $(".mobile-menu").slicknav({
-        prependTo: '#mobile-menu-wrap',
-        allowParentLinks: true
-    });
-
-    /*-----------------------
-        Categories Slider
-    ------------------------*/
-    $(".categories__slider").owlCarousel({
-        loop: true,
-        margin: 0,
-        items: 4,
-        dots: false,
-        nav: true,
-        navText: ["<span class='fa fa-angle-left'><span/>", "<span class='fa fa-angle-right'><span/>"],
-        animateOut: 'fadeOut',
-        animateIn: 'fadeIn',
-        smartSpeed: 1200,
-        autoHeight: false,
-        autoplay: true,
-        responsive: {
-
-            0: {
-                items: 1,
-            },
-
-            480: {
-                items: 2,
-            },
-
-            768: {
-                items: 3,
-            },
-
-            992: {
-                items: 4,
-            }
-        }
-    });
-
-
-    $('.hero__categories__all').on('click', function(){
-        $('.hero__categories ul').slideToggle(400);
-    });
-
-    /*--------------------------
-        Latest Product Slider
-    ----------------------------*/
-    $(".latest-product__slider").owlCarousel({
-        loop: true,
-        margin: 0,
-        items: 1,
-        dots: false,
-        nav: true,
-        navText: ["<span class='fa fa-angle-left'><span/>", "<span class='fa fa-angle-right'><span/>"],
-        smartSpeed: 1200,
-        autoHeight: false,
-        autoplay: true
-    });
-
-    /*-----------------------------
-        Product Discount Slider
-    -------------------------------*/
-    $(".product__discount__slider").owlCarousel({
-        loop: true,
-        margin: 0,
-        items: 3,
-        dots: true,
-        smartSpeed: 1200,
-        autoHeight: false,
-        autoplay: true,
-        responsive: {
-
-            320: {
-                items: 1,
-            },
-
-            480: {
-                items: 2,
-            },
-
-            768: {
-                items: 2,
-            },
-
-            992: {
-                items: 3,
-            }
-        }
-    });
-
-    /*---------------------------------
-        Product Details Pic Slider
-    ----------------------------------*/
-    $(".product__details__pic__slider").owlCarousel({
-        loop: true,
-        margin: 20,
-        items: 4,
-        dots: true,
-        smartSpeed: 1200,
-        autoHeight: false,
-        autoplay: true
-    });
-
-    /*-----------------------
-		Price Range Slider
-	------------------------ */
-    var rangeSlider = $(".price-range"),
-        minamount = $("#minamount"),
-        maxamount = $("#maxamount"),
-        minPrice = rangeSlider.data('min'),
-        maxPrice = rangeSlider.data('max');
-    rangeSlider.slider({
-        range: true,
-        min: minPrice,
-        max: maxPrice,
-        values: [minPrice, maxPrice],
-        slide: function (event, ui) {
-            minamount.val('$' + ui.values[0]);
-            maxamount.val('$' + ui.values[1]);
-        }
-    });
-    minamount.val('$' + rangeSlider.slider("values", 0));
-    maxamount.val('$' + rangeSlider.slider("values", 1));
-
-    /*--------------------------
-        Select
-    ----------------------------*/
-
-    /*------------------
-		Single Product
-	--------------------*/
-    $('.product__details__pic__slider img').on('click', function () {
-
-        var imgurl = $(this).data('imgbigurl');
-        var bigImg = $('.product__details__pic__item--large').attr('src');
-        if (imgurl != bigImg) {
-            $('.product__details__pic__item--large').attr({
-                src: imgurl
-            });
-        }
-    });
-
-    /*-------------------
-		Quantity change
-	--------------------- */
-    var proQty = $('.pro-qty');
-    proQty.prepend('<span class="dec qtybtn">-</span>');
-    proQty.append('<span class="inc qtybtn">+</span>');
-    proQty.on('click', '.qtybtn', function () {
-        var $button = $(this);
-        var oldValue = $button.parent().find('input').val();
-        if ($button.hasClass('inc')) {
-            var newVal = parseFloat(oldValue) + 1;
-        } else {
-            // Don't allow decrementing below zero
-            if (oldValue > 0) {
-                var newVal = parseFloat(oldValue) - 1;
-            } else {
-                newVal = 0;
-            }
-        }
-        $button.parent().find('input').val(newVal);
-    });
-
-})(jQuery);
+// ---------------------------------------------------------------------------------- //
+$(".owl-carousel").owlCarousel({
+    loop: true,
+    margin: 0,
+    nav: true,
+    navText: [
+        "<i class='fa-solid fa-caret-left'></i>",
+        "<i class='fa-solid fa-caret-right'></i>",
+    ],
+    items: 4,
+    smartSpeed: 900,
+    autoplay: true,
+    autoplayTimeout: 3000,
+    autoplaySpeed: 1500,
+    autoplayHoverPause: true,
+    responsive: {
+        0: {
+            items: 1,
+        },
+        600: {
+            items: 2,
+        },
+        1100: {
+            items: 4,
+        },
+    },
+});
+// ---------------------------------------------------------------------------------- //

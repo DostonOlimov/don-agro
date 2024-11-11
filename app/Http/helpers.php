@@ -173,6 +173,25 @@ if (!function_exists('getDatepicker')) {
 
 }
 
+if (!function_exists('formatUzbekDateInLatin')) {
+    function formatUzbekDateInLatin($date)
+    {
+        $formattedDate = \Carbon\Carbon::parse($date)
+            ->setTimezone('Asia/Tashkent') // Set your desired timezone (e.g., Tashkent for Uzbekistan)
+            ->locale('uz')
+            ->translatedFormat('j F, Y');
+
+        // Replace Cyrillic month and period names with Latin equivalents
+        $formattedDate = str_replace(
+            ['январ', 'феврал', 'март', 'апрел', 'май', 'июн', 'июл', 'август', 'сентябр', 'октябр', 'ноябр', 'декабр', 'эрталаб', 'тушдан кейин'],
+            ['yanvar', 'fevral', 'mart', 'aprel', 'may', 'iyun', 'iyul', 'avgust', 'sentabr', 'oktabr', 'noyabr', 'dekabr', 'ertalab', 'tushdan keyin'],
+            $formattedDate
+        );
+
+        return $formattedDate;
+    }
+}
+
 function compareIncomeEntries($a, $b)
 {
     $aDate = strtotime($a->date);
@@ -507,4 +526,39 @@ function getJWTPayload($token) {
     $els = explode('.', $token);
     $base64 = str_replace(['-', '+'], ['_', '/'], $els[1]);
     return json_decode(base64_decode($base64));
+}
+if (! function_exists('getAppStatus')) {
+    function getAppStatus()
+    {
+        return \Illuminate\Support\Facades\Cache::remember('applications', 60*60, function () {
+            return \App\Models\Application::getStatus();
+        });
+    }
+}
+
+if (! function_exists('getCropsNames')) {
+    function getCropsNames()
+    {
+        return \Illuminate\Support\Facades\Cache::remember('crops_names', 60*60, function () {
+            return \App\Models\CropsName::all();
+        });
+    }
+}
+
+if (! function_exists('getRegions')) {
+    function getRegions()
+    {
+        return \Illuminate\Support\Facades\Cache::remember('regions', 60*60, function () {
+            return \App\Models\Region::all();
+        });
+    }
+}
+
+if (! function_exists('getCropYears')) {
+    function getCropYears()
+    {
+        return \Illuminate\Support\Facades\Cache::remember('crop_data_years', 60*60, function () {
+            return \App\Models\CropData::getYear();
+        });
+    }
 }

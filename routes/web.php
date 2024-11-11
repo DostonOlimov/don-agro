@@ -406,6 +406,58 @@ Route::group(
             Route::get('/list', '\App\Http\Controllers\FinalDecisionController@list');
             Route::get('/view/{id}', '\App\Http\Controllers\FinalDecisionController@view');
         });
+        //Clients
+        Route::group(['prefix' => 'clients', 'middleware' => 'auth'], function () {
+            Route::get('/add', '\App\Http\Controllers\ClientsController@index');
+            Route::get('/list', '\App\Http\Controllers\ClientsController@list');
+            Route::post('/store', '\App\Http\Controllers\ClientsController@store');
+            Route::get('/search_by_name', '\App\Http\Controllers\ClientsController@search_by_name');
+            Route::get('/list/delete/{id}', '\App\Http\Controllers\ClientsController@destory');
+            Route::get('/list/edit/{id}', '\App\Http\Controllers\ClientsController@edit');
+            Route::post('/list/edit/update/{id}', '\App\Http\Controllers\ClientsController@update');
+        });
+
+        //sifat sertificates online
+        Route::group(['prefix' => 'sifat-sertificates'], function () {
+            Route::get('/list', ['as'=>'/sifat-sertificates/list', 'uses' => '\App\Http\Controllers\SifatSertificateController@applicationList']);
+            Route::get('/add/{id}', ['as'=>'sifat-sertificates.add', 'uses' => '\App\Http\Controllers\SifatSertificateController@addApplication']);
+            Route::post('/store', ['uses' => '\App\Http\Controllers\SifatSertificateController@store']);
+            Route::get('/add_result/{id}', ['as'=>'sifat-sertificates.add_result', 'uses' => '\App\Http\Controllers\SifatSertificateController@addResult']);
+            Route::post('/result_store', ['uses' => '\App\Http\Controllers\SifatSertificateController@ResultStore']);
+            Route::get('/add_client/{id}', ['as'=>'sifat-sertificates.add_client', 'uses' => '\App\Http\Controllers\SifatSertificateController@addClientData']);
+            Route::post('/client_store', ['uses' => '\App\Http\Controllers\SifatSertificateController@ClientDataStore']);
+
+            Route::get('/edit/{id}', [ 'uses' => '\App\Http\Controllers\SifatSertificateController@edit'])->name('sifat_sertificate.edit');
+            Route::get('/edit-data/{id}', [ 'uses' => '\App\Http\Controllers\SifatSertificateController@editData']);
+            Route::post('/update', '\App\Http\Controllers\SifatSertificateController@update')->name('sifat_sertificate/update');
+            Route::get('/view/{id}', '\App\Http\Controllers\SifatSertificateController@showapplication')->name('sifat_sertificate.view');
+            Route::get('/list/delete/{id}', ['as' => '/sifat-sertificates/list/delete/{id}', 'uses' => '\App\Http\Controllers\SifatSertificateController@destory']);
+            Route::get('/accept/{id}', ['as' => '/sifat-sertificates/accept', 'uses' => '\App\Http\Controllers\SifatSertificateController@accept']);
+            Route::get('/reject/{id}', ['as' => '/sifat-sertificates/reject', 'uses' => '\App\Http\Controllers\SifatSertificateController@reject']);
+
+            Route::get('/client-edit/{id}', [ 'uses' => '\App\Http\Controllers\SifatSertificateController@clientEdit']);
+            Route::post('/client-update', '\App\Http\Controllers\SifatSertificateController@clientUpdate')->name('sifat_sertificate/client_update');
+            Route::get('/result-edit/{id}', [ 'uses' => '\App\Http\Controllers\SifatSertificateController@resultEdit']);
+            Route::post('/result-update', '\App\Http\Controllers\SifatSertificateController@resultUpdate')->name('sifat_sertificate/result_update');
+
+            Route::get('/sertificate/{id}/download', '\App\Http\Controllers\SifatSertificateController@download')->name('sifat_sertificate.download');
+
+        });
+
+        Route::group(['prefix' => 'driver-licence', 'middleware' => 'auth'], function () {
+            ////
+            Route::get('give', '\App\Http\Controllers\Admin\DriverLicenseController@create')->name('driver-license.create');
+            Route::get('oldgive', '\App\Http\Controllers\Customercontroller@driver_licence_form');
+            Route::post('store', '\App\Http\Controllers\Admin\DriverLicenseController@store');
+            Route::post('oldstore','\App\Http\Controllers\Customercontroller@driver_licence_store');
+            ////
+
+            Route::get('/list', '\App\Http\Controllers\Customercontroller@driver_licences');
+            Route::get('/cancel/{id}', '\App\Http\Controllers\Customercontroller@driver_licence_cancel');
+            Route::get('/preview', '\App\Http\Controllers\Customercontroller@driver_licence_preview');
+            Route::post('/save-image', '\App\Http\Controllers\Customercontroller@driver_licence_image');
+            Route::post('/save-signature', '\App\Http\Controllers\Customercontroller@driver_signature');
+        });
     }
 
 );

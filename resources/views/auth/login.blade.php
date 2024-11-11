@@ -51,7 +51,7 @@
                 <div class="wrap-login100 " style="padding:40px 80px;" >
                     <div class="col col-login mx-auto mb-4">
                         <div class="text-center">
-                            <img style="width: 200px; height: auto;" src="{{ url('img/logoNEW.png')}}"
+                            <img style="width: 200px; height: auto;" src="{{ url('img/logo.png')}}"
                                  class="header-brand-img" alt="logo">
                         </div>
                     </div>
