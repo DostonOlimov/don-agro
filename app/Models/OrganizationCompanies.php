@@ -10,7 +10,7 @@ use function PHPUnit\Framework\isNull;
 class OrganizationCompanies extends Model
 {
     protected $fillable = [
-        'name', 
+        'name',
         'city_id',
         'address',
         'owner_name',
@@ -24,6 +24,10 @@ class OrganizationCompanies extends Model
     public function application(): HasMany
     {
         return $this->hasMany(Application::class, 'organization_id');
+    }
+    public function getFullAddressAttribute(){
+        $city = str_word_count(optional($this->city)->name) == 1 ? optional($this->city)->name.' tuman' : optional($this->city)->name;
+        return optional($this->city->region)->name.','.$city.','.$this->address;
     }
     public function getTotalAmountAttribute()
     {

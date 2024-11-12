@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>PAXTA MAHSULOTLARINI SERTIFIKATLASHTIRISH AVTOMATLASHTIRILGAN TIZIMI</title>
     <style>
         @font-face {
@@ -8,7 +9,7 @@
             src: url('{{ storage_path('fonts/DejaVuSans.ttf') }}');
         }
         body {
-            font-family: 'DejaVuSans', sans-serif;
+            font-family: 'DejaVu Sans', sans-serif;
         }
         h1 {
             line-height: 1;

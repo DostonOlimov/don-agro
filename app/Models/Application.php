@@ -73,6 +73,19 @@ class Application extends Model
     {
         return $this->belongsTo(AppStatusChanges::class, 'id','app_id');
     }
+    public function client_data()
+    {
+        return $this->belongsTo(ClientData::class, 'id','app_id');
+    }
+    public function laboratory_result()
+    {
+        return $this->belongsTo(LaboratoryResult::class, 'id','app_id');
+    }
+    public function laboratory_result_data()
+    {
+        return $this->hasMany(LaboratoryResultData::class, 'id','app_id');
+    }
+
     public static function getType($type = null)
     {
         $arr = [

@@ -20,6 +20,7 @@ class CropData extends Model
         'type_id',
         'kodtnved',
         'measure_type',
+        'party_number',
         'amount',
         'sxeme_number',
         'year',

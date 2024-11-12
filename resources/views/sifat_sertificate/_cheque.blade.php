@@ -5,7 +5,7 @@
 <div id="invoice-cheque" class="py-4 col-12 background-image">
     @if($quality)
         <div class="text-center">
-            <img  height="300" src="{{ asset('/img/dashboard/gerb.png') }}">
+            <img  height="300" src="{{ asset('/img/dashboard/gerb_bg.png') }}">
         </div>
     @endif
         <h2 style="text-align: center">O’zbekiston Respublikasi Qishloq xo’jaligi vazirligi huzuridagi <br> Agrosanoat majmui ustidan nazorat qilish

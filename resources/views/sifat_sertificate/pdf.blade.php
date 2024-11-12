@@ -4,7 +4,7 @@
     .invoice-cheque {
         width: 100% !important;
         margin: 0;
-        font-size: 16px;
+        font-size: 10px;
         overflow: hidden; /* Prevent content from spilling over */
         position: relative;
         height: 100%;
@@ -13,10 +13,9 @@
     }
 
     .header__title {
-        font-size: 16px;
+        font-size: 11px;
         text-align: center;
         margin-top: 1px;
-        text-transform: uppercase;
     }
 
     .header__intro {
@@ -24,9 +23,9 @@
         justify-content: center;
         margin: 0 auto;
         text-align: center;
-        font-size: 16px;
+        font-size: 11px;
         max-width: 90%;
-        line-height: 1.3;
+        line-height: 1;
     }
 
     .main__intro {
@@ -34,15 +33,15 @@
         justify-content: center;
         margin: 0 auto;
         text-align: left;
-        font-size: 16px;
+        font-size: 10px;
         max-width: 100%;
-        line-height: 1.6;
+        line-height: 1;
     }
 
     h1 {
-        line-height: 1.6;
+        line-height: 1;
         text-align: center;
-        font-size: 16px;
+        font-size: 10px;
         font-weight: bold;
     }
 
@@ -82,12 +81,13 @@
         /* Full viewport height or adjust accordingly */
     }
 
-    /*img {*/
-    /*    max-width: 100%;*/
-    /*    !* Optional: To make sure the image is responsive *!*/
-    /*    height: 150px;*/
-    /*    padding-left: 125px;*/
-    /*}*/
+    .head_image img {
+        max-width: 100%;
+        /* Optional: To make sure the image is responsive */
+        height: 100px;
+        padding-left: 290px;
+        padding-top: 40px;
+    }
 
     .text-center img {
         max-width: 100px;
@@ -154,76 +154,141 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
     <div class="border-image"></div>
     <div class="content">
         @if($quality)
-{{--            <div class="container head_image" >--}}
-{{--                <img src="{{ asset('/img/dashboard/gerb.png') }}" alt="image" >--}}
-{{--            </div>--}}
+            <div class="container head_image" >
+                <img src="{{ asset('/img/dashboard/gerb_bg.png') }}" alt="image" >
+            </div>
         @endif
 
-        <h2 class="header__title">Agrosanoat majmui ustidan nazorat qilish
-            Inspeksiyasi qoshidagi <br> “Qishloq xo‘jaligi mahsulotlari sifatini baholash markazi” <br> davlat muassasasi</h2>
-
-    @if($quality)
-        <h1 style="font-weight: bold; color:#0a52de; font-size: 24px; margin:0">SIFAT SERTIFIKATI</h1>
-        <h2 class="header__intro" style="font-weight: bold;">Reestr raqami: {{ $test->prepared->region->series }}{{ $sert_number }}</h2>
-        @else
-            <h1 class="header__intro text-center" style="color:#f3775b; font-size: 24px"><b>Nomuvofiqlik bayonnomasi</b></h1>
-        @endif
-    <h2 class="main__intro"><b>Sertifikatlanuvchi mahsulot nomi :</b> {{$test->crops->name->name}} </h2>
-    <h2 class="main__intro"><b>KOD TN VED :</b> {{$test->crops->name->kodtnved}}</h2>
+        <h2 class="header__title">
+            O‘zbekiston Respublikasi Vazirlar Mahkamasi huzuridagi Agrosanoat majmui ustidan nazorat qilish Inspeksiyasi<br>
+            qoshidagi “Qishloq xo'jaligi mahsulotlari sifatini baholash markazi” davlat muassasasi<br>
+            Государственное учреждение «Центр оценки качества сельскохозяйственной продукции» при Инспекции по<br>
+            контролю за агропромышленным комплексом при Кабинете Министров Республики Узбекистан<br>
+            State company “Сenter for evaluation of the quality of agricultural products” under the Inspectionon the control of<br>
+            agro-industrial complex under the Cabinet of Ministers of the Republic of Uzbekistan
 
 
-        <h2 class="main__intro"><b>Berilgan sana :</b> {{ $formattedDate }} - yil</h2>
+        </h2>
 
-        <h2 class="main__intro text-left"><b>Ishlab chiqaruvchi (yetkazib beruvchi) nomi : </b>{{ $test->organization->name }}</h2>
-        <h2 class="main__intro text-left"><b>Ishlab chiqaruvchi (yetkazib beruvchi) manzili : </b>{{ $test->organization->full_address }}</h2>
-
-        <h2 class="header__intro" style="display: inline;"><b>Texnik chigit to'da raqami : </b> {{$test->crops->party_number}}</h2>
-
-
-        <h2 class="main__intro text-left"> <b>Xaridor (yog‘-moy korxonasi) nomi:&nbsp;</b>&nbsp; {{ optional(optional($test->client_data)->client)->name}} &nbsp; </h2>
-        <div style="display: flex !important;  justify-content: space-between !important;">
-            <h2 class="header__intro" style="display: inline;"><b>Avtotransport/ vagon raqami: </b> {{ optional($test->client_data)->vagon_number}}</h2>
-            <h2 class="header__intro" style="display: inline;"><b> Yuk xati raqami : </b>{{optional($test->client_data)->yuk_xati }}</h2>
-        </div>
-
-        <h1 class="header__intro" style="margin-top: 10px;"> ISHLAB CHIQARUVCHI (ETKAZIB BERUVCHI) NING MA’LUMOTLARI</h1>
-
-        <h1 class="header__intro" style="margin-top: 10px;"> IJROCHINING MA’LUMOTLARI</h1>
-            <h2 class="main__intro"><b>Berilgan sana :</b> {{ $formattedDate }} - yil</h2>
-
-            <h2 class="main__intro text-left"><b>Ishlab chiqaruvchi (yetkazib beruvchi) nomi : </b>{{ $test->organization->name }}</h2>
-            <h2 class="main__intro text-left"><b>Ishlab chiqaruvchi (yetkazib beruvchi) manzili : </b>{{ $test->organization->full_address }}</h2>
-
-            <h2 class="header__intro" style="display: inline;"><b>Texnik chigit to'da raqami : </b> {{$test->crops->party_number}}</h2>
-
-
-            <h2 class="main__intro text-left"> <b>Xaridor (yog‘-moy korxonasi) nomi:&nbsp;</b>&nbsp; {{ optional(optional($test->client_data)->client)->name}} &nbsp; </h2>
-            <div style="display: flex !important;  justify-content: space-between !important;">
-                <h2 class="header__intro" style="display: inline;"><b>Avtotransport/ vagon raqami: </b> {{ optional($test->client_data)->vagon_number}}</h2>
-                <h2 class="header__intro" style="display: inline;"><b> Yuk xati raqami : </b>{{optional($test->client_data)->yuk_xati }}</h2>
+        <h1 style="font-weight: bold; font-size: 16px; margin:0;line-height: normal;">SIFAT SERTIFIKATI <br>СЕРТИФИКАТ КАЧЕСТВА <br>CERTIFICATE OF QUALITY
+        </h1>
+{{--        <h2 class="header__intro" style="font-weight: bold;">Reestr raqami: {{ $test->prepared->region->series }}{{ $sert_number }}</h2>--}}
+{{--        @else--}}
+{{--            <h1 class="header__intro text-center" style="color:#f3775b; font-size: 24px"><b>Nomuvofiqlik bayonnomasi</b></h1>--}}
+{{--        @endif--}}
+            <div style="width: 100%; display: flex; justify-content: space-between;">
+                <div style="width: 20%; display: inline-block;">
+                    <span>Berildi<br> Выдан<br> Issued </span>
+                </div>
+                <div style="width: 30%;text-align: center; display: inline-block;">
+                    <span>{{$formattedDate}} </span>
+                </div>
             </div>
 
-            <h1 class="header__intro" style="margin-top: 10px;"> ISHLAB CHIQARUVCHI (ETKAZIB BERUVCHI) NING MA’LUMOTLARI</h1>
-
-            <h1 class="header__intro" style="margin-top: 10px;"> IJROCHINING MA’LUMOTLARI</h1>
-            <h2 class="main__intro"><b>Berilgan sana :</b> {{ $formattedDate }} - yil</h2>
-
-            <h2 class="main__intro text-left"><b>Ishlab chiqaruvchi (yetkazib beruvchi) nomi : </b>{{ $test->organization->name }}</h2>
-            <h2 class="main__intro text-left"><b>Ishlab chiqaruvchi (yetkazib beruvchi) manzili : </b>{{ $test->organization->full_address }}</h2>
-
-            <h2 class="header__intro" style="display: inline;"><b>Texnik chigit to'da raqami : </b> {{$test->crops->party_number}}</h2>
-
-
-            <h2 class="main__intro text-left"> <b>Xaridor (yog‘-moy korxonasi) nomi:&nbsp;</b>&nbsp; {{ optional(optional($test->client_data)->client)->name}} &nbsp; </h2>
-            <div style="display: flex !important;  justify-content: space-between !important;">
-                <h2 class="header__intro" style="display: inline;"><b>Avtotransport/ vagon raqami: </b> {{ optional($test->client_data)->vagon_number}}</h2>
-                <h2 class="header__intro" style="display: inline;"><b> Yuk xati raqami : </b>{{optional($test->client_data)->yuk_xati }}</h2>
+            <div style="width: 100%; display: flex; justify-content: space-between;">
+                <div style="width: 20%; display: inline-block;">
+                    <span>DON TURI<br> Род зерна<br> Type of grain</span>
+                </div>
+                <div style="width: 30%;text-align: center; display: inline-block;">
+                    <span>{{$test->crops->name->name}}  </span>
+                </div>
             </div>
-
-            <h1 class="header__intro" style="margin-top: 10px;"> ISHLAB CHIQARUVCHI (ETKAZIB BERUVCHI) NING MA’LUMOTLARI</h1>
-
-            <h1 class="header__intro" style="margin-top: 10px;"> IJROCHINING MA’LUMOTLARI</h1>
-
+{{--    <h2 class="main__intro"><b>KOD TN VED :</b> {{$test->crops->name->kodtnved}}</h2>--}}
+            <div style="width: 100%; display: flex; justify-content: space-between;">
+                <div style="width: 20%; display: inline-block;">
+                    <span>KELIB CHIQISHI<br> Происхождение<br> Origin &nbsp; </span>
+                </div>
+                <div style="width: 30%;text-align: center; display: inline-block;">
+                    <span>{{$test->crops->country->name}}</span>
+                </div>
+                <div style="width: 20%; display: inline-block;">
+                    <span>HOSIL<br> Урожай <br> Harvest</span>
+                </div>
+                <div style="width: 20%;text-align: center; display: inline-block;">
+                    <span>{{$test->crops->year }}</span>
+                </div>
+            </div>
+{{--            line 3 data about transport--}}
+            <div style="width: 100%; display: flex; justify-content: space-between;">
+                <div style="width: 20%; display: inline-block;">
+                    <span>TRANSPORT TURI <br> Вид транспорта <br> Type of transport </span>
+                </div>
+                <div style="width: 20%;text-align: center; display: inline-block;">
+                    <span>{{ optional($test->client_data)->transport_type }}</span>
+                </div>
+                <div style="width: 20%; display: inline-block;">
+                    <span>№ №</span>
+                </div>
+                <div style="width: 20%;text-align: center; display: inline-block;">
+                    <span>{{ optional($test->client_data)->vagon_number }}</span>
+                </div>
+            </div>
+{{--        4 line data about yuk--}}
+            <div style="width: 100%; display: flex; justify-content: space-between;">
+                <div style="width: 20%; display: inline-block;">
+                    <span>YUK XATI №№ <br> Накладная <br>Invoice</span>
+                </div>
+                <div style="width: 15%;text-align: center; display: inline-block;">
+                    <span>{{ optional($test->client_data)->yuk_xati }}</span>
+                </div>
+                <div style="width: 15%; display: inline-block;">
+                    <span>JOYLAR SONI <br> Количество мест <br> Number of seats</span>
+                </div>
+                <div style="width: 15%;text-align: center; display: inline-block;">
+                    <span>{{ optional($test->crops)->joy_soni }}</span>
+                </div>
+                <div style="width: 15%; display: inline-block;">
+                    <span>VAZNI <br> Вес <br> Weight</span>
+                </div>
+                <div style="width: 15%;text-align: center; display: inline-block;">
+                    <span>{{ optional($test->crops)->amount }} kg</span>
+                </div>
+            </div>
+{{--            5- line data about sender--}}
+            <div style="width: 100%; display: flex; justify-content: space-between;">
+                <div style="width: 20%; display: inline-block;">
+                    <span>JO‘NATUVCHI <br> Отправитель <br> Sender </span>
+                </div>
+                <div style="width: 25%;text-align: center; display: inline-block;">
+                    <span>{{ optional($test->client_data)->sender_name }}</span>
+                </div>
+                <div style="width: 20%; display: inline-block;">
+                    <span>OLUVCHI <br> Получатель <br> Recipient</span>
+                </div>
+                <div style="width: 25%;text-align: center; display: inline-block;">
+                    <span>{{ optional($test->organization)->name }}</span>
+                </div>
+            </div>
+{{--            6- line data about address--}}
+            <div style="width: 100%; display: flex; justify-content: space-between;">
+                <div style="width: 20%; display: inline-block;">
+                    <span>MANZILI  <br> Местонахождение предприятия  <br> Location of the company</span>
+                </div>
+                <div style="width: 25%;text-align: center; display: inline-block;">
+                    <span>{{ optional($test->client_data)->sender_address }}</span>
+                </div>
+                <div style="width: 20%; display: inline-block;">
+                    <span>MANZILI  <br> Адрес получателя  <br> Recipient's address			</span>
+                </div>
+                <div style="width: 25%;text-align: center; display: inline-block;">
+                    <span>{{ optional($test->organization)->full_address }}</span>
+                </div>
+            </div>
+{{--            7- line data about stations--}}
+            <div style="width: 100%; display: flex; justify-content: space-between;">
+                <div style="width: 20%; display: inline-block;">
+                    <span>JO‘NATISH STANSIYASI <br>Станция отправителя <br>Sender's station  </span>
+                </div>
+                <div style="width: 25%;text-align: center; display: inline-block;">
+                    <span>{{ optional($test->client_data)->sender_station }}</span>
+                </div>
+                <div style="width: 20%; display: inline-block;">
+                    <span>OLUVCHINING STANSIYASI (porti) <br>Станция назначения<br> Destination station </span>
+                </div>
+                <div style="width: 25%;text-align: center; display: inline-block;">
+                    <span>{{ optional($test->organization)->reciever_station }}</span>
+                </div>
+            </div>
         @if($quality)
             <h3 class="main__intro" style="margin:0;padding: 0;line-height:1.2;color:#0a52de;"> To‘da yuqoridagi ko‘rsatkichlari bo‘yicha O‘z DSt 596 standartining 4.1, 4.2 va 4.3 bandlariga muvofiq.</h3>
         @else

@@ -11,6 +11,7 @@ use App\Models\ClientData;
 use App\Models\Clients;
 use App\Models\CropData;
 use App\Models\CropsSelection;
+use App\Models\CropsType;
 use App\Models\Indicator;
 use App\Models\LaboratoryResult;
 use App\Models\LaboratoryResultData;
@@ -93,6 +94,7 @@ class SifatSertificateController extends Controller
         $crop = CropData::create([
             'name_id'       => $request->input('name'),
             'country_id'    => $request->input('country'),
+            'type_id'       => $request->input('type'),
             'kodtnved'      => $request->input('tnved'),
             'party_number'  => $request->input('party_number'),
             'measure_type'  => $request->input('measure_type'),
@@ -231,10 +233,7 @@ class SifatSertificateController extends Controller
         $data = Application::findOrFail($id);
         $company = OrganizationCompanies::with('city')->findOrFail($data->organization_id);
 
-        // Fetch values and tip
-        $chigitValues = $this->getChigitValuesAndTip($data);
-
-        return view('sifat_sertificate.edit', compact('data', 'company') + $chigitValues);
+        return view('sifat_sertificate.edit', compact('data', 'company'));
     }
 
     public function editData($id)
@@ -242,9 +241,11 @@ class SifatSertificateController extends Controller
         $data = Application::findOrFail($id);
 
         $names = DB::table('crops_name')->where('id','!=',1)->get()->toArray();
-        $selection = CropsSelection::get();
+        $types = CropsType::where('crop_id',optional($data->crops)->name_id)->get();
+        $countries = DB::table('tbl_countries')->get()->toArray();
+        $years = CropData::getYear();
 
-        return view('sifat_sertificate.edit_data', compact('data','names','selection'));
+        return view('sifat_sertificate.edit_data', compact('data','names','types','countries','years'));
     }
 
     public function update(Request $request)
@@ -257,7 +258,10 @@ class SifatSertificateController extends Controller
             'tnved' => 'nullable|string',
             'party_number' => 'nullable|string',
             'amount' => 'required|numeric',
-            'selection_code' => 'nullable|string',
+            'type' => 'nullable|integer',
+            'joy_soni'=> 'nullable|string',
+            'year' => 'required|integer',
+            'country' => 'required|integer'
         ]);
 
         // Find the application and related crop data
@@ -268,9 +272,12 @@ class SifatSertificateController extends Controller
         $crop_data->update([
             'name_id' => $validatedData['name'],
             'kodtnved' => $validatedData['tnved'],
+            'type_id' => $validatedData['type'],
             'party_number' => $validatedData['party_number'],
+            'joy_soni' => $validatedData['joy_soni'],
             'amount' => $validatedData['amount'],
-            'selection_code' => $validatedData['selection_code'],
+            'year' => $validatedData['year'],
+            'country_id' => $validatedData['country'],
         ]);
 
         // Redirect with success message
@@ -292,9 +299,14 @@ class SifatSertificateController extends Controller
 
         $id = $request->input('id');
         $client = ClientData::findOrFail($id);
-        $client->client_id = $request->input('client');
+        $client->transport_type = $request->input('transport_type');
         $client->vagon_number = $request->input('number');
         $client->yuk_xati = $request->input('yuk_xati');
+        $client->sender_name = $request->input('sender_name');
+        $client->sender_station = $request->input('sender_station');
+        $client->reciever_station = $request->input('reciever_station');
+        $client->sender_address = $request->input('sender_address');
+        $client->company_marker = $request->input('company_marker');
         $client->save();
 
         return redirect()->route('sifat_sertificate.edit',$client->app_id)->with('message', 'Successfully Submitted');
@@ -305,20 +317,26 @@ class SifatSertificateController extends Controller
     {
         $data = Application::findOrFail($id);
 
-        $chigitValues = $this->getChigitValuesAndTip($data);
-
-        return view('sifat_sertificate.result_edit', compact('data')+$chigitValues);
+        return view('sifat_sertificate.result_edit', compact('data'));
     }
 
     public function resultUpdate(Request $request)
     {
 
         $id = $request->input('id');
-        $client = Application::findOrFail($id);
-        foreach ($client->chigit_result as $result){
-            $result->value = $request->input('value'. $result->id);
-            $result->save();
-        }
+        $client = LaboratoryResult::where('app_id',$id)->first();
+        $client->update([
+            'class'    => $request->input('class'),
+            'type'      => $request->input('type'),
+            'subtype'  => $request->input('subtype'),
+            'nature'  => $request->input('nature'),
+            'humidity'  => $request->input('humidity'),
+            'falls_number'  => $request->input('falls_number'),
+            'kleykovina'  => $request->input('kleykovina'),
+            'quality'  => $request->input('quality'),
+            'elak_number'  => $request->input('elak_number'),
+            'elak_result'  => $request->input('elak_result'),
+        ]);
 
         return redirect()->route('sifat_sertificate.edit',$id)->with('message', 'Successfully Submitted');
     }
@@ -333,26 +351,6 @@ class SifatSertificateController extends Controller
         // date format
         $formattedDate = formatUzbekDateInLatin($test->date);
         $currentYear = date('Y');
-//        $zavod_id = $test->user->zavod_id;
-//        $number = 0;
-//        if($chigitValues['quality']){
-//            $number = SifatSertificates::where('zavod_id', $zavod_id)
-//                ->where('year', $currentYear)
-//                ->max('number');
-//        }
-//        $number = $number ? $number + 1 : 1;
-//
-//        // create sifat certificate
-//        if (!$test->sifat_sertificate) {
-//
-//            $sertificate = new SifatSertificates();
-//            $sertificate->app_id = $id;
-//            $sertificate->number = $number;
-//            $sertificate->zavod_id = $zavod_id;
-//            $sertificate->year = $currentYear;
-//            $sertificate->created_by = \auth()->user()->id;
-//            $sertificate->save();
-//        }
 
         $sert_number = 001001;
 
@@ -361,6 +359,8 @@ class SifatSertificateController extends Controller
 
         // Load the view and pass data to it
         $pdf = Pdf::loadView('sifat_sertificate.pdf', compact('test','quality','sert_number','formattedDate', 'company', 'qrCode'));
+        $pdf->setPaper('A4', 'portrait');
+        $pdf->setOption('defaultFont', 'DejaVu Sans');
 
         return $pdf->stream('sdf');
         // Save the PDF file

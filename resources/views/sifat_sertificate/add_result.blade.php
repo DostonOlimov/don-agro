@@ -103,7 +103,7 @@
                                                class="form-label">Namligi <label
                                                 class="text-danger">*</label></label>
                                         <input type="number" step="0.01" class="form-control" name="humidity" required
-                                               value="{{ old('nature') }}">
+                                               value="{{ old('humidity') }}">
                                     </div>
                                     <div
                                         class="col-md-4 form-group has-feedback certificate">
@@ -111,7 +111,7 @@
                                                class="form-label">Tushish soni <label
                                                 class="text-danger">*</label></label>
                                         <input type="number" class="form-control" name="falls_number" required
-                                               value="{{ old('nature') }}">
+                                               value="{{ old('falls_number') }}">
                                     </div>
                                     <div
                                         class="col-md-6 form-group has-feedback certificate">
