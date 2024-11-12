@@ -1,6 +1,26 @@
 @extends('layouts.pdf')
 @section('styles')
 <style>
+    /* html,
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+    } */
+
+    .border-image {
+        position: fixed;
+        top: 0;
+        left: 0;
+        min-width: 100vw;
+        min-height: 100vh;
+        /* background: url('img/dashboard/don_bg.png') 30 round; */
+        /* background-size: cover; */
+        z-index: -1;
+    }
+
+
     .invoice-cheque {
         width: 100% !important;
         margin: 0;
@@ -110,21 +130,13 @@
         width: 100%;
         height: 100vh;
     }
-    .border-image {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1; /* Places the image behind the content */
-        background: url('img/dashboard/don_bg.png') no-repeat center center;
-        background-size: cover; /* Ensures the image covers the entire container */
-    }
 
     .content {
         position: relative;
-        z-index: 1; /* Keeps content on top of the background image */
+        z-index: 1;
+        /* Keeps content on top of the background image */
     }
+
     @media print {
         .invoice-cheque {
             width: 100%;
@@ -150,8 +162,10 @@
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 @endphp
 
+<div class="border-image">
+    <img src="{{ asset('/img/dashboard/don_bg.png') }}" alt="">
+</div>
 <div id="invoice-cheque" class="py-4 col-12 invoice-cheque ">
-    <div class="border-image"></div>
     <div class="content">
         @if($quality)
             <div class="container head_image" >
@@ -290,16 +304,16 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
                 </div>
             </div>
         @if($quality)
-            <h3 class="main__intro" style="margin:0;padding: 0;line-height:1.2;color:#0a52de;"> To‘da yuqoridagi ko‘rsatkichlari bo‘yicha O‘z DSt 596 standartining 4.1, 4.2 va 4.3 bandlariga muvofiq.</h3>
+        <h3 class="main__intro" style="margin:0;padding: 0;line-height:1.2;color:#0a52de;"> To‘da yuqoridagi ko‘rsatkichlari bo‘yicha O‘z DSt 596 standartining 4.1, 4.2 va 4.3 bandlariga muvofiq.</h3>
         @else
-            <h3 class="main__intro" style="color:#f3775b"> To‘da yuqoridagi ko‘rsatkichlari bo‘yicha O’z DSt 596 standartining bandlariga nomuvofiq.</h3>
+        <h3 class="main__intro" style="color:#f3775b"> To‘da yuqoridagi ko‘rsatkichlari bo‘yicha O’z DSt 596 standartining bandlariga nomuvofiq.</h3>
         @endif
-            <h4 style="margin-top: 0; padding-top: 2px">Alohida yozuvlar: Shartnoma raqami - {{ optional($test->client_data)->contract_number }} </h4>
-    <div style="width: 100%; display: flex; justify-content: space-between;">
-        <div style="width: 60%; display: inline-block; padding-bottom: 30px;">
-            <b>Ijrochi :</b>
-         {{ $test->user->lastname . ' ' . ($test->user->name) }}
-        </div>
+        <h4 style="margin-top: 0; padding-top: 2px">Alohida yozuvlar: Shartnoma raqami - {{ optional($test->client_data)->contract_number }} </h4>
+        <div style="width: 100%; display: flex; justify-content: space-between;">
+            <div style="width: 60%; display: inline-block; padding-bottom: 30px;">
+                <b>Ijrochi :</b>
+                {{ $test->user->lastname . ' ' . ($test->user->name) }}
+            </div>
 
             <div style="width: 30%; @if($quality) padding-top:0; @else padding-top:60px; @endif text-align: center; display: inline-block;">
                 <img src="data:image/png;base64,{{ $qrCode }}" style="height: 100px;" alt="QR Code"><br>
@@ -309,5 +323,5 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
             </div>
         </div>
     </div>
-    </div>
+</div>
 @endsection

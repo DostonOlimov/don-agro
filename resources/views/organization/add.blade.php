@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <style>
+     
         .checkbox-success {
             background-color: #cad0cc !important;
             color: red;

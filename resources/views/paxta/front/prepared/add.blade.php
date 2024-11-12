@@ -5,6 +5,7 @@
             background-color: #cad0cc !important;
             color: red;
         }
+        
     </style>
     <?php $userid = Auth::user()->id; ?>
     @if(Auth::user()->role == \App\Models\User::ROLE_CUSTOMER)

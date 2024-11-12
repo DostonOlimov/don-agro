@@ -2,7 +2,7 @@
 
 @section('content')
     @can('view', \App\Models\Application::class)
-            <style>
+            <style>              
                 .right_side .table_row,
                 .member_right .table_row {
                     border-bottom: 1px solid #dedede;
@@ -14,6 +14,7 @@
                 .table_row .table_td {
                     padding: 8px 8px !important;
                 }
+                
             </style>
             <div class="section">
                 <div class="page-header">

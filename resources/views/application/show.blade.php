@@ -19,6 +19,8 @@
                 .txt_color a:visited {
                     color: blue !important;
                 }
+
+                
             </style>
             <div class="section">
                 <div class="page-header">

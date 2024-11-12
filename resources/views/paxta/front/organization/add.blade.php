@@ -1,13 +1,13 @@
 @extends('layouts.front')
 @section('content')
+    <?php $userid = Auth::user()->id; ?>
+    @if(Auth::user()->role == \App\Models\User::ROLE_CUSTOMER)
     <style>
         .checkbox-success {
             background-color: #cad0cc !important;
             color: red;
         }
     </style>
-    <?php $userid = Auth::user()->id; ?>
-    @if(Auth::user()->role == \App\Models\User::ROLE_CUSTOMER)
             <ul class="step-wizard-list ">
                 <li class="step-wizard-item current-item">
                     <span class="progress-count first-progress-bar">1</span>
