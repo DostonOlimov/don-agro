@@ -83,7 +83,7 @@ class Application extends Model
     }
     public function laboratory_result_data()
     {
-        return $this->hasMany(LaboratoryResultData::class, 'id','app_id');
+        return $this->hasMany(LaboratoryResultData::class,'app_id' ,'id');
     }
 
     public static function getType($type = null)

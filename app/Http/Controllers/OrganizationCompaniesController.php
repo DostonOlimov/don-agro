@@ -172,7 +172,7 @@ class OrganizationCompaniesController extends Controller
         $cities = '';
         $company = null;
 
-        return view('organization.my_add', compact( 'states', 'cities', 'company','user'));
+        return view('front.organization.add', compact( 'states', 'cities', 'company','user'));
     }
 
     public function myorganizationstore(Request $request)

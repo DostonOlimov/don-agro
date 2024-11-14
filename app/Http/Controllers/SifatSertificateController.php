@@ -70,7 +70,7 @@ class SifatSertificateController extends Controller
     // application addform
     public function addApplication($organization)
     {
-        $names = DB::table('crops_name')->where('id','!=',1)->get()->toArray();
+        $names = DB::table('crops_name')->whereNotNull('sertificate_type')->get()->toArray();
         $countries = DB::table('tbl_countries')->get()->toArray();
         $years = CropData::getYear();
 
@@ -344,8 +344,11 @@ class SifatSertificateController extends Controller
     //accept online applications
     public function accept($id)
     {
-        $test = Application::findOrFail($id);
-        $company = OrganizationCompanies::with('city')->findOrFail($test->organization_id);
+        $test = Application::with('laboratory_result_data')->findOrFail($id);
+        $result_data1 = optional($test->laboratory_result_data())->where('type',1)->get();
+        $result_data2 = optional($test->laboratory_result_data())->where('type',2)->get();
+
+        $company = OrganizationCompanies::with('city')->find($test->organization_id);
         $quality = 1;
 
         // date format
@@ -358,7 +361,7 @@ class SifatSertificateController extends Controller
         $qrCode = base64_encode(QrCode::format('png')->size(100)->generate(route('sifat_sertificate.download', $id)));
 
         // Load the view and pass data to it
-        $pdf = Pdf::loadView('sifat_sertificate.pdf', compact('test','quality','sert_number','formattedDate', 'company', 'qrCode'));
+        $pdf = Pdf::loadView('sifat_sertificate.pdf', compact('test','quality','sert_number','formattedDate', 'company', 'qrCode','result_data1','result_data2'));
         $pdf->setPaper('A4', 'portrait');
         $pdf->setOption('defaultFont', 'DejaVu Sans');
 
