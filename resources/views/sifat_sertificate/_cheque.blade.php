@@ -38,7 +38,7 @@
         <div class="main__section">
             <div class="row__section">
                 <div class="row__items">
-                    <span class="row__labels">Berildi<br> Выдан /Issued</span>
+                    <span class="row__labels">BERILDI<br> Выдан /Issued</span>
                 </div>
                 <div class="row__notes">
                     <span>{{$formattedDate}} yilda/года/year </span>
@@ -169,16 +169,16 @@
             {{--        1 line sifat ko'rsatkichalari--}}
             <div class="row__section">
                 <div class="small__row__items">
-                    <span class="row__labels">SINFI <br> Класс /Class <br> </span>
+                    <span class="row__labels">SINFI <br> Класс /Class</span>
                 </div>
                 <div class="small__row__items">
                     <span>{{ optional(optional($test->crops)->type)->name }} </span>
                 </div>
                 <div class="small__row__items">
-                    <span class="row__labels">TURI <br> Тип /Type<br></span>
+                    <span class="row__labels">TURI <br> Тип /Type</span>
                 </div>
                 <div class="small__row__items">
-                    <span>{{ \App\Models\LaboratoryResult::getType(optional($test->laboratory_result)->type) }} </span>
+                    <span>{{ \App\Models\LaboratoryResult::getType(optional($test->laboratory_result)->type) }}</span>
                 </div>
                 <div class="row__items">
                     <span class="row__labels">KICHIK TURI <br> Подтип /Subtype<br></span>

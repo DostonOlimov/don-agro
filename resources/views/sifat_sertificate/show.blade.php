@@ -79,6 +79,7 @@
     }
 
     .content {
+        line-height: 1.18;
         padding: 115px 120px 0 120px;
     }
 
@@ -128,9 +129,9 @@
     }
 
     .small__row__items {
-        flex: 0.5;
-        padding: 5px;
-        text-align: center;
+        flex: 1;
+        text-align: left;
+        padding: 10px;
     }
 
     img[alt="QR Code"] {
@@ -140,8 +141,9 @@
     }
 
     .row__notes span {
+        font-weight: 600;
         display: block;
-        font-size: 12px;
+        font-size: 15px;
         text-align: left;
     }
 
