@@ -15,15 +15,15 @@
 
         <h2 class="header__title">
             <div style="font-family: serif" >
-                O‘zbekiston Respublikasi Vazirlar Mahkamasi huzuridagi Agrosanoat majmui ustidan nazorat qilish<br> Inspeksiyasi
+                O‘zbekiston Respublikasi Vazirlar Mahkamasi huzuridagi Agrosanoat majmui ustidan nazorat qilish Inspeksiyasi
                 qoshidagi “Qishloq xo'jaligi mahsulotlari sifatini baholash markazi” davlat muassasasi<br>
             </div>
             <div  style="padding-top:2px;font-size: 11px" >
-                Государственное учреждение «Центр оценки качества сельскохозяйственной продукции» <br>при Инспекции по
-                контролю за агропромышленным комплексом при Кабинете Министров <br> Республики Узбекистан <br>
+                Государственное учреждение «Центр оценки качества сельскохозяйственной продукции» при Инспекции по
+                контролю за агропромышленным комплексом при Кабинете Министров Республики Узбекистан <br>
             </div>
             <div  style="padding-top:2px;font-family: serif">
-                State company “Center for evaluation of the quality of agricultural products” under the Inspectionon the control of<br>
+                State company “Center for evaluation of the quality of agricultural products” under the Inspectionon the control of
                 agro-industrial complex under the Cabinet of Ministers of the Republic of Uzbekistan
             </div>
         </h2>
@@ -357,7 +357,7 @@
                 </div>
 
                 <div class="row__notes"  style="width:20%; text-align: center">
-                    <img src="data:image/png;base64,{{ $qrCode }}" style="height: 40px;" alt="QR Code"><br>
+                    <img class="qrCode-style" src="data:image/png;base64,{{ $qrCode }}" style="height: 40px;" alt="QR Code"><br>
                 </div>
 
             </div>
