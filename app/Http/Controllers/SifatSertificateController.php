@@ -165,7 +165,6 @@ class SifatSertificateController extends Controller
     public function ResultStore(Request $request)
     {
         $appId = $request->input('id');
-        $app =Application::findOrFail($appId);
 
         $crop = LaboratoryResult::create([
             'app_id'   => $appId,
@@ -199,8 +198,8 @@ class SifatSertificateController extends Controller
         }
 
         // Dynamic data entries using a loop
-        for ($i = 1; $i < 3; $i++) {
-            $name = $request->input('name' . $i);
+        for ($i = 1; $i <= 3; $i++) {
+            $name = $request->input('z_name' . $i);
             if ($name) {
                 $data[] = [
                     'app_id' => $appId,
@@ -354,14 +353,36 @@ class SifatSertificateController extends Controller
         $result_data1 = optional($test->laboratory_result_data())->where('type',1)->get();
         $result_data2 = optional($test->laboratory_result_data())->where('type',2)->get();
 
+
         $company = OrganizationCompanies::with('city')->find($test->organization_id);
         $quality = 1;
 
         // date format
         $formattedDate = formatUzbekDateInLatin($test->date);
         $currentYear = date('Y');
+        $type = optional(optional($test->crops)->name)->sertificate_type;
 
-        $sert_number = 001001;
+//        get max  number of sertificate
+        $number = SifatSertificates::where('year', $currentYear)
+            ->where('type',$type)
+            ->max('number');
+//        }
+        $number = $number ? $number + 1 : 1;
+
+        // create sifat certificate
+        if (!$test->sifat_sertificate) {
+
+            $sertificate = new SifatSertificates();
+            $sertificate->app_id = $id;
+            $sertificate->number = $number;
+            $sertificate->state_id = optional($test->user)->state_id;
+            $sertificate->year = $currentYear;
+            $sertificate->type = $type;
+            $sertificate->created_by = \auth()->user()->id;
+            $sertificate->save();
+        }
+
+        $sert_number = ($currentYear - 2000) * 1000000 + $number;
 
         // Generate QR code
         $qrCode = base64_encode(QrCode::format('png')->size(100)->generate(route('sifat_sertificate.download', $id)));
@@ -372,7 +393,7 @@ class SifatSertificateController extends Controller
         $pdf->setPaper('A4', 'portrait');
         $pdf->setOption('defaultFont', 'DejaVu Sans');
 
-        return $pdf->stream('sdf');
+//        return $pdf->stream('sdf');
         // Save the PDF file
         $filePath = storage_path('app/public/sifat_sertificates/certificate_' . $id . '.pdf');
         $pdf->save($filePath);

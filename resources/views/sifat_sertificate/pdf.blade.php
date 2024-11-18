@@ -51,9 +51,10 @@
         max-width: 100%;
         /* Optional: To make sure the image is responsive */
         height: 100px;
-        padding-left: 350px;
-        padding-top: 50px;
+        padding-left: 340px;
+        padding-top: 68px;
         padding-bottom: 0;
+        margin-bottom: 0;
     }
 
     .text-center img {
@@ -71,11 +72,13 @@
         font-weight: bold;
         font-size: 13px;
         line-height: 0.9;
-        padding-bottom: 3px;
+        padding-bottom: 2px;
+        margin-top:0;
+        padding-top: 0;
         text-align: center;
     }
     .main__section{
-        margin: 0 70px 20px 70px;
+        margin: 0 80px 40px 80px;
 
     }
     .row__labels{
@@ -108,12 +111,12 @@
 
 
 <div class="border-image">
-    <img src="{{ asset('/img/dashboard/img_don2.jpg') }}" alt="">
+    <img src="{{ asset('/img/dashboard/bg_don.jpg') }}" alt="">
 </div>
 <div id="invoice-cheque" class="py-4 col-12 invoice-cheque ">
     <div class="content">
         @if($quality)
-            <div class="container head_image" >
+            <div class="head_image" >
                 <img src="{{ asset('/img/dashboard/gerb_bg.png') }}" alt="image" >
             </div>
         @endif
@@ -149,7 +152,7 @@
                     <span>{{$formattedDate}} yilda/года/year </span>
                 </div>
                 <div class="row__notes" style="width: 45%;">
-                    <span>S1-</span>
+                    <span>S1-{{optional(optional($test->user)->region)->series}}{{$sert_number}}</span>
                 </div>
             </div>
 
@@ -259,11 +262,11 @@
             </div>
             {{--            8- line data about company marker--}}
             <div class="row__section">
-                <div class="row__items" style="width: 70%">
+                <div class="row__items" style="width: 50%">
                     <span class="row__labels">KORXONANING TAMG‘ASI <br> Маркировка предприятия /Marking of the enterprise <br></span>
                 </div>
                 <div class="row__notes">
-                    <span>{{ optional($test->client_data)->company_marker }}</span>
+                    <span> {{ \App\Models\ClientData::getMarkerExist( optional($test->client_data)->company_marker ) }}</span>
                 </div>
             </div>
 
@@ -277,13 +280,13 @@
                     <span class="row__labels">SINFI <br> Класс /Class <br> </span>
                 </div>
                 <div class="small__row__items">
-                    <span>{{ optional($test->laboratory_result)->class }} </span>
+                    <span>{{ optional(optional($test->crops)->type)->name }} </span>
                 </div>
                 <div class="small__row__items">
                     <span class="row__labels">TURI <br> Тип /Type<br></span>
                 </div>
                 <div class="small__row__items">
-                    <span>{{ optional($test->laboratory_result)->type }} </span>
+                    <span>{{ \App\Models\LaboratoryResult::getType(optional($test->laboratory_result)->type) }} </span>
                 </div>
                 <div class="row__items">
                     <span class="row__labels">KICHIK TURI <br> Подтип /Subtype<br></span>
@@ -315,35 +318,35 @@
             </div>
             {{--        3 line sifat ko'rsatkichalari--}}
             <div class="row__section">
-                <div class="row__notes" style="width: 45%">
+                <div class="row__notes" style="width: 32%">
                     <span class="row__labels">KLEYKOVINANING VAZN ULUSHI<br> Массовая доля клейковины /Mass fraction of gluten</span>
                 </div>
                 <div class="small__row__items">
                     <span>{{ optional($test->laboratory_result)->kleykovina }} % </span>
                 </div>
-                <div class="small__row__items"  style="width: 15%">
+                <div class="small__row__items"  style="width: 20%">
                     <span class="row__labels">SIFATI <br> Качество /Quality</span>
                 </div>
                 <div class="small__row__items"  style="width: 8%">
-                    <span>{{ optional($test->laboratory_result)->qulity }} </span>
+                    <span>{{ optional($test->laboratory_result)->quality }} </span>
                 </div>
-                <div class="small__row__items">
+                <div class="small__row__items" style="width: 16%">
                     <span class="row__labels">guruh <br>группа /group</span>
                 </div>
                 <div class="small__row__items"  style="width: 8%">
-                    <span>{{ optional($test->laboratory_result)->group }} </span>
+                    <span>{{ \App\Models\LaboratoryResult::getGroup(optional($test->laboratory_result)->class) }} </span>
                 </div>
             </div>
             {{--        4 line sifat ko'rsatkichalari--}}
             <div class="row__section" style="padding-top:0 !important; margin-top:0;">
-                <div class="row__items" style="text-align: center;">
-                    <span>{{ optional($test->laboratory_result)->elak_number }}<br>&nbsp;</span>
+                <div class="small__row__items" style="text-align: center; vertical-align: center">
+                    <span>{{ optional($test->laboratory_result)->elak_number }}</span>
                 </div>
                 <div class="row__items" style="width: 50%">
                     <span class="row__labels">raqamli ELAKDAN O’TISH <br>Проход через сита размером /Pass through sieves</span>
                 </div>
-                <div class="small__row__items">
-                    <span>{{ optional($test->laboratory_result)->elak_result}} <br>&nbsp;</span>
+                <div class="small__row__items" style="vertical-align: center">
+                    <span>{{ optional($test->laboratory_result)->elak_result}} </span>
                 </div>
             </div>
             {{--         line sifat ko'rsatkichalari--}}
@@ -360,22 +363,24 @@
                 <div class="row__items">
                     <span class="row__labels">JAMI<br> Всего /Total</span>
                 </div>
-                @if(isset($result_data1[0]))
+
                 <div class="small__row__items" style="width: 8%">
+                    @if(isset($result_data1[0]))
                     <span>{{ optional($result_data1[0])->value }} %</span>
+                    @endif
                 </div>
-                @endif
                 <div class="row__items">
                     <span class="row__labels">shu jumladan:<br>в том числе /including</span>
                 </div>
                 <div class="row__items">
                     <span class="row__labels">JAMI<br> Всего /Total </span>
                 </div>
-                @if(isset($result_data2[0]))
+
                 <div class="small__row__items" style="width: 8%">
+                    @if(isset($result_data2[0]))
                     <span>{{ optional($result_data2[0])->value }} %</span>
+                    @endif
                 </div>
-                @endif
                 <div class="row__items">
                     <span class="row__labels">shu jumladan:<br>в том числе /including</span>
                 </div>
@@ -383,70 +388,84 @@
             {{--        6 line sifat ko'rsatkichalari--}}
             <div class="row__section">
                 <div class="row__items">
-                    <span class="row__labels">MA’DANLI <br>минеральная /mineral</span>
+                    <span class="row__labels">Ma'danli <br>минеральная /mineral</span>
                 </div>
-                @if(isset($result_data1[1]))
                 <div class="small__row__items" style="width: 8%">
-                    <span>{{ optional($result_data1[1])->value }} %</span>
+                    @if(isset($result_data1[1]))
+                        <span>{{ optional($result_data1[1])->value }} %</span>
+                    @endif
                 </div>
-                @endif
+
                 <div class="row__items"></div>
-                @if(isset($result_data2[1]))
                 <div class="row__items">
-                    <span class="row__labels">{{ optional($result_data2[1])->name }} </span>
+                    @if(isset($result_data2[1]))
+                        <span class="row__labels">{{ optional($result_data2[1])->name }} </span>
+                    @endif
                 </div>
                 <div class="small__row__items" style="width: 8%">
-                    <span class="row__labels">{{ optional($result_data2[1])->value }} %</span>
+                    @if(isset($result_data2[1]))
+                        <span class="row__labels">{{ optional($result_data2[1])->value }} %</span>
+                    @endif
                 </div>
                 <div class="row__items"></div>
-                @endif
             </div>
             {{--        6 line sifat ko'rsatkichalari--}}
             <div class="row__section">
-                @if(isset($result_data1[2]))
                 <div class="row__items">
                     <span class="row__labels">Zararli <br>вредная /harmful</span>
                 </div>
                 <div  class="small__row__items" style="width: 8%">
-                    <span>{{ optional($result_data1[2])->value }} %</span>
-                </div>
-                @endif
-                @if(isset($result_data2[2]))
-                <div class="row__items">
-                    <span class="row__labels">{{ optional($result_data2[2])->name }} </span>
-                </div>
-                <div  class="small__row__items" style="width: 8%">
-                    <span class="row__labels">{{ optional($result_data2[2])->value }} %</span>
-                </div>
-                @endif
-            </div>
-            {{--        6 line sifat ko'rsatkichalari--}}
-            <div class="row__section">
-                @if(isset($result_data1[3]))
-                <div class="row__items">
-                    <span class="row__labels">{{ optional($result_data1[3])->name }}<br></span>
-                </div>
-                <div  class="small__row__items" style="width: 8%">
-                    <span>{{ optional($result_data1[3])->value }} %</span>
-                </div>
-                @endif
-                @if(isset($result_data2[3]))
-                <div class="row__items">
-                    <span class="row__labels">{{ optional($result_data2[3])->name }} </span>
-                </div>
-                <div  class="small__row__items" style="width: 8%">
-                    <span class="row__labels">{{ optional($result_data2[3])->value }} %</span>
-                </div>
+                    @if(isset($result_data1[2]))
+                        <span>{{ optional($result_data1[2])->value }} %</span>
                     @endif
+                </div>
+                <div class="row__items"></div>
+                <div class="row__items">
+                    @if(isset($result_data2[2]))
+                        <span class="row__labels">{{ optional($result_data2[2])->name }} </span>
+                    @endif
+                </div>
+                <div  class="small__row__items" style="width: 8%">
+                    @if(isset($result_data2[2]))
+                        <span class="row__labels">{{ optional($result_data2[2])->value }} %</span>
+                    @endif
+                </div>
+                <div class="row__items"></div>
             </div>
             {{--        6 line sifat ko'rsatkichalari--}}
             <div class="row__section">
-                    <div class="row__notes" style="width:70%">
+                <div class="row__items">
+                    @if(isset($result_data1[3]))
+                        <span class="row__labels">{{ optional($result_data1[3])->name }}<br></span>
+                    @endif
+                </div>
+                <div  class="small__row__items" style="width: 8%">
+                    @if(isset($result_data1[3]))
+                        <span>{{ optional($result_data1[3])->value }} %</span>
+                    @endif
+                </div>
+                <div class="row__items"></div>
+
+                <div class="row__items">
+                    @if(isset($result_data2[3]))
+                        <span class="row__labels">{{ optional($result_data2[3])->name }} </span>
+                    @endif
+                </div>
+                <div  class="small__row__items" style="width: 8%">
+                    @if(isset($result_data2[3]))
+                        <span class="row__labels">{{ optional($result_data2[3])->value }} %</span>
+                    @endif
+                </div>
+                <div class="row__items"></div>
+            </div>
+            {{--        6 line sifat ko'rsatkichalari--}}
+            <div class="row__section">
+                    <div class="row__notes" style="width:75%">
                         <span class="row__labels">Olimov Doston</span>
                     </div>
 
-                    <div class="row__notes">
-                        <img src="data:image/png;base64,{{ $qrCode }}" style="height: 35px;" alt="QR Code"><br>
+                    <div class="row__notes"  style="width:20%; text-align: center">
+                        <img src="data:image/png;base64,{{ $qrCode }}" style="height: 40px;" alt="QR Code"><br>
                     </div>
 
             </div>

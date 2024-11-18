@@ -101,9 +101,9 @@ class User extends Authenticatable
         return static::STATUS_ACTIVE;
     }
 
-    public function area()
+    public function region()
     {
-        return $this->belongsTo(Area::class, 'city_id');
+        return $this->belongsTo(Region::class, 'state_id');
     }
 
     protected static function boot()

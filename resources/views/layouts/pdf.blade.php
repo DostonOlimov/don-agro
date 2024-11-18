@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>PAXTA MAHSULOTLARINI SERTIFIKATLASHTIRISH AVTOMATLASHTIRILGAN TIZIMI</title>
+    <title>Don va uni qayta ishlashdan olingan mahsulotlarni sertifikatlashtirish organi</title>
     <style>
         @font-face {
             font-family: 'DejaVuSans';
