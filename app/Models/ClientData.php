@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class ClientData extends Model
 {
+    const TYPE_1 = 1;
+    const TYPE_2 = 2;
+
     protected $table = 'client_data';
 
     protected $fillable = [
@@ -21,6 +24,35 @@ class ClientData extends Model
         'sender_address',
         'company_marker',
     ];
+
+
+    public static function getType($type = null)
+    {
+        $arr = [
+            self::TYPE_1 => 'vagon',
+            self::TYPE_2 => 'avtotransport',
+        ];
+
+        if ($type === null) {
+            return $arr;
+        }
+
+        return $arr[$type];
+    }
+
+    public static function getMarkerExist($type = null)
+    {
+        $arr = [
+            self::TYPE_1 => 'mavjud',
+            self::TYPE_2 => 'mavjud emas',
+        ];
+
+        if ($type === null) {
+            return $arr;
+        }
+
+        return $arr[$type];
+    }
 
 
 }

@@ -59,23 +59,12 @@
                                     <input type="hidden" name="id" value="{{ $id }}">
 
                                     <div class="col-md-4 form-group has-feedback certificate">
-                                        <label for="number" class="form-label ">Sinf<label
-                                                class="text-danger">*</label> </label>
-                                        <select class="form-control" name="class" required>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-4 form-group has-feedback certificate">
                                         <label for="number" class="form-label ">Turi<label
                                                 class="text-danger">*</label> </label>
                                         <select class="form-control" name="type" required>
-                                            <option value="1">I</option>
-                                            <option value="2">II</option>
-                                            <option value="3">III</option>
-                                            <option value="4">IV</option>
-                                            <option value="5">V</option>
+                                           @foreach($types as $key => $type)
+                                               <option value="{{ $key }}">{{ $type }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="col-md-4 form-group has-feedback certificate">
@@ -87,6 +76,15 @@
                                             <option value="3">3</option>
                                             <option value="4">4</option>
                                             <option value="5">5</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 form-group has-feedback certificate">
+                                        <label for="number" class="form-label ">Guruh<label
+                                                class="text-danger">*</label> </label>
+                                        <select class="form-control" name="group" required>
+                                            @foreach($group as $key => $type)
+                                                <option value="{{ $key }}">{{ $type }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div
@@ -129,7 +127,7 @@
                                         class="col-md-6 form-group has-feedback certificate">
                                         <label for="middle-name" class="form-label">Sifati
                                             <label class="text-danger">*</label></label>
-                                        <input type="number"  class="form-control" name="quality"
+                                        <input type="number"  class="form-control" name="quality" max="40" min="1"
                                                value="{{ old('quality') }}">
                                         @if ($errors->has('quality'))
                                             <span class="help-block">
@@ -262,6 +260,7 @@
                 const textInput = document.createElement('input');
                 textInput.type = 'text';
                 textInput.classList.add('form-control');
+                textInput.required = true;
                 textInput.name = `name${inputCounter}`;
                 textDiv.appendChild(textInput);
 
@@ -313,6 +312,7 @@
                 const textInput = document.createElement('input');
                 textInput.type = 'text';
                 textInput.classList.add('form-control');
+                textInput.required = true;
                 textInput.name = `z_name${inputCounter}`;
                 textDiv.appendChild(textInput);
 

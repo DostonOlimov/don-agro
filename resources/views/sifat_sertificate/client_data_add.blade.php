@@ -69,8 +69,9 @@
                                         <label for="number" class="form-label ">Transport turini tanlang<label
                                                 class="text-danger">*</label> </label>
                                         <select id="transport_type" class="form-control" name="transport_type" required>
-                                            <option value="1">Vagon</option>
-                                            <option value="2">Avtotransport</option>
+                                            @foreach($transportType as $key => $type)
+                                                <option value="{{ $key }}">{{ $type }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div
@@ -149,8 +150,12 @@
                                     <div
                                         class="col-md-6 form-group has-feedback">
                                         <label for="middle-name" class="form-label">Korxona tamg'asi</label>
-                                        <input type="text" class="form-control" maxlength="50" name="company_marker"
-                                               value="{{ old('company_marker') }}">
+                                        <select id="transport_type" class="form-control" name="company_marker" required>
+                                            @foreach($companyMarker as $key => $type)
+                                                <option value="{{ $key }}">{{ $type }}</option>
+                                            @endforeach
+                                        </select>
+
                                         @if ($errors->has('company_marker'))
                                             <span class="help-block">
                                                 <strong>Korxona tamg'asi noto'g'ri shaklda kiritilgan</strong>

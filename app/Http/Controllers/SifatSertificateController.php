@@ -130,8 +130,10 @@ class SifatSertificateController extends Controller
 
     public function addClientData($id)
     {
+        $transportType = ClientData::getType();
+        $companyMarker = ClientData::getMarkerExist();
 
-        return view('sifat_sertificate.client_data_add',compact('id'));
+        return view('sifat_sertificate.client_data_add',compact('id','transportType','companyMarker'));
 
     }
     public function ClientDataStore(Request $request)
@@ -154,8 +156,10 @@ class SifatSertificateController extends Controller
 
     public function addResult($id)
     {
+        $types = LaboratoryResult::getType();
+        $group = LaboratoryResult::getGroup();
 
-        return view('sifat_sertificate.add_result',compact('id'));
+        return view('sifat_sertificate.add_result',compact('id','types','group'));
 
     }
     public function ResultStore(Request $request)
@@ -165,7 +169,7 @@ class SifatSertificateController extends Controller
 
         $crop = LaboratoryResult::create([
             'app_id'   => $appId,
-            'class'    => $request->input('class'),
+            'class'    => $request->input('group'),
             'type'      => $request->input('type'),
             'subtype'  => $request->input('subtype'),
             'nature'  => $request->input('nature'),
@@ -183,9 +187,11 @@ class SifatSertificateController extends Controller
             ['name' => "JAMI", 'value' => $request->input('jami1'), 'type' => 1],
             ['name' => "JAMI", 'value' => $request->input('jami2'), 'type' => 2],
             ['name' => 'MA\'DANLI', 'value' => $request->input('madan'), 'type' => 1],
-            ['name' => "ZARARLI", 'value' => $request->input('zarar'), 'type' => 1],
-            ['name' => $request->input('name1'), 'value' => $request->input('value1'), 'type' => 1]
+            ['name' => "ZARARLI", 'value' => $request->input('zarar'), 'type' => 1]
         ];
+        if($request->input('name1')){
+            $dataEntries[] = ['name' => $request->input('name1'), 'value' => $request->input('value1'), 'type' => 1];
+        }
 
         // Add static entries to $data with app_id
         foreach ($dataEntries as $entry) {
@@ -359,6 +365,7 @@ class SifatSertificateController extends Controller
 
         // Generate QR code
         $qrCode = base64_encode(QrCode::format('png')->size(100)->generate(route('sifat_sertificate.download', $id)));
+
 
         // Load the view and pass data to it
         $pdf = Pdf::loadView('sifat_sertificate.pdf', compact('test','quality','sert_number','formattedDate', 'company', 'qrCode','result_data1','result_data2'));

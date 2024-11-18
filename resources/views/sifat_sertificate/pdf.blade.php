@@ -250,11 +250,11 @@
                 <div class="row__notes">
                     <span>{{ optional($test->client_data)->sender_station }}</span>
                 </div>
-                <div class="row__items">
+                <div class="row__notes">
                     <span class="row__labels">OLUVCHINING STANSIYASI (porti) <br>Станция назначения<br> Destination station<br></span>
                 </div>
-                <div class="row__notes">
-                    <span>{{ optional($test->organization)->reciever_station }}</span>
+                <div class="row__items">
+                    <span>{{ optional($test->client_data)->reciever_station }}</span>
                 </div>
             </div>
             {{--            8- line data about company marker--}}
@@ -360,18 +360,22 @@
                 <div class="row__items">
                     <span class="row__labels">JAMI<br> Всего /Total</span>
                 </div>
+                @if(isset($result_data1[0]))
                 <div class="small__row__items" style="width: 8%">
                     <span>{{ optional($result_data1[0])->value }} %</span>
                 </div>
+                @endif
                 <div class="row__items">
                     <span class="row__labels">shu jumladan:<br>в том числе /including</span>
                 </div>
                 <div class="row__items">
                     <span class="row__labels">JAMI<br> Всего /Total </span>
                 </div>
+                @if(isset($result_data2[0]))
                 <div class="small__row__items" style="width: 8%">
                     <span>{{ optional($result_data2[0])->value }} %</span>
                 </div>
+                @endif
                 <div class="row__items">
                     <span class="row__labels">shu jumladan:<br>в том числе /including</span>
                 </div>
@@ -381,10 +385,13 @@
                 <div class="row__items">
                     <span class="row__labels">MA’DANLI <br>минеральная /mineral</span>
                 </div>
+                @if(isset($result_data1[1]))
                 <div class="small__row__items" style="width: 8%">
                     <span>{{ optional($result_data1[1])->value }} %</span>
                 </div>
+                @endif
                 <div class="row__items"></div>
+                @if(isset($result_data2[1]))
                 <div class="row__items">
                     <span class="row__labels">{{ optional($result_data2[1])->name }} </span>
                 </div>
@@ -392,15 +399,18 @@
                     <span class="row__labels">{{ optional($result_data2[1])->value }} %</span>
                 </div>
                 <div class="row__items"></div>
+                @endif
             </div>
             {{--        6 line sifat ko'rsatkichalari--}}
             <div class="row__section">
+                @if(isset($result_data1[2]))
                 <div class="row__items">
                     <span class="row__labels">Zararli <br>вредная /harmful</span>
                 </div>
                 <div  class="small__row__items" style="width: 8%">
                     <span>{{ optional($result_data1[2])->value }} %</span>
                 </div>
+                @endif
                 @if(isset($result_data2[2]))
                 <div class="row__items">
                     <span class="row__labels">{{ optional($result_data2[2])->name }} </span>
