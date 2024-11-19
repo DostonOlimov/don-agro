@@ -131,9 +131,9 @@
                                     </div>
                                     <div
                                         class="col-md-6 form-group has-feedback {{ $errors->has('party_number') ? ' has-error' : '' }}">
-                                        <label for="middle-name"
-                                            class="form-label">{{ trans('app.Toʼda (partiya) raqami') }} <label
-                                                class="text-danger">*</label></label>
+                                        <label class="form-label class-to-show">{{ trans('app.Toʼda (partiya) raqami') }}  <label class="text-danger">*</label></label>
+                                        <label class="form-label class-to-hide" style="display: none">Yorma raqami <label class="text-danger">*</label></label>
+
                                         <input type="text" class="form-control" maxlength="25" name="party_number" required
                                             value="{{ old('party_number') }}">
                                         @if ($errors->has('party_number'))
@@ -142,7 +142,7 @@
                                             </span>
                                         @endif
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 class-to-show">
                                         <div class="form-group overflow-hidden">
                                             <label class="form-label">{{ trans('app.Hosil yili') }}<label
                                                     class="text-danger">*</label></label>
@@ -152,10 +152,18 @@
                                                 @endif
                                                 @foreach ($years as $key => $name)
                                                     <option value="{{ $key }}"
-                                                            @if ($key == old('year')) selected @endif>{{ $name }}
+                                                            @if ($key == old('year') or $key == 2024) selected @endif>{{ $name }}
                                                     </option>
                                                 @endforeach
                                             </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 class-to-hide" style="display: none">
+                                        <div class="form-group overflow-hidden">
+                                            <label class="form-label">Ishlab chiqarish sanasi<label
+                                                    class="text-danger">*</label></label>
+                                            <input type="text" class="form-control" maxlength="100"
+                                                   value="{{ old('made_date') }}" name="made_date">
                                         </div>
                                     </div>
                                     <div
@@ -224,136 +232,89 @@
             }, 1000);
         }
     </script>
-    <script>
-        $(document).ready(function() {
-            $('select.owner_search').select2({
-                ajax: {
-                    url: '/crops_selection/search_by_name',
-                    delay: 300,
-                    dataType: 'json',
-                    data: function(params) {
-                        return {
-                            search: params.term
-                        }
-                    },
-                    processResults: function(data) {
-                        data = data.map((name, index) => {
-                            return {
-                                id: name.id,
-                                text: capitalize(name.name + (name.name ? ' - Kod:' + name.kod :
-                                    ''))
+        <script>
+            $(document).ready(function () {
+                // Initialize Select2 with no search feature for elements with the 'states' class
+                $('.states').select2({
+                    minimumResultsForSearch: Infinity
+                });
+
+                // Function to get the type of corn based on corn ID
+                function getTypeOfCorn($element) {
+                    const cornId = $element.val();
+                    const url = $element.attr('url');
+
+                    // Fetch array of types using the corn's ID
+                    $.ajax({
+                        type: 'GET',
+                        url: url,
+                        data: { name_id: cornId },
+                        success: function (response) {
+                            const $typeMenu = $('select.type_of_corn');
+                            const customerType = $typeMenu.attr('val');
+
+                            // Populate the type menu with the response
+                            $typeMenu.html(response);
+
+                            // Set the selected option if a value is present
+                            if (customerType) {
+                                $typeMenu.find(`option[value="${customerType}"]`).prop('selected', true);
                             }
-                        });
-                        return {
-                            results: data
+                        },
+                        error: function () {
+                            console.error('Failed to fetch corn types.');
                         }
-                    }
-                },
-                language: {
-                    inputTooShort: function() {
-                        return 'Seleksion navining kodni kiritib izlang';
-                    },
-                    searching: function() {
-                        return 'Izlanmoqda...';
-                    },
-                    noResults: function() {
-                        return "Natija topilmadi"
-                    },
-                    errorLoading: function() {
-                        return "Natija topilmadi"
-                    }
-                },
-                placeholder: 'Seleksion navini kiriting',
-                minimumInputLength: 1
-            })
-
-            function capitalize(text) {
-                var words = text.split(' ');
-                for (var i = 0; i < words.length; i++) {
-                    if (words[i][0] == null) {
-                        continue;
-                    } else {
-                        words[i] = words[i][0].toUpperCase() + words[i].substring(1).toLowerCase();
-                    }
-
-                }
-                return words.join(' ');
-            }
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('.states').select2({
-                minimumResultsForSearch: Infinity
-            });
-        })
-
-        function getTypeOfCorn(th) {
-
-            corn_id = th.val();
-
-            var url = th.attr('url');
-
-            // get array of types from corn's id
-            $.ajax({
-                type: 'GET',
-                url: url,
-                data: {
-                    name_id: corn_id,
-                },
-                success: function(response) {
-                    var typeMenu = $('select.type_of_corn')
-                    var customerType = typeMenu.attr('val');
-                    typeMenu.html(response);
-
-                    if (customerType) {
-                        typeMenu.find('option[value="' + customerType + '"]').attr('selected', 'selected');
-                    }
-
+                    });
                 }
 
-            });
+                // Event listener for changes in the 'crops_name' dropdown
+                const kodtnved = document.getElementById('kodtnved');
+                const stateDropdown = document.getElementById('crops_name');
 
-            // get array of generation from corn's id
-            $.ajax({
-                type: 'GET',
-                url: "{!! url('/getgenerationfromname') !!}",
-                data: {
-                    name_id: corn_id,
-                },
-                success: function(response) {
-                    var typeMenu = $('select.type_of_corn2')
-                    var customerType = typeMenu.attr('val');
-                    typeMenu.html(response);
+                stateDropdown.addEventListener('change', () => {
+                    const stateId = stateDropdown.value;
+                    fetch(`/getkodtnved/${stateId}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data && data.code) {
+                                // Set kodtnved value
+                                kodtnved.value = data.code;
 
-                    if (customerType) {
-                        typeMenu.find('option[value="' + customerType + '"]').attr('selected', 'selected');
+                            }
+
+                            if (data && data.sertificate_type) {
+                                // Toggle display based on sertificate_type
+                                toggleDisplayBasedOnSertificateType(data.sertificate_type);
+                            }
+                        })
+                        .catch(error => console.error('Failed to fetch kodtnved:', error));
+                });
+
+                // Function to toggle classes based on 'sertificate_type' value
+                function toggleDisplayBasedOnSertificateType(type) {
+
+                    if (type == '1') {
+                        console.log('sdf');
+                        $('.class-to-hide').css('display', 'none');
+                        $('.class-to-show').css('display', 'block');
+                    } else if (type == '2') {
+                        console.log('sdf');
+                        $('.class-to-hide').css('display', 'block');
+                        $('.class-to-show').css('display', 'none');
                     }
-
                 }
 
+                // Trigger the function when the 'name_of_corn' dropdown changes
+                $('select.name_of_corn').on('change', function () {
+                    getTypeOfCorn($(this));
+                });
+
+                // Initial load: trigger getTypeOfCorn if a value is already set
+                const $initialCorn = $('select.name_of_corn');
+                if ($('select.type_of_corn').attr('val')) {
+                    getTypeOfCorn($initialCorn);
+                }
             });
-        }
-        // get kod tn ved from corn's id crops_name
-        const kodtnved = document.getElementById('kodtnved');
-        const stateDropdown = document.getElementById('crops_name');
+        </script>
 
-        stateDropdown.addEventListener('change', () => {
-            const stateId = stateDropdown.value;
-            fetch(`/getkodtnved/${stateId}`)
-                .then(response => response.json())
-                .then(data => kodtnved.value = data.code);
-        });
-
-        $('select.name_of_corn').on('change', function() {
-            getTypeOfCorn($(this));
-        });
-
-        if ($('select.type_of_corn').attr('val')) {
-            getTypeOfCorn($('select.name_of_corn'));
-        }
-        if ($('select.type_of_corn2').attr('val')) {
-            getTypeOfCorn($('select.name_of_corn'));
-        }
-    </script>
 @endsection

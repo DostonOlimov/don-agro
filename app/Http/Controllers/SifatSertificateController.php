@@ -87,7 +87,6 @@ class SifatSertificateController extends Controller
         // Define validation rules with camelCase attribute names
         $validatedData = $request->validate([
             'name' => 'required|int',
-            'party_number' => 'required|string|max:10',
             'amount' => 'required',
         ]);
 
@@ -101,6 +100,7 @@ class SifatSertificateController extends Controller
             'amount'        => $request->input('amount'),
             'year'          => $request->input('year'),
             'joy_soni'      => $request->input('joy_soni'),
+            'made_date'     => $request->input('made_date'),
             'sxeme_number'  => 7,
         ]);
 
@@ -138,8 +138,10 @@ class SifatSertificateController extends Controller
     }
     public function ClientDataStore(Request $request)
     {
+        $app = Application::findOrFail($request->input('id'));
+
         $crop = ClientData::create([
-            'app_id'       => $request->input('id'),
+            'app_id'       => $app->id,
             'transport_type'    => $request->input('transport_type'),
             'vagon_number'      => $request->input('number'),
             'yuk_xati'  => $request->input('yuk_xati'),
@@ -150,51 +152,74 @@ class SifatSertificateController extends Controller
             'company_marker'  => $request->input('company_marker'),
         ]);
 
-
         return redirect()->route('sifat-sertificates.add_result',$request->input('id'))->with('message', 'Successfully Submitted');
     }
 
     public function addResult($id)
     {
+        $app = Application::findOrFail($id);
+
         $types = LaboratoryResult::getType();
         $group = LaboratoryResult::getGroup();
+        $flavour_types = LaboratoryResult::getFlaourTypes();
+
+        if($app->crops->name->sertificate_type == 2){
+            return view('sifat_sertificate.add_result2',compact('id','types','group','flavour_types'));
+        }
 
         return view('sifat_sertificate.add_result',compact('id','types','group'));
 
     }
     public function ResultStore(Request $request)
     {
-        $appId = $request->input('id');
+        $app = Application::findOrFail($request->input('id'));
 
         $crop = LaboratoryResult::create([
-            'app_id'   => $appId,
+            'app_id'   => $app->id,
             'class'    => $request->input('group'),
-            'type'      => $request->input('type'),
-            'subtype'  => $request->input('subtype'),
-            'nature'  => $request->input('nature'),
+            'type'      => $request->input('type') ?? $request->input('flavour'),
+            'subtype'  => $request->input('subtype') ?? $request->input('smell'),
+            'nature'  => $request->input('nature') ?? $request->input('kulligi'),
             'humidity'  => $request->input('humidity'),
-            'falls_number'  => $request->input('falls_number'),
+            'falls_number'  => $request->input('falls_number') ?? $request->input('oqlik'),
             'kleykovina'  => $request->input('kleykovina'),
             'quality'  => $request->input('quality'),
             'elak_number'  => $request->input('elak_number'),
             'elak_result'  => $request->input('elak_result'),
+            'clour'  => $request->input('colour'),
+            'qoldiq_number'  => $request->input('qoldiq_number'),
+            'qoldiq_result'  => $request->input('qoldiq_result'),
         ]);
         $data = [];
 
 // Static data entries
         $dataEntries = [
             ['name' => "JAMI", 'value' => $request->input('jami1'), 'type' => 1],
-            ['name' => "JAMI", 'value' => $request->input('jami2'), 'type' => 2],
             ['name' => 'MA\'DANLI', 'value' => $request->input('madan'), 'type' => 1],
             ['name' => "ZARARLI", 'value' => $request->input('zarar'), 'type' => 1]
         ];
         if($request->input('name1')){
             $dataEntries[] = ['name' => $request->input('name1'), 'value' => $request->input('value1'), 'type' => 1];
         }
+        if($request->input('buzilgan')){
+            $dataEntries[] = ['name' => "Buzilgan", 'value' => $request->input('buzilgan'), 'type' => 1];
+        }
+        if($request->input('siniq')){
+            $dataEntries[] = ['name' => "Siniq", 'value' => $request->input('value1'), 'type' => 1];
+        }
+        if($request->input('archilmagan')){
+            $dataEntries[] = ['name' => "Po'sti archilmagan", 'value' => $request->input('archilmagan'), 'type' => 1];
+        }
+        if($request->input('unsimon')){
+            $dataEntries[] = ['name' => "Unsimon", 'value' => $request->input('unsimon'), 'type' => 1];
+        }
+        if($request->input('jami2')){
+            $dataEntries[] = ['name' => "JAMI", 'value' => $request->input('jami2'), 'type' => 2];
+        }
 
         // Add static entries to $data with app_id
         foreach ($dataEntries as $entry) {
-            $data[] = array_merge($entry, ['app_id' => $appId]);
+            $data[] = array_merge($entry, ['app_id' => $app->id]);
         }
 
         // Dynamic data entries using a loop
@@ -202,7 +227,7 @@ class SifatSertificateController extends Controller
             $name = $request->input('z_name' . $i);
             if ($name) {
                 $data[] = [
-                    'app_id' => $appId,
+                    'app_id' => $app->id,
                     'name'   => $request->input('z_name' . $i),
                     'value'  => $request->input('z_value' . $i),
                     'type'   => 2

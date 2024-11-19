@@ -19,16 +19,19 @@ class LaboratoryResult extends Model
 
     protected $fillable = [
         'app_id',
-        'class',
-        'type',
-        'subtype',
-        'nature',
+        'class', //group
+        'type', //flour
+        'subtype', //smell
+        'nature', //kulligi
         'humidity',
-        'falls_number',
+        'falls_number', //oqligi
         'kleykovina',
         'quality',
         'elak_number',
         'elak_result',
+        'colour',
+        'qoldiq_number',
+        'qoldiq_result'
     ];
     public static function getType($type = null)
     {
@@ -54,6 +57,20 @@ class LaboratoryResult extends Model
             self::TYPE_3 => 'III',
             self::TYPE_4 => 'yuvilmadi',
             ];
+
+        if ($type === null) {
+            return $arr;
+        }
+
+        return $arr[$type];
+    }
+
+    public static function getFlaourTypes($type = null)
+    {
+        $arr = [
+            self::TYPE_1 => 'o\'ziga xos',
+            self::TYPE_2 => 'movofiq emas',
+        ];
 
         if ($type === null) {
             return $arr;

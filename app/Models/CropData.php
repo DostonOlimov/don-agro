@@ -25,7 +25,8 @@ class CropData extends Model
         'sxeme_number',
         'year',
         'country_id',
-        'joy_soni'
+        'joy_soni',
+        'made_date'
     ];
 
     public function name()

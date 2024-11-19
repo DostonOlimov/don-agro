@@ -51,10 +51,13 @@ class CropAjaxController extends Controller
     //get state
     public function getkodtnved($id)
     {
-        $types = CropsName::find($id);
-        if($types)
+        $crop = CropsName::find($id);
+        if($crop)
         {
-           return response()->json(['code' => $types->kodtnved]);
+           return response()->json([
+               'code' => $crop->kodtnved,
+               'sertificate_type' => $crop->sertificate_type
+           ]);
         }
     }
 
