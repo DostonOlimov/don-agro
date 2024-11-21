@@ -85,6 +85,10 @@ class Application extends Model
     {
         return $this->hasMany(LaboratoryResultData::class,'app_id' ,'id');
     }
+    public function sifat_sertificate()
+    {
+        return $this->belongsTo(SifatSertificates::class,'id','app_id');
+    }
 
     public static function getType($type = null)
     {
@@ -145,8 +149,20 @@ class Application extends Model
             $query->where('status','!=', self::STATUS_DELETED)
                 ->whereYear('date',$year);
         });
+        // Ensure the user is authenticated
+        if ($user = auth()->user()) {
+            // Add global scope for filtering by user's state if in branch state
+            if ($user->role == User::ROLE_CITY_EMPLOYEE) {
+                static::addGlobalScope('cityStateScope', function ($query) use ($user) {
+                    $query->whereHas('organization.city', function ($query) use ($user) {
+                        $query->where('state_id', $user->state_id);
+                    });
+                });
+            }
+        }
 
         parent::boot();
     }
+
 
 }

@@ -25,8 +25,8 @@ class HomeController extends Controller
         $crop = $request->input('crop');
         $from = $request->input('from');
         $till = $request->input('till');
-        if(auth()->user()->role > \App\Models\User::ROLE_INSPECTION_DIROCTOR){
-               return redirect('laboratory-protocol/list');
+        if(auth()->user()->branch_id == \App\Models\User::BRANCH_LABORATORY){
+               return redirect('/sifat-sertificates/list');
         }
 
         $user = auth()->user();

@@ -36,7 +36,7 @@
     @yield('styles')
 </head>
 
-@if(Auth::User()->role == 'admin' or Auth::User()->role == \App\Models\User::ROLE_LABORATORY_EMPLOYEE or Auth::User()->role == \App\Models\User::ROLE_LABORATORY_DIRECTOR)
+@if(Auth::User()->role == 'admin' or Auth::User()->branch_id == \App\Models\User::BRANCH_LABORATORY)
     <body class="app">
     <!-- partial:partials/_sidebar.php -->
     <nav>

@@ -85,9 +85,9 @@
 
     .header__title {
         text-align: center;
-        margin-bottom: 20px;
+        margin-bottom: 18px;
         font-weight: bold;
-        line-height: 1.8;
+        line-height: 1.2;
     }
 
     .header__title div {
@@ -100,7 +100,7 @@
         text-align: center;
         font-size: 16px;
         font-weight: bold;
-        margin: 20px 0;
+        margin: 15px 0;
         text-transform: uppercase;
     }
 
@@ -119,7 +119,7 @@
     .row__items,
     .row__notes {
         flex: 1;
-        padding: 5px 10px;
+        padding: 5px;
     }
 
     .row__labels {
@@ -131,7 +131,7 @@
     .small__row__items {
         flex: 1;
         text-align: left;
-        padding: 10px;
+        padding: 5px;
     }
 
     img[alt="QR Code"] {
@@ -185,9 +185,11 @@
         <div class="row">
             <div class="col-12">
                 <div class="card p-4">
-
-                    @include('sifat_sertificate._cheque')
-
+                    @if(optional(optional($test->crops)->name)->sertificate_type == 2)
+                        @include('sifat_sertificate._cheque2')
+                    @else
+                        @include('sifat_sertificate._cheque')
+                    @endif
                 </div>
             </div>
         </div>

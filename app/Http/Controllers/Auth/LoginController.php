@@ -43,8 +43,8 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        if ($user->role == User::ROLE_CUSTOMER) {
-            return redirect('/application/my-applications');
+        if ($user->branch_id == User::BRANCH_LABORATORY) {
+            return redirect('/sifat-sertificates/list');
         } else {
             return redirect($this->redirectTo);
         }

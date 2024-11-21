@@ -418,7 +418,7 @@ class SifatSertificateController extends Controller
         $pdf->setPaper('A4', 'portrait');
         $pdf->setOption('defaultFont', 'DejaVu Sans');
 
-//        return $pdf->stream('sdf');
+        return $pdf->stream('sdf');
         // Save the PDF file
         $filePath = storage_path('app/public/sifat_sertificates/certificate_' . $id . '.pdf');
         $pdf->save($filePath);
@@ -440,39 +440,5 @@ class SifatSertificateController extends Controller
         }
     }
 
-// Private method to avoid code duplication
-    private function getChigitValuesAndTip($application)
-    {
-        $nuqsondorlik = optional($application->chigit_result()->where('indicator_id', 9)->first())->value;
-        $tukdorlik = optional($application->chigit_result()->where('indicator_id', 12)->first())->value;
-        $namlik = optional($application->chigit_result()->where('indicator_id', 11)->first())->value;
-        $zararkunanda = optional($application->chigit_result()->where('indicator_id', 10)->first())->value;
-
-        $tip = null;
-        if($nuqsondorlik and $tukdorlik){
-            $tip = ChigitTips::where('nuqsondorlik', '>=', $nuqsondorlik);
-            if($application->crops->name_id == 2){
-                $tip = $tip->where('tukdorlik', '>=', $tukdorlik)
-                    ->where('tukdorlik_min', '<=', $tukdorlik);
-            }
-
-            $tip = $tip->where('crop_id', $application->crops->name_id)
-                ->first();
-        }
-
-        $quality = false;
-        if($tip && $namlik <= $tip->namlik && $tukdorlik <= $tip->tukdorlik and $tukdorlik >= $tip->tukdorlik_min){
-            $quality = true;
-        }
-
-        return [
-            'nuqsondorlik' => $nuqsondorlik,
-            'tukdorlik' => $tukdorlik,
-            'namlik' => $namlik,
-            'zararkunanda' => $zararkunanda,
-            'tip' => $tip,
-            'quality' => $quality
-        ];
-    }
 }
 
