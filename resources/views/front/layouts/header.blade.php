@@ -72,7 +72,7 @@ $currentFlag = "/img/flags/united-kingdom.png";
     <div class="nav-bg">
         <div class="container">
             <nav class="navbar">
-                <a href="{{ url('/sifat-sertificates/list') }}" class="nav-logo js-anchor-link"><img  src="{{ asset('/assets/images/logoNEW.png') }}"
+                <a href="{{ url('/sifat-sertificates/list') }}" class="nav-logo js-anchor-link"><img  src="{{ asset('/assets/images/logo.png') }}"
                         alt="Logo" /></a>
                 <h4 style="color: white;">Don va uni qayta ishlashdan olingan mahsulotlarni sertifikatlashtirish organi</h4>
 
