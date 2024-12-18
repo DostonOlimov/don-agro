@@ -145,6 +145,7 @@ class Application extends Model
     protected static function boot()
     {
         $year =  session('year') ?  session('year') : date('Y');
+
         static::addGlobalScope(function ($query) use($year) {
             $query->where('status','!=', self::STATUS_DELETED)
                 ->whereYear('date',$year);

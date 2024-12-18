@@ -10,12 +10,14 @@ use App\Models\ChigitTips;
 use App\Models\ClientData;
 use App\Models\Clients;
 use App\Models\CropData;
+use App\Models\CropsName;
 use App\Models\CropsSelection;
 use App\Models\CropsType;
 use App\Models\Indicator;
 use App\Models\LaboratoryResult;
 use App\Models\LaboratoryResultData;
 use App\Models\OrganizationCompanies;
+use App\Models\SertificateLaboratories;
 use App\Models\SifatSertificates;
 use App\Services\SearchService;
 use Illuminate\Support\Facades\Auth;
@@ -70,7 +72,7 @@ class SifatSertificateController extends Controller
     // application addform
     public function addApplication($organization)
     {
-        $names = DB::table('crops_name')->whereNotNull('sertificate_type')->get()->toArray();
+        $names = CropsName::whereHas('sertificate_nds')->get();
         $countries = DB::table('tbl_countries')->get()->toArray();
         $years = CropData::getYear();
 
@@ -248,14 +250,20 @@ class SifatSertificateController extends Controller
         $test = Application::findOrFail($id);
         $company = OrganizationCompanies::with('city')->findOrFail($test->organization_id);
         $formattedDate = formatUzbekDateInLatin($test->date);
+        $nds_type = 1;
+        if($test->crops->name_id == 25 and $test->crops->country_id == 243){
+            $nds_type = 2;
+        }
+        $nds = $test->crops->name->sertificate_nds->where('type',$nds_type)->first();
+        $director = SertificateLaboratories::where('state_id', $test->user->state_id)->first();
 
         // Generate QR code
         $url = route('sifat_sertificate.view', $id);
         $qrCode = QrCode::size(100)->generate($url);
-        $quality = 1;
+        $t = 1;
 
 
-        return view('sifat_sertificate.show', compact('test', 'formattedDate','company', 'qrCode','quality'));
+        return view('sifat_sertificate.show', compact('test', 'nds','director','formattedDate','company', 'qrCode','t'));
     }
 
     public function edit($id)
@@ -412,13 +420,20 @@ class SifatSertificateController extends Controller
         // Generate QR code
         $qrCode = base64_encode(QrCode::format('png')->size(100)->generate(route('sifat_sertificate.download', $id)));
 
+        //nds
+        $nds_type = 1;
+        if($test->crops->name_id == 25 and $test->crops->country_id == 243){
+            $nds_type = 2;
+        }
+        $nds = $test->crops->name->sertificate_nds->where('type',$nds_type)->first();
+        $director = SertificateLaboratories::where('state_id', $test->user->state_id)->first();
 
         // Load the view and pass data to it
-        $pdf = Pdf::loadView('sifat_sertificate.pdf', compact('test','quality','sert_number','formattedDate', 'company', 'qrCode','result_data1','result_data2'));
+        $pdf = Pdf::loadView('sifat_sertificate.pdf', compact('test','nds','director','quality','sert_number','formattedDate', 'company', 'qrCode','result_data1','result_data2'));
         $pdf->setPaper('A4', 'portrait');
         $pdf->setOption('defaultFont', 'DejaVu Sans');
 
-        return $pdf->stream('sdf');
+//        return $pdf->stream('sdf');
         // Save the PDF file
         $filePath = storage_path('app/public/sifat_sertificates/certificate_' . $id . '.pdf');
         $pdf->save($filePath);

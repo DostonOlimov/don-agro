@@ -1,14 +1,12 @@
 
 <div class="border-image">
-    <img src="{{ asset('/img/dashboard/bg_don.jpg') }}" alt="">
+    <img src="{{ asset('/img/dashboard/bg_don2.jpg') }}" alt="">
 </div>
 <div id="invoice-cheque" class="py-4 col-12 invoice-cheque ">
     <div class="content">
-        @if($quality)
-            <div class="head_image">
-                <img src="{{ asset('/img/dashboard/gerb_bg.png') }}" alt="image">
-            </div>
-        @endif
+        <div class="head_image">
+            <img src="{{ asset('/img/dashboard/gerb_bg.png') }}" alt="image">
+        </div>
 
         <h2 class="header__title">
             <div style="font-family: serif">
@@ -50,7 +48,7 @@
                     <span class="row__labels">DON TURI<br> Род зерна /Type of grain</span>
                 </div>
                 <div class="row__notes" style="width: 45%;">
-                    <span>{{$test->crops->name->name}} </span>
+                    <span>{{$test->crops->name->name}} - {{ optional($nds)->name }} </span>
                 </div>
             </div>
             {{-- <h2 class="main__intro"><b>KOD TN VED :</b> {{$test->crops->name->kodtnved}}</h2>--}}
@@ -350,11 +348,13 @@
             {{-- 6 line sifat ko'rsatkichalari--}}
             <div class="row__section">
                 <div class="row__notes" style="width:75%">
-                    <span class="row__labels">{{ optional($test->user)->lastname. ' '. optional($test->user)->name }}</span>
+                    <span class="row__labels">{{ optional($director)->name}} boshlig'i :{{ optional(optional($director)->director)->lastname. ' '. optional(optional($director)->director)->name }}</span>
                 </div>
 
                 <div class="row__notes" style="width:20%; text-align: center">
-                    <img style="height: 40px;" alt="QR Code" src="data:image/png;base64,{{ $qrCode }}"><br>
+                    @if(!isset($t))
+                    <img style="height: 60px;" alt="QR Code" src="data:image/png;base64,{{ $qrCode }}"><br>
+                    @endif
                 </div>
 
             </div>

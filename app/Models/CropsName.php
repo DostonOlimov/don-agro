@@ -38,6 +38,11 @@ class CropsName extends Model
     {
         return $this->hasMany(CropsType::class, 'crop_id');
     }
+    public function sertificate_nds(): HasMany
+    {
+        return $this->hasMany(SertificateNds::class, 'crop_id');
+    }
+
 
     public function listRegion(): HasMany
     {

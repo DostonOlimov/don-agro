@@ -199,49 +199,32 @@
 @endsection
 
 @section('scripts')
-<script src="{{ URL::asset('vendors/jquery/dist/jquery.min.js') }}"></script>
+<script src="{{ asset('vendors/jquery/dist/jquery.min.js') }}"></script>
 <script>
     $('body').on('click', '.sa-warning', function() {
 
         var url = $(this).attr('url');
 
-
-        swal({
-            title: "Haqiqatdan ham tasdiqlashni xohlaysizmi?",
-            text: "Tasdiqlangandan so'ng ma'lumotlarni o'zgartirib bo'lmaydi!",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#297FCA",
-            confirmButtonText: "Tasdiqlash!",
-            cancelButtonText: "Bekor qilish",
-            closeOnConfirm: false
-        }).then((result) => {
-            window.location.href = url;
-
-        });
-    });
-</script>
-<script>
-    $(document).ready(function() {
-        function fillCheque() {
-            $('#application-date').text(moment(currenttest.date).format('DD.MM.YYYY'))
-        }
-
-        function printCheque() {
-            $('#invoice-cheque').print({
-                NoPrintSelector: '.no-print',
-                title: '',
-            })
-        }
-
-        let currenttest = @json($test);
-
-
-        fillCheque()
-
-        $('#print-invoice-btn').click(function(ev) {
-            printCheque()
-        })
+        @if(auth()->user()->id == optional($director)->director_id)
+            swal({
+                title: "Haqiqatdan ham tasdiqlashni xohlaysizmi?",
+                text: "Tasdiqlangandan so'ng ma'lumotlarni o'zgartirib bo'lmaydi!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#297FCA",
+                confirmButtonText: "Tasdiqlash!",
+                cancelButtonText: "Bekor qilish",
+                closeOnConfirm: false
+            }).then((result) => {
+                window.location.href = url;
+            });
+        @else
+            swal({
+                type: "error",
+                title: "Xatolik...",
+                text: "Sizda tasdiqlash huquqi mavjud emas!",
+            });
+        @endif
     });
 </script>
 @endsection
