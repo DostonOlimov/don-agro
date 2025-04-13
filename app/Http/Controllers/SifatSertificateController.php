@@ -433,7 +433,7 @@ class SifatSertificateController extends Controller
         $pdf->setPaper('A4', 'portrait');
         $pdf->setOption('defaultFont', 'DejaVu Sans');
 
-//        return $pdf->stream('sdf');
+    //   return $pdf->stream('sdf');
         // Save the PDF file
         $filePath = storage_path('app/public/sifat_sertificates/certificate_' . $id . '.pdf');
         $pdf->save($filePath);

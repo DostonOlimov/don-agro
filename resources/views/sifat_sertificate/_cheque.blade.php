@@ -36,34 +36,34 @@
                     <span class="row__labels">Berildi<br> Выдан /Issued</span>
                 </div>
                 <div class="row__notes">
-                    <span>{{$formattedDate}} yilda/года/year </span>
+                    <span style="font-weight: bold">{{$formattedDate}} yilda/года/year </span>
                 </div>
-                <div class="row__notes" style="width: 45%;">
-                    <span>@if(isset($sert_number)) S1-{{optional(optional($test->user)->region)->series}}-24/{{substr($sert_number, 2)}} @endif</span>
+                <div class="row__notes" style="width: 45%; text-align: center;">
+                    <span style="font-weight: bold">@if(isset($sert_number)) S1-{{optional(optional($test->user)->region)->series}}-25/{{substr($sert_number, 2)}} @endif</span>
                 </div>
             </div>
 
             <div class="row__section">
-                <div class="row__items">
+                <div class="row__items" style="padding-right: 20px;">
                     <span class="row__labels">DON TURI<br> Род зерна /Type of grain</span>
                 </div>
-                <div class="row__notes" style="width: 45%;">
-                    <span>{{$test->crops->name->name}} - {{ optional($nds)->name }} </span>
+                <div class="row__notes" style="width: 60%;">
+                    <span style="font-weight: bold">{{$test->crops->name->name}} - {{ optional($nds)->name }} </span>
                 </div>
             </div>
             {{-- <h2 class="main__intro"><b>KOD TN VED :</b> {{$test->crops->name->kodtnved}}</h2>--}}
             <div class="row__section">
-                <div class="row__items">
+                <div class="row__notes">
                     <span class="row__labels">KELIB CHIQISHI<br> Происхождение / Origin</span>
                 </div>
                 <div class="row__notes">
-                    <span>{{$test->crops->country->name}}</span>
+                    <span style="font-weight: bold">{{$test->crops->country->name}}</span>
                 </div>
                 <div class="row__items">
                     <span class="row__labels">HOSIL<br> Урожай / Harvest</span>
                 </div>
-                <div class="row__notes">
-                    <span>{{$test->crops->year }}</span>
+                <div class="row__items">
+                    <span style="font-weight: bold">{{$test->crops->year }} yil</span>
                 </div>
             </div>
             {{-- line 3 data about transport--}}
@@ -72,13 +72,13 @@
                     <span class="row__labels">TRANSPORT TURI <br> Вид транспорта <br> Type of transport<br> </span>
                 </div>
                 <div class="row__notes">
-                    <span>{{ optional($test->client_data)->transport_type }}</span>
+                    <span style="font-weight: bold" >{{ optional($test->client_data)->transport_type == 1 ? 'vagon' : 'avtotransport' }}</span>
                 </div>
                 <div class="row__items">
-                    <span class="row__labels">№ №</span>
+                    <span class="row__labels">№</span>
                 </div>
                 <div class="row__notes">
-                    <span>{{ optional($test->client_data)->vagon_number }}</span>
+                    <span  style="font-weight: bold">{{ optional($test->client_data)->vagon_number }}</span>
                 </div>
             </div>
             {{-- 4 line data about yuk--}}
@@ -87,19 +87,19 @@
                     <span class="row__labels">YUK XATI №№ <br> Накладная <br>Invoice<br></span>
                 </div>
                 <div class="small__row__items">
-                    <span>{{ optional($test->client_data)->yuk_xati }}</span>
+                    <span  style="font-weight: bold">{{ optional($test->client_data)->yuk_xati }}</span>
                 </div>
                 <div class="row__items">
                     <span class="row__labels">JOYLAR SONI <br> Количество мест <br> Number of seats<br></span>
                 </div>
                 <div class="small__row__items">
-                    <span>{{ optional($test->crops)->joy_soni }}</span>
+                    <span  style="font-weight: bold">{{ optional($test->crops)->joy_soni }}</span>
                 </div>
                 <div class="row__items">
                     <span class="row__labels">VAZNI <br> Вес <br> Weight<br></span>
                 </div>
                 <div class="small__row__items">
-                    <span>{{ optional($test->crops)->amount }} kg</span>
+                    <span  style="font-weight: bold">{{ optional($test->crops)->amount }} kg</span>
                 </div>
             </div>
             {{-- 5- line data about sender--}}
@@ -108,13 +108,13 @@
                     <span class="row__labels">JO‘NATUVCHI <br> Отправитель /Sender <br></span>
                 </div>
                 <div class="row__notes">
-                    <span>{{ optional($test->client_data)->sender_name }}</span>
+                    <span  style="font-weight: bold">{{ optional($test->client_data)->sender_name }}</span>
                 </div>
                 <div class="row__items">
                     <span class="row__labels">OLUVCHI <br> Получатель /Recipient<br></span>
                 </div>
                 <div class="row__notes">
-                    <span>{{ optional($test->organization)->name }}</span>
+                    <span  style="font-weight: bold">{{ optional($test->organization)->name }}</span>
                 </div>
             </div>
             {{-- 6- line data about address--}}
@@ -123,13 +123,13 @@
                     <span class="row__labels">MANZILI <br> Местонахождение предприятия <br> Location of the company<br></span>
                 </div>
                 <div class="row__items">
-                    <span>{{ optional($test->client_data)->sender_address }}</span>
+                    <span  style="font-weight: bold">{{ optional($test->client_data)->sender_address }}</span>
                 </div>
                 <div class="row__notes">
                     <span class="row__labels">MANZILI <br> Адрес получателя <br> Recipient's address <br></span>
                 </div>
                 <div class="row__items">
-                    <span>{{ optional($test->organization)->full_address }}</span>
+                    <span  style="font-weight: bold">{{ optional($test->organization)->full_address }}</span>
                 </div>
             </div>
             {{-- 7- line data about stations--}}
@@ -138,13 +138,13 @@
                     <span class="row__labels">JO‘NATISH STANSIYASI <br>Станция отправителя <br>Sender's station <br></span>
                 </div>
                 <div class="row__notes">
-                    <span>{{ optional($test->client_data)->sender_station }}</span>
+                    <span  style="font-weight: bold">{{ optional($test->client_data)->sender_station }}</span>
                 </div>
                 <div class="row__notes">
                     <span class="row__labels">OLUVCHINING STANSIYASI (porti) <br>Станция назначения<br> Destination station<br></span>
                 </div>
                 <div class="row__items">
-                    <span>{{ optional($test->client_data)->reciever_station }}</span>
+                    <span  style="font-weight: bold">{{ optional($test->client_data)->reciever_station }}</span>
                 </div>
             </div>
             {{-- 8- line data about company marker--}}
@@ -153,7 +153,7 @@
                     <span class="row__labels">KORXONANING TAMG‘ASI <br> Маркировка предприятия /Marking of the enterprise <br></span>
                 </div>
                 <div class="row__notes">
-                    <span> {{ \App\Models\ClientData::getMarkerExist( optional($test->client_data)->company_marker ) }}</span>
+                    <span  style="font-weight: bold"> {{ \App\Models\ClientData::getMarkerExist( optional($test->client_data)->company_marker ) }}</span>
                 </div>
             </div>
 
@@ -167,19 +167,19 @@
                     <span class="row__labels">SINFI <br> Класс /Class <br> </span>
                 </div>
                 <div class="small__row__items">
-                    <span>{{ optional(optional($test->crops)->type)->name }} </span>
+                    <span  style="font-weight: bold">{{ optional(optional($test->crops)->type)->name }} </span>
                 </div>
                 <div class="small__row__items">
                     <span class="row__labels">TURI <br> Тип /Type<br></span>
                 </div>
                 <div class="small__row__items">
-                    <span>{{ \App\Models\LaboratoryResult::getType(optional($test->laboratory_result)->type) }} </span>
+                    <span  style="font-weight: bold">{{ \App\Models\LaboratoryResult::getType(optional($test->laboratory_result)->type) }} </span>
                 </div>
                 <div class="row__items">
                     <span class="row__labels">KICHIK TURI <br> Подтип /Subtype<br></span>
                 </div>
                 <div class="small__row__items">
-                    <span>{{ optional($test->laboratory_result)->subtype }} </span>
+                    <span  style="font-weight: bold">{{ optional($test->laboratory_result)->subtype }} </span>
                 </div>
             </div>
             {{-- 2 line sifat ko'rsatkichalari--}}
@@ -188,19 +188,19 @@
                     <span class="row__labels">HAJMIY OG‘IRLIGI <br> Натура /Nature<br></span>
                 </div>
                 <div class="small__row__items">
-                    <span>{{ optional($test->laboratory_result)->nature }} г/л</span>
+                    <span  style="font-weight: bold">{{ optional($test->laboratory_result)->nature }} г/л</span>
                 </div>
                 <div class="row__items">
                     <span class="row__labels">NAMLIGI <br> Влажность /Humidity<br></span>
                 </div>
                 <div class="small__row__items">
-                    <span>{{ optional($test->laboratory_result)->humidity }} % </span>
+                    <span  style="font-weight: bold">{{ optional($test->laboratory_result)->humidity }} % </span>
                 </div>
                 <div class="row__items">
                     <span class="row__labels">TUSHISH SONI <br> Число падений <br>Number of falls<br></span>
                 </div>
                 <div class="small__row__items">
-                    <span>{{ optional($test->laboratory_result)->falls_number }} sec <br>&nbsp;</span>
+                    <span  style="font-weight: bold">{{ optional($test->laboratory_result)->falls_number }} sec <br>&nbsp;</span>
                 </div>
             </div>
             {{-- 3 line sifat ko'rsatkichalari--}}
@@ -209,31 +209,31 @@
                     <span class="row__labels">KLEYKOVINANING VAZN ULUSHI<br> Массовая доля клейковины /Mass fraction of gluten</span>
                 </div>
                 <div class="small__row__items">
-                    <span>{{ optional($test->laboratory_result)->kleykovina }} % </span>
+                    <span  style="font-weight: bold">{{ optional($test->laboratory_result)->kleykovina }} % </span>
                 </div>
                 <div class="small__row__items" style="width: 20%">
                     <span class="row__labels">SIFATI <br> Качество /Quality</span>
                 </div>
                 <div class="small__row__items" style="width: 8%">
-                    <span>{{ optional($test->laboratory_result)->quality }} </span>
+                    <span  style="font-weight: bold">{{ optional($test->laboratory_result)->quality }} </span>
                 </div>
                 <div class="small__row__items" style="width: 16%">
                     <span class="row__labels">guruh <br>группа /group</span>
                 </div>
                 <div class="small__row__items" style="width: 8%">
-                    <span>{{ \App\Models\LaboratoryResult::getGroup(optional($test->laboratory_result)->class) }} </span>
+                    <span  style="font-weight: bold">{{ \App\Models\LaboratoryResult::getGroup(optional($test->laboratory_result)->class) }} </span>
                 </div>
             </div>
             {{-- 4 line sifat ko'rsatkichalari--}}
             <div class="row__section" style="padding-top:0 !important; margin-top:0;">
                 <div class="small__row__items" style="text-align: center; vertical-align: center">
-                    <span>{{ optional($test->laboratory_result)->elak_number }}</span>
+                    <span  style="font-weight: bold">{{ optional($test->laboratory_result)->elak_number }}</span>
                 </div>
                 <div class="row__items" style="width: 50%">
                     <span class="row__labels">raqamli ELAKDAN O’TISH <br>Проход через сита размером /Pass through sieves</span>
                 </div>
                 <div class="small__row__items" style="vertical-align: center">
-                    <span>{{ optional($test->laboratory_result)->elak_result}} </span>
+                    <span  style="font-weight: bold">{{ optional($test->laboratory_result)->elak_result}} </span>
                 </div>
             </div>
             {{-- line sifat ko'rsatkichalari--}}
@@ -246,14 +246,14 @@
                 </div>
             </div>
             {{-- 6 line sifat ko'rsatkichalari--}}
-            <div class="row__section">
+            <div class="row__section" style="padding: 0">
                 <div class="row__items">
                     <span class="row__labels">JAMI<br> Всего /Total</span>
                 </div>
 
                 <div class="small__row__items" style="width: 8%">
                     @if(isset($result_data1[0]))
-                        <span>{{ optional($result_data1[0])->value }} %</span>
+                        <span  style="font-weight: bold">{{ optional($result_data1[0])->value }} %</span>
                     @endif
                 </div>
                 <div class="row__items">
@@ -265,7 +265,7 @@
 
                 <div class="small__row__items" style="width: 8%">
                     @if(isset($result_data2[0]))
-                        <span>{{ optional($result_data2[0])->value }} %</span>
+                        <span  style="font-weight: bold">{{ optional($result_data2[0])->value }} %</span>
                     @endif
                 </div>
                 <div class="row__items">
@@ -273,13 +273,13 @@
                 </div>
             </div>
             {{-- 6 line sifat ko'rsatkichalari--}}
-            <div class="row__section">
+            <div class="row__section" style="padding: 0">
                 <div class="row__items">
                     <span class="row__labels">Ma'danli <br>минеральная /mineral</span>
                 </div>
                 <div class="small__row__items" style="width: 8%">
                     @if(isset($result_data1[1]))
-                        <span>{{ optional($result_data1[1])->value }} %</span>
+                        <span  style="font-weight: bold">{{ optional($result_data1[1])->value }} %</span>
                     @endif
                 </div>
 
@@ -291,19 +291,19 @@
                 </div>
                 <div class="small__row__items" style="width: 8%">
                     @if(isset($result_data2[1]))
-                        <span class="row__labels">{{ optional($result_data2[1])->value }} %</span>
+                        <span  style="font-weight: bold" class="row__labels">{{ optional($result_data2[1])->value }} %</span>
                     @endif
                 </div>
                 <div class="row__items"></div>
             </div>
             {{-- 6 line sifat ko'rsatkichalari--}}
-            <div class="row__section">
+            <div class="row__section" style="padding: 0">
                 <div class="row__items">
                     <span class="row__labels">Zararli <br>вредная /harmful</span>
                 </div>
                 <div class="small__row__items" style="width: 8%">
                     @if(isset($result_data1[2]))
-                        <span>{{ optional($result_data1[2])->value }} %</span>
+                        <span  style="font-weight: bold">{{ optional($result_data1[2])->value }} %</span>
                     @endif
                 </div>
                 <div class="row__items"></div>
@@ -314,13 +314,13 @@
                 </div>
                 <div class="small__row__items" style="width: 8%">
                     @if(isset($result_data2[2]))
-                        <span class="row__labels">{{ optional($result_data2[2])->value }} %</span>
+                        <span  style="font-weight: bold" class="row__labels">{{ optional($result_data2[2])->value }} %</span>
                     @endif
                 </div>
                 <div class="row__items"></div>
             </div>
             {{-- 6 line sifat ko'rsatkichalari--}}
-            <div class="row__section">
+            <div class="row__section" style="padding: 0">
                 <div class="row__items">
                     @if(isset($result_data1[3]))
                         <span class="row__labels">{{ optional($result_data1[3])->name }}<br></span>
@@ -328,7 +328,7 @@
                 </div>
                 <div class="small__row__items" style="width: 8%">
                     @if(isset($result_data1[3]))
-                        <span>{{ optional($result_data1[3])->value }} %</span>
+                        <span  style="font-weight: bold">{{ optional($result_data1[3])->value }} %</span>
                     @endif
                 </div>
                 <div class="row__items"></div>
@@ -340,13 +340,13 @@
                 </div>
                 <div class="small__row__items" style="width: 8%">
                     @if(isset($result_data2[3]))
-                        <span class="row__labels">{{ optional($result_data2[3])->value }} %</span>
+                        <span  style="font-weight: bold" class="row__labels">{{ optional($result_data2[3])->value }} %</span>
                     @endif
                 </div>
                 <div class="row__items"></div>
             </div>
             {{-- 6 line sifat ko'rsatkichalari--}}
-            <div class="row__section">
+            <div class="row__section" style="padding: 0">
                 <div class="row__notes" style="width:75%">
                     <span class="row__labels">{{ optional($director)->name}} boshlig'i :{{ optional(optional($director)->director)->lastname. ' '. optional(optional($director)->director)->name }}</span>
                 </div>

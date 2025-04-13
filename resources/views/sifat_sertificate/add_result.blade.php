@@ -127,7 +127,7 @@
                                         class="col-md-6 form-group has-feedback certificate">
                                         <label for="middle-name" class="form-label">Sifati
                                             <label class="text-danger">*</label></label>
-                                        <input type="number"  class="form-control" name="quality" max="40" min="1"
+                                        <input type="number"  class="form-control" name="quality" max="150" min="1"
                                                value="{{ old('quality') }}">
                                         @if ($errors->has('quality'))
                                             <span class="help-block">

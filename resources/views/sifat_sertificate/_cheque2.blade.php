@@ -255,13 +255,13 @@
                 </div>
             </div>
             {{-- line sifat ko'rsatkichalari--}}
-            <div class="row__section">
+            <div class="row__section" style="padding: 0">
                 <div class="row__items" style="width: 90%">
                     <span class="row__headers">IFLOSLANTIRUVCHI ARALASHMALAR<br>Сорная примесь/ Weed admixture </span>
                 </div>
             </div>
             {{-- 6 line sifat ko'rsatkichalari--}}
-            <div class="row__section">
+            <div class="row__section" style="padding: 0">
                 <div class="row__items" style="width: 15%">
                     <span class="row__labels">JAMI<br> Всего /Total</span>
                 </div>
@@ -295,7 +295,7 @@
             </div>
 
             {{-- 6 line sifat ko'rsatkichalari--}}
-            <div class="row__section">
+            <div class="row__section" style="padding: 0">
                 <div class="row__items">
                     <span class="row__labels">Buzilgan<br>Испорченные/ Spoiled </span>
                 </div>
@@ -335,7 +335,7 @@
             </div>
 
             {{-- 6 line sifat ko'rsatkichalari--}}
-            <div class="row__section">
+            <div class="row__section" style="padding: 0">
                 <div class="row__notes" style="width:75%">
                     <span class="row__labels">{{ optional($test->user)->lastname. ' '. optional($test->user)->name }}</span>
                 </div>

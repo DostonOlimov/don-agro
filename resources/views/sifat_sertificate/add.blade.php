@@ -179,7 +179,7 @@
                                         @endif
                                     </div>
                                     <div
-                                        class="col-md-6 form-group has-feedback {{ $errors->has('amount') ? ' has-error' : '' }}">
+                                        class="col-md-6 form-group has-feedback">
                                         <label for="middle-name" class="form-label">{{ trans('app.joylar soni') }} <label
                                                 class="text-danger">*</label></label>
                                         <input type="number" class="form-control" max="10000000" min="0"

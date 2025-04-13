@@ -45,9 +45,9 @@
 
     .head_image img {
         max-width: 100%;
-        height: 100px;
+        height: 90px;
         padding-left: 340px;
-        padding-top: 68px;
+        padding-top: 60px;
         padding-bottom: 0;
         margin-bottom: 0;
     }
@@ -65,7 +65,7 @@
     .main__title {
         font-weight: bold;
         font-size: 13px;
-        line-height: 0.9;
+        line-height: 0.8;
         padding-bottom: 2px;
         margin-top: 0;
         padding-top: 0;
