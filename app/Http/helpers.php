@@ -43,9 +43,6 @@ const INVOICE_ENABLED_REGIONS = [
     FARGONA_ID,
 
 ];
-function myHelperFunction() {
-    echo 'salom';
-}
 const TASHKENT_LIST_ID = 26;
 
 const INVOICE_RECEIVER_MFO = '00014';

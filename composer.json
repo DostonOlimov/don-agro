@@ -10,6 +10,7 @@
         "awobaz/compoships": "^2.2",
         "barryvdh/laravel-debugbar": "^3.7",
         "barryvdh/laravel-dompdf": "^2.2",
+        "filament/filament": "^2.17",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "korridor/laravel-model-validation-rules": "^2.1",
