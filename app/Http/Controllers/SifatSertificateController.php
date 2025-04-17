@@ -404,7 +404,6 @@ class SifatSertificateController extends Controller
 
         // create sifat certificate
         if (!$test->sifat_sertificate) {
-
             $sertificate = new SifatSertificates();
             $sertificate->app_id = $id;
             $sertificate->number = $number;
@@ -413,6 +412,8 @@ class SifatSertificateController extends Controller
             $sertificate->type = $type;
             $sertificate->created_by = \auth()->user()->id;
             $sertificate->save();
+        }else{
+            $number = $test->sifat_sertificate->number;
         }
 
         $sert_number = ($currentYear - 2000) * 1000000 + $number;

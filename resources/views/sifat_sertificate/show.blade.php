@@ -205,7 +205,7 @@
 
         var url = $(this).attr('url');
 
-        @if(auth()->user()->id == optional($director)->director_id)
+        @if(auth()->user()->id == optional($director)->director_id or auth()->user()->role == 'admin')
             swal({
                 title: "Haqiqatdan ham tasdiqlashni xohlaysizmi?",
                 text: "Tasdiqlangandan so'ng ma'lumotlarni o'zgartirib bo'lmaydi!",
