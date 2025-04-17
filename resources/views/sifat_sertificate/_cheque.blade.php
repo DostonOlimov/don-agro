@@ -51,6 +51,7 @@
                     <span style="font-weight: bold">{{$test->crops->name->name}} - {{ optional($nds)->name }} </span>
                 </div>
             </div>
+
             {{-- <h2 class="main__intro"><b>KOD TN VED :</b> {{$test->crops->name->kodtnved}}</h2>--}}
             <div class="row__section">
                 <div class="row__notes">
@@ -132,6 +133,7 @@
                     <span  style="font-weight: bold">{{ optional($test->organization)->full_address }}</span>
                 </div>
             </div>
+
             {{-- 7- line data about stations--}}
             <div class="row__section">
                 <div class="row__items">
@@ -173,7 +175,7 @@
                     <span class="row__labels">TURI <br> Тип /Type<br></span>
                 </div>
                 <div class="small__row__items">
-                    <span  style="font-weight: bold">{{ \App\Models\LaboratoryResult::getType(optional($test->laboratory_result)->type) }} </span>
+                    <span  style="font-weight: bold"> @if(optional($test->laboratory_result)->type) {{ \App\Models\LaboratoryResult::getType(optional($test->laboratory_result)->type) }} @endif </span>
                 </div>
                 <div class="row__items">
                     <span class="row__labels">KICHIK TURI <br> Подтип /Subtype<br></span>
@@ -221,7 +223,7 @@
                     <span class="row__labels">guruh <br>группа /group</span>
                 </div>
                 <div class="small__row__items" style="width: 8%">
-                    <span  style="font-weight: bold">{{ \App\Models\LaboratoryResult::getGroup(optional($test->laboratory_result)->class) }} </span>
+                    <span  style="font-weight: bold">@if(optional($test->laboratory_result)->class){{ \App\Models\LaboratoryResult::getGroup(optional($test->laboratory_result)->class) }} @endif</span>
                 </div>
             </div>
             {{-- 4 line sifat ko'rsatkichalari--}}

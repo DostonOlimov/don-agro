@@ -247,7 +247,9 @@ class SifatSertificateController extends Controller
 
     public function showapplication($id)
     {
-        $test = Application::findOrFail($id);
+        $test = Application::with('laboratory_result_data')->findOrFail($id);
+        $result_data1 = optional($test->laboratory_result_data())->where('type',1)->get();
+        $result_data2 = optional($test->laboratory_result_data())->where('type',2)->get();
         $company = OrganizationCompanies::with('city')->findOrFail($test->organization_id);
         $formattedDate = formatUzbekDateInLatin($test->date);
         $nds_type = 1;
@@ -262,8 +264,7 @@ class SifatSertificateController extends Controller
         $qrCode = QrCode::size(100)->generate($url);
         $t = 1;
 
-
-        return view('sifat_sertificate.show', compact('test', 'nds','director','formattedDate','company', 'qrCode','t'));
+        return view('sifat_sertificate.show', compact('test', 'nds','director','formattedDate','company', 'qrCode','t','result_data1','result_data2'));
     }
 
     public function edit($id)
