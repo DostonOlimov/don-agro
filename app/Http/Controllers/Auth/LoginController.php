@@ -45,7 +45,8 @@ class LoginController extends Controller
     {
         if ($user->branch_id == User::BRANCH_LABORATORY) {
             return redirect('/sifat-sertificates/list');
-        } else {
+        }
+         else {
             return redirect($this->redirectTo);
         }
     }

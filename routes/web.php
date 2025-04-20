@@ -444,20 +444,32 @@ Route::group(
 
         });
 
-        Route::group(['prefix' => 'driver-licence', 'middleware' => 'auth'], function () {
-            ////
-            Route::get('give', '\App\Http\Controllers\Admin\DriverLicenseController@create')->name('driver-license.create');
-            Route::get('oldgive', '\App\Http\Controllers\Customercontroller@driver_licence_form');
-            Route::post('store', '\App\Http\Controllers\Admin\DriverLicenseController@store');
-            Route::post('oldstore','\App\Http\Controllers\Customercontroller@driver_licence_store');
-            ////
+         //sifat sertificates online
+         Route::group(['prefix' => 'storage-conclusion'], function () {
+            Route::get('/list', ['as'=>'/storage-conclusion/list', 'uses' => '\App\Http\Controllers\StorageConclusionController@applicationList']);
+            Route::get('/add/{id}', ['as'=>'storage-conclusion.add', 'uses' => '\App\Http\Controllers\StorageConclusionController@addApplication']);
+            Route::post('/store', ['uses' => '\App\Http\Controllers\StorageConclusionController@store']);
+            Route::get('/add_result/{id}', ['as'=>'storage-conclusion.add_result', 'uses' => '\App\Http\Controllers\StorageConclusionController@addResult']);
+            Route::post('/result_store', ['uses' => '\App\Http\Controllers\StorageConclusionController@ResultStore']);
+            Route::get('/add_client/{id}', ['as'=>'storage-conclusion.add_client', 'uses' => '\App\Http\Controllers\StorageConclusionController@addClientData']);
+            Route::post('/client_store', ['uses' => '\App\Http\Controllers\StorageConclusionController@ClientDataStore']);
 
-            Route::get('/list', '\App\Http\Controllers\Customercontroller@driver_licences');
-            Route::get('/cancel/{id}', '\App\Http\Controllers\Customercontroller@driver_licence_cancel');
-            Route::get('/preview', '\App\Http\Controllers\Customercontroller@driver_licence_preview');
-            Route::post('/save-image', '\App\Http\Controllers\Customercontroller@driver_licence_image');
-            Route::post('/save-signature', '\App\Http\Controllers\Customercontroller@driver_signature');
+            Route::get('/edit/{id}', [ 'uses' => '\App\Http\Controllers\StorageConclusionController@edit'])->name('storage_conclusion.edit');
+            Route::get('/edit-data/{id}', [ 'uses' => '\App\Http\Controllers\StorageConclusionController@editData']);
+            Route::post('/update', '\App\Http\Controllers\StorageConclusionController@update')->name('storage_conclusion/update');
+            Route::get('/view/{id}', '\App\Http\Controllers\StorageConclusionController@showapplication')->name('storage_conclusion.view');
+            Route::get('/accept/{id}', ['as' => '/storage-conclusion/accept', 'uses' => '\App\Http\Controllers\StorageConclusionController@accept']);
+            Route::get('/reject/{id}', ['as' => '/storage-conclusion/reject', 'uses' => '\App\Http\Controllers\StorageConclusionController@reject']);
+
+            Route::get('/client-edit/{id}', [ 'uses' => '\App\Http\Controllers\StorageConclusionController@clientEdit']);
+            Route::post('/client-update', '\App\Http\Controllers\StorageConclusionController@clientUpdate')->name('storage_conclusion/client_update');
+            Route::get('/result-edit/{id}', [ 'uses' => '\App\Http\Controllers\StorageConclusionController@resultEdit']);
+            Route::post('/result-update', '\App\Http\Controllers\StorageConclusionController@resultUpdate')->name('storage_conclusion/result_update');
+
+            Route::get('/sertificate/{id}/download', '\App\Http\Controllers\StorageConclusionController@download')->name('storage_conclusion.download');
+
         });
+
     }
 
 );
