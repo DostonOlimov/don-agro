@@ -7,15 +7,15 @@ return [
     'buttons' => [
 
         'dark_mode' => [
-            'label' => 'Включить темный режим',
+            'label' => 'Qorong\'u rejimni yoqish',
         ],
 
         'database_notifications' => [
-            'label' => 'Открыть уведомления',
+            'label' => 'Bildirishnomalarni ochish',
         ],
 
         'light_mode' => [
-            'label' => 'Включить светлый режим',
+            'label' => 'Yorug\'lik rejimni yoqish',
         ],
 
         'logout' => [
@@ -25,17 +25,17 @@ return [
         'sidebar' => [
 
             'collapse' => [
-                'label' => 'Свернуть боковую панель',
+                'label' => 'Yon panelni yig\'ish',
             ],
 
             'expand' => [
-                'label' => 'Раскрыть боковую панель',
+                'label' => 'Yon panelni kengaytirish',
             ],
 
         ],
 
         'user_menu' => [
-            'label' => 'Menning akkauntim',
+            'label' => 'Mening hisobim',
         ],
 
     ],

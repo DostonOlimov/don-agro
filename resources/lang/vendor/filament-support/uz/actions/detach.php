@@ -4,16 +4,16 @@ return [
 
     'single' => [
 
-        'label' => 'Открепить',
+        'label' => 'Ajratish',
 
         'modal' => [
 
-            'heading' => 'Открепить :label',
+            'heading' => ':label Ajratish',
 
             'actions' => [
 
                 'detach' => [
-                    'label' => 'Открепить',
+                    'label' => 'Ajratish',
                 ],
 
             ],
@@ -21,23 +21,23 @@ return [
         ],
 
         'messages' => [
-            'detached' => 'Откреплено',
+            'detached' => 'Ajratildi',
         ],
 
     ],
 
     'multiple' => [
 
-        'label' => 'Открепить',
+        'label' => 'Ajratish',
 
         'modal' => [
 
-            'heading' => 'Открепить отмеченное :label',
+            'heading' => 'Belgilangan :label Ajratish',
 
             'actions' => [
 
                 'detach' => [
-                    'label' => 'Открепить отмеченное',
+                    'label' => 'Belgilanganlarni ajratish',
                 ],
 
             ],
@@ -45,9 +45,8 @@ return [
         ],
 
         'messages' => [
-            'detached' => 'Откреплено',
+            'detached' => 'Ajratildi',
         ],
 
     ],
-
 ];

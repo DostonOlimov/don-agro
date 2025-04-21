@@ -4,20 +4,20 @@ return [
 
     'single' => [
 
-        'label' => 'Создать',
+        'label' => 'Yaratish',
 
         'modal' => [
 
-            'heading' => 'Создать :label',
+            'heading' => ':label Yaratish',
 
             'actions' => [
 
                 'create' => [
-                    'label' => 'Создать',
+                    'label' => 'Yaratish',
                 ],
 
                 'create_another' => [
-                    'label' => 'Создать и создать еще один',
+                    'label' => 'Yaratish va yana birini yaratish',
                 ],
 
             ],
@@ -25,7 +25,7 @@ return [
         ],
 
         'messages' => [
-            'created' => 'Создано',
+            'created' => 'Yaratildi',
         ],
 
     ],

@@ -169,6 +169,8 @@ return [
         Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+
+
         // Add this line:
 //        Illuminate\Support\Facades\Input\InputServiceProvider::class,
 

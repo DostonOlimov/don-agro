@@ -4,16 +4,16 @@ return [
 
     'single' => [
 
-        'label' => 'Восстановить',
+        'label' => 'Qayta tiklash',
 
         'modal' => [
 
-            'heading' => 'Восстановить :label',
+            'heading' => ':label Qayta tiklash',
 
             'actions' => [
 
                 'restore' => [
-                    'label' => 'Восстановить',
+                    'label' => 'Qayta tiklash',
                 ],
 
             ],
@@ -21,23 +21,23 @@ return [
         ],
 
         'messages' => [
-            'restored' => 'Запись восстановлена',
+            'restored' => 'Yozuv qayta tiklandi',
         ],
 
     ],
 
     'multiple' => [
 
-        'label' => 'Восстановить выбранное',
+        'label' => 'Tanlanganlarni qayta tiklash',
 
         'modal' => [
 
-            'heading' => 'Восстановить выбранное :label',
+            'heading' => 'Tanlangan :label Qayta tiklash',
 
             'actions' => [
 
                 'restore' => [
-                    'label' => 'Восстановить',
+                    'label' => 'Qayta tiklash',
                 ],
 
             ],
@@ -45,7 +45,7 @@ return [
         ],
 
         'messages' => [
-            'restored' => 'Записи восстановлены',
+            'restored' => 'Yozuvlar qayta tiklandi',
         ],
 
     ],

@@ -4,16 +4,16 @@ return [
 
     'single' => [
 
-        'label' => 'Удалить навсегда',
+        'label' => 'Butunlay o‘chirish',
 
         'modal' => [
 
-            'heading' => 'Удалить навсегда :label',
+            'heading' => ':label Butunlay o‘chirish',
 
             'actions' => [
 
                 'delete' => [
-                    'label' => 'Удалить',
+                    'label' => 'O‘chirish',
                 ],
 
             ],
@@ -21,23 +21,23 @@ return [
         ],
 
         'messages' => [
-            'deleted' => 'Запись удалена',
+            'deleted' => 'Yozuv o‘chirildi',
         ],
 
     ],
 
     'multiple' => [
 
-        'label' => 'Удалить навсегда выбранное',
+        'label' => 'Tanlanganlarni butunlay o‘chirish',
 
         'modal' => [
 
-            'heading' => 'Удалить навсегда выбранное :label',
+            'heading' => 'Tanlangan :label Butunlay o‘chirish',
 
             'actions' => [
 
                 'delete' => [
-                    'label' => 'Удалить',
+                    'label' => 'O‘chirish',
                 ],
 
             ],
@@ -45,7 +45,7 @@ return [
         ],
 
         'messages' => [
-            'deleted' => 'Записи удалены',
+            'deleted' => 'Yozuvlar o‘chirildi',
         ],
 
     ],

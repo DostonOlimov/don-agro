@@ -2,14 +2,14 @@
 
 return [
 
-    'title' => 'Просмотр :label',
+    'title' => ':label Ko‘rish',
 
-    'breadcrumb' => 'Просмотр',
+    'breadcrumb' => 'Ko‘rish',
 
     'form' => [
 
         'tab' => [
-            'label' => 'Просмотр',
+            'label' => 'Ko‘rish',
         ],
 
     ],

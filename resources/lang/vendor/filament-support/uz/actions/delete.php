@@ -4,16 +4,16 @@ return [
 
     'single' => [
 
-        'label' => 'Удалить',
+        'label' => 'O‘chirish',
 
         'modal' => [
 
-            'heading' => 'Удалить :label',
+            'heading' => ':label O‘chirish',
 
             'actions' => [
 
                 'delete' => [
-                    'label' => 'Удалить',
+                    'label' => 'O‘chirish',
                 ],
 
             ],
@@ -21,23 +21,23 @@ return [
         ],
 
         'messages' => [
-            'deleted' => 'Удалено',
+            'deleted' => 'O‘chirildi',
         ],
 
     ],
 
     'multiple' => [
 
-        'label' => 'Удалить отмеченное',
+        'label' => 'Belgilanganlarni o‘chirish',
 
         'modal' => [
 
-            'heading' => 'Удалить отмеченное :label',
+            'heading' => 'Belgilangan :label O‘chirish',
 
             'actions' => [
 
                 'delete' => [
-                    'label' => 'Удалить отмеченное',
+                    'label' => 'Belgilanganlarni o‘chirish',
                 ],
 
             ],
@@ -45,9 +45,8 @@ return [
         ],
 
         'messages' => [
-            'deleted' => 'Удалено',
+            'deleted' => 'O‘chirildi',
         ],
 
     ],
-
 ];

@@ -4,120 +4,108 @@ return [
 
     'builder' => [
 
-        'collapsed' => 'Содержимое свернуто',
+        'collapsed' => 'Tarkibi yig‘ilgan',
+
 
         'buttons' => [
-
             'clone_item' => [
-                'label' => 'Клонировать',
+                'label' => 'Klonlash',
             ],
 
             'create_item' => [
-                'label' => 'Добавить к :label',
+                'label' => ':label ga qo‘shish',
             ],
 
             'create_item_between' => [
-                'label' => 'Вставить',
+                'label' => 'Qo‘yish',
             ],
 
             'delete_item' => [
-                'label' => 'Удалить',
+                'label' => 'O‘chirish',
             ],
 
             'move_item' => [
-                'label' => 'Переместить',
+                'label' => 'Ko‘chirish',
             ],
 
             'move_item_down' => [
-                'label' => 'Переместить вниз',
+                'label' => 'Pastga ko‘chirish',
             ],
 
             'move_item_up' => [
-                'label' => 'Переместить вверх',
+                'label' => 'Tepaga ko‘chirish',
             ],
 
             'collapse_item' => [
-                'label' => 'Свернуть',
+                'label' => 'Yig‘ish',
             ],
 
             'expand_item' => [
-                'label' => 'Развернуть',
+                'label' => 'Yoyish',
             ],
 
             'collapse_all' => [
-                'label' => 'Свернуть все',
+                'label' => 'Hammasini yig‘ish',
             ],
 
             'expand_all' => [
-                'label' => 'Развернуть все',
+                'label' => 'Hammasini yoyish',
             ],
 
         ],
 
     ],
 
+
     'checkbox_list' => [
-
         'buttons' => [
-
             'deselect_all' => [
-                'label' => 'Снять выделение',
+                'label' => 'Barchasini olib tashlash',
             ],
 
             'select_all' => [
-                'label' => 'Выделить все',
+                'label' => 'Hammasini tanlash',
             ],
-
         ],
-
     ],
 
     'key_value' => [
 
         'buttons' => [
-
             'add' => [
-                'label' => 'Добавить строку',
+                'label' => 'Qator qo‘shish',
             ],
-
             'delete' => [
-                'label' => 'Удалить строку',
+                'label' => 'Qatorni o‘chirish',
             ],
             'reorder' => [
-                'label' => 'Переместить строку',
+                'label' => 'Qatorni ko‘chirish',
             ],
-
         ],
 
         'fields' => [
-
             'key' => [
-                'label' => 'Ключ',
+                'label' => 'Kalit',
             ],
-
             'value' => [
-                'label' => 'Значение',
+                'label' => 'Qiymat',
             ],
-
         ],
-
     ],
 
     'markdown_editor' => [
-
         'toolbar_buttons' => [
-            'attach_files' => 'Прикрепить файлы',
-            'bold' => 'Жирный',
-            'bullet_list' => 'Маркировочный список',
-            'code_block' => 'Код',
-            'edit' => 'Изменить',
-            'italic' => 'Курсив',
-            'link' => 'Ссылка',
-            'ordered_list' => 'Нумерованный список',
-            'preview' => 'Предпросмотр',
-            'strike' => 'Зачеркнутый',
+            'attach_files' => 'Fayllarni biriktirish',
+            'bold' => 'Qalin',
+            'bullet_list' => 'Belgili ro‘yxat',
+            'code_block' => 'Kod',
+            'edit' => 'Tahrirlash',
+            'italic' => 'Qiya',
+            'link' => 'Havola',
+            'ordered_list' => 'Raqamli ro‘yxat',
+            'preview' => 'Oldindan ko‘rish',
+            'strike' => 'O‘chirilgan',
         ],
-
     ],
 
     'repeater' => [
@@ -127,43 +115,43 @@ return [
         'buttons' => [
 
             'create_item' => [
-                'label' => 'Добавить к :label',
+                'label' => ':label ga qoʻshish',
             ],
 
             'delete_item' => [
-                'label' => 'Удалить',
+                'label' => 'Oʻchirish',
             ],
 
             'clone_item' => [
-                'label' => 'Клонировать',
+                'label' => 'Nusxa olish',
             ],
 
             'move_item' => [
-                'label' => 'Переместить',
+                'label' => 'Koʻchirish',
             ],
 
             'move_item_down' => [
-                'label' => 'Переместить вниз',
+                'label' => 'Pastga siljitish',
             ],
 
             'move_item_up' => [
-                'label' => 'Переместить вверх',
+                'label' => 'Tepaga siljitish',
             ],
 
             'collapse_item' => [
-                'label' => 'Свернуть',
+                'label' => 'Yigʻish',
             ],
 
             'expand_item' => [
-                'label' => 'Развернуть',
+                'label' => 'Yoyish',
             ],
 
             'collapse_all' => [
-                'label' => 'Свернуть все',
+                'label' => 'Hammasini yigʻish',
             ],
 
             'expand_all' => [
-                'label' => 'Развернуть все',
+                'label' => 'Hammasini yoyish',
             ],
 
         ],
@@ -173,40 +161,36 @@ return [
     'rich_editor' => [
 
         'dialogs' => [
-
             'link' => [
-
                 'buttons' => [
-                    'link' => 'Ссылка',
-                    'unlink' => 'Убрать ссылку',
+                    'link' => 'Havola',
+                    'unlink' => 'Havolani olib tashlash',
                 ],
 
                 'label' => 'URL',
 
-                'placeholder' => 'Введите URL',
-
+                'placeholder' => 'URL manzilini kiriting',
             ],
 
         ],
 
         'toolbar_buttons' => [
-            'attach_files' => 'Прикрепить файлы',
-            'blockquote' => 'Цитата',
-            'bold' => 'Жирный',
-            'bullet_list' => 'Маркировочный список',
-            'code_block' => 'Код',
-            'h1' => 'H1',
-            'h2' => 'H2',
-            'h3' => 'H3',
-            'italic' => 'Курсив',
-            'link' => 'Ссылка',
-            'ordered_list' => 'Нумерованный список',
-            'redo' => 'Повторить',
-            'strike' => 'Зачеркнутый',
-            'undo' => 'Отменить',
+            'attach_files' => 'Fayllarni biriktirish',
+            'blockquote' => 'Iqtibos',
+            'bold' => 'Qalin',
+            'bullet_list' => 'Belgili roʻyxat',
+            'code_block' => 'Kod bloki',
+            'h1' => 'Sarlavha 1',
+            'h2' => 'Sarlavha 2',
+            'h3' => 'Sarlavha 3',
+            'italic' => 'Qiya',
+            'link' => 'Havola',
+            'ordered_list' => 'Raqamli roʻyxat',
+            'redo' => 'Qaytarish',
+            'strike' => 'Chizilgan',
+            'undo' => 'Bekor qilish',
         ],
-
-    ],
+        ],
 
     'select' => [
 
@@ -239,15 +223,15 @@ return [
 
         'loading_message' => 'Yuklanmoqda...',
 
-        'max_items_message' => 'Только :count можно выбрать.',
+        'max_items_message' => 'Faqat :count ta tanlash mumkin.',
 
-        'no_search_results_message' => 'Нет вариантов, соответствующих вашему запросу.',
+        'no_search_results_message' => 'Siz qidirgan natijalar topilmadi.',
 
         'placeholder' => 'Tanlang',
 
-        'searching_message' => 'Izlash...',
+        'searching_message' => 'Qidirilmoqda...',
 
-        'search_prompt' => 'Введите текст для поиска...',
+        'search_prompt' => 'Qidirish uchun matn kiriting...',
     ],
 
     'tags_input' => [

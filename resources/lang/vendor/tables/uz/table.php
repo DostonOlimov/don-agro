@@ -3,176 +3,130 @@
 return [
 
     'columns' => [
-
         'tags' => [
-            'more' => 'и :count еще',
+            'more' => 'va yana :count ta',
         ],
-
         'messages' => [
-            'copied' => 'Скопировано',
+            'copied' => 'Nusxa olindi',
         ],
-
     ],
 
     'fields' => [
-
         'search_query' => [
             'label' => 'Qidirish',
             'placeholder' => 'Qidirish',
         ],
-
     ],
 
     'pagination' => [
+        'label' => 'Sahifalash',
 
-        'label' => 'Пагинация',
-
-        'overview' => 'Показано с :first по :last из :total',
+        'overview' => ':first dan :last gacha (jami :total)',
 
         'fields' => [
-
             'records_per_page' => [
-
-                'label' => 'на страницу',
-
+                'label' => 'har sahifada',
                 'options' => [
-                    'all' => 'Все',
+                    'all' => 'Hammasi',
                 ],
-
             ],
-
         ],
 
         'buttons' => [
-
             'go_to_page' => [
-                'label' => 'Перейти к странице :page',
+                'label' => ':page - sahifaga o\'tish',
             ],
-
             'next' => [
-                'label' => 'Следующая',
+                'label' => 'Keyingi',
             ],
-
             'previous' => [
-                'label' => 'Предыдущая',
+                'label' => 'Oldingi',
             ],
-
         ],
-
     ],
 
     'buttons' => [
-
         'disable_reordering' => [
-            'label' => 'Сохранить порядок',
+            'label' => 'Tartibni saqlash',
         ],
-
         'enable_reordering' => [
-            'label' => 'Изменить порядок',
+            'label' => 'Tartibni o\'zgartirish',
         ],
-
         'filter' => [
-            'label' => 'Фильтр',
+            'label' => 'Filtr',
         ],
-
         'open_actions' => [
-            'label' => 'Открыть действия',
+            'label' => 'Harakatlarni ochish',
         ],
-
         'toggle_columns' => [
-            'label' => 'Переключить столбцы',
+            'label' => 'Ustunlarni almashtirish',
         ],
-
     ],
 
     'empty' => [
-        'heading' => 'Не найдено записей',
+        'heading' => 'Yozuvlar topilmadi',
     ],
 
     'filters' => [
-
         'buttons' => [
-
             'remove' => [
-                'label' => 'Удалить фильтр',
+                'label' => 'Filterni olib tashlash',
             ],
-
             'remove_all' => [
-                'label' => 'Отчистить фильтры',
-                'tooltip' => 'Отчистить фильтры',
+                'label' => 'Filtrlarni tozalash',
+                'tooltip' => 'Filtrlarni tozalash',
             ],
-
             'reset' => [
-                'label' => 'Сбросить фильтры',
+                'label' => 'Filtrlarni tiklash',
             ],
-
         ],
 
-        'indicator' => 'Активные фильтры',
+        'indicator' => 'Faol filtrlar',
 
         'multi_select' => [
-            'placeholder' => 'Все',
+            'placeholder' => 'Hammasi',
         ],
 
         'select' => [
-            'placeholder' => 'Все',
+            'placeholder' => 'Hammasi',
         ],
 
         'trashed' => [
-
-            'label' => 'Удаленные записи',
-
-            'only_trashed' => 'Только удаленные записи',
-
-            'with_trashed' => 'С удаленными записями',
-
-            'without_trashed' => 'Без удаленных записей',
-
+            'label' => 'O\'chirilgan yozuvlar',
+            'only_trashed' => 'Faqat o\'chirilgan yozuvlar',
+            'with_trashed' => 'O\'chirilgan yozuvlar bilan',
+            'without_trashed' => 'O\'chirilgan yozuvlarsiz',
         ],
-
     ],
 
-    'reorder_indicator' => 'Drag-n-drop порядок записей.',
+    'reorder_indicator' => 'Yozuvlarni tartiblash uchun sudrab tashlang.',
 
     'selection_indicator' => [
-
-        'selected_count' => 'Выбрана 1 запись.|Выбрано :count записей.',
+        'selected_count' => '1 ta yozuv tanlandi.|:count ta yozuv tanlandi.',
 
         'buttons' => [
-
             'select_all' => [
-                'label' => 'Выбрать всё :count',
+                'label' => 'Barcha :count ta yozuvni tanlash',
             ],
-
             'deselect_all' => [
-                'label' => 'Убрать выделение со всех',
+                'label' => 'Barcha tanlovlarni bekor qilish',
             ],
-
         ],
-
     ],
 
     'sorting' => [
-
         'fields' => [
-
             'column' => [
-                'label' => 'Сортировать по',
+                'label' => 'Saralash turi',
             ],
-
             'direction' => [
-
-                'label' => 'Направление',
-
+                'label' => 'Yo\'nalish',
                 'options' => [
-                    'asc' => 'По возрастанию',
-                    'desc' => 'По убыванию',
+                    'asc' => 'O\'sish bo\'yicha',
+                    'desc' => 'Kamayish bo\'yicha',
                 ],
-
             ],
-
         ],
-
     ],
 
 ];

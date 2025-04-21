@@ -4,16 +4,16 @@ return [
 
     'single' => [
 
-        'label' => 'Отделить',
+        'label' => 'Ajratish',
 
         'modal' => [
 
-            'heading' => 'Отделено :label',
+            'heading' => ':label Ajratildi',
 
             'actions' => [
 
                 'dissociate' => [
-                    'label' => 'Отделить',
+                    'label' => 'Ajratish',
                 ],
 
             ],
@@ -21,23 +21,23 @@ return [
         ],
 
         'messages' => [
-            'dissociated' => 'Отделено',
+            'dissociated' => 'Ajratildi',
         ],
 
     ],
 
     'multiple' => [
 
-        'label' => 'Отделить отмеченное',
+        'label' => 'Belgilanganlarni ajratish',
 
         'modal' => [
 
-            'heading' => 'Отделить отмеченное :label',
+            'heading' => 'Belgilangan :label Ajratish',
 
             'actions' => [
 
                 'dissociate' => [
-                    'label' => 'Отделить отмеченное',
+                    'label' => 'Belgilanganlarni ajratish',
                 ],
 
             ],
@@ -45,7 +45,7 @@ return [
         ],
 
         'messages' => [
-            'dissociated' => 'Отделено',
+            'dissociated' => 'Ajratildi',
         ],
 
     ],

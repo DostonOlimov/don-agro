@@ -20,8 +20,13 @@ class Region extends Model
     protected $table = 'tbl_states';
 
     protected $fillable = [
-        'id', 'name',
+        'id', 'name','code'
     ];
+
+    public static function getNavigationGroup(): ?string
+    {
+        return '📍 Location'; // This will group the resources under "Location"
+    }
 
     public function areas(): HasMany
     {

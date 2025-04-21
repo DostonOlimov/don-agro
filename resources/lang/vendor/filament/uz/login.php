@@ -4,12 +4,12 @@ return [
 
     'title' => 'Ro\'yxatdan o\'tish',
 
-    'heading' => 'Войдите в свой аккаунт',
+    'heading' => 'Hisobingizga kiring',
 
     'buttons' => [
 
         'submit' => [
-            'label' => 'Войти',
+            'label' => 'Kirish',
         ],
 
     ],
@@ -17,22 +17,22 @@ return [
     'fields' => [
 
         'email' => [
-            'label' => 'Адрес электронной почты',
+            'label' => 'Elektron pochta manzili',
         ],
 
         'password' => [
-            'label' => 'Пароль',
+            'label' => 'Parol',
         ],
 
         'remember' => [
-            'label' => 'Запомнить меня',
+            'label' => 'Meni eslab qol',
         ],
 
     ],
 
     'messages' => [
-        'failed' => 'Неверное имя пользователя или пароль.',
-        'throttled' => 'Слишком много попыток входа. Пожалуйста, попробуйте еще раз через :seconds секунд.',
+        'failed' => 'Noto\'g\'ri foydalanuvchi nomi yoki parol.',
+        'throttled' => 'Juda ko\'p kirish urinishlari. Iltimos, :seconds soniyadan so\'ng qayta urinib ko\'ring.',
     ],
 
 ];

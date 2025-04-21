@@ -4,16 +4,16 @@ return [
 
     'single' => [
 
-        'label' => 'Прикрепить',
+        'label' => 'Biriktirish',
 
         'modal' => [
 
-            'heading' => 'Прикрепить :label',
+            'heading' => ':label Biriktirish',
 
             'fields' => [
 
                 'record_id' => [
-                    'label' => 'Запись',
+                    'label' => 'Yozuv',
                 ],
 
             ],
@@ -21,11 +21,11 @@ return [
             'actions' => [
 
                 'attach' => [
-                    'label' => 'Прикрепить',
+                    'label' => 'Biriktirish',
                 ],
 
                 'attach_another' => [
-                    'label' => 'Прикрепить и прикрепить еще',
+                    'label' => 'Biriktirish va yana birini biriktirish',
                 ],
 
             ],
@@ -33,7 +33,7 @@ return [
         ],
 
         'messages' => [
-            'attached' => 'Прикреплено',
+            'attached' => 'Biriktirildi',
         ],
 
     ],

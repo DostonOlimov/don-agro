@@ -4,16 +4,16 @@ return [
 
     'single' => [
 
-        'label' => 'Копировать',
+        'label' => 'Nusxa olish',
 
         'modal' => [
 
-            'heading' => 'Копировать :label',
+            'heading' => ':label Nusxa olish',
 
             'actions' => [
 
                 'replicate' => [
-                    'label' => 'Копировать',
+                    'label' => 'Nusxa olish',
                 ],
 
             ],
@@ -21,7 +21,7 @@ return [
         ],
 
         'messages' => [
-            'replicated' => 'Запись скопирована',
+            'replicated' => 'Yozuv nusxalandi',
         ],
 
     ],

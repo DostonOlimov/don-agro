@@ -4,16 +4,16 @@ return [
 
     'single' => [
 
-        'label' => 'Изменить',
+        'label' => 'O‘zgartirish',
 
         'modal' => [
 
-            'heading' => 'Изменить :label',
+            'heading' => ':label O‘zgartirish',
 
             'actions' => [
 
                 'save' => [
-                    'label' => 'Сохранить',
+                    'label' => 'Saqlash',
                 ],
 
             ],
@@ -21,7 +21,7 @@ return [
         ],
 
         'messages' => [
-            'saved' => 'Сохранено',
+            'saved' => 'Saqlandi',
         ],
 
     ],

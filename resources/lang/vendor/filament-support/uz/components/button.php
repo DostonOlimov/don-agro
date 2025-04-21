@@ -3,7 +3,7 @@
 return [
 
     'messages' => [
-        'uploading_file' => 'Загрузка файла...',
+        'uploading_file' => 'Faylni yuklang...',
     ],
 
 ];

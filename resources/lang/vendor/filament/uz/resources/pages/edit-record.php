@@ -2,32 +2,32 @@
 
 return [
 
-    'title' => 'Редактирование :label',
+    'title' => ':label Tahrirlash',
 
-    'breadcrumb' => 'Редактирование',
+    'breadcrumb' => 'Tahrirlash',
 
     'form' => [
 
         'actions' => [
 
             'cancel' => [
-                'label' => 'Отмена',
+                'label' => 'Bekor qilish',
             ],
 
             'save' => [
-                'label' => 'Сохранить',
+                'label' => 'Saqlash',
             ],
 
         ],
 
         'tab' => [
-            'label' => 'Изменить',
+            'label' => 'O‘zgartirish',
         ],
 
     ],
 
     'messages' => [
-        'saved' => 'Сохранено',
+        'saved' => 'Saqlandi',
     ],
 
 ];

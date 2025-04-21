@@ -1,19 +1,18 @@
 <?php
 
 return [
-
     'single' => [
 
-        'label' => 'Подключить',
+        'label' => 'Ulanish',
 
         'modal' => [
 
-            'heading' => 'Подключить :label',
+            'heading' => ':label Ulanish',
 
             'fields' => [
 
                 'record_id' => [
-                    'label' => 'Запись',
+                    'label' => 'Yozuv',
                 ],
 
             ],
@@ -21,11 +20,11 @@ return [
             'actions' => [
 
                 'associate' => [
-                    'label' => 'Подключить',
+                    'label' => 'Ulanish',
                 ],
 
                 'associate_another' => [
-                    'label' => 'Подключить и Подключить другое',
+                    'label' => 'Ulanish va yana birini ulash',
                 ],
 
             ],
@@ -33,7 +32,7 @@ return [
         ],
 
         'messages' => [
-            'associated' => 'Подключено',
+            'associated' => 'Ulandi',
         ],
 
     ],

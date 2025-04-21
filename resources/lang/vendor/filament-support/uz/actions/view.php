@@ -1,19 +1,18 @@
 <?php
 
 return [
-
     'single' => [
 
-        'label' => 'Просмотр',
+        'label' => 'Ko‘rish',
 
         'modal' => [
 
-            'heading' => 'Просмотр :label',
+            'heading' => ':label Ko‘rish',
 
             'actions' => [
 
                 'close' => [
-                    'label' => 'Закрыть',
+                    'label' => 'Yopish',
                 ],
 
             ],
@@ -21,5 +20,4 @@ return [
         ],
 
     ],
-
 ];
