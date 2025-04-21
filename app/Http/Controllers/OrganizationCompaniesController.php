@@ -167,18 +167,24 @@ class OrganizationCompaniesController extends Controller
     public function myorganizationadd(Request $request)
     {
         $user = Auth::user();
+        $category = $request->input('category');
 
         $states = DB::table('tbl_states')->where('country_id', '=', 234)->get()->toArray();
         $cities = '';
         $company = null;
 
-        return view('front.organization.add', compact( 'states', 'cities', 'company','user'));
+        return view('front.organization.add', compact( 'states', 'cities', 'company','user','category'));
     }
 
     public function myorganizationstore(Request $request)
     {
         $user = Auth::user();
         $inn = $request->input('inn');
+        $category = $request->input('category');
+        $route_name = 'sifat-sertificates.add';
+        if($category == 2){
+            $route_name = 'storage-conclusion.add';
+        }
 
         // Define validation rules with camelCase attribute names
         $validatedData = $request->validate([
@@ -213,11 +219,11 @@ class OrganizationCompaniesController extends Controller
                 'time' => now(),
             ]);
 
-            return redirect()->route('sifat-sertificates.add', $company->id)
+            return redirect()->route($route_name, $company->id)
                 ->with('message', 'Successfully Submitted');
         }
 
-        return redirect()->route('sifat-sertificates.add', $company->id)
+        return redirect()->route($route_name, $company->id)
             ->with('message', 'Successfully Submitted');
     }
 

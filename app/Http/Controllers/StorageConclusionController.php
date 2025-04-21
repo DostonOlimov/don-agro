@@ -19,6 +19,7 @@ use App\Models\LaboratoryResultData;
 use App\Models\OrganizationCompanies;
 use App\Models\SertificateLaboratories;
 use App\Models\SifatSertificates;
+use App\Models\StorageCapacityConclusion;
 use App\Services\SearchService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -72,11 +73,11 @@ class StorageConclusionController extends Controller
     // application addform
     public function addApplication($organization)
     {
-        $names = CropsName::whereHas('sertificate_nds')->get();
+        $types = StorageCapacityConclusion::getType();
         $countries = DB::table('tbl_countries')->get()->toArray();
         $years = CropData::getYear();
 
-        return view('storage_conclusion.add',compact('organization','years','names','countries'));
+        return view('storage_conclusion.add',compact('organization','years','types','countries'));
 
     }
 

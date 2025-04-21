@@ -13,19 +13,19 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
-            $table->id();
-            $table->string('order_number')->unique();
-            $table->foreignId('customer_id')->constrained()->onDelete('cascade');
-            $table->enum('status', ['new', 'processing', 'shipped', 'delivered', 'cancelled'])->default('new');
-            $table->string('currency')->default('USD');
-            $table->string('country')->nullable();
-            $table->string('street_address')->nullable();
-            $table->string('city')->nullable();
-            $table->string('state')->nullable();
-            $table->string('postal_code')->nullable();
-            $table->timestamps();
-        });
+        // Schema::create('orders', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('order_number')->unique();
+        //     $table->foreignId('customer_id')->constrained()->onDelete('cascade');
+        //     $table->enum('status', ['new', 'processing', 'shipped', 'delivered', 'cancelled'])->default('new');
+        //     $table->string('currency')->default('USD');
+        //     $table->string('country')->nullable();
+        //     $table->string('street_address')->nullable();
+        //     $table->string('city')->nullable();
+        //     $table->string('state')->nullable();
+        //     $table->string('postal_code')->nullable();
+        //     $table->timestamps();
+        // });
     }
 
     /**

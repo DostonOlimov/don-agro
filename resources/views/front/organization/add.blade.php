@@ -52,6 +52,7 @@
                     <div class="card-body">
                         <form action="{{ url('/organization/my-organization-store') }}" method="post" id="myForm"
                               enctype="multipart/form-data" class="form-horizontal form-label-left">
+                              <input name="category" type="hidden" value={{ $category }}>
                             <div class="row">
                                 <div id="tin-container" class="form__organization__field legal-fields">
                                     <div class="form-group">
