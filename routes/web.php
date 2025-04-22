@@ -451,9 +451,7 @@ Route::group(
             Route::post('/store', ['uses' => '\App\Http\Controllers\StorageConclusionController@store']);
             Route::get('/add_result/{id}', ['as'=>'storage-conclusion.add_result', 'uses' => '\App\Http\Controllers\StorageConclusionController@addResult']);
             Route::post('/result_store', ['uses' => '\App\Http\Controllers\StorageConclusionController@ResultStore']);
-            Route::get('/add_client/{id}', ['as'=>'storage-conclusion.add_client', 'uses' => '\App\Http\Controllers\StorageConclusionController@addClientData']);
-            Route::post('/client_store', ['uses' => '\App\Http\Controllers\StorageConclusionController@ClientDataStore']);
-
+         
             Route::get('/edit/{id}', [ 'uses' => '\App\Http\Controllers\StorageConclusionController@edit'])->name('storage_conclusion.edit');
             Route::get('/edit-data/{id}', [ 'uses' => '\App\Http\Controllers\StorageConclusionController@editData']);
             Route::post('/update', '\App\Http\Controllers\StorageConclusionController@update')->name('storage_conclusion/update');

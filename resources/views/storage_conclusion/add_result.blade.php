@@ -32,11 +32,11 @@
                 <span class="progress-count first-progress-bar">1</span>
                 <span class="progress-label">{{ trans('app.Buyurtmachi korxonani qo\'shish') }}</span>
             </li>
-            <li class="step-wizard-item current-item">
+            <li class="step-wizard-item">
                 <span class="progress-count">2</span>
                 <span class="progress-label">Asosiy ma'lumotlar</span>
             </li>
-            <li class="step-wizard-item ">
+            <li class="step-wizard-item current-item">
                 <span class="progress-count">3</span>
                 <span class="progress-label">Yakuniy xulosalar</span>
             </li>
@@ -49,36 +49,13 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <form method="post" action="{!! url('storage-conclusion/store') !!}" enctype="multipart/form-data"
+                            <form method="post" action="{!! url('storage-conclusion/add_files_store') !!}" enctype="multipart/form-data"
                                 class="form-horizontal upperform">
                                 <div class="row" style="column-gap: 0;">
 
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <input type="hidden" name="organization" value="{{ $organization }}">
+                                    <input type="hidden" name="id" value="{{ $id }}">
 
-                                    <div class="col-md-6">
-                                        <div class="form-group overflow-hidden">
-                                            <label class="form-label">Sig'im turi<label
-                                                    class="text-danger">*</label></label>
-                                            <select class="w-100 form-control name_of_corn custom-select" name="type" required>
-                                                @if ($types)
-                                                    <option value="">
-                                                       Sig'im turini tanlang
-                                                    </option>
-                                                @endif
-                                                @if (!empty($types))
-                                                    @foreach ($types as $key => $name)
-                                                        <option value="{{ $key }}"> {{ $name }} </option>
-                                                    @endforeach
-                                                @endif
-                                            </select>
-                                            @if ($errors->has('type'))
-                                                <span class="help-block">
-                                                <strong class="hf-warning">{{ $errors->first('type') }}</strong>
-                                            </span>
-                                            @endif
-                                        </div>
-                                    </div>
                                     <div
                                         class="col-md-6 form-group has-feedback {{ $errors->has('amount') ? ' has-error' : '' }}">
                                         <label for="middle-name" class="form-label">Sig'im hajmi<label

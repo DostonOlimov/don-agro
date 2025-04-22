@@ -4,35 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class StorageCapacityConclusion extends Model
+class StorageConclusionFiles extends Model
 {
     const TYPE_1 = 1;
     const TYPE_2 = 2;
     const TYPE_3 = 3;
-
-    const STATUS_NEW = 1;
-    const STATUS_REJECTED = 2;
-    const STATUS_ACCEPTED = 3;
-    const STATUS_FINISHED = 4;
-    const STATUS_DELETED = 5;
-
-    const RESULT_MUVOFIQ = 1;
-    const RESULT_NOMUVOFIQ = 2;
-
-    protected $table = 'storage_capacity_conclusions';
+    const TYPE_4 = 4;
+    protected $table = 'storage_conclusion_files_data';
 
     protected $fillable = [
         'id',
         'number',
-        'organization_id',
-        'measure_type',
+        'name',
+        'conclusion_id',
         'type',
-        'given_date',
-        'valid_date',
-        'director_id',
-        'result',
-        'status',
-        'capacity',
+        'date',
+        'state_id',
         'comment',
     ];
 

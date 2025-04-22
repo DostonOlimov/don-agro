@@ -15,7 +15,7 @@ class CreateStorageCapacityConclusionsTable extends Migration
     {
         Schema::create('storage_capacity_conclusions', function (Blueprint $table) {
             $table->id();
-            $table->integer('number')->unique();
+            $table->integer('number')->unique()->nullable();
             $table->integer('type');
             $table->integer('measure_type');
             $table->date('given_date');
@@ -25,7 +25,7 @@ class CreateStorageCapacityConclusionsTable extends Migration
             $table->integer('director_id');
             $table->integer('result');
             $table->integer('status')->default(1);
-
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }

@@ -89,88 +89,38 @@ class StorageConclusionController extends Controller
 
         // Define validation rules with camelCase attribute names
         $validatedData = $request->validate([
-            'name' => 'required|int',
             'amount' => 'required',
         ]);
 
-        $crop = CropData::create([
-            'name_id'       => $request->input('name'),
-            'country_id'    => $request->input('country'),
-            'type_id'       => $request->input('type'),
-            'kodtnved'      => $request->input('tnved'),
-            'party_number'  => $request->input('party_number'),
-            'measure_type'  => $request->input('measure_type'),
-            'amount'        => $request->input('amount'),
-            'year'          => $request->input('year'),
-            'joy_soni'      => $request->input('joy_soni'),
-            'made_date'     => $request->input('made_date'),
-            'sxeme_number'  => 7,
-        ]);
-
-        $application = Application::create([
-            'crop_data_id'     => $crop->id,
-            'organization_id'  => $request->input('organization'),
-            'prepared_id'      => 1,
-            'type'             => Application::TYPE_1,
-            'date'             => date('Y-m-d'),
-            'status'           => Application::STATUS_FINISHED,
-            'data'             => $request->input('data'),
-            'app_type'         => 2,
-            'created_by'       => $user->id,
+        $storage = StorageCapacityConclusion::create([
+            'type'          => $request->input('type'),
+            'measure_type'  => $request->input('type') == 2 ? 1 : 2,
+            'given_date'    => \Carbon\Carbon::parse($request->input('dob'))->format('Y-m-d'),
+            'valid_date'    => \Carbon\Carbon::parse($request->input('dob2'))->format('Y-m-d'),
+            'organization_id' => $request->input('organization'),
+            'capacity'     => $request->input('amount'),
+            'director_id' => 1,
+            'result' => $request->input('result'),
+            'comment' => $request->input('data'),
         ]);
 
         \App\tbl_activities::create([
             'ip_adress'   => request()->ip(),
             'user_id'     => $user->id,
-            'action_id'   => $application->id,
-            'action_type' => 'app_add',
-            'action'      => "Ariza qo'shildi",
+            'action_id'   => $storage->id,
+            'action_type' => 'storage_add',
+            'action'      => "Sig'im xulosasi qo'shildi",
             'time'        => now(),
         ]);
 
-        return redirect()->route('sifat-sertificates.add_client',$application->id)->with('message', 'Successfully Submitted');
-    }
-
-    public function addClientData($id)
-    {
-        $transportType = ClientData::getType();
-        $companyMarker = ClientData::getMarkerExist();
-
-        return view('sifat_sertificate.client_data_add',compact('id','transportType','companyMarker'));
-
-    }
-    public function ClientDataStore(Request $request)
-    {
-        $app = Application::findOrFail($request->input('id'));
-
-        $crop = ClientData::create([
-            'app_id'       => $app->id,
-            'transport_type'    => $request->input('transport_type'),
-            'vagon_number'      => $request->input('number'),
-            'yuk_xati'  => $request->input('yuk_xati'),
-            'sender_name'  => $request->input('sender_name'),
-            'sender_station'  => $request->input('sender_station'),
-            'reciever_station'  => $request->input('reciever_station'),
-            'sender_address'  => $request->input('sender_address'),
-            'company_marker'  => $request->input('company_marker'),
-        ]);
-
-        return redirect()->route('sifat-sertificates.add_result',$request->input('id'))->with('message', 'Successfully Submitted');
+        return redirect()->route('storage-conclusion.add_result',$storage->id)->with('message', 'Successfully Submitted');
     }
 
     public function addResult($id)
     {
-        $app = Application::findOrFail($id);
+        $app = StorageCapacityConclusion::findOrFail($id);
 
-        $types = LaboratoryResult::getType();
-        $group = LaboratoryResult::getGroup();
-        $flavour_types = LaboratoryResult::getFlaourTypes();
-
-        if($app->crops->name->sertificate_type == 2){
-            return view('sifat_sertificate.add_result2',compact('id','types','group','flavour_types'));
-        }
-
-        return view('sifat_sertificate.add_result',compact('id','types','group'));
+        return view('storage_conclusion.add_result',compact('id'));
 
     }
     public function ResultStore(Request $request)
