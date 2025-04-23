@@ -9,6 +9,7 @@ class StorageCapacityConclusion extends Model
     const TYPE_1 = 1;
     const TYPE_2 = 2;
     const TYPE_3 = 3;
+    const TYPE_4 = 4;
 
     const STATUS_NEW = 1;
     const STATUS_REJECTED = 2;
@@ -40,8 +41,9 @@ class StorageCapacityConclusion extends Model
     {
         $arr = [
             self::TYPE_1 => 'Metal sig\'im',
-            self::TYPE_2 => 'Ochiq joy',
-            self::TYPE_3 => 'Yopiq joy',
+            self::TYPE_2 => 'Ochiq maydon',
+            self::TYPE_3 => 'Elevator',
+            self::TYPE_4 => 'Omborxona',
         ];
 
         if ($type === null) {

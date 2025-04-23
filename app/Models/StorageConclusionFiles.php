@@ -26,9 +26,10 @@ class StorageConclusionFiles extends Model
     public static function getType($type = null)
     {
         $arr = [
-            self::TYPE_1 => 'Metal sig\'im',
-            self::TYPE_2 => 'Ochiq joy',
-            self::TYPE_3 => 'Yopiq joy',
+            self::TYPE_1 => 'Mulk huquqini tasdiqlovchi organning davlat orderi',
+            self::TYPE_2 => 'O\'rganish va boholash dalolatnomasi',
+            self::TYPE_3 => 'FVBning xulosasi',
+            self::TYPE_4 => 'SESning xulosasi',
         ];
 
         if ($type === null) {

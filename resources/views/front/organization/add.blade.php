@@ -33,18 +33,29 @@
                         <span class="progress-count first-progress-bar">1</span>
                         <span class="progress-label">{{ trans('app.Buyurtmachi korxonani qo\'shish') }}</span>
                     </li>
-                    <li class="step-wizard-item">
-                        <span class="progress-count">2</span>
-                        <span class="progress-label">{{ trans('app.Mahsulot ma\'lumotlari') }}</span>
-                    </li>
-                    <li class="step-wizard-item">
-                        <span class="progress-count">3</span>
-                        <span class="progress-label">{{ trans('app.Yuk ma\'lumotlari') }}</span>
-                    </li>
-                    <li class="step-wizard-item">
-                        <span class="progress-count last-progress-bar">4</span>
-                        <span class="progress-label">{{ trans('app.Sifat ko\'rsatkichlari') }}</span>
-                    </li>
+                    @if($category == 2)
+                        <li class="step-wizard-item">
+                            <span class="progress-count">2</span>
+                            <span class="progress-label">Asosiy ma'lumotlar</span>
+                        </li>
+                        <li class="step-wizard-item ">
+                            <span class="progress-count">3</span>
+                            <span class="progress-label">Yakuniy xulosalar</span>
+                        </li>
+                    @else
+                        <li class="step-wizard-item">
+                            <span class="progress-count">2</span>
+                            <span class="progress-label">{{ trans('app.Mahsulot ma\'lumotlari') }}</span>
+                        </li>
+                        <li class="step-wizard-item">
+                            <span class="progress-count">3</span>
+                            <span class="progress-label">{{ trans('app.Yuk ma\'lumotlari') }}</span>
+                        </li>
+                        <li class="step-wizard-item">
+                            <span class="progress-count last-progress-bar">4</span>
+                            <span class="progress-label">{{ trans('app.Sifat ko\'rsatkichlari') }}</span>
+                        </li>
+                    @endif
                 </ul>
             </div>
             <div class="row">

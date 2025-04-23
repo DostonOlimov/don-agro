@@ -17,9 +17,11 @@ use App\Models\Indicator;
 use App\Models\LaboratoryResult;
 use App\Models\LaboratoryResultData;
 use App\Models\OrganizationCompanies;
+use App\Models\Region;
 use App\Models\SertificateLaboratories;
 use App\Models\SifatSertificates;
 use App\Models\StorageCapacityConclusion;
+use App\Models\StorageConclusionFiles;
 use App\Services\SearchService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -119,80 +121,33 @@ class StorageConclusionController extends Controller
     public function addResult($id)
     {
         $app = StorageCapacityConclusion::findOrFail($id);
+        $types = StorageConclusionFiles::getType();
+        $states = Region::all();
 
-        return view('storage_conclusion.add_result',compact('id'));
+        return view('storage_conclusion.add_result',compact('id','types','states'));
 
     }
-    public function ResultStore(Request $request)
+    public function ResultStore(Request $request): \Illuminate\Http\RedirectResponse
     {
-        $app = Application::findOrFail($request->input('id'));
-
-        $crop = LaboratoryResult::create([
-            'app_id'   => $app->id,
-            'class'    => $request->input('group'),
-            'type'      => $request->input('type') ?? $request->input('flavour'),
-            'subtype'  => $request->input('subtype') ?? $request->input('smell'),
-            'nature'  => $request->input('nature') ?? $request->input('kulligi'),
-            'humidity'  => $request->input('humidity'),
-            'falls_number'  => $request->input('falls_number') ?? $request->input('oqlik'),
-            'kleykovina'  => $request->input('kleykovina'),
-            'quality'  => $request->input('quality'),
-            'elak_number'  => $request->input('elak_number'),
-            'elak_result'  => $request->input('elak_result'),
-            'clour'  => $request->input('colour'),
-            'qoldiq_number'  => $request->input('qoldiq_number'),
-            'qoldiq_result'  => $request->input('qoldiq_result'),
-        ]);
+        $app = StorageCapacityConclusion::findOrFail($request->input('id'));
+        $types = StorageConclusionFiles::getType();
         $data = [];
-
-// Static data entries
-        $dataEntries = [
-            ['name' => "JAMI", 'value' => $request->input('jami1'), 'type' => 1],
-            ['name' => 'MA\'DANLI', 'value' => $request->input('madan'), 'type' => 1],
-            ['name' => "ZARARLI", 'value' => $request->input('zarar'), 'type' => 1]
-        ];
-        if($request->input('name1')){
-            $dataEntries[] = ['name' => $request->input('name1'), 'value' => $request->input('value1'), 'type' => 1];
-        }
-        if($request->input('buzilgan')){
-            $dataEntries[] = ['name' => "Buzilgan", 'value' => $request->input('buzilgan'), 'type' => 1];
-        }
-        if($request->input('siniq')){
-            $dataEntries[] = ['name' => "Siniq", 'value' => $request->input('value1'), 'type' => 1];
-        }
-        if($request->input('archilmagan')){
-            $dataEntries[] = ['name' => "Po'sti archilmagan", 'value' => $request->input('archilmagan'), 'type' => 1];
-        }
-        if($request->input('unsimon')){
-            $dataEntries[] = ['name' => "Unsimon", 'value' => $request->input('unsimon'), 'type' => 1];
-        }
-        if($request->input('jami2')){
-            $dataEntries[] = ['name' => "JAMI", 'value' => $request->input('jami2'), 'type' => 2];
-        }
-
-        // Add static entries to $data with app_id
-        foreach ($dataEntries as $entry) {
-            $data[] = array_merge($entry, ['app_id' => $app->id]);
-        }
-
-        // Dynamic data entries using a loop
-        for ($i = 1; $i <= 3; $i++) {
-            $name = $request->input('z_name' . $i);
-            if ($name) {
-                $data[] = [
-                    'app_id' => $app->id,
-                    'name'   => $request->input('z_name' . $i),
-                    'value'  => $request->input('z_value' . $i),
-                    'type'   => 2
-                ];
-            }
+        foreach ($types as $key => $type) {
+            $data[] = [
+                'conclusion_id' => $app->id,
+                'name' => $request->input('name'.$key),
+                'type' => $key,
+                'state_id' => $request->input('state_id'.$key),
+                'date' => \Carbon\Carbon::parse($request->input('dob'.$key))->format('Y-m-d'),
+                'number' => $request->input('number'.$key),
+            ];
         }
 
         // Insert data if not empty
         if (!empty($data)) {
-            LaboratoryResultData::insert($data);
+            StorageConclusionFiles::insert($data);
         }
-        return redirect()->route('/sifat-sertificates/list')
+        return redirect()->route('/storage-conclusion/list')
             ->with('message', 'Successfully Submitted');
     }
 
