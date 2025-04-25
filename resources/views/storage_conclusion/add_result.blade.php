@@ -69,11 +69,11 @@
                                             <div class="col-md-3">
                                                 <div class="form-group overflow-hidden">
                                                     <label class="form-label">Berilgan viloyat<label class="text-danger">*</label></label>
-                                                    <select class="w-100 form-control name_of_corn custom-select" name="type" required>
+                                                    <select class="w-100 form-control name_of_corn custom-select" name="state_id{{$key}}" required>
                                                             <option value="">Viloyatni tanlang</option>
                                                         @if (!empty($states))
                                                             @foreach ($states as  $state)
-                                                                <option value="{{ $state->id }}"> {{ $state->name }} </option>
+                                                                <option value="{{ $state->id }}" @if($state->id == $stateId) selected @endif> {{ $state->name }} </option>
                                                             @endforeach
                                                         @endif
                                                     </select>

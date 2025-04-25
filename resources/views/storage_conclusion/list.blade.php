@@ -28,7 +28,7 @@
                     <script>
                         @php
                             $generatedAppId = $_GET['generatedAppId'] ?? 1;
-                            $downloadUrl = route('sifat_sertificate.download', $generatedAppId);
+                            $downloadUrl = route('storage_conclusion.download', $generatedAppId);
                         @endphp
                         // Automatically trigger download after the page loads
                         window.onload = function() {
@@ -69,23 +69,10 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>Xulosa raqami</th>
                                     <th class="border-bottom-0 border-top-0">
                                         <a
-                                            href="{{ route('/sifat-sertificates/list', ['sort_by' => 'party_number', 'sort_order' => $sort_by === 'party_number' && $sort_order === 'asc' ? 'desc' : 'asc']) }}">
-                                            {{ trans('app.Toʼda (partiya) raqami') }}
-                                            @if ($sort_by === 'party_number')
-                                            @if ($sort_order === 'asc')
-                                            <i class="fa fa-arrow-up"></i>
-                                            @else
-                                            <i class="fa fa-arrow-down"></i>
-                                            @endif
-                                            @endif
-                                        </a>
-                                    </th>
-                                    <th>Sertifikat raqami</th>
-                                    <th class="border-bottom-0 border-top-0">
-                                        <a
-                                            href="{{ route('/sifat-sertificates/list', ['sort_by' => 'date', 'sort_order' => $sort_by === 'date' && $sort_order === 'asc' ? 'desc' : 'asc']) }}">
+                                            href="{{ route('/storage-conclusion/list', ['sort_by' => 'given_date', 'sort_order' => $sort_by === 'given_date' && $sort_order === 'asc' ? 'desc' : 'asc']) }}">
                                             Sana
                                             @if ($sort_by === 'date')
                                             @if ($sort_order === 'asc')
@@ -98,7 +85,7 @@
                                     </th>
                                     <th class="border-bottom-0 border-top-0">
                                         <a
-                                            href="{{ route('/sifat-sertificates/list', ['sort_by' => 'organization', 'sort_order' => $sort_by === 'organization' && $sort_order === 'asc' ? 'desc' : 'asc']) }}">
+                                            href="{{ route('/storage-conclusion/list', ['sort_by' => 'organization', 'sort_order' => $sort_by === 'organization' && $sort_order === 'asc' ? 'desc' : 'asc']) }}">
                                             {{ trans('app.Buyurtmachi korxona yoki tashkilot nomi') }}
                                             @if ($sort_by === 'organization')
                                             @if ($sort_order === 'asc')
@@ -109,70 +96,33 @@
                                             @endif
                                         </a>
                                     </th>
-
-                                    <th class="border-bottom-0 border-top-0">
-                                        {{ trans('app.Sertifikatlanuvchi mahsulot') }}
-                                    </th>
-                                    <th class="border-bottom-0 border-top-0">
-                                        <a
-                                            href="{{ route('/sifat-sertificates/list', ['sort_by' => 'amount', 'sort_order' => $sort_by === 'amount' && $sort_order === 'asc' ? 'desc' : 'asc']) }}">
-                                            {{ trans('app.amount') }}
-                                            @if ($sort_by === 'amount')
-                                            @if ($sort_order === 'asc')
-                                            <i class="fa fa-arrow-up"></i>
-                                            @else
-                                            <i class="fa fa-arrow-down"></i>
-                                            @endif
-                                            @endif
-                                        </a>
-                                    </th>
+                                    <th>Sig'im turi</th>
+                                    <th>Sig'im hajmi</th>
+                                    <th>Xulosa natijasi</th>
                                     <th class="border-bottom-0 border-top-0">{{ trans('app.Action') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr style="background-color: #90aec6 !important;">
                                     <td> </td>
-                                    <td>
-                                        <form class="d-flex">
-                                            <input type="text" name="partyNumber[lk]"
-                                                class="search-input form-control"
-                                                value="{{ isset($filterValues['partyNumber']) ? $filterValues['partyNumber'] : '' }}">
-                                        </form>
-                                    </td>
                                     <td></td>
                                     <td></td>
                                     <td>
-                                        <select id="organization" class="form-control owner_search" name="organization">
-                                            @if (!empty($organization))
-                                            <option selected value="{{ $organization->id }}">
-                                                {{ $organization->name }}
-                                            </option>
-                                            @endif
-                                        </select>
-                                        @if ($organization)
-                                        <i class="fa fa-trash" style="color:red"
-                                            onclick="changeDisplay('companyId[eq]')"></i>
-                                        @endif
+{{--                                        <select id="organization" class="form-control owner_search" name="organization">--}}
+{{--                                            @if (!empty($organization))--}}
+{{--                                            <option selected value="{{ $organization->id }}">--}}
+{{--                                                {{ $organization->name }}--}}
+{{--                                            </option>--}}
+{{--                                            @endif--}}
+{{--                                        </select>--}}
+{{--                                        @if ($organization)--}}
+{{--                                        <i class="fa fa-trash" style="color:red"--}}
+{{--                                            onclick="changeDisplay('companyId[eq]')"></i>--}}
+{{--                                        @endif--}}
                                     </td>
-                                    <td>
-                                        <select class="w-100 form-control name_of_corn custom-select" name="name"
-                                            id="crops_name">
-                                            @if (count($names))
-                                            <option value="" selected>
-                                                Mahsulot turini tanlang</option>
-                                            @endif
-                                            @if (!empty($names))
-                                            @foreach ($names as $name)
-                                            <option value="{{ $name->id }}"
-                                                @if (isset($filterValues['nameId']) && $filterValues['nameId']==$name->id) selected @endif>
-                                                {{ $name->name }}
-                                            </option>
-                                            @endforeach
-                                            @endif
-                                        </select>
-                                    </td>
-                                    <td>
-                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                     <td></td>
                                 </tr>
                                 @php
@@ -182,22 +132,22 @@
                                 @foreach ($apps as $app)
                                 <tr>
                                     <td>{{ $offset + $loop->iteration }}</td>
-                                    <td>{{ optional($app->crops)->party_number }}</td>
-                                    <td>@if(optional($app->sifat_sertificate)->number){{ substr(10000000 + 1000 * $app->prepared->kod + optional($app->sifat_sertificate)->number , 2)  }} @endif</td>
-                                    <td> <a href="{!! url('/sifat-sertificates/view/' . $app->id) !!}">{{ $app->date }}</a></td>
+                                    <td>@if($app->number){{ substr(10000000 + 1000 * 10 + $app->number , 2)  }} @endif</td>
+                                    <td> <a href="{!! url('/storage-conclusion/view/' . $app->id) !!}">{{ $app->given_date }}</a></td>
                                     <td><a href="#" class="company-link"
                                             data-id="{{ $app->organization_id }}">{{ optional($app->organization)->name }}</a>
                                     </td>
-                                    <td>{{ optional($app->crops->name)->name }}</td>
-                                    <td>{{ optional($app->crops)->amount_name }}</td>
+                                    <td> {{ \App\Models\StorageCapacityConclusion::getType($app->type) }} </td>
+                                    <td>{{ $app->capacity }} {{ \App\Models\StorageCapacityConclusion::getMeasureType($app->measure_type) }}</td>
+                                    <td>{{ \App\Models\StorageCapacityConclusion::getResult($app->result) }}</td>
                                     <td style="display: flex; flex-wrap: nowrap;">
-                                        @if(!$app->sifat_sertificate)
-                                            <a href="{!! url('/sifat-sertificates/view/' . $app->id) !!}"><button type="button"
+                                        @if(!$app->storage_conclusion)
+                                            <a href="{!! url('/storage-conclusion/view/' . $app->id) !!}"><button type="button"
                                                     class="btn btn-round btn-info">{{ trans('app.View') }}</button></a>
-                                            <a href="{!! url('/sifat-sertificates/edit/' . $app->id) !!}"><button type="button"
+                                            <a href="{!! url('/storage-conclusion/edit/' . $app->id) !!}"><button type="button"
                                                     class="btn btn-round btn-success">{{ trans('app.Edit') }}</button></a>
                                         @else
-                                            <a href="{{ route('sifat_sertificate.download', $app->id) }}" class="text-azure">
+                                            <a href="{{ route('storage_conclusion.download', $app->id) }}" class="text-azure">
                                                 <button type="button"
                                                         class="btn btn-round btn-info"> <i class="fa fa-download"></i> Sertifikat fayli</button>
 

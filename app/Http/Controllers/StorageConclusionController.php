@@ -49,11 +49,9 @@ class StorageConclusionController extends Controller
             return $service->search(
                 $request,
                 $filter,
-                Application::class,
+                StorageCapacityConclusion::class,
                 [
-                    'crops',
                     'organization',
-                    'prepared'
                 ],
                 compact('names', 'states', 'years','all_status'),
                 'storage_conclusion.list',
@@ -61,7 +59,6 @@ class StorageConclusionController extends Controller
                 false,
                 null,
                 null,
-                ['app_type','=',2]
             );
 
 //        } catch (\Throwable $e) {
@@ -101,6 +98,7 @@ class StorageConclusionController extends Controller
             'valid_date'    => \Carbon\Carbon::parse($request->input('dob2'))->format('Y-m-d'),
             'organization_id' => $request->input('organization'),
             'capacity'     => $request->input('amount'),
+            'user_id'      => Auth::User()->id,
             'director_id' => 1,
             'result' => $request->input('result'),
             'comment' => $request->input('data'),
@@ -121,10 +119,11 @@ class StorageConclusionController extends Controller
     public function addResult($id)
     {
         $app = StorageCapacityConclusion::findOrFail($id);
+        $stateId = optional(optional($app->organization)->city)->state_id;
         $types = StorageConclusionFiles::getType();
         $states = Region::all();
 
-        return view('storage_conclusion.add_result',compact('id','types','states'));
+        return view('storage_conclusion.add_result',compact('id','types','states','stateId'));
 
     }
     public function ResultStore(Request $request): \Illuminate\Http\RedirectResponse
@@ -151,34 +150,10 @@ class StorageConclusionController extends Controller
             ->with('message', 'Successfully Submitted');
     }
 
-    public function showapplication($id)
-    {
-        $test = Application::with('laboratory_result_data')->findOrFail($id);
-        $result_data1 = optional($test->laboratory_result_data())->where('type',1)->get();
-        $result_data2 = optional($test->laboratory_result_data())->where('type',2)->get();
-        $company = OrganizationCompanies::with('city')->findOrFail($test->organization_id);
-        $formattedDate = formatUzbekDateInLatin($test->date);
-        $nds_type = 1;
-        if($test->crops->name_id == 25 and $test->crops->country_id == 243){
-            $nds_type = 2;
-        }
-        $nds = $test->crops->name->sertificate_nds->where('type',$nds_type)->first();
-        $director = SertificateLaboratories::where('state_id', $test->user->state_id)->first();
-
-        // Generate QR code
-        $url = route('sifat_sertificate.view', $id);
-        $qrCode = QrCode::size(100)->generate($url);
-        $t = 1;
-
-        return view('sifat_sertificate.show', compact('test', 'nds','director','formattedDate','company', 'qrCode','t','result_data1','result_data2'));
-    }
-
     public function edit($id)
     {
-        $data = Application::findOrFail($id);
-        $company = OrganizationCompanies::with('city')->findOrFail($data->organization_id);
-
-        return view('sifat_sertificate.edit', compact('data', 'company'));
+        $data = StorageCapacityConclusion::findOrFail($id);
+        return view('storage_conclusion.edit', compact('data'));
     }
 
     public function editData($id)
@@ -286,68 +261,56 @@ class StorageConclusionController extends Controller
         return redirect()->route('sifat_sertificate.edit',$id)->with('message', 'Successfully Submitted');
     }
 
+    public function showapplication($id)
+    {
+        $test = StorageCapacityConclusion::with('organization')->findOrFail($id);
+
+        $givenDate = formatUzbekDateInLatin($test->given_date);
+        $validDate = formatUzbekDateInLatin($test->valid_date);
+
+
+        // Generate QR code
+        $url = route('sifat_sertificate.view', $id);
+        $qrCode = QrCode::size(100)->generate($url);
+        $t = 1;
+
+        return view('storage_conclusion.show', compact('test','givenDate','validDate', 'qrCode','t'));
+    }
     //accept online applications
     public function accept($id)
     {
-        $test = Application::with('laboratory_result_data')->findOrFail($id);
-        $result_data1 = optional($test->laboratory_result_data())->where('type',1)->get();
-        $result_data2 = optional($test->laboratory_result_data())->where('type',2)->get();
+        $test = StorageCapacityConclusion::with('organization')->findOrFail($id);
 
+        $givenDate = formatUzbekDateInLatin($test->given_date);
+        $validDate = formatUzbekDateInLatin($test->valid_date);
 
-        $company = OrganizationCompanies::with('city')->find($test->organization_id);
-        $quality = 1;
-
-        // date format
-        $formattedDate = formatUzbekDateInLatin($test->date);
-        $currentYear = date('Y');
-        $type = optional(optional($test->crops)->name)->sertificate_type;
 
 //        get max  number of sertificate
-        $number = SifatSertificates::where('year', $currentYear)
-            ->where('type',$type)
-            ->max('number');
-//        }
-        $number = $number ? $number + 1 : 1;
+        $number = StorageCapacityConclusion::max('number');
+
 
         // create sifat certificate
-        if (!$test->sifat_sertificate) {
-            $sertificate = new SifatSertificates();
-            $sertificate->app_id = $id;
-            $sertificate->number = $number;
-            $sertificate->state_id = optional($test->user)->state_id;
-            $sertificate->year = $currentYear;
-            $sertificate->type = $type;
-            $sertificate->created_by = \auth()->user()->id;
-            $sertificate->save();
-        }else{
-            $number = $test->sifat_sertificate->number;
+        if (!$test->status != StorageCapacityConclusion::STATUS_FINISHED) {
+            $test->number = $number + 1;
+            $test->status = StorageCapacityConclusion::STATUS_FINISHED;
+            $test->save();
         }
-
-        $sert_number = ($currentYear - 2000) * 1000000 + $number;
 
         // Generate QR code
-        $qrCode = base64_encode(QrCode::format('png')->size(100)->generate(route('sifat_sertificate.download', $id)));
-
-        //nds
-        $nds_type = 1;
-        if($test->crops->name_id == 25 and $test->crops->country_id == 243){
-            $nds_type = 2;
-        }
-        $nds = $test->crops->name->sertificate_nds->where('type',$nds_type)->first();
-        $director = SertificateLaboratories::where('state_id', $test->user->state_id)->first();
+        $qrCode = base64_encode(QrCode::format('png')->size(100)->generate(route('storage_conclusion.download', $id)));
 
         // Load the view and pass data to it
-        $pdf = Pdf::loadView('sifat_sertificate.pdf', compact('test','nds','director','quality','sert_number','formattedDate', 'company', 'qrCode','result_data1','result_data2'));
+        $pdf = Pdf::loadView('storage_conclusion.pdf', compact('test','givenDate','validDate', 'qrCode'));
         $pdf->setPaper('A4', 'portrait');
         $pdf->setOption('defaultFont', 'DejaVu Sans');
 
-    //   return $pdf->stream('sdf');
+       return $pdf->stream('sdf');
         // Save the PDF file
-        $filePath = storage_path('app/public/sifat_sertificates/certificate_' . $id . '.pdf');
+        $filePath = storage_path('app/public/storage_conclusion/conclusion_' . $id . '.pdf');
         $pdf->save($filePath);
 
         // Redirect to list page with success message
-        return redirect()->route('/sifat-sertificates/list', ['generatedAppId' => $id])
+        return redirect()->route('/storage-conclusion/list', ['generatedAppId' => $id])
             ->with('message', 'Certificate saved!');
     }
 
