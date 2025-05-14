@@ -72,14 +72,14 @@
                 <div class="row__items">
                     <span class="row__labels">TRANSPORT TURI <br> Вид транспорта <br> Type of transport<br> </span>
                 </div>
-                <div class="row__notes">
+                <div class="small__row__items">
                     <span style="font-weight: bold" >{{ optional($test->client_data)->transport_type == 1 ? 'vagon' : 'avtotransport' }}</span>
                 </div>
-                <div class="row__items">
+                <div class="small__row__items" style="width: 8%">
                     <span class="row__labels">№</span>
                 </div>
-                <div class="row__notes">
-                    <span  style="font-weight: bold">{{ optional($test->client_data)->vagon_number }}</span>
+                <div class="row__notes" style="width: 55%">
+                    <span  style="font-weight: bold">{{ str_replace(',', ', ', optional($test->client_data)->vagon_number)  }}</span>
                 </div>
             </div>
             {{-- 4 line data about yuk--}}
@@ -126,10 +126,10 @@
                 <div class="row__items">
                     <span  style="font-weight: bold">{{ optional($test->client_data)->sender_address }}</span>
                 </div>
-                <div class="row__notes">
+                <div class="row__items">
                     <span class="row__labels">MANZILI <br> Адрес получателя <br> Recipient's address <br></span>
                 </div>
-                <div class="row__items">
+                <div class="row__notes">
                     <span  style="font-weight: bold">{{ optional($test->organization)->full_address }}</span>
                 </div>
             </div>
@@ -195,20 +195,21 @@
                 <div class="row__items">
                     <span class="row__labels">NAMLIGI <br> Влажность /Humidity<br></span>
                 </div>
-                <div class="small__row__items">
+                <div class="small__row__items"  style="width: 8%">
                     <span  style="font-weight: bold">{{ optional($test->laboratory_result)->humidity }} % </span>
                 </div>
-                <div class="row__items">
-                    <span class="row__labels">TUSHISH SONI <br> Число падений <br>Number of falls<br></span>
+                <div class="row__notes">
+                    <span class="row__labels">TUSHISH SONI <br> Число падений /Number of falls<br></span>
                 </div>
-                <div class="small__row__items">
-                    <span  style="font-weight: bold">{{ optional($test->laboratory_result)->falls_number }} sec <br>&nbsp;</span>
+                <div class="small__row__items" style="width: 8%">
+                    <span  style="font-weight: bold">{{ optional($test->laboratory_result)->falls_number }} sec </span>
                 </div>
             </div>
+
             {{-- 3 line sifat ko'rsatkichalari--}}
-            <div class="row__section">
-                <div class="row__notes" style="width: 32%">
-                    <span class="row__labels">KLEYKOVINANING VAZN ULUSHI<br> Массовая доля клейковины /Mass fraction of gluten</span>
+            <div class="row__section" style="padding-top:7px;">
+                <div class="row__notes">
+                    <span class="row__labels">KLEYKOVINANING VAZN ULUSHI<br> Массовая доля клейковины <br> Mass fraction of gluten</span>
                 </div>
                 <div class="small__row__items">
                     <span  style="font-weight: bold">{{ optional($test->laboratory_result)->kleykovina }} % </span>
@@ -216,13 +217,13 @@
                 <div class="small__row__items" style="width: 20%">
                     <span class="row__labels">SIFATI <br> Качество /Quality</span>
                 </div>
-                <div class="small__row__items" style="width: 8%">
+                <div class="small__row__items" style="width: 9%">
                     <span  style="font-weight: bold">{{ optional($test->laboratory_result)->quality }} </span>
                 </div>
-                <div class="small__row__items" style="width: 16%">
-                    <span class="row__labels">guruh <br>группа /group</span>
+                <div class="small__row__items" style="width: 18%">
+                    <span class="row__labels">Guruh <br>Группа /Group</span>
                 </div>
-                <div class="small__row__items" style="width: 8%">
+                <div class="small__row__items" style="width: 9%">
                     <span  style="font-weight: bold">@if(optional($test->laboratory_result)->class){{ \App\Models\LaboratoryResult::getGroup(optional($test->laboratory_result)->class) }} @endif</span>
                 </div>
             </div>

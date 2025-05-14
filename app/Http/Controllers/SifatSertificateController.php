@@ -327,15 +327,14 @@ class SifatSertificateController extends Controller
     public function clientEdit($id)
     {
         $data = ClientData::findOrFail($id);
+        $transportType = ClientData::getType();
+        $companyMarker = ClientData::getMarkerExist();
 
-        $clients = Clients::get();
-
-        return view('sifat_sertificate.client_edit', compact('data','clients'));
+        return view('sifat_sertificate.client_edit', compact('data', 'transportType', 'companyMarker'));
     }
 
     public function clientUpdate (Request $request)
     {
-
         $id = $request->input('id');
         $client = ClientData::findOrFail($id);
         $client->transport_type = $request->input('transport_type');
@@ -435,7 +434,7 @@ class SifatSertificateController extends Controller
         $pdf->setPaper('A4', 'portrait');
         $pdf->setOption('defaultFont', 'DejaVu Sans');
 
-    //   return $pdf->stream('sdf');
+     //  return $pdf->stream('sdf');
         // Save the PDF file
         $filePath = storage_path('app/public/sifat_sertificates/certificate_' . $id . '.pdf');
         $pdf->save($filePath);

@@ -58,28 +58,24 @@
 
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="hidden" name="id" value="{{ $data->id }}">
-
-                                    <div class="col-md-6 form-group has-feedback certificate">
-                                        <label for="number" class="form-label ">Transport turini tanlang<label
-                                                class="text-danger">*</label> </label>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="transport_type" class="form-label">
+                                            Transport turini tanlang <span class="text-danger">*</span>
+                                        </label>
                                         <select id="transport_type" class="form-control" name="transport_type" required>
-                                            <option value="1" @if($data->transport_type == 1) selected @endif> Vagon</option>
-                                            <option value="2" @if($data->transport_type == 2) selected @endif> Avtotransport</option>
+                                            @foreach($transportType as $key => $type)
+                                                <option value="{{ $key }}" @if( $key == $data->transport_type) selected @endif>{{ $type }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
-                                    <div
-                                        class="col-md-6 form-group has-feedback certificate">
-                                        <label for="middle-name"
-                                               class="form-label">{{ trans('app.Avtotransport/vagon raqami') }} <label
-                                                class="text-danger">*</label></label>
-                                        <input id="car_number" type="text" class="form-control" name="number" required
-                                               value="{{ $data->vagon_number }}">
-                                        @if ($errors->has('number'))
-                                            <span class="help-block">
-                                                <strong>Avtotransport/vagon raqami noto'g'ri shaklda kiritilgan</strong>
-                                            </span>
-                                        @endif
+
+                                    <div class="col-md-8 mb-3">
+                                        <label for="number" class="form-label">
+                                            {{ trans('app.Avtotransport/vagon raqami') }} <span class="text-danger">*</span>
+                                        </label>
+                                        <textarea id="number" name="number" class="form-control" maxlength="200" rows="3">{{ $data->vagon_number }}</textarea>
                                     </div>
+
                                     <div
                                         class="col-md-6 form-group has-feedback certificate">
                                         <label for="middle-name" class="form-label">{{ trans('app.Yuk xati raqami') }}

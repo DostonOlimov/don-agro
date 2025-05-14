@@ -78,7 +78,6 @@
     }
 
     .row__labels {
-        size: 10px;
         line-height: 0.9;
     }
 
