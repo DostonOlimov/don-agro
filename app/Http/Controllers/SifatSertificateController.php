@@ -5,27 +5,20 @@ namespace App\Http\Controllers;
 
 use App\Filters\V1\ApplicationFilter;
 use App\Models\Application;
-use App\Models\ChigitResult;
-use App\Models\ChigitTips;
 use App\Models\ClientData;
-use App\Models\Clients;
 use App\Models\CropData;
 use App\Models\CropsName;
-use App\Models\CropsSelection;
 use App\Models\CropsType;
-use App\Models\Indicator;
 use App\Models\LaboratoryResult;
 use App\Models\LaboratoryResultData;
-use App\Models\OrganizationCompanies;
 use App\Models\SertificateLaboratories;
 use App\Models\SifatSertificates;
 use App\Services\SearchService;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\Models\DefaultModels\tbl_activities;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
-use Symfony\Component\HttpFoundation\Response;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class SifatSertificateController extends Controller
@@ -33,8 +26,6 @@ class SifatSertificateController extends Controller
 
     public function applicationList(Request $request, ApplicationFilter $filter,SearchService $service)
     {
-        $user_id = Auth::user()->id;
-
 //        try {
             session(['crop'=>2]);
 
@@ -82,7 +73,7 @@ class SifatSertificateController extends Controller
 
 
     // application store
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $user = Auth::user();
 
@@ -130,19 +121,17 @@ class SifatSertificateController extends Controller
         return redirect()->route('sifat-sertificates.add_client',$application->id)->with('message', 'Successfully Submitted');
     }
 
-    public function addClientData($id)
+    public function addClientData(Application $app)
     {
         $transportType = ClientData::getType();
         $companyMarker = ClientData::getMarkerExist();
 
-        return view('sifat_sertificate.client_data_add',compact('id','transportType','companyMarker'));
+        return view('sifat_sertificate.client_data_add',compact('app','transportType','companyMarker'));
 
     }
-    public function ClientDataStore(Request $request)
+    public function ClientDataStore(Application $app,Request $request): RedirectResponse
     {
-        $app = Application::findOrFail($request->input('id'));
-
-        $crop = ClientData::create([
+        ClientData::create([
             'app_id'       => $app->id,
             'transport_type'    => $request->input('transport_type'),
             'vagon_number'      => $request->input('number'),
@@ -154,29 +143,24 @@ class SifatSertificateController extends Controller
             'company_marker'  => $request->input('company_marker'),
         ]);
 
-        return redirect()->route('sifat-sertificates.add_result',$request->input('id'))->with('message', 'Successfully Submitted');
+        return redirect()->route('sifat-sertificates.add_result', $app)->with('message', 'Successfully Submitted');
     }
 
-    public function addResult($id)
+    public function addResult(Application $app)
     {
-        $app = Application::findOrFail($id);
-
         $types = LaboratoryResult::getType();
         $group = LaboratoryResult::getGroup();
         $flavour_types = LaboratoryResult::getFlaourTypes();
 
         if($app->crops->name->sertificate_type == 2){
-            return view('sifat_sertificate.add_result2',compact('id','types','group','flavour_types'));
+            return view('sifat_sertificate.add_result2',compact('app','types','group','flavour_types'));
         }
 
-        return view('sifat_sertificate.add_result',compact('id','types','group'));
-
+        return view('sifat_sertificate.add_result',compact('app','types','group'));
     }
-    public function ResultStore(Request $request)
+    public function ResultStore(Application $app, Request $request): RedirectResponse
     {
-        $app = Application::findOrFail($request->input('id'));
-
-        $crop = LaboratoryResult::create([
+        LaboratoryResult::create([
             'app_id'   => $app->id,
             'class'    => $request->input('group'),
             'type'      => $request->input('type') ?? $request->input('flavour'),
@@ -194,7 +178,7 @@ class SifatSertificateController extends Controller
         ]);
         $data = [];
 
-// Static data entries
+    // Static data entries
         $dataEntries = [
             ['name' => "JAMI", 'value' => $request->input('jami1'), 'type' => 1],
             ['name' => 'MA\'DANLI', 'value' => $request->input('madan'), 'type' => 1],
@@ -245,52 +229,44 @@ class SifatSertificateController extends Controller
             ->with('message', 'Successfully Submitted');
     }
 
-    public function showapplication($id)
+    public function showapplication(Application $app)
     {
-        $test = Application::with('laboratory_result_data')->findOrFail($id);
-        $result_data1 = optional($test->laboratory_result_data())->where('type',1)->get();
-        $result_data2 = optional($test->laboratory_result_data())->where('type',2)->get();
-        $company = OrganizationCompanies::with('city')->findOrFail($test->organization_id);
-        $formattedDate = formatUzbekDateInLatin($test->date);
+        $app->load('laboratory_result_data');
+        $result_data1 = optional($app->laboratory_result_data())->where('type',1)->get();
+        $result_data2 = optional($app->laboratory_result_data())->where('type',2)->get();
+        $formattedDate = formatUzbekDateInLatin($app->date);
         $nds_type = 1;
-        if($test->crops->name_id == 25 and $test->crops->country_id == 243){
+        if($app->crops->name_id == 25 and $app->crops->country_id == 243){
             $nds_type = 2;
         }
-        $nds = $test->crops->name->sertificate_nds->where('type',$nds_type)->first();
-        $director = SertificateLaboratories::where('state_id', $test->user->state_id)->first();
+        $nds = $app->crops->name->sertificate_nds->where('type',$nds_type)->first();
+        $director = SertificateLaboratories::where('state_id', $app->user->state_id)->first();
 
         // Generate QR code
-        $url = route('sifat_sertificate.view', $id);
+        $url = route('sifat_sertificate.view', $app->id);
         $qrCode = QrCode::size(100)->generate($url);
         $t = 1;
 
-        return view('sifat_sertificate.show', compact('test', 'nds','director','formattedDate','company', 'qrCode','t','result_data1','result_data2'));
+        return view('sifat_sertificate.show', compact('app', 'nds','director','formattedDate','qrCode','t','result_data1','result_data2'));
     }
 
-    public function edit($id)
+    public function edit(Application $app)
     {
-        $data = Application::findOrFail($id);
-        $company = OrganizationCompanies::with('city')->findOrFail($data->organization_id);
-
-        return view('sifat_sertificate.edit', compact('data', 'company'));
+       return view('sifat_sertificate.edit', compact('app'));
     }
 
-    public function editData($id)
+    public function editData(Application $app)
     {
-        $data = Application::findOrFail($id);
-
         $names = DB::table('crops_name')->where('id','!=',1)->get()->toArray();
-        $types = CropsType::where('crop_id',optional($data->crops)->name_id)->get();
+        $types = CropsType::where('crop_id',optional($app->crops)->name_id)->get();
         $countries = DB::table('tbl_countries')->get()->toArray();
         $years = CropData::getYear();
 
-        return view('sifat_sertificate.edit_data', compact('data','names','types','countries','years'));
+        return view('sifat_sertificate.edit_data', compact('app','names','types','countries','years'));
     }
 
-    public function update(Request $request)
+    public function update(Application $app, Request $request)
     {
-        $id = $request->input('id');
-
         // Validate incoming request data
         $validatedData = $request->validate([
             'name' => 'required|string',
@@ -303,12 +279,8 @@ class SifatSertificateController extends Controller
             'country' => 'required|integer'
         ]);
 
-        // Find the application and related crop data
-        $app = Application::findOrFail($id);
-        $crop_data = $app->crops;
-
         // Update the crop data with validated input
-        $crop_data->update([
+        $app->crops->update([
             'name_id' => $validatedData['name'],
             'kodtnved' => $validatedData['tnved'],
             'type_id' => $validatedData['type'],
@@ -320,7 +292,7 @@ class SifatSertificateController extends Controller
         ]);
 
         // Redirect with success message
-        return redirect()->route('sifat_sertificate.edit', $id)->with('message', 'Successfully Submitted');
+        return redirect()->route('sifat_sertificate.edit', $app)->with('message', 'Successfully Submitted');
     }
 
     //edit client data
@@ -354,89 +326,113 @@ class SifatSertificateController extends Controller
     public function resultEdit ($id)
     {
         $data = Application::findOrFail($id);
+        $result_data1 = optional($data->laboratory_result_data())->where('type',1)->get();
+        $result_data2 = optional($data->laboratory_result_data())->where('type',2)->get();
 
-        return view('sifat_sertificate.result_edit', compact('data'));
+        return view('sifat_sertificate.result_edit', compact('data', 'result_data1','result_data2'));
     }
 
-    public function resultUpdate(Request $request)
+    public function resultUpdate(Request $request): RedirectResponse
     {
-
         $id = $request->input('id');
-        $client = LaboratoryResult::where('app_id',$id)->first();
-        $client->update([
-            'class'    => $request->input('class'),
-            'type'      => $request->input('type'),
-            'subtype'  => $request->input('subtype'),
-            'nature'  => $request->input('nature'),
-            'humidity'  => $request->input('humidity'),
-            'falls_number'  => $request->input('falls_number'),
-            'kleykovina'  => $request->input('kleykovina'),
-            'quality'  => $request->input('quality'),
-            'elak_number'  => $request->input('elak_number'),
-            'elak_result'  => $request->input('elak_result'),
-        ]);
 
-        return redirect()->route('sifat_sertificate.edit',$id)->with('message', 'Successfully Submitted');
+        // Fetch related data
+        $resultDataByType = [
+            1 => LaboratoryResultData::where('app_id', $id)->where('type', 1)->get(),
+            2 => LaboratoryResultData::where('app_id', $id)->where('type', 2)->get(),
+        ];
+
+        // Update main LaboratoryResult record
+        $client = LaboratoryResult::where('app_id', $id)->firstOrFail();
+        $client->update($request->only([
+            'class', 'type', 'subtype', 'nature', 'humidity',
+            'falls_number', 'kleykovina', 'quality', 'elak_number', 'elak_result',
+        ]));
+
+        // Update static values in result_data1 (type 1)
+        $this->updateResultValue($resultDataByType[1], 0, $request->input('jami1'));
+        $this->updateResultValue($resultDataByType[1], 1, $request->input('madan'));
+        $this->updateResultValue($resultDataByType[1], 2, $request->input('zarar'));
+
+        // Update static value in result_data2 (type 2)
+        $this->updateResultValue($resultDataByType[2], 0, $request->input('jami2'));
+
+        // Handle optional dynamic entries
+        $dataEntries = [];
+
+        $this->updateOrQueueResult($resultDataByType[1], 3, 'name1', 'value1', 1, $request, $dataEntries);
+        $this->updateOrQueueResult($resultDataByType[2], 1, 'z_name1', 'z_value1', 2, $request, $dataEntries);
+        $this->updateOrQueueResult($resultDataByType[2], 2, 'z_name2', 'z_value2', 2, $request, $dataEntries);
+        $this->updateOrQueueResult($resultDataByType[2], 3, 'z_name3', 'z_value3', 2, $request, $dataEntries);
+
+        // Insert new dynamic entries if any
+        if (!empty($dataEntries)) {
+            foreach ($dataEntries as &$entry) {
+                $entry['app_id'] = $id;
+            }
+            LaboratoryResultData::insert($dataEntries);
+        }
+
+        return redirect()->route('sifat_sertificate.edit', $id)->with('message', 'Successfully Submitted');
     }
+
 
     //accept online applications
     public function accept($id)
     {
-        $test = Application::with('laboratory_result_data')->findOrFail($id);
-        $result_data1 = optional($test->laboratory_result_data())->where('type',1)->get();
-        $result_data2 = optional($test->laboratory_result_data())->where('type',2)->get();
+        $app = Application::with('laboratory_result_data','crops','user','laboratory_result')->findOrFail($id);
+        $result_data1 = optional($app->laboratory_result_data())->where('type',1)->get();
+        $result_data2 = optional($app->laboratory_result_data())->where('type',2)->get();
 
-
-        $company = OrganizationCompanies::with('city')->find($test->organization_id);
         $quality = 1;
 
         // date format
-        $formattedDate = formatUzbekDateInLatin($test->date);
+        $formattedDate = formatUzbekDateInLatin($app->date);
         $currentYear = date('Y');
-        $type = optional(optional($test->crops)->name)->sertificate_type;
+        $type = optional(optional($app->crops)->name)->sertificate_type;
 
 //        get max  number of sertificate
         $number = SifatSertificates::where('year', $currentYear)
             ->where('type',$type)
             ->max('number');
-//        }
+
         $number = $number ? $number + 1 : 1;
 
         // create sifat certificate
-        if (!$test->sifat_sertificate) {
+        if (!$app->sifat_sertificate) {
             $sertificate = new SifatSertificates();
-            $sertificate->app_id = $id;
+            $sertificate->app_id = $app->id;
             $sertificate->number = $number;
-            $sertificate->state_id = optional($test->user)->state_id;
+            $sertificate->state_id = optional($app->user)->state_id;
             $sertificate->year = $currentYear;
             $sertificate->type = $type;
             $sertificate->created_by = \auth()->user()->id;
             $sertificate->save();
         }else{
-            $number = $test->sifat_sertificate->number;
+            $number = $app->sifat_sertificate->number;
         }
 
         $sert_number = ($currentYear - 2000) * 1000000 + $number;
 
         // Generate QR code
-        $qrCode = base64_encode(QrCode::format('png')->size(100)->generate(route('sifat_sertificate.download', $id)));
+        $qrCode = base64_encode(QrCode::format('png')->size(100)->generate(route('sifat_sertificate.download', $app)));
 
         //nds
         $nds_type = 1;
-        if($test->crops->name_id == 25 and $test->crops->country_id == 243){
+        if($app->crops->name_id == 25 and $app->crops->country_id == 243){
             $nds_type = 2;
         }
-        $nds = $test->crops->name->sertificate_nds->where('type',$nds_type)->first();
-        $director = SertificateLaboratories::where('state_id', $test->user->state_id)->first();
+        $nds = $app->crops->name->sertificate_nds->where('type',$nds_type)->first();
+        $director = SertificateLaboratories::where('state_id', $app->user->state_id)->first();
 
         // Load the view and pass data to it
-        $pdf = Pdf::loadView('sifat_sertificate.pdf', compact('test','nds','director','quality','sert_number','formattedDate', 'company', 'qrCode','result_data1','result_data2'));
+        $pdf = Pdf::loadView('sifat_sertificate.pdf', compact('app','nds','director','quality','sert_number','formattedDate','qrCode','result_data1','result_data2'));
         $pdf->setPaper('A4', 'portrait');
         $pdf->setOption('defaultFont', 'DejaVu Sans');
 
-     //  return $pdf->stream('sdf');
+       //return $pdf->stream('sdf');
         // Save the PDF file
-        $filePath = storage_path('app/public/sifat_sertificates/certificate_' . $id . '.pdf');
+        $filePath = storage_path('app/public/sifat_sertificates/certificate_' . $app->id . '.pdf');
         $pdf->save($filePath);
 
         // Redirect to list page with success message
@@ -445,9 +441,9 @@ class SifatSertificateController extends Controller
     }
 
 
-    public function download($id)
+    public function download(Application $app)
     {
-        $filePath = storage_path('app/public/sifat_sertificates/certificate_' . $id . '.pdf');
+        $filePath = storage_path('app/public/sifat_sertificates/certificate_' . $app->id . '.pdf');
 
         if (file_exists($filePath)) {
             return response()->download($filePath);
@@ -455,6 +451,35 @@ class SifatSertificateController extends Controller
             return redirect()->back()->with('error', 'File not found.');
         }
     }
+    /**
+     * Update a specific index of result data if exists.
+     */
+    private function updateResultValue($collection, $index, $value)
+    {
+        if (isset($collection[$index])) {
+            $collection[$index]->value = $value;
+            $collection[$index]->save();
+        }
+    }
 
+    /**
+     * Either update an existing result or queue it for insertion.
+     */
+    private function updateOrQueueResult($collection, $index, $nameKey, $valueKey, $type, Request $request, array &$dataEntries)
+    {
+        if ($request->filled($nameKey)) {
+            if (isset($collection[$index])) {
+                $collection[$index]->name = $request->input($nameKey);
+                $collection[$index]->value = $request->input($valueKey);
+                $collection[$index]->save();
+            } else {
+                $dataEntries[] = [
+                    'name' => $request->input($nameKey),
+                    'value' => $request->input($valueKey),
+                    'type' => $type,
+                ];
+            }
+        }
+    }
 }
 

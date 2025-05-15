@@ -157,8 +157,93 @@
                                             </span>
                                         @endif
                                     </div>
-
                                 </div>
+
+                                <div class="row" style="column-gap:0">
+                                    <div class="col-md-6 form-group has-feedback">
+                                        <div class="m-3">
+                                            <label for="middle-name" class="form-label">Donni ifloslantiruvchi aralashmalar</label>
+                                            <button type="button" id="addButton" class="btn btn-primary"><span class="fa fa-plus"></span> </button>
+                                            <button type="button" id="removeButton" class="btn btn-danger" style="color:white"><span class="fa fa-minus"></span></button>
+                                        </div>
+                                        <div class="row" style="column-gap:0" id="dynamicForm">
+                                            <div class="col-md-6 form-group has-feedback">
+                                                <input type="text"   class="form-control" name="jamwqei1" readonly value="JAMI">
+                                            </div>
+                                            <div class="col-md-6 form-group has-feedback">
+                                                <input type="number" step="0.01"  class="form-control" name="jami1" required
+                                                       value="{{$result_data1[0]->value}}">
+                                            </div>
+                                            <div class="col-md-6 form-group has-feedback">
+                                                <input type="text"   class="form-control" name="asdf" readonly value="MA'DANLI">
+                                            </div>
+                                            <div class="col-md-6 form-group has-feedback">
+                                                <input type="number" step="0.01"  class="form-control" name="madan" required
+                                                       value="{{ $result_data1[1]->value }}">
+                                            </div>
+                                            <div class="col-md-6 form-group has-feedback">
+                                                <input type="text"   class="form-control" name="jasdfmi1" readonly value="ZARARLI">
+                                            </div>
+                                            <div class="col-md-6 form-group has-feedback">
+                                                <input type="number" step="0.01"  class="form-control" name="zarar" required
+                                                       value="{{ $result_data1[2]->value }}">
+                                            </div>
+                                            @if(isset($result_data1[3]))
+                                                <div class="col-md-6 form-group has-feedback">
+                                                    <input type="text"   class="form-control" name="name1" value="{{ $result_data1[3]->name }}">
+                                                </div>
+                                                <div class="col-md-6 form-group has-feedback">
+                                                    <input type="number" step="0.01"  class="form-control" name="value1" required
+                                                           value="{{ $result_data1[3]->value }}">
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-group has-feedback">
+                                        <div class="m-3">
+                                            <label for="middle-name" class="form-label">Donli aralashmalar</label>
+                                            <button type="button" id="addButton2" class="btn btn-primary"><span class="fa fa-plus"></span> </button>
+                                            <button type="button" id="removeButton2" class="btn btn-danger" style="color:white"><span class="fa fa-minus"></span></button>
+                                        </div>
+                                        <div class="row" style="column-gap:0" id="dynamicForm2">
+                                            <div class="col-md-6 form-group has-feedback">
+                                                <input type="text"   class="form-control" name="jamierwe2" readonly value="JAMI">
+                                            </div>
+                                            <div class="col-md-6 form-group has-feedback">
+                                                <input type="number" step="0.01"  class="form-control" name="jami2" required
+                                                       value="{{ $result_data2[0]->value }}">
+                                            </div>
+                                            @if(isset($result_data2[1]))
+                                                <div class="col-md-6 form-group has-feedback">
+                                                    <input type="text"   class="form-control" name="z_name1" value="{{$result_data2[1]->name}}">
+                                                </div>
+                                                <div class="col-md-6 form-group has-feedback">
+                                                    <input type="number" step="0.01"  class="form-control" name="z_value1" required
+                                                           value="{{ $result_data2[1]->value }}">
+                                                </div>
+                                            @endif
+                                            @if(isset($result_data2[2]))
+                                                <div class="col-md-6 form-group has-feedback">
+                                                    <input type="text"   class="form-control" name="z_name2" value="{{$result_data2[2]->name}}">
+                                                </div>
+                                                <div class="col-md-6 form-group has-feedback">
+                                                    <input type="number" step="0.01"  class="form-control" name="z_value2" required
+                                                           value="{{ $result_data2[2]->value }}">
+                                                </div>
+                                            @endif
+                                            @if(isset($result_data2[3]))
+                                                <div class="col-md-6 form-group has-feedback">
+                                                    <input type="text"   class="form-control" name="z_name3" value="{{$result_data2[3]->name}}">
+                                                </div>
+                                                <div class="col-md-6 form-group has-feedback">
+                                                    <input type="number" step="0.01"  class="form-control" name="z_value3" required
+                                                           value="{{ $result_data2[3]->value }}">
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="col-md-6 col-sm-6">
                                     <a class="btn btn-primary" href="{{ URL::previous() }}">{{ trans('app.Cancel') }}</a>
                                     <button type="submit" onclick="disableButton()" id="submitter"
@@ -181,4 +266,108 @@
             }, 3000);
         }
     </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const addButton = document.getElementById('addButton');
+                const removeButton = document.getElementById('removeButton');
+                const dynamicForm = document.getElementById('dynamicForm');
+                let inputCounter = @if(isset($result_data1[3])) 2 @else 1 @endif; // Counter to keep track of input naming
+                const maxInputs = 2; // Maximum number of input pairs
+
+                addButton.addEventListener('click', function () {
+                    if (inputCounter >= maxInputs) {
+                        alert(`Bundan ortiq element qo'shib bo'lmaydi.`);
+                        return; // Prevent adding more inputs
+                    }
+
+                    // Create the text input wrapper and input element
+                    const textDiv = document.createElement('div');
+                    textDiv.classList.add('col-md-6', 'form-group', 'has-feedback');
+                    const textInput = document.createElement('input');
+                    textInput.type = 'text';
+                    textInput.classList.add('form-control');
+                    textInput.required = true;
+                    textInput.name = `name${inputCounter}`;
+                    textDiv.appendChild(textInput);
+
+                    // Create the number input wrapper and input element
+                    const numberDiv = document.createElement('div');
+                    numberDiv.classList.add('col-md-6', 'form-group', 'has-feedback');
+                    const numberInput = document.createElement('input');
+                    numberInput.type = 'number';
+                    numberInput.step = '0.01';
+                    numberInput.classList.add('form-control');
+                    numberInput.name = `value${inputCounter}`;
+                    numberInput.required = true;
+                    numberDiv.appendChild(numberInput);
+
+                    inputCounter++; // Increment counter for new input names
+
+                    // Append inputs to the form
+                    dynamicForm.appendChild(textDiv);
+                    dynamicForm.appendChild(numberDiv);
+                });
+
+                removeButton.addEventListener('click', function () {
+                    const elements = dynamicForm.querySelectorAll('.col-md-6.form-group.has-feedback');
+                    if (elements.length > 6) { // Only remove if more than one pair exists
+                        dynamicForm.removeChild(elements[elements.length - 1]); // Remove last number input's wrapper
+                        dynamicForm.removeChild(elements[elements.length - 2]); // Remove last text input's wrapper
+                        inputCounter--; // Decrement counter when removing inputs
+                    }
+                });
+            });
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const addButton = document.getElementById('addButton2');
+                const removeButton = document.getElementById('removeButton2');
+                const dynamicForm = document.getElementById('dynamicForm2');
+                let inputCounter = @php echo count($result_data2) @endphp; // Counter to keep track of input naming
+                const maxInputs = 4; // Maximum number of input pairs
+
+                addButton.addEventListener('click', function () {
+                    if (inputCounter >= maxInputs) {
+                        alert(`${maxInputs-1} tadan ortiq element qo'shib bo'lmaydi.`);
+                        return; // Prevent adding more inputs
+                    }
+
+                    // Create the text input wrapper and input element
+                    const textDiv = document.createElement('div');
+                    textDiv.classList.add('col-md-6', 'form-group', 'has-feedback');
+                    const textInput = document.createElement('input');
+                    textInput.type = 'text';
+                    textInput.classList.add('form-control');
+                    textInput.required = true;
+                    textInput.name = `z_name${inputCounter}`;
+                    textDiv.appendChild(textInput);
+
+                    // Create the number input wrapper and input element
+                    const numberDiv = document.createElement('div');
+                    numberDiv.classList.add('col-md-6', 'form-group', 'has-feedback');
+                    const numberInput = document.createElement('input');
+                    numberInput.type = 'number';
+                    numberInput.step = '0.01';
+                    numberInput.classList.add('form-control');
+                    numberInput.name = `z_value${inputCounter}`;
+                    numberInput.required = true;
+                    numberDiv.appendChild(numberInput);
+
+                    inputCounter++; // Increment counter for new input names
+
+                    // Append inputs to the form
+                    dynamicForm.appendChild(textDiv);
+                    dynamicForm.appendChild(numberDiv);
+                });
+
+                removeButton.addEventListener('click', function () {
+                    const elements = dynamicForm.querySelectorAll('.col-md-6.form-group.has-feedback');
+                    if (elements.length > 2) { // Only remove if more than one pair exists
+                        dynamicForm.removeChild(elements[elements.length - 1]); // Remove last number input's wrapper
+                        dynamicForm.removeChild(elements[elements.length - 2]); // Remove last text input's wrapper
+                        inputCounter--; // Decrement counter when removing inputs
+                    }
+                });
+            });
+        </script>
 @endsection

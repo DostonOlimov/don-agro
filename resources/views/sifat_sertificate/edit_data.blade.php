@@ -48,11 +48,10 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <form method="post" action="{!! url('sifat-sertificates/update') !!}" enctype="multipart/form-data" class="form-horizontal upperform">
+                            <form method="post" action="{!! url('sifat-sertificates/update',$app) !!}" enctype="multipart/form-data" class="form-horizontal upperform">
                                 <div class="row" style="column-gap: 0;">
 
                                     <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                    <input type="hidden" name="id" value="{{ $data->id }}">
 
                                     <div class="col-md-6">
                                         <div class="form-group overflow-hidden">
@@ -65,7 +64,7 @@
                                                 @endif
                                                 @if(!empty($names))
                                                     @foreach($names as $name)
-                                                        <option @if($data->crops->name_id == $name->id) selected @endif value="{{ $name->id }}"> {{$name->name}} </option>
+                                                        <option @if($app->crops->name_id == $name->id) selected @endif value="{{ $name->id }}"> {{$name->name}} </option>
                                                     @endforeach
 
                                                 @endif
@@ -78,12 +77,12 @@
                                             <input class="form-control" id="kodtnved" type="text" name="tnved" data-field-name="tin" data-field-length="10"
                                                    minlength="10"
                                                    data-mask="0000000000" maxlength="10" required="required"
-                                                   title="10ta raqam kiriting!" data-pattern-mismatch="Noto'g'ri shakl" value="{{ $data->crops->kodtnved}}" />
+                                                   title="10ta raqam kiriting!" data-pattern-mismatch="Noto'g'ri shakl" value="{{ $app->crops->kodtnved}}" />
                                         </div>
                                     </div>
                                     <div class="col-md-6 form-group has-feedback {{ $errors->has('party_number') ? ' has-error' : '' }}">
                                         <label for="middle-name" class="form-label">{{trans('app.Toʼda (partiya) raqami')}} <label class="text-danger">*</label></label>
-                                        <input type="text" class="form-control" maxlength="25" name="party_number" value="{{ $data->crops->party_number }}">
+                                        <input type="text" class="form-control" maxlength="25" name="party_number" value="{{ $app->crops->party_number }}">
                                         @if ($errors->has('party_number'))
                                             <span class="help-block">
                                     <strong>Partiya raqami noto'g'ri shaklda kiritilgan</strong>
@@ -98,7 +97,7 @@
                                                 <select class="form-control w-100 type_of_corn custom-select" name="type">
                                                     @if($types)
                                                         @foreach($types as $type)
-                                                            <option value="{{$type->id}}" @if($type->id == optional($data->crops)->type_id) selected @endif>{{$type->name}}</option>
+                                                            <option value="{{$type->id}}" @if($type->id == optional($app->crops)->type_id) selected @endif>{{$type->name}}</option>
                                                         @endforeach
                                                     @endif
                                                 </select>
@@ -116,7 +115,7 @@
                                                 @if (!empty($countries))
                                                     @foreach ($countries as $name)
                                                         <option value="{{ $name->id }}"
-                                                                @if ($name->id == optional($data->crops)->country_id) selected @endif>
+                                                                @if ($name->id == optional($app->crops)->country_id) selected @endif>
                                                             {{ $name->name }} </option>
                                                     @endforeach
                                                 @endif
@@ -133,7 +132,7 @@
                                                 @endif
                                                 @foreach ($years as $key => $name)
                                                     <option value="{{ $key }}"
-                                                            @if ($key == $data->crops->year) selected @endif>{{ $name }}
+                                                            @if ($key == $app->crops->year) selected @endif>{{ $name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -141,7 +140,7 @@
                                     </div>
                                     <div class="col-md-6 form-group has-feedback {{ $errors->has('amount') ? ' has-error' : '' }}">
                                         <label for="middle-name" class="form-label">{{trans('app.amount2')}} <label class="text-danger">*</label></label>
-                                        <input type="number" step="0.01" class="form-control" maxlength="25" value="{{ $data->crops->amount }}" name="amount">
+                                        <input type="number" step="0.01" class="form-control" maxlength="25" value="{{ $app->crops->amount }}" name="amount">
                                         @if ($errors->has('amount'))
                                             <span class="help-block">
                                     <strong>Sertifikatlanuvchi mahsulot miqdori noto'g'ri shaklda kiritilgan</strong>
@@ -153,7 +152,7 @@
                                         <label for="middle-name" class="form-label">{{ trans('app.joylar soni') }} <label
                                                 class="text-danger">*</label></label>
                                         <input type="number" class="form-control" max="10000000" min="0"
-                                               value="{{ $data->crops->joy_soni }}" name="joy_soni">
+                                               value="{{ $app->crops->joy_soni }}" name="joy_soni">
                                         @if ($errors->has('joy_soni'))
                                             <span class="help-block">
                                                 <strong class="hf-warning">{{ $errors->first('joy_soni') }}</strong>

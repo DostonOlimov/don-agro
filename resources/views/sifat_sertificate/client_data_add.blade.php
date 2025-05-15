@@ -53,16 +53,10 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <form method="post" action="{!! url('sifat-sertificates/client_store') !!}" enctype="multipart/form-data"
+                            <form method="post" action="{!! url('sifat-sertificates/client_store', $app) !!}" enctype="multipart/form-data"
                                 class="form-horizontal upperform">
-{{--                                <input class=" radio" type="radio" id="html" name="given_certificate" value="1" checked>--}}
-{{--                                <label for="html">Xaridor ma'lum</label><br>--}}
-{{--                                <input  class="radio" type="radio" id="css" name="given_certificate" value="0">--}}
-{{--                                <label for="css">Xaridor no'malum</label><br>--}}
                                 <div class="row" style="column-gap: 0;">
-
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <input type="hidden" name="id" value="{{ $id }}">
 
                                         <div class="col-md-4 mb-3">
                                             <label for="transport_type" class="form-label">
@@ -157,8 +151,6 @@
                                             </span>
                                         @endif
                                     </div>
-
-
                                     <div class="form-group col-md-12 col-sm-12">
                                         <div class="col-md-12 col-sm-12 text-center">
                                             <a class="btn btn-primary"
@@ -174,11 +166,6 @@
                 </div>
             </div>
         </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="{{ asset('vendors/moment/min/moment.min.js') }}"></script>
-    <script src="{{ asset('vendors/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
-    <script src="{{ asset('vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
     <script type="text/javascript">
         function disableButton() {
             var button = document.getElementById('submitter');
@@ -190,5 +177,4 @@
             }, 1000);
         }
     </script>
-
 @endsection

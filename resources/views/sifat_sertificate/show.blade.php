@@ -168,13 +168,13 @@
                         </a>
                     </li>
                     <li class="btn-primary">
-                        <a class="text-light" href="{!! url('/sifat-sertificates/edit/'.$test->id)!!}">
+                        <a class="text-light" href="{!! url('/sifat-sertificates/edit', $app)!!}">
                             <span class="visible-xs"></span>
                             <i class="fa fa-edit fa-lg">&nbsp;</i> {{ trans('app.Edit')}}
                         </a>
                     </li>
                     <li class="btn-success">
-                        <a class="text-light sa-warning" url="{!! url('/sifat-sertificates/accept/'.$test->id)!!}">
+                        <a class="text-light sa-warning" url="{!! url('/sifat-sertificates/accept/'. $app->id)!!}">
                             <span class="visible-xs"></span>
                             <i class="fa fa-check fa-lg">&nbsp;</i> Tasdiqlash
                         </a>
@@ -185,7 +185,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card p-4">
-                    @if(optional(optional($test->crops)->name)->sertificate_type == 2)
+                    @if(optional(optional($app->crops)->name)->sertificate_type == 2)
                         @include('sifat_sertificate._cheque2')
                     @else
                         @include('sifat_sertificate._cheque')

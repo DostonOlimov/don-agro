@@ -67,7 +67,7 @@
                                 </a>
                             </li>
                             <li class="tab_item">
-                                <a class="tab_link" href="{!! url('/sifat-sertificates/edit-data/' . $data->id) !!}">
+                                <a class="tab_link" href="{!! url('/sifat-sertificates/edit-data', $app) !!}">
                                     <i class="fas fa-edit"></i> {{ trans('app.Edit') }}
                                 </a>
 
@@ -82,7 +82,7 @@
                                 </div>
                                 <div class="col-md-5 col-sm-12 table_td">
                                     <span class="txt_color">
-                                        {{ $data->date }}
+                                        {{ $app->date }}
                                     </span>
                                 </div>
                             </div>
@@ -92,7 +92,7 @@
                                 </div>
                                 <div class="col-md-5 col-sm-12 table_td">
                                     <span class="txt_color">
-                                        {{ optional($data->prepared)->name }}
+                                        {{ optional($app->prepared)->name }}
                                     </span>
                                 </div>
                             </div>
@@ -102,7 +102,7 @@
                                 </div>
                                 <div class="col-md-5 col-sm-12 table_td">
                                     <span class="txt_color">
-                                        {{ optional($data->crops)->name->name }}
+                                        {{ optional($app->crops)->name->name }}
                                     </span>
                                 </div>
                             </div>
@@ -112,7 +112,7 @@
                                 </div>
                                 <div class="col-md-5 col-sm-12 table_td">
                                     <span class="txt_color">
-                                        {{ optional($data->crops->type)->name }}
+                                        {{ optional($app->crops->type)->name }}
                                     </span>
                                 </div>
                             </div>
@@ -122,7 +122,7 @@
                                 </div>
                                 <div class="col-md-5 col-sm-12 table_td">
                                     <span class="txt_color">
-                                        {{ optional($data->crops)->kodtnved }}
+                                        {{ optional($app->crops)->kodtnved }}
                                     </span>
                                 </div>
                             </div>
@@ -132,7 +132,7 @@
                                 </div>
                                 <div class="col-md-5 col-sm-12 table_td">
                                     <span class="txt_color">
-                                        {{ optional($data->crops)->party_number }}
+                                        {{ optional($app->crops)->party_number }}
 
                                     </span>
                                 </div>
@@ -143,7 +143,7 @@
                                 </div>
                                 <div class="col-md-5 col-sm-12 table_td">
                                     <span class="txt_color">
-                                        {{ optional($data->crops)->joy_soni }}
+                                        {{ optional($app->crops)->joy_soni }}
 
                                     </span>
                                 </div>
@@ -154,8 +154,8 @@
                                 </div>
                                 <div class="col-md-5 col-sm-12 table_td">
                                     <span class="txt_color">
-                                        {{ optional($data->crops)->amount }}
-                                        {{ \App\Models\CropData::getMeasureType(optional($data->crops)->measure_type) }}
+                                        {{ optional($app->crops)->amount }}
+                                        {{ \App\Models\CropData::getMeasureType(optional($app->crops)->measure_type) }}
                                     </span>
                                 </div>
                             </div>
@@ -164,7 +164,7 @@
                             <div class="panel panel-primary">
                                 <ul class="tab_list">
                                     <li class="tab_item">
-                                        <a class="tab_link" href="{!! url('/organizafdgtion/my-organization-edit/' . $data->organization_id) !!}">
+                                        <a class="tab_link" href="{!! url('/organizafdgtion/my-organization-edit/' . $app->organization_id) !!}">
                                             <i class="fas fa-edit"></i> {{ trans('app.Edit') }}
                                         </a>
                                     </li>
@@ -179,7 +179,7 @@
                                         </div>
                                         <div class="col-md-5 col-sm-12 table_td">
                                             <span class="txt_color">
-                                                {{ $data->organization->inn }}
+                                                {{ $app->organization->inn }}
                                             </span>
                                         </div>
                                     </div>
@@ -189,7 +189,7 @@
                                         </div>
                                         <div class="col-md-5 col-sm-12 table_td">
                                             <span class="txt_color">
-                                                {{ $data->organization->name }}
+                                                {{ $app->organization->name }}
                                             </span>
                                         </div>
                                     </div>
@@ -199,7 +199,7 @@
                                         </div>
                                         <div class="col-md-5 col-sm-12 table_td">
                                             <span class="txt_color">
-                                                {{ optional($data->organization)->full_address }}
+                                                {{ optional($app->organization)->full_address }}
                                             </span>
                                         </div>
                                     </div>
@@ -209,7 +209,7 @@
                                         </div>
                                         <div class="col-md-5 col-sm-12 table_td">
                                             <span class="txt_color">
-                                                {{ optional($data->organization)->owner_name }}
+                                                {{ optional($app->organization)->owner_name }}
                                             </span>
                                         </div>
                                     </div>
@@ -219,7 +219,7 @@
                                         </div>
                                         <div class="col-md-5 col-sm-12 table_td">
                                             <span class="txt_color">
-                                                {{ optional($data->organization)->phone_number }}
+                                                {{ optional($app->organization)->phone_number }}
                                             </span>
                                         </div>
                                     </div>
@@ -231,12 +231,12 @@
                             <div class="panel panel-primary">
                                 <ul class="tab_list">
                                     <li class="tab_item">
-                                        @if($data->client_data)
-                                        <a class="tab_link" href="{!! url('/sifat-sertificates/client-edit/' . optional($data->client_data)->id) !!}">
+                                        @if($app->client_data)
+                                        <a class="tab_link" href="{!! url('/sifat-sertificates/client-edit/' . optional($app->client_data)->id) !!}">
                                             <i class="fas fa-edit"></i> {{ trans('app.Edit') }}
                                         </a>
                                         @else
-                                        <a class="tab_link" href="{!! url('/sifat-sertificates/add_client/' . $data->id) !!}">
+                                        <a class="tab_link" href="{!! url('/sifat-sertificates/add_client', $app) !!}">
                                             <i class="fas fa-edit"></i> {{ trans('app.Edit') }}
                                         </a>
                                         @endif
@@ -252,7 +252,7 @@
                                         </div>
                                         <div class="col-md-5 col-sm-12 table_td">
                                             <span class="txt_color">
-                                                {{ optional($data->client_data)->transport_type == 1 ? 'vagon' : 'avtotransport' }}
+                                                {{ optional($app->client_data)->transport_type == 1 ? 'vagon' : 'avtotransport' }}
                                             </span>
                                         </div>
                                     </div>
@@ -262,7 +262,7 @@
                                         </div>
                                         <div class="col-md-5 col-sm-12 table_td">
                                             <span class="txt_color">
-                                                {{ optional($data->client_data)->vagon_number }}
+                                                {{ optional($app->client_data)->vagon_number }}
                                             </span>
                                         </div>
                                     </div>
@@ -272,7 +272,7 @@
                                         </div>
                                         <div class="col-md-5 col-sm-12 table_td">
                                             <span class="txt_color">
-                                                {{ optional($data->client_data)->yuk_xati }}
+                                                {{ optional($app->client_data)->yuk_xati }}
                                             </span>
                                         </div>
                                     </div>
@@ -282,7 +282,7 @@
                                         </div>
                                         <div class="col-md-5 col-sm-12 table_td">
                                             <span class="txt_color">
-                                                {{ optional($data->client_data)->sender_name }}
+                                                {{ optional($app->client_data)->sender_name }}
                                             </span>
                                         </div>
                                     </div>
@@ -292,7 +292,7 @@
                                         </div>
                                         <div class="col-md-5 col-sm-12 table_td">
                                             <span class="txt_color">
-                                                {{ optional($data->client_data)->sender_station }}
+                                                {{ optional($app->client_data)->sender_station }}
                                             </span>
                                         </div>
                                     </div>
@@ -302,7 +302,7 @@
                                         </div>
                                         <div class="col-md-5 col-sm-12 table_td">
                                             <span class="txt_color">
-                                                {{ optional($data->client_data)->reciever_station }}
+                                                {{ optional($app->client_data)->reciever_station }}
                                             </span>
                                         </div>
                                     </div>
@@ -312,7 +312,7 @@
                                         </div>
                                         <div class="col-md-5 col-sm-12 table_td">
                                             <span class="txt_color">
-                                                {{ optional($data->client_data)->sender_address }}
+                                                {{ optional($app->client_data)->sender_address }}
                                             </span>
                                         </div>
                                     </div>
@@ -322,7 +322,7 @@
                                         </div>
                                         <div class="col-md-5 col-sm-12 table_td">
                                             <span class="txt_color">
-                                                {{ optional($data->client_data)->company_marker }}
+                                                {{ optional($app->client_data)->company_marker }}
                                             </span>
                                         </div>
                                     </div>
@@ -335,12 +335,12 @@
                             <div class="panel panel-primary">
                                 <ul class="tab_list">
                                     <li class="tab_item">
-                                        @if($data->laboratory_result)
-                                        <a class="tab_link" href="{!! url('/sifat-sertificates/result-edit/' . $data->id) !!}">
+                                        @if($app->laboratory_result)
+                                        <a class="tab_link" href="{!! url('/sifat-sertificates/result-edit', $app) !!}">
                                             <i class="fas fa-edit"></i> {{ trans('app.Edit') }}
                                         </a>
                                         @else
-                                        <a class="tab_link" href="{!! url('/sifat-sertificates/add_result/' . $data->id) !!}">
+                                        <a class="tab_link" href="{!! url('/sifat-sertificates/add_result', $app) !!}">
                                             <i class="fas fa-edit"></i> {{ trans('app.Edit') }}
                                         </a>
                                         @endif
@@ -356,7 +356,7 @@
                                         </div>
                                         <div class="col-md-5 col-sm-12 table_td">
                                             <span class="txt_color">
-                                                {{ optional($data->laboratory_result)->class }}
+                                                {{ optional($app->laboratory_result)->class }}
                                             </span>
                                         </div>
                                     </div>
@@ -366,7 +366,7 @@
                                         </div>
                                         <div class="col-md-5 col-sm-12 table_td">
                                             <span class="txt_color">
-                                                {{ optional($data->laboratory_result)->type }}
+                                                {{ optional($app->laboratory_result)->type }}
                                             </span>
                                         </div>
                                     </div>
@@ -376,7 +376,7 @@
                                         </div>
                                         <div class="col-md-5 col-sm-12 table_td">
                                             <span class="txt_color">
-                                                {{ optional($data->laboratory_result)->subtype }}
+                                                {{ optional($app->laboratory_result)->subtype }}
                                             </span>
                                         </div>
                                     </div>
@@ -386,7 +386,7 @@
                                         </div>
                                         <div class="col-md-5 col-sm-12 table_td">
                                             <span class="txt_color">
-                                                {{ optional($data->laboratory_result)->nature }}
+                                                {{ optional($app->laboratory_result)->nature }}
                                             </span>
                                         </div>
                                     </div>
@@ -396,7 +396,7 @@
                                         </div>
                                         <div class="col-md-5 col-sm-12 table_td">
                                             <span class="txt_color">
-                                                {{ optional($data->laboratory_result)->falls_number }}
+                                                {{ optional($app->laboratory_result)->falls_number }}
                                             </span>
                                         </div>
                                     </div>
@@ -406,7 +406,7 @@
                                         </div>
                                         <div class="col-md-5 col-sm-12 table_td">
                                             <span class="txt_color">
-                                                {{ optional($data->laboratory_result)->humidity }}
+                                                {{ optional($app->laboratory_result)->humidity }}
                                             </span>
                                         </div>
                                     </div>
@@ -416,7 +416,7 @@
                                         </div>
                                         <div class="col-md-5 col-sm-12 table_td">
                                             <span class="txt_color">
-                                                {{ optional($data->laboratory_result)->kleykovina }}
+                                                {{ optional($app->laboratory_result)->kleykovina }}
                                             </span>
                                         </div>
                                     </div>
@@ -426,7 +426,7 @@
                                         </div>
                                         <div class="col-md-5 col-sm-12 table_td">
                                             <span class="txt_color">
-                                                {{ optional($data->laboratory_result)->quality }}
+                                                {{ optional($app->laboratory_result)->quality }}
                                             </span>
                                         </div>
                                     </div>

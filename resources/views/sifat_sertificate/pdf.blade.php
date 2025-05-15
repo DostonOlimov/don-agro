@@ -106,7 +106,7 @@
 </style>
 @endsection
 @section('content')
-    @if(optional(optional($test->crops)->name)->sertificate_type == 2)
+    @if(optional(optional($app->crops)->name)->sertificate_type == 2)
         @include('sifat_sertificate._cheque2')
     @else
         @include('sifat_sertificate._cheque')

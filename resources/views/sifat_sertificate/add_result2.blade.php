@@ -52,12 +52,10 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <form id="invoice-form" method="post" action="{!! url('sifat-sertificates/result_store') !!}"
+                        <form id="invoice-form" method="post" action="{!! url('sifat-sertificates/result_store',$app) !!}"
                               enctype="multipart/form-data" data-parsley-validate class="form-horizontal form-label-left">
                             @csrf
                             <div class="row" style="column-gap:0">
-                                <input type="hidden" name="id" value="{{ $id }}">
-
                                 <div class="col-md-4 form-group has-feedback certificate">
                                     <label for="number" class="form-label ">Rangi<label
                                             class="text-danger">*</label> </label>
