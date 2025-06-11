@@ -190,8 +190,8 @@ class OrganizationCompaniesController extends Controller
         $validatedData = $request->validate([
             'inn' => 'required|int|digits:9',
             'name' => 'required|string|max:100',
-            'address' => 'required|string|max:50',
-            'owner_name' => 'required|string|max:30',
+            'address' => 'required|string|max:70',
+            'owner_name' => 'required|string|max:70',
             'phone_number' => 'required|string|max:20',
         ]);
 

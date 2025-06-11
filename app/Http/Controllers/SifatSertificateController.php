@@ -77,7 +77,6 @@ class SifatSertificateController extends Controller
     {
         $user = Auth::user();
 
-        // Define validation rules with camelCase attribute names
         $validatedData = $request->validate([
             'name' => 'required|int',
             'amount' => 'required',
