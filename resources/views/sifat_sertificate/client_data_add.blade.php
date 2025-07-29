@@ -80,13 +80,7 @@
                                         class="col-md-6 form-group has-feedback certificate">
                                         <label for="middle-name" class="form-label">{{ trans('app.Yuk xati raqami') }}
                                             <label class="text-danger">*</label></label>
-                                        <input type="text" id="yuk_xati" class="form-control" maxlength="10" name="yuk_xati" required
-                                            value="{{ old('yuk_xati') }}">
-                                        @if ($errors->has('yuk_xati'))
-                                            <span class="help-block">
-                                                <strong>Yuk xati raqami noto'g'ri shaklda kiritilgan</strong>
-                                            </span>
-                                        @endif
+                                        <textarea id="yuk_xati" name="yuk_xati" class="form-control" maxlength="200" rows="3" required>{{ old('yuk_xati') }}</textarea>
                                     </div>
                                     <div
                                         class="col-md-6 form-group has-feedback">

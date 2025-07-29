@@ -84,22 +84,22 @@
             </div>
             {{-- 4 line data about yuk--}}
             <div class="row__section">
-                <div class="row__items">
-                    <span class="row__labels">YUK XATI №№ <br> Накладная <br>Invoice<br></span>
+                <div class="row__items" style="width: 12%">
+                    <span class="small__row__items">YUK XATI №№ <br> Накладная <br>Invoice<br></span>
                 </div>
-                <div class="small__row__items">
-                    <span  style="font-weight: bold">{{ optional($app->client_data)->yuk_xati }}</span>
+                <div class="small__row__items" style="width: 38%">
+                    <span  style="font-weight: bold">{{ str_replace(',', ', ', optional($app->client_data)->yuk_xati)  }}</span>
                 </div>
-                <div class="row__items">
+                <div class="row__items" style="width: 16%" >
                     <span class="row__labels">JOYLAR SONI <br> Количество мест <br> Number of seats<br></span>
                 </div>
-                <div class="small__row__items">
+                <div class="small__row__items"  style="width: 10%">
                     <span  style="font-weight: bold">{{ optional($app->crops)->joy_soni }}</span>
                 </div>
-                <div class="row__items">
+                <div class="row__items" style="width: 8%">
                     <span class="row__labels">VAZNI <br> Вес <br> Weight<br></span>
                 </div>
-                <div class="small__row__items">
+                <div class="small__row__items" style="width: 12%">
                     <span  style="font-weight: bold">{{ optional($app->crops)->amount }} kg</span>
                 </div>
             </div>
