@@ -84,10 +84,10 @@
             </div>
             {{-- 4 line data about yuk--}}
             <div class="row__section">
-                <div class="row__items" style="width: 12%">
-                    <span class="small__row__items">YUK XATI №№ <br> Накладная <br>Invoice<br></span>
+                <div class="row__items" style="width: 14%">
+                    <span class="small__row__items">YUK XATI<br> Накладная <br>Invoice<br></span>
                 </div>
-                <div class="small__row__items" style="width: 38%">
+                <div class="small__row__items" style="width: 36%">
                     <span  style="font-weight: bold">{{ str_replace(',', ', ', optional($app->client_data)->yuk_xati)  }}</span>
                 </div>
                 <div class="row__items" style="width: 16%" >
