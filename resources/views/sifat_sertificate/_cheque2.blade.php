@@ -163,7 +163,7 @@
                     <span class="row__labels">KORXONANING TAMG‘ASI <br> Маркировка предприятия /Marking of the enterprise <br></span>
                 </div>
                 <div class="row__notes">
-                    <span> {{ \App\Models\ClientData::getMarkerExist( optional($app->client_data)->company_marker ) }}</span>
+                    <span> {{ \App\Models\ClientData::getMarkerExist()[optional($app->client_data)->company_marker] ?? '' }}</span>
                 </div>
             </div>
 
@@ -183,13 +183,13 @@
                     <span class="row__labels">TA’MI<br>Вкус/Taste<br></span>
                 </div>
                 <div class="small__row__items">
-                    <span>{{ \App\Models\LaboratoryResult::getFlaourTypes(optional($app->laboratory_result)->type) }} </span>
+                    <span>{{ \App\Models\LaboratoryResult::getFlaourTypes()[optional($app->laboratory_result)->type] ?? '' }} </span>
                 </div>
                 <div class="row__items">
                     <span class="row__labels">HIDI<br>Запах /Smell  <br></span>
                 </div>
                 <div class="small__row__items">
-                    <span>{{ \App\Models\LaboratoryResult::getFlaourTypes(optional($app->laboratory_result)->subtype) }} </span>
+                    <span>{{ \App\Models\LaboratoryResult::getFlaourTypes()[optional($app->laboratory_result)->subtype] ?? '' }} </span>
                 </div>
             </div>
             {{-- 2 line sifat ko'rsatkichalari--}}
@@ -251,7 +251,7 @@
                     <span class="row__labels">guruh <br>группа /group</span>
                 </div>
                 <div class="small__row__items" style="width: 8%">
-                    <span>{{ \App\Models\LaboratoryResult::getGroup(optional($app->laboratory_result)->class) }} </span>
+                    <span>{{ \App\Models\LaboratoryResult::getGroup()[optional($app->laboratory_result)->class] ?? '' }} </span>
                 </div>
             </div>
             {{-- line sifat ko'rsatkichalari--}}

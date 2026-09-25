@@ -155,7 +155,7 @@
                     <span class="row__labels">KORXONANING TAMG‘ASI <br> Маркировка предприятия /Marking of the enterprise <br></span>
                 </div>
                 <div class="row__notes">
-                    <span  style="font-weight: bold"> {{ \App\Models\ClientData::getMarkerExist( optional($app->client_data)->company_marker ) }}</span>
+                    <span  style="font-weight: bold"> {{ \App\Models\ClientData::getMarkerExist()[optional($app->client_data)->company_marker] ?? '' }}</span>
                 </div>
             </div>
 
