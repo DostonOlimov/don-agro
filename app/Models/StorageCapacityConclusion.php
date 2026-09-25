@@ -41,6 +41,7 @@ class StorageCapacityConclusion extends Model
         'status',
         'capacity',
         'comment',
+        'user_id',
     ];
 
     public static function getType($type = null)
