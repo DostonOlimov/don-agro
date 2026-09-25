@@ -440,6 +440,27 @@ class SifatSertificateController extends Controller
     }
 
 
+    public function destroy(Application $app): RedirectResponse
+    {
+        $user = Auth::user();
+
+        abort_unless($app->canBeDeletedBy($user), 403, 'Sertifikat yaratilgan arizani o\'chirib bo\'lmaydi.');
+
+        $app->delete();
+
+        \App\tbl_activities::create([
+            'ip_adress'   => request()->ip(),
+            'user_id'     => $user->id,
+            'action_id'   => $app->id,
+            'action_type' => 'app_delete',
+            'action'      => "Ariza o'chirildi",
+            'time'        => now(),
+        ]);
+
+        return redirect()->route('/sifat-sertificates/list')
+            ->with('message', 'Successfully Deleted');
+    }
+
     public function download(Application $app)
     {
         $filePath = storage_path('app/public/sifat_sertificates/certificate_' . $app->id . '.pdf');

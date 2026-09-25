@@ -364,6 +364,15 @@ tr:nth-child(even) {
 
                                             </a>
                                         @endif
+                                        @if($app->canBeDeletedBy(auth()->user()))
+                                            <form action="{{ route('sifat_sertificate.delete', $app->id) }}" method="POST"
+                                                  onsubmit="return confirm('Arizani o\'chirishni tasdiqlaysizmi?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-round btn-danger">
+                                                    <i class="fa fa-trash"></i> {{ trans('app.Delete') }}</button>
+                                            </form>
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach

@@ -6,9 +6,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Application extends Model
 {
+    use SoftDeletes;
+
     const TYPE_1 = 1;
     const TYPE_2 = 2;
     const TYPE_3 = 3;
@@ -135,6 +138,15 @@ class Application extends Model
          }elseif($this->status == self::STATUS_FINISHED){
              return 'secondary';
          }
+    }
+    // Sifat sertifikati arizasini faqat sertifikat yaratilmagan bo'lsa o'chirish mumkin, user id 1 esa istalgan vaqtda
+    public function canBeDeletedBy(?User $user): bool
+    {
+        if (!$user) {
+            return false;
+        }
+
+        return $user->id == 1 || !$this->sifat_sertificate;
     }
     public function getYear()
     {

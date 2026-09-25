@@ -439,6 +439,7 @@ Route::group(
             Route::post('/result-update', '\App\Http\Controllers\SifatSertificateController@resultUpdate')->name('sifat_sertificate/result_update');
 
             Route::get('/sertificate/{app}/download', '\App\Http\Controllers\SifatSertificateController@download')->name('sifat_sertificate.download');
+            Route::delete('/delete/{app}', '\App\Http\Controllers\SifatSertificateController@destroy')->name('sifat_sertificate.delete');
 
         });
 
