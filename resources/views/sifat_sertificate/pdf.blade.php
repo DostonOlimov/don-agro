@@ -107,8 +107,8 @@
 @endsection
 @section('content')
     @if(optional(optional($app->crops)->name)->sertificate_type == 2)
-        @include('sifat_sertificate._cheque2')
+        @include('sifat_sertificate._cheque2', ['isPdf' => true])
     @else
-        @include('sifat_sertificate._cheque')
+        @include('sifat_sertificate._cheque', ['isPdf' => true])
     @endif
 @endsection

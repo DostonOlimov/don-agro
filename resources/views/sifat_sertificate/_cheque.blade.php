@@ -1,11 +1,11 @@
 
 <div class="border-image">
-    <img src="{{ asset('/img/dashboard/bg_don2.jpg') }}" alt="">
+    <img src="{{ !empty($isPdf) ? public_path('img/dashboard/bg_don2.jpg') : asset('/img/dashboard/bg_don2.jpg') }}" alt="">
 </div>
 <div id="invoice-cheque" class="py-4 col-12 invoice-cheque ">
     <div class="content">
         <div class="head_image">
-            <img src="{{ asset('/img/dashboard/gerb_bg.png') }}" alt="image">
+            <img src="{{ !empty($isPdf) ? public_path('img/dashboard/gerb_bg.png') : asset('/img/dashboard/gerb_bg.png') }}" alt="image">
         </div>
 
         <h2 class="header__title">
